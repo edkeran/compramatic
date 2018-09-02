@@ -31,6 +31,7 @@
 
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="../App_Themes/Assets/plugins/pace/pace.min.js"></script>
+    <script src="../App_Themes/JS-Redireccion/Funiones.js"></script>
     <!-- ================== END BASE JS ================== -->
 
 </head>

@@ -1,18 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using Logica;
 
 public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        DAOProducto DAO_Producto = new DAOProducto();
+        L_AdministrarProducto logica = new L_AdministrarProducto();
+    }
+
+    /**
+     * CODIGO ORIGINAL PAGE LOAD
+     * 
+     *         DAOProducto DAO_Producto = new DAOProducto();
         if (!IsPostBack)
         {
 
@@ -40,7 +44,8 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
         {
             idProducto.Text = Session["IdProducto"].ToString();
         }
-    }
+     **/
+
 
     protected void BTN_AñadirTag_Click(object sender, EventArgs e)
     {

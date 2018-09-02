@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="L_AdministrarProducto.cs" />
+    <Compile Include="L_AgregarProducto.cs" />
     <Compile Include="L_CambiarPass_Usr.cs" />
+    <Compile Include="L_Invertario.cs" />
     <Compile Include="L_LogginUsr.cs" />
     <Compile Include="L_MasterBoardUsr.cs" />
     <Compile Include="L_Master_Home.cs" />
@@ -64,6 +67,9 @@
       <Project>{c6f04a0a-6b19-4e4a-90ca-53e7fc1d6217}</Project>
       <Name>Utilitarios</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

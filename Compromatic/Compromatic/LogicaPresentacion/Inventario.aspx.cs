@@ -1,15 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logica;
 
 public partial class Presentacion_Inventario : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        L_Invertario logic = new L_Invertario();
+        String redir=logic.page_load(IsPostBack,Session["Sesion"]);
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "sctr", "redireccionar('" + redir + "');", true);
+    }
+
+    /**
+     * 
         if (!IsPostBack)
         {
 
@@ -28,11 +32,18 @@ public partial class Presentacion_Inventario : System.Web.UI.Page
             }
         }
 
-    }
+     **/
+
     protected void Productos_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         DataTable Empresa = (DataTable)Session["Sesion"];
-        if(e.CommandName=="Modificar")
+        L_Invertario logic = new L_Invertario();
+        String redir=logic.Productos_ItemCommand(e.CommandName, ((TextBox)e.Item.FindControl("TB_Cantidad")).Text, e.CommandArgument.ToString(), ((TextBox)e.Item.FindControl("TB_Alerta")).Text,Empresa, Request.Url.AbsoluteUri);
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redireccionar('" + redir + "');", true);
+    }
+
+    /**
+     * if(e.CommandName=="Modificar")
         {
             int cantidad = int.Parse(((TextBox)e.Item.FindControl("TB_Cantidad")).Text);
             int id = int.Parse(e.CommandArgument.ToString());
@@ -41,5 +52,5 @@ public partial class Presentacion_Inventario : System.Web.UI.Page
             IAD_Producto.ModificarInventario(id,cantidad,bajoInventario,Empresa.Rows[0]["nomEmpresa"].ToString());
             Response.Redirect(Request.Url.AbsoluteUri);
         }
-    }
+     **/
 }

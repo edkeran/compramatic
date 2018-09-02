@@ -36,7 +36,7 @@ public class DAOProducto
             conection.Close();
         }
     }
-
+    //METODO MIGRADO TO DDAOProducto
     public void ModificarInventario(EUProducto EU_Producto, String modif)
     {
         NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
@@ -214,7 +214,7 @@ public class DAOProducto
         }
         return Categorias;
     }
-
+    //METODO MIGRADO A DDAOPRODUCTO
     public void GuardarProducto(EUProducto EU_Producto, String modif)
     {
 
@@ -336,7 +336,7 @@ public class DAOProducto
             }
         }
     }
-
+    //Metodo Migrado a DDAOProducto
     public DataTable MostrarProducto(int idEmpresa)
     {
         DataTable Productos = new DataTable();

@@ -7,6 +7,7 @@ using Npgsql;
 using NpgsqlTypes;
 using System.Configuration;
 using System.Threading.Tasks;
+using Utilitarios;
 
 namespace Datos
 {
@@ -98,6 +99,100 @@ namespace Datos
                 }
             }
             return Producto;
+        }
+
+        //Metodo Para Crear Un Nuevo Producto
+        public void GuardarProducto(UEUProducto EU_Producto, String modif)
+        {
+
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+
+                NpgsqlCommand command = new NpgsqlCommand("sp_registrar_producto", conection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_modif", NpgsqlTypes.NpgsqlDbType.Text).Value = modif;
+                command.Parameters.Add("_nomproducto", NpgsqlTypes.NpgsqlDbType.Varchar).Value = EU_Producto.Nombre;
+                command.Parameters.Add("_canproducto", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Producto.Cantidad;
+                command.Parameters.Add("_precioproducto", NpgsqlTypes.NpgsqlDbType.Double).Value = EU_Producto.Precio;
+                command.Parameters.Add("_desproducto", NpgsqlTypes.NpgsqlDbType.Varchar).Value = EU_Producto.Descripcion;
+                command.Parameters.Add("_idcategoria", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Producto.Categoria;
+                command.Parameters.Add("_idempresa", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Producto.IdEmpresa;
+                conection.Open();
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+        }
+        //Metodo para modificar las existencias del producto
+        public void ModificarInventario(UEUProducto EU_Producto, String modif)
+        {
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_modificar_inventario", conection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_modif", NpgsqlTypes.NpgsqlDbType.Text).Value = modif;
+                command.Parameters.Add("_idproducto", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Producto.Id;
+                command.Parameters.Add("_cantidad", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Producto.Cantidad;
+                command.Parameters.Add("_bajoinventario", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Producto.BajoInventario;
+
+                conection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                conection.Close();
+            }
+        }
+
+        //Metodo Para Mostrar Los Productos De La Correspondiente Empresa
+        public DataTable MostrarProducto(int idEmpresa)
+        {
+            DataTable Productos = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+
+                NpgsqlCommand command = new NpgsqlCommand("sp_mostrar_producto", conection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_idempresa", NpgsqlTypes.NpgsqlDbType.Integer).Value = idEmpresa;
+
+
+                conection.Open();
+                NpgsqlDataAdapter DA = new NpgsqlDataAdapter(command);
+                DA.Fill(Productos);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+            return Productos;
         }
     }
 }

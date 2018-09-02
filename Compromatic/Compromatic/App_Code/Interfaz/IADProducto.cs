@@ -9,7 +9,7 @@ using System.Web;
 /// </summary>
 public class IADProducto
 {
-
+    //METODO MIGRADO L_AgregarProducto
     public void ModificarInventario(int idProducto, int cantidad, int bajoInventario, String modif)
     {
         EUProducto EU_Producto = new EUProducto();
@@ -20,7 +20,7 @@ public class IADProducto
         EU_Producto.BajoInventario = bajoInventario;
         DAO_Producto.ModificarInventario(EU_Producto, modif);
     }
-
+    //Metodo migrado a L_AgregarProducto
     public void AgregarProducto(String nombre, int cantidad, double precio, String descripcion, int categoria, int idEmpresa, String modif)
     {
         DAOProducto DAO_Producto = new DAOProducto();
