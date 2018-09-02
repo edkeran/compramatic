@@ -5,12 +5,28 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Logica;
+using Utilitarios;
 
 public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        L_AdministrarProducto logica = new L_AdministrarProducto();
+        try
+        {
+            L_AdministrarProducto logica = new L_AdministrarProducto();
+            U_aux_AdminProd resp=logica.page_load(IsPostBack, Session["Sesion"], Session["IdProducto"]);
+            Session["Productos"] = resp.Productos;
+            Prueba1.DataSource = resp.Productos;
+            Prueba1.DataBind();
+            idProducto.Text = resp.IdProducto.ToString();
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "scrti", "redireccionar('" + resp.Redir + "');", true);
+        }
+        catch(Exception ex)
+        {
+            //Significa que no se deben de recargar los controles
+            String[] men = ex.Message.Split('/');
+            idProducto.Text = men[0];
+        }
     }
 
     /**
@@ -49,8 +65,15 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
 
     protected void BTN_AñadirTag_Click(object sender, EventArgs e)
     {
-        DataTable Empresa = (DataTable)Session["Sesion"];
-        if (idProducto.Text == "0")
+       
+            L_AdministrarProducto logica = new L_AdministrarProducto();
+            DataTable Empresa = (DataTable)Session["Sesion"];
+            String response = logica.BTN_AñadirTag_Click(idProducto.Text, TB_Tags.Text, Empresa.Rows[0]["nomEmpresa"].ToString());
+            Modal(response);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redir_Esp_admin('" + response + "');", true);
+    }
+    /**
+     * if (idProducto.Text == "0")
         {
             Modal("Seleccione un producto");
             return;
@@ -58,14 +81,18 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
         IADTag IAD_Tag = new IADTag();
         IAD_Tag.RegistrarPalabra(TB_Tags.Text, int.Parse(idProducto.Text),Empresa.Rows[0]["nomEmpresa"].ToString());
         TB_Tags.Text = "";
-        Response.Redirect(Request.Url.AbsoluteUri);
-
-    }
+     **/
 
     protected void BTN_Modificar_Click(object sender, EventArgs e)
     {
+        L_AdministrarProducto logica = new L_AdministrarProducto();
         DataTable Empresa = (DataTable)Session["Sesion"];
-        IADProducto IAD_Producto = new IADProducto();
+        String response=logica.BTN_Modificar_Click(idProducto.Text, TB_Nombre.Text, TB_Cantidad.Text, TB_Precio.Text, TB_Descripcion.Text, DDL_Categoria.SelectedValue,Empresa);
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redir_Esp_admin('" + response + "');", true);
+    }
+    /**
+     * 
+     * IADProducto IAD_Producto = new IADProducto();
         if (idProducto.Text == "0")
         {
             Modal("Seleccione un producto");
@@ -74,7 +101,8 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
         IAD_Producto.ModificarProducto(TB_Nombre.Text, int.Parse(TB_Cantidad.Text), Double.Parse(TB_Precio.Text), TB_Descripcion.Text, int.Parse(DDL_Categoria.SelectedValue), int.Parse(idProducto.Text),Empresa.Rows[0]["nomEmpresa"].ToString());
         Modal("Modificacion Exitosa");
         Response.Redirect(Request.Url.AbsoluteUri);
-    }
+     **/
+
 
     public void Modal(String mensaje)
     {
@@ -82,6 +110,7 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
         Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", texto);
         MensajeModal.Text = mensaje;
     }
+
     protected void BTN_BorrarTag_Click(object sender, EventArgs e)
     {
         if (idProducto.Text == "0")
@@ -95,7 +124,7 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
         Response.Redirect(Request.Url.AbsoluteUri);
     }
 
-
+    //TOCA REVISAR PARA QUE ES NO HAY QUE MIGRARLO
     public String RandomString(int length)
     {
         Random random = new Random();

@@ -35,5 +35,31 @@ namespace Datos
                 conection.Close();
             }
         }
+
+        public void RegistrarPqr(UEUPqr EU_Pqr, String modif)
+        {
+
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+            try
+            {
+                conection.Open();
+                NpgsqlCommand command = new NpgsqlCommand("sp_registrar_pqr", conection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_modif", NpgsqlTypes.NpgsqlDbType.Text).Value = modif;
+                command.Parameters.Add("_desqueja", NpgsqlTypes.NpgsqlDbType.Varchar, 100).Value = EU_Pqr.Descripcion;
+                command.Parameters.Add("_idempresa", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Pqr.IdEmpresa;
+                command.Parameters.Add("_idmotivo", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Pqr.Motivo;
+                command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                conection.Close();
+            }
+
+        }
     }
 }

@@ -44,6 +44,8 @@
     <Compile Include="L_AdministrarProducto.cs" />
     <Compile Include="L_AgregarProducto.cs" />
     <Compile Include="L_CambiarPass_Usr.cs" />
+    <Compile Include="L_DashEmpresa.cs" />
+    <Compile Include="L_HistorialUsr.cs" />
     <Compile Include="L_Invertario.cs" />
     <Compile Include="L_LogginUsr.cs" />
     <Compile Include="L_MasterBoardUsr.cs" />

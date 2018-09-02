@@ -43,7 +43,7 @@ public class IADProducto
         EU_Producto.Id = idProducto;
         DAO_Producto.EliminarProducto(EU_Producto, modif);
     }
-
+    //METODO MIGRADO
     public void ModificarProducto(String nombre, int cantidad, double precio, String descripcion, int categoria, int idProducto, String modif)
     {
 

@@ -4,6 +4,12 @@ function redireccionar(data) {
         window.location = data;
     }
 };
+//FUNCION PARA EL ADIMINISTRAR PRODUCTO CASO TAG
+function redir_Esp_admin(data){
+    if (data == "0") {
+        window.location = "AdministrarProducto.aspx";
+    }
+};
 
 //Funcion De Redireccionamiento Para La Master De Home 
 function redireccionar_Home(url) {

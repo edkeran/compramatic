@@ -39,7 +39,7 @@ public class DAOTag
 
         return Tags;
     }
-
+    //METODO MIGRADO
     public void AgregarTag(EUTag EU_Tag, String modif)
     {
         NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);

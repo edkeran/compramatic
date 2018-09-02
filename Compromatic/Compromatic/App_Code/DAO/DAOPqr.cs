@@ -68,7 +68,7 @@ public class DAOPqr
         }
         return Motivos;
     }
-
+    //METODO MIGRADO A LA CLASE DDAOPqr
     public void RegistrarPqr(EUPqr EU_Pqr, String modif)
     {
       
@@ -92,7 +92,6 @@ public class DAOPqr
         {
             conection.Close();
         }
-    
     }
     //METODO MIGRADO A DATOS
     public void QuejaUsr(EUPqr pqr, String modif)

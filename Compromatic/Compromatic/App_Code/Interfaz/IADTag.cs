@@ -18,7 +18,7 @@ public class IADTag
         Tags = DAO_Tag.MostrarTags(EU_Tag);
         return Tags;
     }
-
+    //METODO MIGRADO A l_administrar producto
 	public void RegistrarPalabra(String palabra, int idProducto, String modif)
     {
         DAOTag DAO_Tag = new DAOTag();

@@ -8,6 +8,7 @@ using System.Web;
 /// </summary>
 public class IADPqr
 {
+    //Metodo Migrado
     public void RegistrarPqr(String descripcion, int idEmpresa, int idMotivo, String modif)
     {
         EUPqr EU_Pqr = new EUPqr();

@@ -302,7 +302,7 @@ public class DAOProducto
              conection.Close();
          }
     }
-
+    //METODO MIGRADO
     public void ModificarProducto(EUProducto EU_Producto, String modif)
     {
 

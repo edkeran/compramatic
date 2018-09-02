@@ -59,6 +59,7 @@
     <Compile Include="DDAOHome.cs" />
     <Compile Include="DDAOPqr.cs" />
     <Compile Include="DDAOProducto.cs" />
+    <Compile Include="DDAOTag.cs" />
     <Compile Include="DDAOUsuario.cs" />
     <Compile Include="DDAOMembresia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

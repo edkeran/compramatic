@@ -1,34 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using Logica;
 
 public partial class Presentacion_HistorialUsr : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["Sesion"] == null)
+        try
         {
-            Response.Redirect("LoginUsr.aspx");
-        }
-        else
-        {
-            DataTable datos = (DataTable)Session["Sesion"];
-            if (int.Parse(datos.Rows[0]["idTipo"].ToString()) != 3)
-            {
-                Response.Redirect("LoginUsr.aspx");
-            }
+            L_HistorialUsr logica = new L_HistorialUsr();
+            logica.page_load(Session["Sesion"]);
             CRS_Compras.ReportDocument.SetDataSource(obtenerCompras());
             CRV_Compras.ReportSource = CRS_Compras;
-            
+
+        }catch (Exception ex)
+        {
+            L_HistorialUsr logica = new L_HistorialUsr();
+            logica.validarExcepcion(ex.Message);
+            Response.Redirect("LoginUsr.aspx");
         }
     }
 
     protected DataSet obtenerCompras()
     {
+
         DataTable datos = (DataTable)Session["Sesion"];
         DataSet compras = new DataSet();
         EUsuario user = new EUsuario();

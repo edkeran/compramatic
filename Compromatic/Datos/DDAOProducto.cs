@@ -194,5 +194,39 @@ namespace Datos
             }
             return Productos;
         }
+        //metodo para modificar un producto existenete
+        public void ModificarProducto(UEUProducto EU_Producto, String modif)
+        {
+
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+
+                NpgsqlCommand command = new NpgsqlCommand("sp_modificar_producto", conection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_modif", NpgsqlTypes.NpgsqlDbType.Text).Value = modif;
+                command.Parameters.Add("_idproducto", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Producto.Id;
+                command.Parameters.Add("_nombre", NpgsqlTypes.NpgsqlDbType.Varchar).Value = EU_Producto.Nombre;
+                command.Parameters.Add("_cantidad", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Producto.Cantidad;
+                command.Parameters.Add("_precio", NpgsqlTypes.NpgsqlDbType.Double).Value = EU_Producto.Precio;
+                command.Parameters.Add("_descripcion", NpgsqlTypes.NpgsqlDbType.Varchar).Value = EU_Producto.Descripcion;
+                command.Parameters.Add("_idcategoria", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Producto.Categoria;
+                conection.Open();
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+        }
     }
 }
