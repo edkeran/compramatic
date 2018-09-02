@@ -113,7 +113,13 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
 
     protected void BTN_BorrarTag_Click(object sender, EventArgs e)
     {
-        if (idProducto.Text == "0")
+        L_AdministrarProducto logica = new L_AdministrarProducto();
+        String response=logica.BTN_BorrarTag_Click(idProducto.Text,Session["Sesion"], DDL_Tags.SelectedValue);
+        Modal(response);
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redir_Esp_admin('" + response + "');", true);
+    }
+    /**
+     *  if (idProducto.Text == "0")
         {
             Modal("Seleccione un producto");
             return;
@@ -122,7 +128,8 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
         IADTag IAD_Tag = new IADTag();
         IAD_Tag.BorrarPalabra(int.Parse(DDL_Tags.SelectedValue),Empresa.Rows[0]["nomEmpresa"].ToString());
         Response.Redirect(Request.Url.AbsoluteUri);
-    }
+     ***/
+
 
     //TOCA REVISAR PARA QUE ES NO HAY QUE MIGRARLO
     public String RandomString(int length)
@@ -132,7 +139,7 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
         return new string(Enumerable.Repeat(chars, length)
           .Select(s => s[random.Next(s.Length)]).ToArray());
     }
-
+    //EN REVISION
     protected void AgregarFotosProductos(object sender, EventArgs e)
     {
         int limite = 5 - TablaImagenes.Items.Count;
@@ -175,9 +182,35 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
         }
         Response.Redirect(Request.Url.AbsoluteUri);
     }
+
+
     protected void Prueba1_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-        if (e.CommandName == "Delete")
+        try
+        {
+            L_AdministrarProducto logica = new L_AdministrarProducto();
+            DataTable Empresa = (DataTable)Session["Sesion"];
+            DataTable Productos = (DataTable)Session["Productos"];
+            UEUProducto resp = logica.Prueba1_ItemCommand(e.CommandName, Empresa, Productos, e.Item.ItemIndex);
+            idProducto.Text =resp.Id.ToString();
+            TB_Nombre.Text = resp.Nombre;
+            TB_Cantidad.Text = resp.Cantidad.ToString();
+            TB_Precio.Text = resp.Precio.ToString();
+            TB_Descripcion.Text = resp.Descripcion;
+            DDL_Categoria.SelectedValue = resp.Categoria.ToString();
+            TB_AlertaActual.Text = resp.BajoInventario.ToString();
+            Session["IdProducto"] = resp.Id;
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "stru", "redir_Esp_admin('" + resp + "');", true);
+        }catch(Exception ex)
+        {
+            L_AdministrarProducto logica = new L_AdministrarProducto();
+            logica.validarException(ex.Message);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "stru", "redir_Esp_admin('0');", true);
+        }
+    }
+    /**
+     * CODIGO ORIGINAL
+     * if (e.CommandName == "Delete")
         {
             DataTable Empresa = (DataTable)Session["Sesion"];
             IADProducto IAD_Producto = new IADProducto();
@@ -198,7 +231,8 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
             TB_AlertaActual.Text=Productos.Rows[e.Item.ItemIndex]["bajoInventario"].ToString();
             Session["IdProducto"] = Productos.Rows[e.Item.ItemIndex]["idProducto"].ToString();
         }
-    }
+     **/
+
     protected void TablaImagenes_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         DataTable Fotos = new DataTable();
@@ -219,10 +253,19 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
 
         Response.Redirect(Request.Url.AbsoluteUri);
     }
+
+
     protected void BTN_ModificarAlerta_Click(object sender, EventArgs e)
     {
         DataTable Empresa = (DataTable)Session["Sesion"];
-        if (idProducto.Text == "0")
+        L_AdministrarProducto logica = new L_AdministrarProducto();
+        String response=logica.BTN_ModificarAlerta_Click(Empresa, idProducto.Text, TB_NuevaAlerta.Text);
+        Modal(response);
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redir_Esp_admin('" + response + "');", true);
+    }
+
+    /**
+     * if (idProducto.Text == "0")
         {
             Modal("Seleccione un producto");
             return;
@@ -230,5 +273,5 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
         DAOProducto DAO_Producto = new DAOProducto();
         DAO_Producto.ModificarAlerta(int.Parse(idProducto.Text), int.Parse(TB_NuevaAlerta.Text),Empresa.Rows[0]["nomEmpresa"].ToString());
         Response.Redirect(Request.Url.AbsoluteUri);
-    }
+     **/
 }

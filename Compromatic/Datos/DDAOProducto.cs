@@ -228,5 +228,59 @@ namespace Datos
                 }
             }
         }
+        //metodo para eliminar un producto
+        public void EliminarProducto(UEUProducto EU_Producto, String modif)
+        {
+
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+
+                NpgsqlCommand command = new NpgsqlCommand("sp_borrar_producto", conection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_idproducto", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Producto.Id;
+                command.Parameters.Add("_modif", NpgsqlTypes.NpgsqlDbType.Varchar).Value = modif;
+                conection.Open();
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+        }
+
+        public void ModificarAlerta(int id, int alerta, String modif)
+        {
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_modificar_alerta", conection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_modif", NpgsqlTypes.NpgsqlDbType.Text).Value = modif;
+                command.Parameters.Add("_idproducto", NpgsqlTypes.NpgsqlDbType.Integer).Value = id;
+                command.Parameters.Add("_nueva", NpgsqlTypes.NpgsqlDbType.Integer).Value = alerta;
+
+                conection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                conection.Close();
+            }
+        }
     }
 }

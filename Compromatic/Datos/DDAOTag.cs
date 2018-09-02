@@ -35,5 +35,33 @@ namespace Datos
                 }
             }
         }
+
+        public void EliminarTag(UEUTag EU_Tag, String modif)
+        {
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+
+                NpgsqlCommand command = new NpgsqlCommand("sp_borrar_palabraclave", conection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_idpalabra", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Tag.IdTag;
+                command.Parameters.Add("_modif", NpgsqlTypes.NpgsqlDbType.Text).Value = modif;
+                conection.Open();
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+        }
     }
 }

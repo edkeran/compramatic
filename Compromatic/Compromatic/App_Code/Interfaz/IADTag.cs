@@ -28,7 +28,7 @@ public class IADTag
 
         DAO_Tag.AgregarTag(EU_Tag, modif);
     }
-
+    //METODO MIGRADO
     public void BorrarPalabra(int idPalabra,String modif)
     {
         DAOTag DAO_Tag = new DAOTag();

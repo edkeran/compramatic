@@ -248,7 +248,7 @@ public class DAOProducto
             }
         }
     }
-
+    //METODO MIGRADO A DDAOPRODUCTO
     public void EliminarProducto(EUProducto EU_Producto, String modif)
     {
 

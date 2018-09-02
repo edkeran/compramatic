@@ -103,17 +103,86 @@ namespace Logica
             DAO_Producto.ModificarProducto(EU_Producto, modif);
         }
 
-        public void BTN_BorrarTag_Click(String idProducto,Object Session)
+        public String BTN_BorrarTag_Click(String idProducto,Object Session,String ddl_tags)
         {
             if (idProducto == "0")
             {
                 //Modal("Seleccione un producto");
-                //return;
+                return "Seleccione un producto";
             }
             DataTable Empresa = (DataTable)Session;
-            IADTag IAD_Tag = new IADTag();
-            IAD_Tag.BorrarPalabra(int.Parse(DDL_Tags.SelectedValue), Empresa.Rows[0]["nomEmpresa"].ToString());
-            Response.Redirect(Request.Url.AbsoluteUri);
+            this.BorrarPalabra(int.Parse(ddl_tags), Empresa.Rows[0]["nomEmpresa"].ToString());
+            //Response.Redirect(Request.Url.AbsoluteUri);
+            return "0";
+        }
+
+        private void BorrarPalabra(int idPalabra, String modif)
+        {
+            DDAOTag DAO_Tag = new DDAOTag();
+            UEUTag EU_Tag = new UEUTag();
+            EU_Tag.IdTag = idPalabra;
+            DAO_Tag.EliminarTag(EU_Tag, modif);
+        }
+
+        public UEUProducto Prueba1_ItemCommand(String comandName, DataTable Empresa, DataTable Productos, int itemIndex)
+        {
+            UEUProducto response = new UEUProducto();
+            if (comandName == "Delete")
+            {
+                this.BorrarProducto(int.Parse(Productos.Rows[itemIndex]["idProducto"].ToString()), Empresa.Rows[0]["nomEmpresa"].ToString());
+                response.Id = 0;
+                response.Redireccion= "0";
+                throw new System.ArgumentException("Valido");
+            }
+
+            if (comandName == "Select")
+            {
+               
+
+                response.Id = int.Parse(Productos.Rows[itemIndex]["idProducto"].ToString());
+                response.Nombre = Productos.Rows[itemIndex]["nomProducto"].ToString();
+                response.Cantidad=int.Parse(Productos.Rows[itemIndex]["canProducto"].ToString());
+                response.Precio = int.Parse(Productos.Rows[itemIndex]["precioProducto"].ToString());
+                response.Descripcion = Productos.Rows[itemIndex]["desProducto"].ToString();
+                response.Categoria = int.Parse(Productos.Rows[itemIndex]["idCategoria"].ToString());
+                response.BajoInventario = int.Parse(Productos.Rows[itemIndex]["bajoInventario"].ToString());
+                //Session["IdProducto"] = Productos.Rows[itemIndex]["idProducto"].ToString();
+                response.Redireccion = "98";
+                return response;
+            }
+            response.Redireccion = "98";
+            return response;
+        }
+
+        private void BorrarProducto(int idProducto, String modif)
+        {
+            DDAOProducto DAO_Producto = new DDAOProducto();
+            UEUProducto EU_Producto = new UEUProducto();
+
+            EU_Producto.Id = idProducto;
+            DAO_Producto.EliminarProducto(EU_Producto, modif);
+        }
+
+        public void validarException(String msg)
+        {
+            if (!msg.Equals("valido"))
+            {
+                //NO ES VALIDO 
+                throw new ArgumentException(msg);
+            }
+        }
+
+        public String BTN_ModificarAlerta_Click(DataTable Empresa,String idProducto,String tb_NuevaAlerta)
+        {
+            if (idProducto == "0")
+            {
+                //Modal("Seleccione un producto");
+                return "Seleccione un producto";
+            }
+            DDAOProducto DAO_Producto = new DDAOProducto();
+            DAO_Producto.ModificarAlerta(int.Parse(idProducto), int.Parse(tb_NuevaAlerta), Empresa.Rows[0]["nomEmpresa"].ToString());
+            //Response.Redirect(Request.Url.AbsoluteUri);
+            return "0";
         }
     }
 }

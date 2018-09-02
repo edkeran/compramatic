@@ -35,6 +35,7 @@ public class IADProducto
         DAO_Producto.GuardarProducto(EU_Producto, modif);
     }
 
+    //Metodo Migrado A L_AdmininstrarProducto
     public void BorrarProducto(int idProducto, String modif)
     {
         DAOProducto DAO_Producto = new DAOProducto();

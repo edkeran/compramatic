@@ -67,7 +67,7 @@ public class DAOTag
             }
         }
     }
-
+    //METODO MIGRADO
     public void EliminarTag(EUTag EU_Tag, String modif)
     {
         NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);

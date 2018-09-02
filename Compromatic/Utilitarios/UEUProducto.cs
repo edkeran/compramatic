@@ -81,5 +81,12 @@ namespace Utilitarios
             get { return bajoInventario; }
             set { bajoInventario = value; }
         }
+        private String redireccion;
+
+        public string Redireccion
+        {
+            get => redireccion;
+            set => redireccion = value;
+        }
     }
 }
