@@ -54,10 +54,12 @@
     <Compile Include="L_ModificarPerfilUsr.cs" />
     <Compile Include="L_PerfilEmpresa.cs" />
     <Compile Include="L_PerfilUsr.cs" />
+    <Compile Include="L_PeticionesCompra.cs" />
     <Compile Include="L_RegistroEmpresa.cs" />
     <Compile Include="L_Registro_Usr.cs" />
     <Compile Include="L_Store.cs" />
     <Compile Include="L_TopDiezUsr.cs" />
+    <Compile Include="L_verProducto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

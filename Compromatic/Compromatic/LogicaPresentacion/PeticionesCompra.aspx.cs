@@ -1,16 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logica;
+using Utilitarios;
 
 public partial class Presentacion_PeticionesCompra : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        DAOEmpresa DAO_Empresa = new DAOEmpresa();
+        try
+        {
+            L_PeticionesCompra logic = new L_PeticionesCompra();
+            U_aux_PeticionesCompra res = logic.page_load(IsPostBack, Session["Sesion"]);
+            RP_Peticiones.DataSource = res.Producto;
+            RP_Peticiones.DataBind();
+            RP_EnProceso.DataSource = res.Producto2;
+            RP_EnProceso.DataBind();
+            RP_VentasRealizadas.DataSource = res.Producto3;
+            RP_VentasRealizadas.DataBind();
+            RP_Finalizadas.DataSource = res.Producto4;
+            RP_Finalizadas.DataBind();
+        }catch(Exception ex)
+        {
+            L_PeticionesCompra logic = new L_PeticionesCompra();
+            logic.validarExcep(ex.Message);
+        }
+    }
+
+    /**
+     *PAGE LOAD ORIGINAL
+     * 
+     *  DAOEmpresa DAO_Empresa = new DAOEmpresa();
         if (!IsPostBack)
         {
 
@@ -41,10 +62,20 @@ public partial class Presentacion_PeticionesCompra : System.Web.UI.Page
             RP_Finalizadas.DataSource = Productos;
             RP_Finalizadas.DataBind();
         }
-    }
+     **/
+
     protected void RP_Peticiones_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-        int resultado;
+        L_PeticionesCompra logica = new L_PeticionesCompra();
+        String respesta=logica.RP_Peticiones_ItemCommand(Session["Sesion"],e.CommandArgument.ToString(),e.CommandName);
+        String[] arr = respesta.Split(',');
+        Modal(arr[0]);
+        String texto = "redireccionar('"+arr[1]+"')";
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "str", texto,true);
+
+    }
+    /**
+     * int resultado;
         DataTable Empresa = (DataTable)Session["Sesion"];
         DAOEmpresa DAO_Empresa= new DAOEmpresa();
         if(e.CommandName.Equals("Aceptar"))
@@ -64,7 +95,8 @@ public partial class Presentacion_PeticionesCompra : System.Web.UI.Page
             DAO_Empresa.RechazarVenta(int.Parse(e.CommandArgument.ToString()),Empresa.Rows[0]["nomEmpresa"].ToString());
             Response.Redirect(Request.Url.AbsoluteUri);
         }
-    }
+     **/
+
 
     public void Modal(String mensaje)
     {
@@ -72,6 +104,7 @@ public partial class Presentacion_PeticionesCompra : System.Web.UI.Page
         Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", texto);
         MensajeModal.Text = mensaje;
     }
+
     protected void RP_EnProceso_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         DataTable Empresa = (DataTable)Session["Sesion"];
@@ -82,6 +115,7 @@ public partial class Presentacion_PeticionesCompra : System.Web.UI.Page
             Response.Redirect(Request.Url.AbsoluteUri);
         }
     }
+
     protected void RP_VentasRealizadas_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         DAOEmpresa DAO_Empresa = new DAOEmpresa();
@@ -91,6 +125,7 @@ public partial class Presentacion_PeticionesCompra : System.Web.UI.Page
         LB_Usuario.Text = Venta.Rows[0]["idUsuario"].ToString();
         LB_Venta.Text = e.CommandArgument.ToString();
     }
+
     protected void BTN_Calificar_Click(object sender, EventArgs e)
     {
         DataTable Empresa = (DataTable)Session["Sesion"];

@@ -204,5 +204,166 @@ namespace Datos
                 conection.Close();
             }
         }
+
+        //METODO PARA OBTENER LAS PETICIONES DE COMPRA
+        public DataTable PeticionesCompra(int idEmpresa)
+        {
+            DataTable Peticiones = new DataTable();
+
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_mostrar_solicitud_venta", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_idempresa", NpgsqlTypes.NpgsqlDbType.Integer).Value = idEmpresa;
+                connection.Open();
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter(command);
+                da.Fill(Peticiones);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return Peticiones;
+        }
+        //METODO DE LAS PETICIONES EN PROCESO 
+        public DataTable PeticionesEnProceso(int idEmpresa)
+        {
+            DataTable Peticiones = new DataTable();
+
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_mostrar_solicitud_enproceso", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_idempresa", NpgsqlTypes.NpgsqlDbType.Integer).Value = idEmpresa;
+                connection.Open();
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter(command);
+                da.Fill(Peticiones);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return Peticiones;
+        }
+
+        //Metodo Para Traer Las Peticiones Finalizadas
+        public DataTable PeticionesFinalizadas(int idEmpresa)
+        {
+            DataTable Peticiones = new DataTable();
+
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_mostrar_venta_finalizada", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_idempresa", NpgsqlTypes.NpgsqlDbType.Integer).Value = idEmpresa;
+                connection.Open();
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter(command);
+                da.Fill(Peticiones);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return Peticiones;
+        }
+        //Metodo para mostrar todas las peticiones En Done
+        public DataTable PeticionesHechas(int idEmpresa)
+        {
+            DataTable Peticiones = new DataTable();
+
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_mostrar_venta_hecha", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_idempresa", NpgsqlTypes.NpgsqlDbType.Integer).Value = idEmpresa;
+                connection.Open();
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter(command);
+                da.Fill(Peticiones);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return Peticiones;
+        }
+        //METODO PARA APROBAR LA VENTA
+        public int AprobarVenta(int idVenta, String usuario)
+        {
+
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+            DataTable aux = new DataTable();
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_aprobar_venta", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_idventa", NpgsqlTypes.NpgsqlDbType.Integer).Value = idVenta;
+                command.Parameters.Add("_modif", NpgsqlTypes.NpgsqlDbType.Text).Value = usuario;
+                connection.Open();
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter(command);
+                da.Fill(aux);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return int.Parse(aux.Rows[0][0].ToString());
+        }
+        //METODO PARA RECHAZAR UNA PETICION DE VENTA
+        public void RechazarVenta(int idVenta, String modif)
+        {
+
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_rechazar_venta", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_idventa", NpgsqlTypes.NpgsqlDbType.Integer).Value = idVenta;
+                command.Parameters.Add("_modif", NpgsqlTypes.NpgsqlDbType.Text).Value = modif;
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+        }
     }
 }

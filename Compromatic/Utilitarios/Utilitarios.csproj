@@ -58,6 +58,7 @@
     <Compile Include="U_aux_master_home.cs" />
     <Compile Include="U_aux_master_Usr.cs" />
     <Compile Include="U_aux_PerfilEmp.cs" />
+    <Compile Include="U_aux_PeticionesCompra.cs" />
     <Compile Include="U_aux_reg_emp.cs" />
     <Compile Include="U_Modificar_Pfi_Usr.cs" />
   </ItemGroup>

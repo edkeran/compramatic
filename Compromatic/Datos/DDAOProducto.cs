@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
 using Npgsql;
-using NpgsqlTypes;
 using System.Configuration;
-using System.Threading.Tasks;
 using Utilitarios;
 
 namespace Datos

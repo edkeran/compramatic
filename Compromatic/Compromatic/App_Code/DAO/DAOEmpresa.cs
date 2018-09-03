@@ -89,7 +89,7 @@ public class DAOEmpresa
 
         return Calificaciones;
     }
-
+    //METODO MIGRADO
     public void RechazarVenta(int idVenta, String modif)
     {
 
@@ -113,7 +113,7 @@ public class DAOEmpresa
         }
 
     }
-
+    //METODO MIGRADO
     public int AprobarVenta(int idVenta, String usuario)
     {
 
@@ -141,6 +141,7 @@ public class DAOEmpresa
         return int.Parse(aux.Rows[0][0].ToString());
     }
 
+    //METODO MIGRADO
     public DataTable PeticionesCompra(int idEmpresa)
     {
         DataTable Peticiones = new DataTable();
@@ -194,7 +195,7 @@ public class DAOEmpresa
 
         return Peticiones;
     }
-
+    //METODO MIGRADO
     public DataTable PeticionesEnProceso(int idEmpresa)
     {
         DataTable Peticiones = new DataTable();
@@ -221,7 +222,7 @@ public class DAOEmpresa
 
         return Peticiones;
     }
-
+    //METODO MIGRADO
     public DataTable PeticionesFinalizadas(int idEmpresa)
     {
         DataTable Peticiones = new DataTable();
@@ -248,7 +249,7 @@ public class DAOEmpresa
 
         return Peticiones;
     }
-
+    //METODO MIGRADO
     public DataTable PeticionesHechas(int idEmpresa)
     {
         DataTable Peticiones = new DataTable();
