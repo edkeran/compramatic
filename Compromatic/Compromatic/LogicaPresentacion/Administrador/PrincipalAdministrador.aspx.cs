@@ -5,14 +5,25 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Utilitarios;
+using Logica;
 
 public partial class Presentacion_PrincipalAdministrador : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         Response.Cache.SetCacheability(HttpCacheability.ServerAndNoCache);
+        L_PrinciAdmin logica = new L_PrinciAdmin();
+        UAuxPrinciAdmin res = logica.page_load(Session["sesion"]);
+        L_Usuarios.Text = res.L_Usuarios1;
+        L_Empresas.Text = res.L_Empresas1;
+        L_totalVentas.Text = res.L_totalVentas1;
+        L_Pqr.Text = res.L_Pqr1;
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redireccionar('" + res.Redireccion + "');", true);
+    }
 
-        if (Session["Sesion"] == null)
+    /**
+     *if (Session["Sesion"] == null)
         {
             Response.Redirect("LoginUsr.aspx");
         }
@@ -39,6 +50,6 @@ public partial class Presentacion_PrincipalAdministrador : System.Web.UI.Page
             {
                 Response.Redirect("LoginUsr.aspx");
             }
-        }
-    }
+        } 
+     **/
 }

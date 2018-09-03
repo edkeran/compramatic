@@ -45,6 +45,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="UAuxPrinciAdmin.cs" />
     <Compile Include="UAuxVenta.cs" />
     <Compile Include="UEUProducto.cs" />
     <Compile Include="UEURango.cs" />

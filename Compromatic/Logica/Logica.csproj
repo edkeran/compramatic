@@ -55,6 +55,7 @@
     <Compile Include="L_PerfilEmpresa.cs" />
     <Compile Include="L_PerfilUsr.cs" />
     <Compile Include="L_PeticionesCompra.cs" />
+    <Compile Include="L_PrinciAdmin.cs" />
     <Compile Include="L_RegistroEmpresa.cs" />
     <Compile Include="L_Registro_Usr.cs" />
     <Compile Include="L_Store.cs" />
