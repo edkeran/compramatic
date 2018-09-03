@@ -93,6 +93,7 @@ public class DAOProducto
         }
         return Producto;
     }
+    //METODO MIGRADO
     public void CompraProducto(EUVenta venta, String modif)
     {
         NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
@@ -400,6 +401,7 @@ public class DAOProducto
             }
         }
     }
+    //METODO MIGRADO
     public DataTable MostrarFotoProducto(int idProducto)
     {
         DataTable FotosProducto = new DataTable();

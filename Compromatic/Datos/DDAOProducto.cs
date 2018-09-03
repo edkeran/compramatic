@@ -277,5 +277,66 @@ namespace Datos
                 conection.Close();
             }
         }
+
+        public DataTable MostrarFotoProducto(int idProducto)
+        {
+            DataTable FotosProducto = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+
+                NpgsqlCommand command = new NpgsqlCommand("sp_mostrar_fotoproducto", conection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_idproducto", NpgsqlTypes.NpgsqlDbType.Integer).Value = idProducto;
+
+
+                conection.Open();
+                NpgsqlDataAdapter DA = new NpgsqlDataAdapter(command);
+                DA.Fill(FotosProducto);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+            return FotosProducto;
+        }
+
+        public void CompraProducto(UEUVenta venta, String modif)
+        {
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+            try
+            {
+                conection.Open();
+                NpgsqlCommand command = new NpgsqlCommand("sp_comprar_producto", conection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_modif", NpgsqlTypes.NpgsqlDbType.Text).Value = modif;
+                command.Parameters.Add("_idproducto", NpgsqlTypes.NpgsqlDbType.Integer).Value = venta.IdProducto;
+                command.Parameters.Add("_canventa", NpgsqlTypes.NpgsqlDbType.Integer).Value = venta.Cantidad;
+                command.Parameters.Add("_valorventa", NpgsqlTypes.NpgsqlDbType.Integer).Value = venta.Valor;
+                command.Parameters.Add("_idusr", NpgsqlTypes.NpgsqlDbType.Integer).Value = venta.IdUsr;
+                command.Parameters.Add("_estadoventa", NpgsqlTypes.NpgsqlDbType.Integer).Value = venta.EstadoVenta;
+
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                conection.Close();
+            }
+        }
+
     }
 }

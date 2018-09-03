@@ -41,6 +41,7 @@ public class DAOUsuario
             conexion.Close();
         }
     }
+    //MIGRADO
     public void Bloquear_producto(String usuario, int id)
     {
         NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
@@ -93,7 +94,7 @@ public class DAOUsuario
             
     }
 
-
+    //METODO MIGRADO
     public void Top10(int pdto, int usr,String usuario)
     {
         NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
@@ -118,6 +119,7 @@ public class DAOUsuario
         }
             
     }
+    //MIGRADO
     public void ReportarProducto(int motivo, int usr, int pdto,String usuario)
     {
         NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
@@ -214,6 +216,7 @@ public class DAOUsuario
         }
         return existencia;
     }
+    //MIGRADO
    public int ComprobarReporte(int idusr, int idpdto)
    {
        int existencia;

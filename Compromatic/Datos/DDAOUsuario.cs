@@ -340,5 +340,120 @@ namespace Datos
             }
             return topten;
         }
+
+        public void Top10(int pdto, int usr, String usuario)
+        {
+            NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                conexion.Open();
+                NpgsqlCommand comando = new NpgsqlCommand("sp_top_diez", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add("_idpdto", NpgsqlTypes.NpgsqlDbType.Integer).Value = pdto;
+                comando.Parameters.Add("_idusr", NpgsqlTypes.NpgsqlDbType.Integer).Value = usr;
+                comando.Parameters.Add("_modif", NpgsqlTypes.NpgsqlDbType.Text).Value = usuario;
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+
+        }
+
+        public int ComprobarReporte(int idusr, int idpdto)
+        {
+            int existencia;
+            DataTable Reporte = new DataTable();
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_comprobar_reporte_usuario", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_idusr", NpgsqlTypes.NpgsqlDbType.Integer).Value = idusr;
+                command.Parameters.Add("_idpdto", NpgsqlTypes.NpgsqlDbType.Integer).Value = idpdto;
+                connection.Open();
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(command);
+                adapter.Fill(Reporte);
+                if (Reporte.Rows.Count == 0)
+                {
+                    existencia = 0;
+                }
+                else
+                {
+                    existencia = 1;
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+            return existencia;
+        }
+
+        public void ReportarProducto(int motivo, int usr, int pdto, String usuario)
+        {
+            NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                conexion.Open();
+                NpgsqlCommand comando = new NpgsqlCommand("sp_registrar_reporte_producto", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add("_idmotivo", NpgsqlTypes.NpgsqlDbType.Integer).Value = motivo;
+                comando.Parameters.Add("_idusr", NpgsqlTypes.NpgsqlDbType.Integer).Value = usr;
+                comando.Parameters.Add("_idpdto", NpgsqlTypes.NpgsqlDbType.Integer).Value = pdto;
+                comando.Parameters.Add("_modif", NpgsqlTypes.NpgsqlDbType.Text).Value = usuario;
+
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        public void Bloquear_producto(String usuario, int id)
+        {
+            NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                conexion.Open();
+                NpgsqlCommand comando = new NpgsqlCommand("sp_bloquear_producto", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add("_modif", NpgsqlTypes.NpgsqlDbType.Text).Value = usuario;
+                comando.Parameters.Add("_idproducto", NpgsqlTypes.NpgsqlDbType.Integer).Value = id;
+
+
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
     }
 }

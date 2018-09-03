@@ -5,12 +5,34 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logica;
+using Utilitarios;
 
 public partial class Presentacion_VerProducto : System.Web.UI.Page
 {
+    //METODO DE LA PAGINA CUANDO CARGA
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        try
+        {
+            L_verProducto logica = new L_verProducto();
+            UEUProducto resp = logica.page_load(IsPostBack, Session["VerProducto"], Session["Sesion"]);
+            LB_NombreProducto.Text = resp.Nombre;
+            LB_DescripcionProducto.Text = resp.Descripcion;
+            LB_PrecioProducto.Text = resp.PrecioString;
+            LB_NombreEmpresa.Text = resp.NomEmp;
+            LB_CantidadProducto.Text = resp.Cantidad.ToString();
+            LB_CategoriaProducto.Text = resp.NomCategoria;
+            RP_FotosProductos.DataSource = resp.Fotos;
+            RP_FotosProductos.DataBind();
+        }
+        catch(Exception ex)
+        {}
+    }
+
+    /**
+     * 
+     * if (!IsPostBack)
         {
 
             if (Session["VerProducto"] == null)
@@ -44,18 +66,27 @@ public partial class Presentacion_VerProducto : System.Web.UI.Page
                 }
             }
         }
+     **/
 
-    }
     public void Modal(String mensaje)
     {
         String texto = "<script   src='https://code.jquery.com/jquery-2.2.4.min.js'> </script>" + "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>" + "<script>$('#modal-dialog').modal('show');</script>";
         Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", texto);
         MensajeModal.Text = mensaje;
     }
+
+
     protected void BTN_ComprarProducto_Click(object sender, EventArgs e)
     {
+        L_verProducto logic = new L_verProducto();
+        UAuxVenta response=logic.BTN_ComprarProducto_Click(Session["Sesion"], Session["VerProducto"], TB_CantidadVenta.Text, LB_CantidadProducto.Text);
+        Modal(response.Msg);
+        BTN_Modal.Visible = response.Valido;
+        BTN_Yes.Visible = response.BtnYes;
+    }
 
-        if (Session["Sesion"] == null)
+    /**
+     *if (Session["Sesion"] == null)
         {
             BTN_Modal.Visible = true;
             Modal("Tienes que iniciar sesion para comprar.");
@@ -93,18 +124,22 @@ public partial class Presentacion_VerProducto : System.Web.UI.Page
                 BTN_Yes.Visible = true;
                 Modal("Tu solicitud de compra ha sido enviada, por valor de $" + valor.ToString() + ", la empresa revisará los parámetros y decidirá aceptar o rechazar tu compra. Deseas confirmar esta compra?");
             }
-        }
-
-    }
-
+        } 
+     **/
 
     protected void BTN_Reportar_Click(object sender, EventArgs e)
     {
-        if (Session["Sesion"] == null)
+        L_verProducto logica = new L_verProducto();
+        UAuxVenta resp= logica.BTN_Reportar_Click(Session["Sesion"], Session["VerProducto"], DDL_Reportes.SelectedValue);
+        Modal(resp.Msg);
+        BTN_Modal.Visible = resp.Valido;
+    }
+
+    /**
+     *if (Session["Sesion"] == null)
         {
             BTN_Modal.Visible = true;
             Modal("Tienes que iniciar sesion para reportar este producto.");
-            
         }
         else
         {
@@ -131,15 +166,24 @@ public partial class Presentacion_VerProducto : System.Web.UI.Page
 
 
             }
-        }
-    }
+        } 
+     **/
+
+
     protected void BTN_Modal_Click(object sender, EventArgs e)
     {
         Response.Redirect("LoginUsr.aspx");
     }
+
     protected void BTN_Yes_Click(object sender, EventArgs e)
     {
-        DataTable user = (DataTable)Session["Sesion"];
+        L_verProducto logica = new L_verProducto();
+        logica.BTN_Yes_Click(Session["Sesion"], Session["VerProducto"], TB_CantidadVenta.Text);
+    }
+
+    /**
+     * 
+     *  DataTable user = (DataTable)Session["Sesion"];
         DataTable producto = (DataTable)Session["VerProducto"];
         EUVenta venta = new EUVenta();
         venta.IdUsr = int.Parse(user.Rows[0]["idUsuario"].ToString());
@@ -150,6 +194,9 @@ public partial class Presentacion_VerProducto : System.Web.UI.Page
         venta.EstadoVenta = 1;
         DAOProducto compra = new DAOProducto();
         compra.CompraProducto(venta,user.Rows[0]["nomUsuario"].ToString());
-    }
+     * 
+     **/
+    
     
 }
+ 

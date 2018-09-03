@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 
 namespace Utilitarios
 {
@@ -88,5 +89,21 @@ namespace Utilitarios
             get => redireccion;
             set => redireccion = value;
         }
+
+        private String precioString;
+
+        public string PrecioString
+        {
+            get => precioString;
+            set => precioString = value;
+        }
+        public string NomEmp { get => nomEmp; set => nomEmp = value; }
+        public string NomCategoria { get => nomCategoria; set => nomCategoria = value; }
+        public DataTable Fotos { get => fotos; set => fotos = value; }
+
+        private String nomEmp;
+        private String nomCategoria;
+        private DataTable fotos;
+
     }
 }
