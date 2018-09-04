@@ -32,7 +32,7 @@ namespace Logica
                     DataTable not = user.LlenarNotificacion();
                     DataTable notAcep = user.LlenarNotificacionAceptadas();
                     DataTable notRecha = user.LlenarNotificacionRechazada();
-
+                    respo.Redireccion = "0";
                     respo.L_Usuarios1 = totalcliente.Rows[0]["count"].ToString();
                     respo.L_Empresas1 = TotalEmpresa.Rows[0]["count"].ToString();
                     respo.L_totalVentas1 = totalVentas.Rows[0]["valor"].ToString();

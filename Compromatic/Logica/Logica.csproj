@@ -43,11 +43,13 @@
   <ItemGroup>
     <Compile Include="L_AdministrarProducto.cs" />
     <Compile Include="L_AgregarProducto.cs" />
+    <Compile Include="L_AumenMembre.cs" />
     <Compile Include="L_CambiarPass_Usr.cs" />
     <Compile Include="L_DashEmpresa.cs" />
     <Compile Include="L_HistorialUsr.cs" />
     <Compile Include="L_Invertario.cs" />
     <Compile Include="L_LogginUsr.cs" />
+    <Compile Include="L_MasterAdmin.cs" />
     <Compile Include="L_MasterBoardUsr.cs" />
     <Compile Include="L_Master_Home.cs" />
     <Compile Include="L_MisComprasUsr.cs" />

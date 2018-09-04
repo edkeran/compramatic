@@ -5,13 +5,32 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using Logica;
+using Utilitarios;
 
 public partial class Presentacion_MasterSuperAdministrador : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         Response.Cache.SetCacheability(HttpCacheability.ServerAndNoCache);
-        if(Session["Sesion"] ==null){
+        L_MasterAdmin logica = new L_MasterAdmin();
+        U_AuxMasterAdmin response=logica.page_load(Session["sesion"]);
+        Numero_noti.Text = response.Numero_noti1;
+        cantidadAceptadas.Text = response.CantidadAceptadas;
+        cantidadRechazadas.Text = response.CantidadRechazadas;
+        cantidadPendientes.Text = response.CantidadPendientes;
+        TotalAceptadas.Text = response.TotalAceptadas1;
+        TotalRechazadas.Text = response.TotalRechazadas1;
+        TotalPendientes.Text = response.TotalPendientes1;
+        TotalSolicitudes.Text = response.TotalSolicitudes1;
+        FotoPerfil.ImageUrl = response.FotoPerfil1;
+        FotoPerfil2.ImageUrl = response.FotoPerfil1;
+        NombrePerfil.Text = response.NombrePerfil1;
+        NombrePerfil2.Text = response.NombrePerfil21;
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redireccionar('" + response.Redireccion + "');", true);
+    }
+    /**
+     *  if(Session["Sesion"] ==null){
             Response.Redirect("LoginUsr.aspx");
         }
         else{
@@ -56,8 +75,7 @@ public partial class Presentacion_MasterSuperAdministrador : System.Web.UI.Maste
                 Response.Redirect("LoginUsr.aspx");
             }
         }
-        
-    }
+     * */
     protected void ImageNotificacionPendientes_Click(object sender, ImageClickEventArgs e)
     {
         Response.Redirect("SolicitudesPendientes.aspx");

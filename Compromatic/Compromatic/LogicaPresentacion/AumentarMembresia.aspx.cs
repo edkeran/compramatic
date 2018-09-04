@@ -1,16 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+using Logica;
+using Utilitarios;
 
 public partial class Presentacion_AumentarMembresia : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        try
+        {
+            L_AumenMembre logi = new L_AumenMembre();
+            U_AuxAumMemb resp = logi.page_load(IsPostBack, Session["Sesion"], Session["idEmpresa"]);
+            TB_FechaInicio.Text = resp.TB_FechaInicio1;
+            TB_FechaFinal.Text = resp.TB_FechaFinal1;
+            TB_Precio.Text = resp.TB_Precio1;
+            TB_Inicial.Text = resp.TB_Inicial1;
+            TB_Final.Text = resp.TB_Final1;
+            TB_Plan.Text = resp.TB_Plan1;
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "scr", "redireccionar('" + resp.Redirecion + "');", true);
+        }catch(Exception er)
+        {
+            //NO HAGO NADA
+        }
+    }
+    /**
+     * if (!IsPostBack)
         {
 
             if (Session["Sesion"] == null)
@@ -45,7 +60,8 @@ public partial class Presentacion_AumentarMembresia : System.Web.UI.Page
                 TB_Plan.Text = "Vencida";
             }
         }
-    }
+     **/
+
     protected void DDL_Memebresia_SelectedIndexChanged(object sender, EventArgs e)
     {
         DAOMembresia DAO_Membresia = new DAOMembresia();

@@ -43,5 +43,37 @@ namespace Datos
             }
             return Tipos;
         }
+
+        public DataTable MostrarActual(int idEmpresa)
+        {
+            DataTable Tipos = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+
+                NpgsqlCommand command = new NpgsqlCommand("sp_mostrar_membresia_actual", conection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_idemp", NpgsqlTypes.NpgsqlDbType.Integer).Value = idEmpresa;
+
+
+                conection.Open();
+                NpgsqlDataAdapter DA = new NpgsqlDataAdapter(command);
+                DA.Fill(Tipos);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+            return Tipos;
+        }
     }
 }

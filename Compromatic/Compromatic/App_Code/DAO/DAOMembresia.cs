@@ -35,7 +35,7 @@ public class DAOMembresia
             conection.Close();
         }
     }
-
+    //METODO MIGRADO
     public DataTable MostrarActual(int idEmpresa)
     {
         DataTable Tipos = new DataTable();
