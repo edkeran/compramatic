@@ -55,6 +55,8 @@
     <Compile Include="L_Master_Home.cs" />
     <Compile Include="L_MisComprasUsr.cs" />
     <Compile Include="L_ModificarPerfilUsr.cs" />
+    <Compile Include="L_MostrarTablaCliente.cs" />
+    <Compile Include="L_MostrTablaEmp.cs" />
     <Compile Include="L_PerfilEmpresa.cs" />
     <Compile Include="L_PerfilUsr.cs" />
     <Compile Include="L_PeticionesCompra.cs" />
