@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="L_AdministrarCategorias.cs" />
     <Compile Include="L_AdministrarProducto.cs" />
+    <Compile Include="L_AdminMembre.cs" />
     <Compile Include="L_AdminMotPqr.cs" />
     <Compile Include="L_AgregarProducto.cs" />
     <Compile Include="L_AumenMembre.cs" />

@@ -1,18 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logica;
+using Utilitarios;
 
 public partial class Presentacion_AdministrarCategorias : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         Response.Cache.SetCacheability(HttpCacheability.ServerAndNoCache);
-
-        if (Session["Sesion"] == null)
+        L_MostrTablaEmp log = new L_MostrTablaEmp();
+        U_AuxQuejAdm res = log.pageLoad(Session["Sesion"], Session["sesion"], GridView1.Rows.Count);
+        GridView1.UseAccessibleHeader = true;
+        GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redireccionar('" + res.Redir + "');", true);
+    }
+    /**
+     * 
+     *  if (Session["Sesion"] == null)
         {
             Response.Redirect("LoginUsr.aspx");
         }
@@ -34,12 +41,21 @@ public partial class Presentacion_AdministrarCategorias : System.Web.UI.Page
                 Response.Redirect("LoginUsr.aspx");
             }
         }
-
-    }
+     **/
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        if (IsValid)
+        try
+        {
+            L_AdministrarCategorias logi = new L_AdministrarCategorias();
+            logi.btn1(IsValid, NombreCategoria.Text.ToString(), Session["sesion"]);
+            GridView2.DataBind();
+            NombreCategoria.Text = null;
+        }
+        catch (Exception ey) {}
+    }
+
+      /**if (IsValid)
         {
             String categoria;
             categoria = NombreCategoria.Text.ToString();
@@ -48,27 +64,40 @@ public partial class Presentacion_AdministrarCategorias : System.Web.UI.Page
             GridView2.DataBind();
             NombreCategoria.Text = null;
         }
-    }
+     **/
+
     protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
     {
-        String validacion;
+        L_AdministrarCategorias log = new L_AdministrarCategorias();
+        args.IsValid=log.ServerValidate(NombreCategoria.Text.ToString());
+    }
+
+    /**
+     *  String validacion;
         validacion = NombreCategoria.Text.ToString();
         if (validacion.Length <= 20)
             args.IsValid = true;
         else
-            args.IsValid = false;      
-    }
+            args.IsValid = false;     
+     **/
+
     protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
     {
-        String validacion;
+        L_AdministrarCategorias logi = new L_AdministrarCategorias();
+        args.IsValid=logi.ServerValidate2(NombreCategoria.Text.ToString());
+    }
+
+    /**
+     * String validacion;
         validacion = NombreCategoria.Text.ToString();
         DAOadministrador datos = new DAOadministrador();
         DataTable resul = datos.verificarCategoria(validacion);
         if (resul.Rows.Count > 0)
             args.IsValid = false;
         else
-            args.IsValid = true;  
-    }
+            args.IsValid = true; 
+     **/
+
     protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
     {
         GridViewRow row = GridView2.SelectedRow;
@@ -83,9 +112,22 @@ public partial class Presentacion_AdministrarCategorias : System.Web.UI.Page
         Button2.Visible = true;
     }
 
+
     protected void Button2_Click(object sender, EventArgs e)
     {
-        if (IsValid)
+        try
+        {
+            L_AdministrarCategorias logi = new L_AdministrarCategorias();
+            logi.btn2(IsValid, NombreCategoria.Text.ToString(), Label5.Text.ToString(), Session["sesion"]);
+            Button2.Visible = false;
+            Button1.Visible = true;
+            NombreCategoria.Text = null;
+            GridView2.DataBind();
+        }
+        catch (Exception eg) { }
+    }
+    /**
+     *  if (IsValid)
         {
             String categoria;
             categoria = NombreCategoria.Text.ToString();
@@ -96,7 +138,6 @@ public partial class Presentacion_AdministrarCategorias : System.Web.UI.Page
             NombreCategoria.Text = null;
             GridView2.DataBind();
         }
+     **/
 
-    }
-    
 }

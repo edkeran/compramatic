@@ -12,7 +12,10 @@ public partial class Presentacion_AdministrarMembresias : System.Web.UI.Page
     {
         Response.Cache.SetCacheability(HttpCacheability.ServerAndNoCache);
 
-        if (Session["Sesion"] == null)
+        
+    }
+    /**
+     *if (Session["Sesion"] == null)
         {
             Response.Redirect("LoginUsr.aspx");
         }
@@ -29,8 +32,8 @@ public partial class Presentacion_AdministrarMembresias : System.Web.UI.Page
             {
                 Response.Redirect("LoginUsr.aspx");
             }
-        }
-    }
+        } 
+     **/
 
     protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
     {

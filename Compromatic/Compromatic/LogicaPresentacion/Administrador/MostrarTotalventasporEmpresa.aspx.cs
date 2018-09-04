@@ -1,18 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logica;
+using Utilitarios;
 
 public partial class Presentacion_MostrarTotalventasporEmpresa : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         Response.Cache.SetCacheability(HttpCacheability.ServerAndNoCache);
+        L_MostrTablaEmp log = new L_MostrTablaEmp();
+        U_AuxQuejAdm res = log.pageLoad(Session["Sesion"], Session["sesion"], GridView1.Rows.Count);
+        GridView1.UseAccessibleHeader = true;
+        GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redireccionar('" + res.Redir + "');", true);
 
-        if (Session["Sesion"] == null)
+    }
+    /**
+     *if (Session["Sesion"] == null)
         {
             Response.Redirect("LoginUsr.aspx");
         }
@@ -33,6 +40,6 @@ public partial class Presentacion_MostrarTotalventasporEmpresa : System.Web.UI.P
             {
                 Response.Redirect("LoginUsr.aspx");
             }
-        }
-    }
+        } 
+     **/
 }
