@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="L_AdministrarProducto.cs" />
+    <Compile Include="L_AdminMotPqr.cs" />
     <Compile Include="L_AgregarProducto.cs" />
     <Compile Include="L_AumenMembre.cs" />
     <Compile Include="L_CambiarPass_Usr.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="L_PerfilUsr.cs" />
     <Compile Include="L_PeticionesCompra.cs" />
     <Compile Include="L_PrinciAdmin.cs" />
+    <Compile Include="L_QuejasAdmin.cs" />
     <Compile Include="L_RegistroEmpresa.cs" />
     <Compile Include="L_Registro_Usr.cs" />
     <Compile Include="L_Store.cs" />

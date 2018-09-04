@@ -1,18 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logica;
+using Utilitarios;
 
 public partial class Presentacion_QuejasAdministrador : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         Response.Cache.SetCacheability(HttpCacheability.ServerAndNoCache);
+        L_QuejasAdmin logi = new L_QuejasAdmin();
+        U_AuxQuejAdm rep = logi.page_load(Session["Sesion"], GridView1.Rows.Count, TableRowSection.TableHeader,Session["sesion"]);
+        GridView1.UseAccessibleHeader = rep.AcceHeader;
+        GridView1.HeaderRow.TableSection = (TableRowSection)rep.Header1;
+        int num = rep.Num;
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redireccionar('" + rep.Redir + "');", true);
+    }
 
-        if (Session["Sesion"] == null)
+    /**
+     * if (Session["Sesion"] == null)
         {
             Response.Redirect("LoginUsr.aspx");
         }
@@ -34,5 +40,5 @@ public partial class Presentacion_QuejasAdministrador : System.Web.UI.Page
                 Response.Redirect("LoginUsr.aspx");
             }
         }
-    }
+     **/
 }
