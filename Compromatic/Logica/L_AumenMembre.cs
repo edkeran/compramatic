@@ -56,5 +56,31 @@ namespace Logica
                 throw new ArgumentException("Valido");
             }
         }
+
+        public DataTable ddl_membresia_event(String value_men)
+        {
+            DDAOMembresia DAO_Membresia = new DDAOMembresia();
+            DataTable Membresia = new DataTable();
+            Membresia = DAO_Membresia.MostrarTipos(int.Parse(value_men));
+            return Membresia;
+        }
+
+        public String btn_comprar(Object Session,String TB_FechaInicio,String TB_FechaFinal,String DDL_Memebresia,Object idEmpresa)
+        {
+            DDAOMembresia DAO_Membresia = new DDAOMembresia();
+            DataTable Membresia = new DataTable();
+            Membresia = DAO_Membresia.MostrarActual(int.Parse(idEmpresa.ToString()));
+            if (Membresia.Rows.Count > 0)
+            {
+                return("Membresia Existente");
+            }
+            else
+            {
+                DataTable Empresa = (DataTable)Session;
+                DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
+                DAO_Empresa.RegistrarMembresia(TB_FechaInicio, TB_FechaFinal, int.Parse(DDL_Memebresia), int.Parse(idEmpresa.ToString()), Empresa.Rows[0]["nomEmpresa"].ToString());
+                return("Membresia Registrada");
+            }
+        }
     }
 }

@@ -9,6 +9,31 @@ namespace Datos
 {
     public class DDAOEmpresa
     {
+        public void RegistrarMembresia(String fechaInicio, String fechaFinal, int tipo, int idEmpresa, String modif)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_registrar_membresia", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_fechainicio", NpgsqlTypes.NpgsqlDbType.Integer).Value = fechaInicio;
+                command.Parameters.Add("_fechafin", NpgsqlTypes.NpgsqlDbType.Varchar).Value = fechaInicio;
+                command.Parameters.Add("_idtipo", NpgsqlTypes.NpgsqlDbType.Integer).Value = tipo;
+                command.Parameters.Add("_idempresa", NpgsqlTypes.NpgsqlDbType.Integer).Value = idEmpresa;
+                command.Parameters.Add("_modif", NpgsqlTypes.NpgsqlDbType.Text).Value = modif;
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
         public Boolean ExistenciaCorreo(String correo)
         {
             Boolean existencia;

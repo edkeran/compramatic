@@ -64,24 +64,35 @@ public partial class Presentacion_AumentarMembresia : System.Web.UI.Page
 
     protected void DDL_Memebresia_SelectedIndexChanged(object sender, EventArgs e)
     {
-        DAOMembresia DAO_Membresia = new DAOMembresia();
-        DataTable Membresia = new DataTable();
+        L_AumenMembre logi = new L_AumenMembre();
         DateTime Fecha = DateTime.Now.Date;
-        Membresia = DAO_Membresia.MostrarTipos(int.Parse(DDL_Memebresia.SelectedValue));
+        DataTable Membresia=logi.ddl_membresia_event(DDL_Memebresia.SelectedValue);
         TB_Precio.Text = "$" + Membresia.Rows[0]["valorMembresia"].ToString() + " COP";
         TB_FechaInicio.Text = Fecha.ToShortDateString();
         Fecha = Fecha.AddMonths(int.Parse(Membresia.Rows[0]["tiempoMembresia"].ToString()));
         TB_FechaFinal.Text = Fecha.ToShortDateString();
     }
+    /**
+     *DAOMembresia DAO_Membresia = new DAOMembresia();
+        DataTable Membresia = new DataTable();
+        
+        Membresia = DAO_Membresia.MostrarTipos(int.Parse(DDL_Memebresia.SelectedValue)); 
+     **/
     public void Modal(String mensaje)
     {
         String texto = "<script   src='https://code.jquery.com/jquery-2.2.4.min.js'> </script>" + "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>" + "<script>$('#modal-dialog').modal('show');</script>";
         Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", texto);
         MensajeModal.Text = mensaje;
     }
+
     protected void BTN_Comprar_Click(object sender, EventArgs e)
     {
-        DAOMembresia DAO_Membresia = new DAOMembresia();
+        L_AumenMembre logi = new L_AumenMembre();
+        Modal(logi.btn_comprar(Session["Sesion"], TB_FechaInicio.Text, TB_FechaFinal.Text, DDL_Memebresia.SelectedValue, Session["idEmpresa"]));
+    }
+    /**
+     *
+     * DAOMembresia DAO_Membresia = new DAOMembresia();
         DataTable Membresia = new DataTable();
         Membresia = DAO_Membresia.MostrarActual(int.Parse(Session["idEmpresa"].ToString()));
         if(Membresia.Rows.Count>0)
@@ -95,5 +106,6 @@ public partial class Presentacion_AumentarMembresia : System.Web.UI.Page
             DAO_Empresa.RegistrarMembresia(TB_FechaInicio.Text, TB_FechaFinal.Text, int.Parse(DDL_Memebresia.SelectedValue), int.Parse(Session["idEmpresa"].ToString()), Empresa.Rows[0]["nomEmpresa"].ToString());
             Modal("Membresia Registrada");
         }
-    }
+     * 
+     **/
 }

@@ -11,7 +11,7 @@ using System.Web;
 /// </summary>
 public class DAOEmpresa
 {
-
+    //METODO MIGRADO
     public void RegistrarMembresia(String fechaInicio, String fechaFinal, int tipo, int idEmpresa, String modif)
     {
         NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
