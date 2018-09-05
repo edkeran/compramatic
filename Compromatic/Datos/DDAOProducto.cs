@@ -338,5 +338,65 @@ namespace Datos
             }
         }
 
+        public void RegistrarFoto(UEUProducto EU_Producto, String modif)
+        {
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+
+                NpgsqlCommand command = new NpgsqlCommand("sp_registrar_fotoproducto", conection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_modif", NpgsqlTypes.NpgsqlDbType.Text).Value = modif;
+                command.Parameters.Add("_idproducto", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Producto.Id;
+                command.Parameters.Add("_nomarchivo", NpgsqlTypes.NpgsqlDbType.Varchar).Value = EU_Producto.NomArchivo;
+                command.Parameters.Add("_rutaarchivo", NpgsqlTypes.NpgsqlDbType.Varchar).Value = EU_Producto.RutaArchivo;
+
+
+                conection.Open();
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+        }
+
+        public void EliminarFoto(UEUProducto EU_Producto)
+        {
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+
+                NpgsqlCommand command = new NpgsqlCommand("sp_borrar_fotoproducto", conection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_idfoto_producto", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Producto.IdFoto;
+                command.Parameters.Add("_modif", NpgsqlTypes.NpgsqlDbType.Text).Value = "";
+                conection.Open();
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+        }
+
     }
 }

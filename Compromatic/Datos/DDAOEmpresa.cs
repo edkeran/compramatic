@@ -390,5 +390,32 @@ namespace Datos
             }
 
         }
+        //MOSTRAR CAL
+        public DataTable MostrarCalificaciones(int idEmpresa)
+        {
+            DataTable Calificaciones = new DataTable();
+
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_mostrar_calificaciones", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_idempresa", NpgsqlTypes.NpgsqlDbType.Integer).Value = idEmpresa;
+                connection.Open();
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter(command);
+                da.Fill(Calificaciones);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return Calificaciones;
+        }
     }
 }

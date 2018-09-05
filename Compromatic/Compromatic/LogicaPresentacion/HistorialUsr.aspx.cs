@@ -27,12 +27,20 @@ public partial class Presentacion_HistorialUsr : System.Web.UI.Page
         DataTable datos = (DataTable)Session["Sesion"];
         DataSet compras = new DataSet();
         EUsuario user = new EUsuario();
-        DAOUsuario bdcompra=new DAOUsuario();
+        //DAOUsuario bdcompra=new DAOUsuario();
         user.IdUsr=int.Parse(datos.Rows[0]["idUsuario"].ToString());
-        DataTable historial = bdcompra.HistorialCompras(user,4);
+        //DataTable historial = bdcompra.HistorialCompras(user,4);
         DataTable data = new DataTable();
         data = compras.HistorialCompras;
-        DataRow fila;
+        L_HistorialUsr logi = new L_HistorialUsr();
+        logi.obtenerCompras(Session["Sesion"],data);
+        return compras;
+    }
+
+    /**
+     *
+     data = compras.HistorialCompras;
+     DataRow fila;
 
         for (int i = 0; i < historial.Rows.Count; i++)
         {
@@ -56,6 +64,6 @@ public partial class Presentacion_HistorialUsr : System.Web.UI.Page
             String muestra7 = fila["nomEmpresa"].ToString();
             data.Rows.Add(fila);
         }
-        return compras;
-    }
+        return compras; 
+     **/
 }

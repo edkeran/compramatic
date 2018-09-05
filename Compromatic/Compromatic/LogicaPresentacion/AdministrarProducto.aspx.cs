@@ -139,10 +139,31 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
         return new string(Enumerable.Repeat(chars, length)
           .Select(s => s[random.Next(s.Length)]).ToArray());
     }
+
     //EN REVISION
     protected void AgregarFotosProductos(object sender, EventArgs e)
     {
-        int limite = 5 - TablaImagenes.Items.Count;
+        L_AdministrarProducto logi = new L_AdministrarProducto();
+        DataTable Empresa = (DataTable)Session["Sesion"];
+        String extension = System.IO.Path.GetExtension(FU_FotoProducto.PostedFile.FileName);
+        try
+        {
+            String nombreArchivo = Empresa.Rows[0]["idEmpresa"].ToString() + RandomString(8) + extension;
+            String saveLocation = (Server.MapPath("~\\Archivos\\FotosProductos") + "\\" + nombreArchivo);
+            String response= logi.AgregarFotosProd(TablaImagenes.Items.Count, idProducto.Text,
+            FU_FotoProducto.PostedFiles.Count, Session["Sesion"], saveLocation, FU_FotoProducto.PostedFiles, extension, nombreArchivo);
+            String[] data=response.Split('/');
+            Modal(data[0]);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redireccionar('" + data[1] + "');", true);
+        }
+        catch(Exception err)
+        {
+            throw err;
+        }
+    }
+
+    /**
+     *int limite = 5 - TablaImagenes.Items.Count;
         if (idProducto.Text == "0")
         {
             Modal("Seleccione un producto");
@@ -180,8 +201,8 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
                 Modal("Formato Incorrecto");
             }
         }
-        Response.Redirect(Request.Url.AbsoluteUri);
-    }
+        Response.Redirect(Request.Url.AbsoluteUri); 
+     **/
 
 
     protected void Prueba1_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -236,11 +257,11 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
     protected void TablaImagenes_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         DataTable Fotos = new DataTable();
-        IADProducto IAD_Producto = new IADProducto();
-        Fotos = IAD_Producto.MostrarFoto(int.Parse(idProducto.Text));
+        L_AdministrarProducto logica = new L_AdministrarProducto();
+        Fotos = logica.MostrarFoto(int.Parse(idProducto.Text));
         String ruta = Fotos.Rows[e.Item.ItemIndex]["rutaArchivo"].ToString();
         ruta = (Server.MapPath("~\\Archivos\\FotosProductos") + "\\" + ruta);
-        IAD_Producto.BorrarFoto(int.Parse(e.CommandArgument.ToString()));
+        logica.BorrarFoto(int.Parse(e.CommandArgument.ToString()));
 
         try
         {

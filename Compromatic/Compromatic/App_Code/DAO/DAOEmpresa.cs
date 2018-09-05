@@ -62,7 +62,7 @@ public class DAOEmpresa
             connection.Close();
         }
     }
-
+    //METODO MIGRADO
     public DataTable MostrarCalificaciones(int idEmpresa)
     {
         DataTable Calificaciones = new DataTable();

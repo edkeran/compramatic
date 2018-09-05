@@ -60,7 +60,7 @@ public class IADProducto
 
         DAO_Producto.ModificarProducto(EU_Producto, modif);
     }
-
+    //METODO MIGRADO
     public void RegistrarFoto(int idProducto, String nombreArchivo, String rutaArchivo, String modif)
     {
         DAOProducto DAO_Producto = new DAOProducto();
@@ -72,6 +72,7 @@ public class IADProducto
 
         DAO_Producto.RegistrarFoto(EU_Producto, modif);
     }
+    //METODO MIGRADO
     public void BorrarFoto(int idFoto)
     {
         DAOProducto DAO_Producto = new DAOProducto();
@@ -80,7 +81,7 @@ public class IADProducto
         EU_Producto.IdFoto = idFoto;
         DAO_Producto.EliminarFoto(EU_Producto);
     }
-
+    //METODO MIGRADO
     public DataTable MostrarFoto(int idProducto)
     {
         DAOProducto DAO_Producto = new DAOProducto();

@@ -44,9 +44,8 @@ namespace Logica
             }
         }
 
-        public DataTable obtenerCompras(Object Session,DataTable data)
+        public void obtenerCompras(Object Session,DataTable data)
         {
-            Utilitarios.DataSet compras = new Utilitarios.DataSet();
             DataTable datos = (DataTable)Session;
             UEUsuario user = new UEUsuario();
             DDAOUsuario bdcompra = new DDAOUsuario();
@@ -75,7 +74,6 @@ namespace Logica
                 String muestra7 = fila["nomEmpresa"].ToString();
                 data.Rows.Add(fila);
             }
-            return data;
         }
     }
 }

@@ -1,18 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logica;
 
 public partial class Presentacion_AdministrarMembresias : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         Response.Cache.SetCacheability(HttpCacheability.ServerAndNoCache);
-
-        
+        L_AdminMembre logi = new L_AdminMembre();
+        String res=logi._Page_Load(Session["Sesion"], Session["sesion"]);
+        String[] resp = res.Split('/');
+        int num = int.Parse(resp[1]);
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redireccionar('" + resp[0] + "');", true);
     }
     /**
      *if (Session["Sesion"] == null)
@@ -23,7 +24,7 @@ public partial class Presentacion_AdministrarMembresias : System.Web.UI.Page
         {
             if (int.Parse(((DataTable)(Session["sesion"])).Rows[0]["idTipo"].ToString()) == 1)
             {
-                
+
                 int num = int.Parse(((DataTable)(Session["sesion"])).Rows[0]["idTipo"].ToString());
 
             }
@@ -32,12 +33,16 @@ public partial class Presentacion_AdministrarMembresias : System.Web.UI.Page
             {
                 Response.Redirect("LoginUsr.aspx");
             }
-        } 
+         }
      **/
-
+    
     protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
     {
-        String validacion;
+        L_AdminMembre log = new L_AdminMembre();
+        args.IsValid = log.CustomValidator1(NombreMembresia.Text.ToString());
+    }
+    /**
+     *  String validacion;
         validacion = NombreMembresia.Text.ToString();
         DAOadministrador datos = new DAOadministrador();
         DataTable resul = datos.verificarMembresia(validacion);
@@ -45,10 +50,26 @@ public partial class Presentacion_AdministrarMembresias : System.Web.UI.Page
             args.IsValid = false;
         else
             args.IsValid = true;  
-    }
+     **/
+
     protected void Button1_Click(object sender, EventArgs e)
     {
-        if (IsValid)
+        try
+        {
+            L_AdminMembre logi = new L_AdminMembre();
+            logi.btn1(IsValid, NombreMembresia.Text, TB_Tiempo.Text, TB_Valor.Text, Session["sesion"]);
+            Button1.Visible = true;
+            Button2.Visible = false;
+            GridView2.DataBind();
+            NombreMembresia.Text = null;
+            TB_Tiempo.Text = null;
+            TB_Valor.Text = null;
+        }
+        catch (Exception ex) {}
+    }
+
+    /**
+     * if (IsValid)
         {
             DAOadministrador datos = new DAOadministrador();
             String nombre = NombreMembresia.Text.ToString();
@@ -62,7 +83,8 @@ public partial class Presentacion_AdministrarMembresias : System.Web.UI.Page
             TB_Tiempo.Text = null;
             TB_Valor.Text = null;
         }
-    }
+     **/
+
     protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
     {
         GridViewRow row = GridView2.SelectedRow;
@@ -83,14 +105,13 @@ public partial class Presentacion_AdministrarMembresias : System.Web.UI.Page
         Label5.Text = nom;
         Button2.Visible = true;
     }
+
     protected void Button2_Click(object sender, EventArgs e)
     {
-        if (IsValid)
+        try
         {
-            String categoria;
-            categoria = NombreMembresia.Text.ToString();
-            DAOadministrador datos = new DAOadministrador();
-            datos.ModificarMembresia(categoria, Label5.Text.ToString(), int.Parse(TB_Tiempo.Text.ToString()), Double.Parse(TB_Valor.Text.ToString()), ((DataTable)(Session["sesion"])).Rows[0]["nomUsuario"].ToString());
+            L_AdminMembre logi = new L_AdminMembre();
+            logi.btn2(IsValid, NombreMembresia.Text.ToString(), Label5.Text, TB_Tiempo.Text, TB_Valor.Text, Session["sesion"]);
             Button1.Visible = true;
             Button2.Visible = false;
             NombreMembresia.Text = null;
@@ -98,11 +119,16 @@ public partial class Presentacion_AdministrarMembresias : System.Web.UI.Page
             TB_Valor.Text = null;
             GridView2.DataBind();
         }
-        
+        catch (Exception er) { }
     }
+
     protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
     {
-        String validacion;
+        L_AdminMembre logi = new L_AdminMembre();
+        args.IsValid=logi.CustomValidator2(NombreMembresia.Text, Label5.Text);
+    }
+    /**
+     * String validacion;
         validacion = NombreMembresia.Text.ToString();
         if (validacion.Equals(Label5.Text.ToString()))
         {
@@ -117,6 +143,5 @@ public partial class Presentacion_AdministrarMembresias : System.Web.UI.Page
             else
                 args.IsValid = true;
         }
-         
-    }
+     **/
 }

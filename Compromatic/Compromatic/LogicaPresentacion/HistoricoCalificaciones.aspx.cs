@@ -1,16 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data;
+using Logica;
 
 public partial class Presentacion_HistoricoCalificaciones : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        try
+        {
+            L_HistoricoCalificaciones logic = new L_HistoricoCalificaciones();
+            String res=logic.page_inicial(IsPostBack, Session["Sesion"]);
+            CRS_Calificaciones.ReportDocument.SetDataSource(Calificaciones());
+            CRV_Calificaciones.ReportSource = CRS_Calificaciones;
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "scrt", "redireccionar('" + res + "');", true);
+        }
+        catch(Exception eg)
+        {}
+    }
+    /**
+     * if (!IsPostBack)
         {
             if (Session["Sesion"] == null)
             {
@@ -28,18 +36,20 @@ public partial class Presentacion_HistoricoCalificaciones : System.Web.UI.Page
             CRS_Calificaciones.ReportDocument.SetDataSource(Calificaciones());
             CRV_Calificaciones.ReportSource = CRS_Calificaciones;
         }
-    }
+     **/
 
     protected DataSet Calificaciones()
     {
         DataSet compras = new DataSet();
-        DAOEmpresa DAO_Empresa = new DAOEmpresa();
-        DataTable historial = DAO_Empresa.MostrarCalificaciones(int.Parse(Session["idEmpresa"].ToString()));
         DataTable data = new DataTable();
         data = compras.Calificaciones;
-        DataRow fila;
+        L_HistoricoCalificaciones logi = new L_HistoricoCalificaciones();
+        logi.Calificaciones(Session["idEmpresa"],data);
+        return compras;
+    }
 
-        for (int i = 0; i < historial.Rows.Count; i++)
+    /**
+     * for (int i = 0; i < historial.Rows.Count; i++)
         {
             fila = data.NewRow();
 
@@ -48,7 +58,6 @@ public partial class Presentacion_HistoricoCalificaciones : System.Web.UI.Page
             fila["FechaRango"] = historial.Rows[i]["fechaRango"].ToString();
             fila["nomUsuario"] = historial.Rows[i]["nomUsuario"].ToString();
             data.Rows.Add(fila);
-        }
-        return compras;
-    }
+        } 
+     **/
 }

@@ -369,7 +369,7 @@ public class DAOProducto
         }
         return Productos;
     }
-
+    //METODO MIGRADO
     public void RegistrarFoto(EUProducto EU_Producto, String modif)
     {
         NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
@@ -433,7 +433,7 @@ public class DAOProducto
         }
         return FotosProducto;
     }
-
+    //METODO MIGRADO
     internal void EliminarFoto(EUProducto EU_Producto)
     {
         NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);

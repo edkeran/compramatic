@@ -2,6 +2,8 @@
 using System.Data;
 using Utilitarios;
 using Datos;
+using System.Web;
+using System.Collections.Generic;
 
 namespace Logica
 {
@@ -183,6 +185,78 @@ namespace Logica
             DAO_Producto.ModificarAlerta(int.Parse(idProducto), int.Parse(tb_NuevaAlerta), Empresa.Rows[0]["nomEmpresa"].ToString());
             //Response.Redirect(Request.Url.AbsoluteUri);
             return "0";
+        }
+
+        public String AgregarFotosProd(int TableImagenes,String idProducto,int numFotos,Object Session,String saveLocation, IList <HttpPostedFile> Fotos,String extension, String nombreArchivo)
+        {
+            int limite = 5 - TableImagenes;
+            if (idProducto == "0")
+            {
+                //Modal();
+                return "Seleccione un producto/0";
+            }
+            if (numFotos > limite)
+            {
+                //Modal("Limite de fotos excedido");
+                return "Limite de fotos excedido/0";
+            }
+            DataTable Empresa = (DataTable)Session;
+            foreach (HttpPostedFile postedFile in Fotos)
+            {
+
+                //String extension = System.IO.Path.GetExtension(FU_FotoProducto.PostedFile.FileName);
+                //String nombreArchivo = Empresa.Rows[0]["idEmpresa"].ToString() + RandomString(8) + extension;
+                //String saveLocation = (Server.MapPath("~\\Archivos\\FotosProductos") + "\\" + nombreArchivo);
+
+                if (extension.Equals(".jpg") || extension.Equals(".jepg") || extension.Equals(".png") || extension.Equals(".JPG") || extension.Equals(".JEPG") || extension.Equals(".PNG"))
+                {
+
+                    try
+                    {
+                        postedFile.SaveAs(saveLocation);
+                        this.RegistrarFoto(int.Parse(idProducto), nombreArchivo, "../Archivos/FotosProductos/" + nombreArchivo, Empresa.Rows[0]["nomEmpresa"].ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+                else
+                {
+                    //Modal("Formato Incorrecto");
+                    return "Formato Incorrecto/0";
+                }
+            }
+            return "sa/AdministrarProducto.aspx";
+            //Response.Redirect(Request.Url.AbsoluteUri);
+        }
+
+        public void RegistrarFoto(int idProducto, String nombreArchivo, String rutaArchivo, String modif)
+        {
+            DDAOProducto DAO_Producto = new DDAOProducto();
+            UEUProducto EU_Producto = new UEUProducto();
+
+            EU_Producto.Id = idProducto;
+            EU_Producto.NomArchivo = nombreArchivo;
+            EU_Producto.RutaArchivo = rutaArchivo;
+
+            DAO_Producto.RegistrarFoto(EU_Producto, modif);
+        }
+
+        public DataTable MostrarFoto(int idProducto)
+        {
+            DDAOProducto DAO_Producto = new DDAOProducto();
+            DataTable Fotos = DAO_Producto.MostrarFotoProducto(idProducto);
+            return Fotos;
+        }
+
+        public void BorrarFoto(int idFoto)
+        {
+            DDAOProducto DAO_Producto = new DDAOProducto();
+            UEUProducto EU_Producto = new UEUProducto();
+
+            EU_Producto.IdFoto = idFoto;
+            DAO_Producto.EliminarFoto(EU_Producto);
         }
     }
 }
