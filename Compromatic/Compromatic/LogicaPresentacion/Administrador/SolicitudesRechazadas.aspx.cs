@@ -11,8 +11,12 @@ public partial class Presentacion_SolicitudesRechazadas : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Response.Cache.SetCacheability(HttpCacheability.ServerAndNoCache);
-
-        if (Session["Sesion"] == null)
+        L_SolicitudesRechazadas logi = new L_SolicitudesRechazadas();
+        String respo= logi.page_load(Session["Sesion"],Session["sesion"]);
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "scrt", "redireccionar('" + respo + "');", true);
+    }
+    /**
+     * if (Session["Sesion"] == null)
         {
             Response.Redirect("LoginUsr.aspx");
         }
@@ -27,7 +31,8 @@ public partial class Presentacion_SolicitudesRechazadas : System.Web.UI.Page
                 Response.Redirect("LoginUsr.aspx");
             }
         }
-    }
+     **/
+
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
         //
@@ -39,11 +44,13 @@ public partial class Presentacion_SolicitudesRechazadas : System.Web.UI.Page
         // en este caso de la entidad Person
         //
         int id = Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value);
-        DAOadministrador conexion = new DAOadministrador();
-        DataTable consulta = conexion.ArchivosEmpresa(id);
+        L_SolicitudesRechazadas logi = new L_SolicitudesRechazadas();
+        //DAOadministrador conexion = new DAOadministrador();
+        DataTable consulta = logi.GV_1(id);
         Modal(consulta);
-        
     }
+
+
     protected void Modal(DataTable e)
     {
         if (e.Rows.Count <= 2)
