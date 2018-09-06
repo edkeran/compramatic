@@ -85,7 +85,7 @@
                                 <RowStyle CssClass="sorting_1" />
                             </asp:GridView>
 
-                                <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" SelectMethod="MostrarVentasPorEmpresa" TypeName="DAOadministrador"></asp:ObjectDataSource>
+                                <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" SelectMethod="MostrarVentasPorEmpresa" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
                             </asp:Panel>
                         </div>
                     </div>

@@ -75,7 +75,7 @@
                                 </Columns>
                                <RowStyle CssClass="sorting_1" />
                             </asp:GridView>
-                                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="MostrarEmpresas" TypeName="DAOadministrador">
+                                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="MostrarEmpresas" TypeName="Logica.L_Componentes">
                                     <SelectParameters>
                                         <asp:ControlParameter ControlID="DropDownList1" DefaultValue="2" Name="idBusqueda" PropertyName="SelectedValue" Type="Int32" />
                                     </SelectParameters>

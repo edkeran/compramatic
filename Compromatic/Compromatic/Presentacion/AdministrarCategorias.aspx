@@ -41,7 +41,7 @@
 
                                         </Columns>
                                     </asp:GridView>
-                                    <asp:ObjectDataSource runat="server" ID="ObjectDataSource2" SelectMethod="MostrarCategorias" TypeName="DAOadministrador"></asp:ObjectDataSource>
+                                    <asp:ObjectDataSource runat="server" ID="ObjectDataSource2" SelectMethod="MostrarCategorias" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
                                 </asp:Panel>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
 
                                 </Columns>
                             </asp:GridView>
-                            <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" SelectMethod="MostrarVentasPorCategoria" TypeName="DAOadministrador"></asp:ObjectDataSource>
+                            <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" SelectMethod="MostrarVentasPorCategoria" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
                         </asp:Panel>
                     </div>
                 </div>

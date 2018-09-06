@@ -56,7 +56,7 @@
                                             </tr>
                                         </ItemTemplate>
                                     </asp:Repeater>
-                                    <asp:ObjectDataSource runat="server" ID="OBS_Productos" SelectMethod="ProductosBajoI" TypeName="DAOProducto">
+                                    <asp:ObjectDataSource runat="server" ID="OBS_Productos" SelectMethod="ProductosBajoI" TypeName="Logica.L_Componentes">
                                         <SelectParameters>
                                             <asp:SessionParameter SessionField="IdEmpresa" Name="idEmpresa" Type="Int32"></asp:SessionParameter>
                                         </SelectParameters>

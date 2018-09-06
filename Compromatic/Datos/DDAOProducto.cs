@@ -398,5 +398,66 @@ namespace Datos
             }
         }
 
+        public DataTable MostrarCategoria()
+        {
+            DataTable Categorias = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+
+                NpgsqlCommand command = new NpgsqlCommand("sp_mostrar_categoria", conection);
+                command.CommandType = CommandType.StoredProcedure;
+
+
+                conection.Open();
+                NpgsqlDataAdapter DA = new NpgsqlDataAdapter(command);
+                DA.Fill(Categorias);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+            return Categorias;
+        }
+
+        public DataTable ProductosBajoI(int idEmpresa)
+        {
+            DataTable Productos = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+
+                NpgsqlCommand command = new NpgsqlCommand("sp_mostrar_producto_bajoi", conection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_idempresa", NpgsqlTypes.NpgsqlDbType.Integer).Value = idEmpresa;
+
+                conection.Open();
+                NpgsqlDataAdapter DA = new NpgsqlDataAdapter(command);
+                DA.Fill(Productos);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+            return Productos;
+        }
     }
 }

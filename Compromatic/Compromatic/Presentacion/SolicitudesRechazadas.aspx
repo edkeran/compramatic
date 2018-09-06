@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div id="content" class="content">
+            <br />
             <ol class="breadcrumb pull-right">
 				<li><a href="javascript:;">Home</a></li>
 				<li><a href="javascript:;">Solicitudes</a></li>
@@ -62,7 +63,7 @@
                        <RowStyle BorderStyle="None" />
 
                    </asp:GridView>
-                   <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" SelectMethod="SolicitudesRechazadas" TypeName="DAOadministrador"></asp:ObjectDataSource>
+                   <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" SelectMethod="SolicitudesRechazadas" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
                </div>
             </asp:Panel>
      

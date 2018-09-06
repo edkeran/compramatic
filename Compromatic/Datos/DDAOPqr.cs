@@ -13,6 +13,35 @@ namespace Datos
 {
     public class DDAOPqr
     {
+        public DataTable MostrarMotivos()
+        {
+            DataTable Motivos = new DataTable();
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_mostrar_motivoq", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+
+                connection.Open();
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(command);
+                adapter.Fill(Motivos);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+            return Motivos;
+        }
         public void QuejaUsr(UEUPqr pqr, String modif)
         {
             NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
@@ -90,6 +119,96 @@ namespace Datos
                 }
             }
             return Motivos;
+        }
+
+        public DataTable MostrarPQRAdministrador()
+        {
+            DataTable PQR = new DataTable();
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_mostrarpqradministrador", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+
+                connection.Open();
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(command);
+                adapter.Fill(PQR);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+            return PQR;
+        }
+
+        public DataTable MostrarPQRAempresa()
+        {
+            DataTable PQR = new DataTable();
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_mostrarpqrempresa", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+
+                connection.Open();
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(command);
+                adapter.Fill(PQR);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+            return PQR;
+        }
+
+        public DataTable MostrarPQRCliente()
+        {
+            DataTable PQR = new DataTable();
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_mostrarpqrcliente", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+
+                connection.Open();
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(command);
+                adapter.Fill(PQR);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+            return PQR;
         }
     }
 }

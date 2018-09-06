@@ -120,7 +120,7 @@
                                             <div class="form-group">
                                                 <label>Categoria</label>
                                                 <asp:DropDownList runat="server" ID="DDL_Categoria" CssClass="form-control" AutoPostBack="false" DataSourceID="OBSCategoria" DataTextField="nomCategoria" DataValueField="idCategoria"></asp:DropDownList>
-                                                <asp:ObjectDataSource runat="server" ID="OBSCategoria" SelectMethod="MostrarCategoria" TypeName="DAOProducto"></asp:ObjectDataSource>
+                                                <asp:ObjectDataSource runat="server" ID="OBSCategoria" SelectMethod="MostrarCategoria" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
                                             </div>
                                         </div>
                                         <!-- end col-4 -->

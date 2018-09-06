@@ -65,7 +65,7 @@
                        <RowStyle BorderStyle="None" />
 
                 </asp:GridView>
-              <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" SelectMethod="SolicitudesPendientes" TypeName="DAOadministrador"></asp:ObjectDataSource>
+              <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" SelectMethod="SolicitudesPendientes" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
              </div>
             </asp:Panel>
      

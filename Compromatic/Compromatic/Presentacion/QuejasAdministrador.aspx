@@ -63,7 +63,7 @@
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
-                        <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" SelectMethod="MostrarPQRAdministrador" TypeName="DAOPqr"></asp:ObjectDataSource>
+                        <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" SelectMethod="MostrarPQRAdministrador" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
                     </div>
                     <div class="tab-pane fade" id="purchase">
                         <asp:GridView ID="GridView2" runat="server" BorderStyle="None" DataSourceID="ObjectDataSource2" AutoGenerateColumns="False">
@@ -111,7 +111,7 @@
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
-                        <asp:ObjectDataSource runat="server" ID="ObjectDataSource2" SelectMethod="MostrarPQRAempresa" TypeName="DAOPqr"></asp:ObjectDataSource>
+                        <asp:ObjectDataSource runat="server" ID="ObjectDataSource2" SelectMethod="MostrarPQRAempresa" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
                     </div>
                     <div class="tab-pane fade" id="email">
                         <asp:GridView ID="GridView3" runat="server" BorderStyle="None" AutoGenerateColumns="False" DataSourceID="ObjectDataSource3">
@@ -159,7 +159,7 @@
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
-                        <asp:ObjectDataSource runat="server" ID="ObjectDataSource3" SelectMethod="MostrarPQRCliente" TypeName="DAOPqr"></asp:ObjectDataSource>
+                        <asp:ObjectDataSource runat="server" ID="ObjectDataSource3" SelectMethod="MostrarPQRCliente" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
                     </div>
                 </div>
             </div>

@@ -175,7 +175,7 @@
                                                                     </asp:ScriptManager>
                                                                     <label>Membresia</label>
                                                                     <asp:DropDownList runat="server" ID="DDL_Memebresia" CssClass="form-control" AutoPostBack="true" DataSourceID="ODS_Membresia" DataTextField="nomMembresia" DataValueField="idTipo_membresia" OnSelectedIndexChanged="DDL_Memebresia_SelectedIndexChanged"></asp:DropDownList>
-                                                                    <asp:ObjectDataSource runat="server" ID="ODS_Membresia" SelectMethod="MostrarTipos" TypeName="DAOMembresia"></asp:ObjectDataSource>
+                                                                    <asp:ObjectDataSource runat="server" ID="ODS_Membresia" SelectMethod="MostrarTipos" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
                                                                 </div>
                                                             </div>
                                                             <!-- end col-3 -->

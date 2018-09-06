@@ -80,7 +80,7 @@
 
                 </asp:GridView>
 
-                <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" SelectMethod="Reportes" TypeName="DAOadministrador"></asp:ObjectDataSource>
+                <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" SelectMethod="Reportes" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
             </div>
         </asp:Panel>
 
@@ -123,7 +123,7 @@
                         </asp:Repeater>
                     </div>
 
-                    <asp:ObjectDataSource runat="server" ID="OBS_Fotos" SelectMethod="MostrarFoto" TypeName="IADProducto">
+                    <asp:ObjectDataSource runat="server" ID="OBS_Fotos" SelectMethod="MostrarFoto" TypeName="Logica.L_Componentes">
 
                         <SelectParameters>
                             <asp:ControlParameter ControlID="idProducto" PropertyName="Text" Name="idProducto" Type="Int32"></asp:ControlParameter>

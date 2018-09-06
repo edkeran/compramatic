@@ -123,7 +123,7 @@
                                             <label>Categoria</label>
                                             <asp:DropDownList runat="server" CssClass="form-control selectpicker" data-live-search="true" data-style="btn-success" DataSourceID="OBSCategoria" DataTextField="nomCategoria" DataValueField="idCategoria" AppendDataBoundItems="true" ID="DDL_Categoria">
                                             </asp:DropDownList>
-                                            <asp:ObjectDataSource runat="server" ID="OBSCategoria" SelectMethod="MostrarCategoria" TypeName="DAOProducto"></asp:ObjectDataSource>
+                                            <asp:ObjectDataSource runat="server" ID="OBSCategoria" SelectMethod="MostrarCategoria" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
                                         </div>
                                     </div>
                                 </div>
@@ -194,10 +194,7 @@
                                         </asp:Repeater>
                                     </div>
 
-                                    <asp:ObjectDataSource runat="server" ID="OBS_Fotos" SelectMethod="MostrarFoto" TypeName="IADProducto" DeleteMethod="BorrarFoto">
-                                        <DeleteParameters>
-                                            <asp:Parameter Name="idFoto" Type="Int32"></asp:Parameter>
-                                        </DeleteParameters>
+                                    <asp:ObjectDataSource runat="server" ID="OBS_Fotos" SelectMethod="MostrarFoto" TypeName="Logica.L_Componentes">
                                         <SelectParameters>
                                             <asp:ControlParameter ControlID="idProducto" PropertyName="Text" Name="idProducto" Type="Int32"></asp:ControlParameter>
                                         </SelectParameters>
@@ -230,7 +227,7 @@
                                         <div class="form-group">
                                             <asp:RequiredFieldValidator runat="server" ErrorMessage="Texto Necesario" ForeColor="Red" ControlToValidate="TB_Tags" CssClass="warning" ValidationGroup="Tags"></asp:RequiredFieldValidator>
                                             <asp:DropDownList runat="server" DataTextField="palabra" DataValueField="idPalabra_clave" ID="DDL_Tags" CssClass="form-control" DataSourceID="OBS_Tags"></asp:DropDownList>
-                                            <asp:ObjectDataSource runat="server" ID="OBS_Tags" SelectMethod="MostrarTags" TypeName="IADTag">
+                                            <asp:ObjectDataSource runat="server" ID="OBS_Tags" SelectMethod="MostrarTags" TypeName="Logica.L_Componentes">
                                                 <SelectParameters>
                                                     <asp:ControlParameter ControlID="idProducto" PropertyName="Text" Name="idProducto" Type="Int32"></asp:ControlParameter>
                                                 </SelectParameters>

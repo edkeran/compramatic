@@ -114,7 +114,7 @@
                                             </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
-                                    <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" SelectMethod="MostrarMotivos" TypeName="DAOPqr"></asp:ObjectDataSource>
+                                    <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" SelectMethod="MostrarMotivos" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
                                 </asp:Panel>
                             </div>
                         </div>
@@ -147,7 +147,7 @@
                                             </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
-                                    <asp:ObjectDataSource runat="server" ID="ObjectDataSource2" SelectMethod="MostrarMotivosReporte" TypeName="DAOPqr"></asp:ObjectDataSource>
+                                    <asp:ObjectDataSource runat="server" ID="ObjectDataSource2" SelectMethod="MostrarMotivosReporte" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
                                 </asp:Panel>
                             </div>
                         </div>

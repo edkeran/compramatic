@@ -12,6 +12,37 @@ namespace Datos
 {
     public class DDAOMembresia
     {
+        public DataTable MostrarTipos()
+        {
+            DataTable Tipos = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+
+                NpgsqlCommand command = new NpgsqlCommand("sp_tipo_membresia", conection);
+                command.CommandType = CommandType.StoredProcedure;
+
+
+                conection.Open();
+                NpgsqlDataAdapter DA = new NpgsqlDataAdapter(command);
+                DA.Fill(Tipos);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+            return Tipos;
+        }
+
         public DataTable MostrarTipos(int id)
         {
             DataTable Tipos = new DataTable();
