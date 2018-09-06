@@ -232,10 +232,7 @@
 
                                 </Columns>
                             </asp:GridView>
-                            <asp:ObjectDataSource runat="server" ID="ODS_Archivos" SelectMethod="MostrarArchivos" TypeName="IADEmpresa" DeleteMethod="EliminarArchivo">
-                                <DeleteParameters>
-                                    <asp:Parameter Name="idArchivo" Type="Int32"></asp:Parameter>
-                                </DeleteParameters>
+                            <asp:ObjectDataSource runat="server" ID="ODS_Archivos" SelectMethod="MostrarArchivos" TypeName="Logica.L_Componentes">
                                 <SelectParameters>
                                     <asp:ControlParameter ControlID="TB_Nit" Name="nit" PropertyName="Text" Type="String" />
                                 </SelectParameters>

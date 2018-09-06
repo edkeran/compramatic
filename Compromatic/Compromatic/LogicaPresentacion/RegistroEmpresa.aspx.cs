@@ -26,7 +26,7 @@ public partial class Presentacion_RegistroEmpresa : System.Web.UI.Page
     protected void BTN_Registro_Click(object sender, EventArgs e)
     {
         L_RegistroEmpresa emp = new L_RegistroEmpresa();
-        DAOEmpresa envio = new DAOEmpresa();
+        //DAOEmpresa envio = new DAOEmpresa();
         //CAMBIAR A JS LA VALIDACION
         Boolean val = emp.Validar_Existencia_Correo(TB_Email.Text);
         String extension = System.IO.Path.GetExtension(FU_Foto.PostedFile.FileName);

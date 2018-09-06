@@ -19,7 +19,7 @@ public partial class Presentacion_RegistroEmpresa : System.Web.UI.Page
     {
        try{
                 L_Registro_Usr regi = new L_Registro_Usr();
-                DAOUsuario envio = new DAOUsuario();
+                //DAOUsuario envio = new DAOUsuario();
                 UEUsuario user = new UEUsuario();
                 user.NomUsr = TB_FirstName.Text.ToString();
                 user.ApelUsr = TB_LastName.Text.ToString();

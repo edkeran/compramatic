@@ -12,7 +12,7 @@ public partial class Presentacion_MisComprasUsr : System.Web.UI.Page
     {
         try
         {
-            DAOUsuario user = new DAOUsuario();
+            //DAOUsuario user = new DAOUsuario();
             L_MisComprasUsr logica = new L_MisComprasUsr();
             U_aux_MisComprasUsr orig = new U_aux_MisComprasUsr();
             U_aux_MisComprasUsr res = logica.page_load(Session["Sesion"], IsPostBack);

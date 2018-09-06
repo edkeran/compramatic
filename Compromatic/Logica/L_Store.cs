@@ -30,5 +30,11 @@ namespace Logica
                 return productos;
             }
         }
+
+        public DataTable LoadProduct(int comando)
+        {
+            DDAOProducto pdto = new DDAOProducto();
+            return pdto.ProductosDetalle(comando);
+        }
     }
 }

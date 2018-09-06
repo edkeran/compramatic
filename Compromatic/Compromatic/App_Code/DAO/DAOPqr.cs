@@ -38,7 +38,7 @@ public class DAOPqr
         }
         return Motivos;
     }
-
+    //FUNCION MIGRADA
     public DataTable MostrarMotivosReporte()
     {
         DataTable Motivos = new DataTable();

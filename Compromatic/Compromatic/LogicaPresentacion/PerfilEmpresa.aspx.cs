@@ -93,7 +93,7 @@ public partial class Presentacion_PerfilEmpresa : System.Web.UI.Page
 
     protected void ModificarDatos(object sender, EventArgs e)
     {
-        DAOEmpresa envio = new DAOEmpresa();
+        //DAOEmpresa envio = new DAOEmpresa();
         DataTable Empresa = (DataTable)Session["Sesion"];
         L_PerfilEmpresa logica = new L_PerfilEmpresa();
         U_aux_PerfilEmp res = logica.ModificarDatos(Empresa, TB_Correo.Text, TB_Nombre.Text, TB_Nit.Text, TB_Telefono.Text, TB_Direccion.Text, Request.RawUrl);

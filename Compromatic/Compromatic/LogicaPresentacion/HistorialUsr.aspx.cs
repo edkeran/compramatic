@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using Logica;
+using Utilitarios;
 
 public partial class Presentacion_HistorialUsr : System.Web.UI.Page
 {
@@ -21,12 +22,12 @@ public partial class Presentacion_HistorialUsr : System.Web.UI.Page
         }
     }
 
-    protected DataSet obtenerCompras()
+    protected Utilitarios.DataSet obtenerCompras()
     {
 
         DataTable datos = (DataTable)Session["Sesion"];
-        DataSet compras = new DataSet();
-        EUsuario user = new EUsuario();
+        Utilitarios.DataSet compras = new Utilitarios.DataSet();
+        UEUsuario user = new UEUsuario();
         //DAOUsuario bdcompra=new DAOUsuario();
         user.IdUsr=int.Parse(datos.Rows[0]["idUsuario"].ToString());
         //DataTable historial = bdcompra.HistorialCompras(user,4);

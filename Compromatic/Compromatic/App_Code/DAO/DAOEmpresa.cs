@@ -372,7 +372,7 @@ public class DAOEmpresa
             conection.Close();
         }
     }
-
+    //METODO MIGRADO
     public DataTable MostrarArchivos(EUEmpresa EU_Empresa)
     {
         DataTable Archivos = new DataTable();

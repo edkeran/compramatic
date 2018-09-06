@@ -21,8 +21,8 @@ public partial class Presentacion_Store : System.Web.UI.Page
     protected void load_product(object sender, EventArgs e)
     {
         Button btn = (Button)sender;
-        DAOProducto pdto = new DAOProducto();
-        Session["VerProducto"] = pdto.ProductosDetalle(int.Parse(btn.CommandArgument.ToString()));
+        L_Store logica = new L_Store();
+        Session["VerProducto"] = logica.LoadProduct(int.Parse(btn.CommandArgument.ToString()));
         Response.Redirect("VerProducto.aspx");
     }
 }

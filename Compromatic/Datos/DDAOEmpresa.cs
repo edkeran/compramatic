@@ -470,5 +470,38 @@ namespace Datos
                 connection.Close();
             }
         }
+
+        public DataTable MostrarArchivos(UEUEmpresa EU_Empresa)
+        {
+            DataTable Archivos = new DataTable();
+
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_mostrararchivos_solicitud", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_nitempresa", NpgsqlTypes.NpgsqlDbType.Varchar).Value = EU_Empresa.Nit;
+
+
+                connection.Open();
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(command);
+                adapter.Fill(Archivos);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+
+            return Archivos;
+        }
     }
 }

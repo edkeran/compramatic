@@ -39,9 +39,9 @@ public partial class Presentacion_ReporteTotalVentaAdmin : System.Web.UI.Page
 
         } 
      * */
-    protected DataSet obtenerVentas()
+    protected Utilitarios.DataSet obtenerVentas()
     {
-        DataSet compras = new DataSet();
+        Utilitarios.DataSet compras = new Utilitarios.DataSet();
         L_ReporteTotVenta logi = new L_ReporteTotVenta();
         DataTable data = new DataTable();
         data = compras.VentasTotales;

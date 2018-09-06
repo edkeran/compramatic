@@ -38,9 +38,9 @@ public partial class Presentacion_HistoricoCalificaciones : System.Web.UI.Page
         }
      **/
 
-    protected DataSet Calificaciones()
+    protected Utilitarios.DataSet Calificaciones()
     {
-        DataSet compras = new DataSet();
+        Utilitarios.DataSet compras = new Utilitarios.DataSet();
         DataTable data = new DataTable();
         data = compras.Calificaciones;
         L_HistoricoCalificaciones logi = new L_HistoricoCalificaciones();

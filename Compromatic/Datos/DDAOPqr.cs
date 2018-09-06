@@ -61,5 +61,35 @@ namespace Datos
             }
 
         }
+
+        public DataTable MostrarMotivosReporte()
+        {
+            DataTable Motivos = new DataTable();
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_mostrar_motivoreporte", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+
+                connection.Open();
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(command);
+                adapter.Fill(Motivos);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+            return Motivos;
+        }
     }
 }

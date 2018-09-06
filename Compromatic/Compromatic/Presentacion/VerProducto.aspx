@@ -116,7 +116,7 @@
                         <div class="form-group">
                             <asp:DropDownList runat="server" ID="DDL_Reportes" CssClass="form-control" datasize="10" data-live-search="true" data-style="btn-white" DataSourceID="OBS_MotivosR" DataTextField="desMotivo" DataValueField="idMotivoR">
                             </asp:DropDownList>
-                            <asp:ObjectDataSource runat="server" ID="OBS_MotivosR" SelectMethod="MostrarMotivosReporte" TypeName="DAOPqr"></asp:ObjectDataSource>
+                            <asp:ObjectDataSource runat="server" ID="OBS_MotivosR" SelectMethod="MostrarMotivosReporte" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
                         </div>
                      </div>
                 </div>
