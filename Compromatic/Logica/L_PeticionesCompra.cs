@@ -96,5 +96,32 @@ namespace Logica
             }
             return "0,0";
         }
+
+        public String enProceso_ItemCommand(String CommandName,String CommandArgument,DataTable Empresa)
+        {
+            String respo;
+            if (CommandName.Equals("Cancelar"))
+            {
+                DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
+                DAO_Empresa.RechazarVenta(int.Parse(CommandArgument.ToString()), Empresa.Rows[0]["nomEmpresa"].ToString());
+                //Response.Redirect(Request.Url.AbsoluteUri);
+                respo = "PeticionesCompra.aspx";
+                return respo;
+            }
+            respo = "0";
+            return respo;
+        }
+
+        public DataTable RP_VentasReali(String CommandArgument)
+        {
+            DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
+            return DAO_Empresa.PeticionCompra(int.Parse(CommandArgument.ToString()));
+        }
+
+        public void btn_Calificar(DataTable Empresa,String TB_Calificacion,String TB_Comentario,String LB_Usuario,String LB_Venta)
+        {
+            DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
+            DAO_Empresa.CalificarCliente(Double.Parse(TB_Calificacion), TB_Comentario, int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()), int.Parse(LB_Usuario), int.Parse(LB_Venta), Empresa.Rows[0]["nomEmpresa"].ToString());
+        }
     }
 }

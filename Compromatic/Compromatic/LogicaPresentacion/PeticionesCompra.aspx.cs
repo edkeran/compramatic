@@ -110,20 +110,27 @@ public partial class Presentacion_PeticionesCompra : System.Web.UI.Page
     protected void RP_EnProceso_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         DataTable Empresa = (DataTable)Session["Sesion"];
-        if (e.CommandName.Equals("Cancelar"))
+        L_PeticionesCompra logi = new L_PeticionesCompra();
+        string res= logi.enProceso_ItemCommand(e.CommandName, e.CommandArgument.ToString(), Empresa);
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "stg", "redireccionar('" + res + "');", true);
+    }
+    /**
+     * 
+     * if (e.CommandName.Equals("Cancelar"))
         {
             DAOEmpresa DAO_Empresa = new DAOEmpresa();
             DAO_Empresa.RechazarVenta(int.Parse(e.CommandArgument.ToString()),Empresa.Rows[0]["nomEmpresa"].ToString());
             Response.Redirect(Request.Url.AbsoluteUri);
         }
-    }
+     * */
 
     protected void RP_VentasRealizadas_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-        DAOEmpresa DAO_Empresa = new DAOEmpresa();
+        //
         String texto = "<script   src='https://code.jquery.com/jquery-2.2.4.min.js'> </script>" + "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>" + "<script>$('#modal-calificar').modal('show');</script>";
         Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", texto);
-        DataTable Venta = DAO_Empresa.PeticionCompra(int.Parse(e.CommandArgument.ToString()));
+        L_PeticionesCompra logi = new L_PeticionesCompra();
+        DataTable Venta = logi.RP_VentasReali(e.CommandArgument.ToString());
         LB_Usuario.Text = Venta.Rows[0]["idUsuario"].ToString();
         LB_Venta.Text = e.CommandArgument.ToString();
     }
@@ -131,8 +138,11 @@ public partial class Presentacion_PeticionesCompra : System.Web.UI.Page
     protected void BTN_Calificar_Click(object sender, EventArgs e)
     {
         DataTable Empresa = (DataTable)Session["Sesion"];
-        DAOEmpresa DAO_Empresa = new DAOEmpresa();
-        DAO_Empresa.CalificarCliente(Double.Parse(TB_Calificacion.Text),TB_Comentario.Text,int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()),int.Parse(LB_Usuario.Text),int.Parse(LB_Venta.Text),Empresa.Rows[0]["nomEmpresa"].ToString());
+        //MIRAR VERSION ANTERIOR
+        L_PeticionesCompra logi = new L_PeticionesCompra();
+        logi.btn_Calificar(Empresa,TB_Calificacion.Text,TB_Comentario.Text,LB_Usuario.Text,LB_Venta.Text);
+        //DAOEmpresa DAO_Empresa = new DAOEmpresa();
+       
         Response.Redirect(Request.Url.AbsoluteUri);
     }
 }

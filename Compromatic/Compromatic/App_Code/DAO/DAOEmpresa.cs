@@ -36,7 +36,7 @@ public class DAOEmpresa
             connection.Close();
         }
     }
-
+    //METODO MIGRADO
     public void CalificarCliente(double rango, String comentario, int idEmpresa, int idCliente, int idVenta, String modif)
     {
         NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
@@ -168,7 +168,7 @@ public class DAOEmpresa
 
         return Peticiones;
     }
-
+    //METODO MIGRADO
     public DataTable PeticionCompra(int idVenta)
     {
         DataTable Peticiones = new DataTable();

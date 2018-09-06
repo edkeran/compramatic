@@ -55,6 +55,7 @@
     <Compile Include="U_AuxMasterAdmin.cs" />
     <Compile Include="U_AuxQuejAdm.cs" />
     <Compile Include="U_aux_AdminProd.cs" />
+    <Compile Include="U_aux_MasterIndex.cs" />
     <Compile Include="U_aux_MisComprasUsr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UEUEmpresa.cs" />

@@ -417,5 +417,58 @@ namespace Datos
 
             return Calificaciones;
         }
+
+        public DataTable PeticionCompra(int idVenta)
+        {
+            DataTable Peticiones = new DataTable();
+
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_mostrar_venta", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_idventa", NpgsqlTypes.NpgsqlDbType.Integer).Value = idVenta;
+                connection.Open();
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter(command);
+                da.Fill(Peticiones);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return Peticiones;
+        }
+
+        public void CalificarCliente(double rango, String comentario, int idEmpresa, int idCliente, int idVenta, String modif)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_calificar_cliente", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_rango", NpgsqlTypes.NpgsqlDbType.Integer).Value = rango;
+                command.Parameters.Add("_comentario", NpgsqlTypes.NpgsqlDbType.Varchar).Value = comentario;
+                command.Parameters.Add("_idempresa", NpgsqlTypes.NpgsqlDbType.Integer).Value = idEmpresa;
+                command.Parameters.Add("_idcliente", NpgsqlTypes.NpgsqlDbType.Integer).Value = idCliente;
+                command.Parameters.Add("_idventa", NpgsqlTypes.NpgsqlDbType.Integer).Value = idVenta;
+                command.Parameters.Add("_modif", NpgsqlTypes.NpgsqlDbType.Text).Value = modif;
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 }
