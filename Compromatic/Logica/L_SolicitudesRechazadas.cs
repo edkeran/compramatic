@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using Datos;
+using Utilitarios;
 
 namespace Logica
 {
@@ -33,26 +34,37 @@ namespace Logica
             return consulta;
         }
 
-        public void L_Modal(int data,String HL_1,String HL_2,String HL_3)
+        public U_Aux_SoliciRechaza L_Modal(int data,DataTable e)
         {
+            String[] respo = new String[4];
+            bool[] enables = new bool[3];
+            U_Aux_SoliciRechaza info = new U_Aux_SoliciRechaza();
             if (data <= 2)
             {
-                //Titulo.Text = "No tiene documentos cargados";
-                String texto = "<script   src='https://code.jquery.com/jquery-2.2.4.min.js'> </script>" + "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>" + "<script>$('#modal-dialog').modal('show');</script>";
-                //Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", texto);
-                //HyperLink1.Enabled = false;
-                //HyperLink2.Enabled = false;
-                //HyperLink3.Enabled = false;
-
+                respo[0] = "No tiene documentos cargados";
+                respo[1] = "";
+                respo[2] = "";
+                respo[3] = "";
+                enables[0] = false;
+                enables[1] = false;
+                enables[2] = false;
             }
             else
             {
-                String texto = "<script   src='https://code.jquery.com/jquery-2.2.4.min.js'> </script>" + "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>" + "<script>$('#modal-dialog').modal('show');</script>";
-                //Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", texto);
-                //HyperLink1.NavigateUrl = e.Rows[0]["rutaArchivo"].ToString() + ".pdf";
-                //HyperLink2.NavigateUrl = e.Rows[1]["rutaArchivo"].ToString() + ".pdf";
-                //HyperLink3.NavigateUrl = e.Rows[2]["rutaArchivo"].ToString() + ".pdf";
+                respo[0] = "";
+                respo[1] = e.Rows[0]["rutaArchivo"].ToString() + ".pdf";
+                respo[2] = e.Rows[1]["rutaArchivo"].ToString() + ".pdf";
+                respo[3] = e.Rows[2]["rutaArchivo"].ToString() + ".pdf";
+                //HyperLink1.NavigateUrl = ;
+                //HyperLink2.NavigateUrl = ;
+                //HyperLink3.NavigateUrl = ;
+                enables[0] = true;
+                enables[1] = true;
+                enables[2] = true;
             }
+            info.Respo = respo;
+            info.Enables = enables;
+            return info;
         }
     }
 }

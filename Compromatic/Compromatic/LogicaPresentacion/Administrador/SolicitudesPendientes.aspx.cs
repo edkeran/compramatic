@@ -5,47 +5,53 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Utilitarios;
+using Logica;
 
 public partial class Presentacion_SolicitudesPendientes : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         Response.Cache.SetCacheability(HttpCacheability.ServerAndNoCache);
-
-        if (Session["Sesion"] == null)
-        {
-            Response.Redirect("LoginUsr.aspx");
-        }
-        else
-        {
-            
-            int num = int.Parse(((DataTable)(Session["sesion"])).Rows[0]["idTipo"].ToString());
-            if (int.Parse(((DataTable)(Session["sesion"])).Rows[0]["idTipo"].ToString()) == 1)
-            { }
-            else
-            {
-                Response.Redirect("LoginUsr.aspx");
-            }
-        }
-    }
-   
-  
-  /*  protected void BT_Aceptar_Click(object sender, EventArgs e)
-    {
-     //   GridViewRow row = GridView1.SelectedDataKey;
-     //   int id =Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value);
-        DAOUsuario conexion = new DAOUsuario();
-        conexion.ModificarEstados(10,1,0);
-       // Response.Redirect("SolicitudesPendientes.aspx");
+        L_SolicitudesPendientes logi = new L_SolicitudesPendientes();
+        String respo = logi.page_load(Session["Sesion"], Session["sesion"]);
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "scrt", "redireccionar('" + respo + "');", true);
 
     }
-    protected void BT_Rechazar_Click(object sender, EventArgs e)
-    {
-        GridViewRow row = GridView1.SelectedRow;
-        int id = Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value);
-        DAOUsuario conexion = new DAOUsuario();
-        conexion.ModificarEstados(id, 0, 0);
-    }*/
+    /**
+     * if (Session["Sesion"] == null)
+         {
+             Response.Redirect("LoginUsr.aspx");
+         }
+         else
+         {
+             
+             int num = int.Parse(((DataTable)(Session["sesion"])).Rows[0]["idTipo"].ToString());
+             if (int.Parse(((DataTable)(Session["sesion"])).Rows[0]["idTipo"].ToString()) == 1)
+             { }
+             else
+             {
+                 Response.Redirect("LoginUsr.aspx");
+             }
+         }
+     **/
+
+    /*  protected void BT_Aceptar_Click(object sender, EventArgs e)
+      {
+       //   GridViewRow row = GridView1.SelectedDataKey;
+       //   int id =Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value);
+          DAOUsuario conexion = new DAOUsuario();
+          conexion.ModificarEstados(10,1,0);
+         // Response.Redirect("SolicitudesPendientes.aspx");
+
+      }
+      protected void BT_Rechazar_Click(object sender, EventArgs e)
+      {
+          GridViewRow row = GridView1.SelectedRow;
+          int id = Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value);
+          DAOUsuario conexion = new DAOUsuario();
+          conexion.ModificarEstados(id, 0, 0);
+      }*/
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
         //
@@ -57,54 +63,40 @@ public partial class Presentacion_SolicitudesPendientes : System.Web.UI.Page
         // en este caso de la entidad Person
         //
         int id = Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value);
-        DAOadministrador conexion = new DAOadministrador();
-        DataTable consulta = conexion.ArchivosEmpresa(id);
+        L_SolicitudesPendientes conexion = new L_SolicitudesPendientes();
+        DataTable consulta = conexion.GV_1(id);
         Modal(consulta);
         //   Response.Redirect("MostrarArchivos.aspx");
     }
 
     protected void Modal(DataTable e)
     {
-        if(e.Rows.Count <= 2){
-            Titulo.Text = "No tiene documentos cargados";
-            String texto = "<script   src='https://code.jquery.com/jquery-2.2.4.min.js'> </script>" + "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>" + "<script>$('#modal-dialog').modal('show');</script>";
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", texto);
-            HyperLink1.Enabled = false;
-            HyperLink2.Enabled = false;
-            HyperLink3.Enabled = false;
-            
-        }
-        else
-        {
-            String texto = "<script   src='https://code.jquery.com/jquery-2.2.4.min.js'> </script>" + "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>" + "<script>$('#modal-dialog').modal('show');</script>";
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", texto);
-            HyperLink1.NavigateUrl = e.Rows[0]["rutaArchivo"].ToString()+".pdf";
-            HyperLink2.NavigateUrl = e.Rows[1]["rutaArchivo"].ToString()+".pdf";
-            HyperLink3.NavigateUrl = e.Rows[2]["rutaArchivo"].ToString()+".pdf";
-        }
-        
+        L_SolicitudesRechazadas logica = new L_SolicitudesRechazadas();
+        U_Aux_SoliciRechaza res = logica.L_Modal(e.Rows.Count, e);
+        Titulo.Text = res.Respo[0];
+        HyperLink1.NavigateUrl = res.Respo[1];
+        HyperLink2.NavigateUrl = res.Respo[2];
+        HyperLink3.NavigateUrl = res.Respo[3];
+        HyperLink1.Enabled = res.Enables[0];
+        HyperLink2.Enabled = res.Enables[1];
+        HyperLink3.Enabled = res.Enables[2];
+        String texto = "<script   src='https://code.jquery.com/jquery-2.2.4.min.js'> </script>" + "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>" + "<script>$('#modal-dialog').modal('show');</script>";
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", texto);
     }
+
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        if(e.CommandName=="aceptar"){
-            int index = Convert.ToInt32(e.CommandArgument);
-            GridViewRow row = GridView1.Rows[index];
-            int id = Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value);
-            DAOadministrador conexion = new DAOadministrador();
-            conexion.ModificarEstados(id, 1, 0, ((DataTable)(Session["sesion"])).Rows[0]["nomUsuario"].ToString());
-            //Response.Redirect("SolicitudesPendientes.aspx");
-            GridView1.DataBind();
-            
-        }
-        if (e.CommandName == "rechazar")
+        try
         {
-            int index = Convert.ToInt32(e.CommandArgument);
+            int index = Convert.ToInt32(e.CommandArgument.ToString());
             GridViewRow row = GridView1.Rows[index];
             int id = Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value);
-            DAOadministrador conexion = new DAOadministrador();
-            conexion.ModificarEstados(id, 0, 3, ((DataTable)(Session["sesion"])).Rows[0]["nomUsuario"].ToString());
+            L_SolicitudesPendientes logica = new L_SolicitudesPendientes();
+            logica.GV1_RowCommand(e.CommandName, id, e.CommandArgument.ToString(), Session["sesion"]);
             GridView1.DataBind();
-            //Response.Redirect("SolicitudesPendientes.aspx");
+        }catch(Exception er)
+        {
+
         }
     }
 }

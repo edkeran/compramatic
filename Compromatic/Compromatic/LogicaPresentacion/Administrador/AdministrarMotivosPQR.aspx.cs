@@ -89,7 +89,10 @@ public partial class Presentacion_AdministrarMotivosPQR : System.Web.UI.Page
         {
             L_AdminMotPqr logi = new L_AdminMotPqr();
             logi.registrarMReport(NombreReporte.Text.ToString(), Session["sesion"], IsValid);
-        }catch(Exception eg) {}
+            NombreReporte.Text = null;
+            GridView1.DataBind();
+        }
+        catch(Exception eg) {}
 
     }
     /**

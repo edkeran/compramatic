@@ -53,7 +53,22 @@ public partial class Presentacion_SolicitudesRechazadas : System.Web.UI.Page
 
     protected void Modal(DataTable e)
     {
-        if (e.Rows.Count <= 2)
+        L_SolicitudesRechazadas logica = new L_SolicitudesRechazadas();
+        U_Aux_SoliciRechaza res = logica.L_Modal(e.Rows.Count, e);
+        Titulo.Text = res.Respo[0];
+        HyperLink1.NavigateUrl = res.Respo[1];
+        HyperLink2.NavigateUrl = res.Respo[2];
+        HyperLink3.NavigateUrl = res.Respo[3];
+        HyperLink1.Enabled = res.Enables[0];
+        HyperLink2.Enabled = res.Enables[1];
+        HyperLink3.Enabled = res.Enables[2];
+        String texto = "<script   src='https://code.jquery.com/jquery-2.2.4.min.js'> </script>" + "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>" + "<script>$('#modal-dialog').modal('show');</script>";
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", texto);
+    }
+
+    /***
+     * 
+     * if (e.Rows.Count <= 2)
         {
             Titulo.Text = "No tiene documentos cargados";
             String texto = "<script   src='https://code.jquery.com/jquery-2.2.4.min.js'> </script>" + "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>" + "<script>$('#modal-dialog').modal('show');</script>";
@@ -71,5 +86,5 @@ public partial class Presentacion_SolicitudesRechazadas : System.Web.UI.Page
             HyperLink2.NavigateUrl = e.Rows[1]["rutaArchivo"].ToString() + ".pdf";
             HyperLink3.NavigateUrl = e.Rows[2]["rutaArchivo"].ToString() + ".pdf";
         }
-    }
+     **/
 }
