@@ -2,7 +2,7 @@
 using System.Data;
 using Utilitarios;
 using Datos;
-using System.Web;
+using System.IO;
 
 namespace Logica
 {
@@ -115,7 +115,7 @@ namespace Logica
             return Datos;
         }
 
-        public String btn_SubirArchivo(int rows,DataTable Empresa,String extension,String nomArch,String saveLocation,String nit,HttpPostedFile archivo)
+        public String btn_SubirArchivo(int rows,DataTable Empresa,String extension,String nomArch,String saveLocation,String nit,Stream archivo)
         {
             if (rows >= 3)
             {
@@ -129,7 +129,11 @@ namespace Logica
 
                 try
                 {
-                    archivo.SaveAs(saveLocation);
+                    using (var stream = new FileStream(saveLocation, FileMode.Create))
+                    {
+                        Stream inputStream = archivo;
+                        inputStream.CopyTo(stream);
+                    }
                 }
                 catch (Exception exp)
                 { throw exp; }
@@ -154,7 +158,7 @@ namespace Logica
             DAO_Empresa.SubirArchivo(EU_Empresa, modif);
         }
 
-        public U_aux_PerfilEmp BTN_CambiarFoto_Click(String extension,String extensionAnterior,String saveLocationAnterior,String nit,String nombreArchivo,DataTable datos,String saveLocation, HttpPostedFile archivo,String redir)
+        public U_aux_PerfilEmp BTN_CambiarFoto_Click(String extension,String extensionAnterior,String saveLocationAnterior,String nit,String nombreArchivo,DataTable datos,String saveLocation, Stream archivo,String redir)
         {
             U_aux_PerfilEmp res = new U_aux_PerfilEmp();
             if (extension.Equals(".jpg") || extension.Equals(".jepg") || extension.Equals(".png") || extension.Equals(".JPG") || extension.Equals(".JEPG") || extension.Equals(".PNG"))
@@ -174,8 +178,11 @@ namespace Logica
 
                 try
                 {
-
-                    archivo.SaveAs(saveLocation);
+                    using (var stream = new FileStream(saveLocation, FileMode.Create))
+                    {
+                        Stream inputStream = archivo;
+                        inputStream.CopyTo(stream);
+                    }
                     datos.Rows[0]["nomArchivo"] = nombreArchivo + extension;
                     res.Data = datos;
                     res.Mensage = "Actualizacion Exitosa";

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -150,8 +153,19 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
         {
             String nombreArchivo = Empresa.Rows[0]["idEmpresa"].ToString() + RandomString(8) + extension;
             String saveLocation = (Server.MapPath("~\\Archivos\\FotosProductos") + "\\" + nombreArchivo);
+            IList<HttpPostedFile> files= FU_FotoProducto.PostedFiles;
+            IList<Stream> pictures = new List<Stream>();
+            pictures.Add(files.ElementAt(0).InputStream);
+            try
+            {
+                pictures.Add(files.ElementAt(1).InputStream);
+            }catch(Exception et) { }
+            try
+            {
+                pictures.Add(files.ElementAt(2).InputStream);
+            }catch(Exception ey) { }
             String response= logi.AgregarFotosProd(TablaImagenes.Items.Count, idProducto.Text,
-            FU_FotoProducto.PostedFiles.Count, Session["Sesion"], saveLocation, FU_FotoProducto.PostedFiles, extension, nombreArchivo);
+            FU_FotoProducto.PostedFiles.Count, Session["Sesion"], saveLocation, pictures, extension, nombreArchivo);
             String[] data=response.Split('/');
             Modal(data[0]);
             Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redireccionar('" + data[1] + "');", true);

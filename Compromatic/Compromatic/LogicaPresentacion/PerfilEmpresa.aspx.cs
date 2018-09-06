@@ -140,7 +140,7 @@ public partial class Presentacion_PerfilEmpresa : System.Web.UI.Page
             String extension = System.IO.Path.GetExtension(FU_Archivos.PostedFile.FileName);
             String nombreArchivo = TB_Nit.Text + Fecha.Day.ToString() + Fecha.Month.ToString() + GridView1.Rows.Count;
             String saveLocation = (Server.MapPath("~\\Archivos\\DocumentosEmpresa") + "\\" + nombreArchivo + extension);
-            String response= logica.btn_SubirArchivo(GridView1.Rows.Count, Empresa, extension, nombreArchivo, saveLocation, TB_Nit.Text, FU_Archivos.PostedFile);
+            String response= logica.btn_SubirArchivo(GridView1.Rows.Count, Empresa, extension, nombreArchivo, saveLocation, TB_Nit.Text, FU_Archivos.PostedFile.InputStream);
             Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", "<script>alert('"+response+"')</script>");
         }
         catch(Exception ex)
@@ -210,7 +210,7 @@ public partial class Presentacion_PerfilEmpresa : System.Web.UI.Page
         String nombreArchivo = TB_Nit.Text;
         String saveLocation = (Server.MapPath("~\\Archivos\\FotosPerfil") + "\\" + nombreArchivo + extension);
         String saveLocationAnterior = (Server.MapPath("~\\Archivos\\FotosPerfil") + "\\" + nombreArchivo + extensionAnterior);
-        U_aux_PerfilEmp respuesta = logica.BTN_CambiarFoto_Click(extension, extensionAnterior, saveLocationAnterior, TB_Nit.Text, nombreArchivo, datos, saveLocation, FU_CambiarFoto.PostedFile, Request.RawUrl);
+        U_aux_PerfilEmp respuesta = logica.BTN_CambiarFoto_Click(extension, extensionAnterior, saveLocationAnterior, TB_Nit.Text, nombreArchivo, datos, saveLocation, FU_CambiarFoto.PostedFile.InputStream, Request.RawUrl);
         Session["Sesion"] =respuesta.Data;
         Modal(respuesta.Mensage);
         Page.ClientScript.RegisterStartupScript(this.GetType(), "scrt", "redireccionar('" + respuesta.Response+"')");

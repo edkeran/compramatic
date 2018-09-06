@@ -153,7 +153,7 @@ public partial class Presentacion_ModificarPerfilUsr : System.Web.UI.Page
         String saveLocation = (Server.MapPath("~\\Archivos\\FotosPerfil") + "\\" + nombreArchivo + extension);
         L_ModificarPerfilUsr logic = new L_ModificarPerfilUsr();
         String SaveLocationAnt = (Server.MapPath("~\\Archivos\\FotosPerfil") + "\\" + datos.Rows[0]["nomArchivo"].ToString());
-        U_Modificar_Pfi_Usr res = logic.cambiar_foto(saveLocation,FU_CambiarFoto.PostedFile,extension,datos,nombreArchivo, SaveLocationAnt);
+        U_Modificar_Pfi_Usr res = logic.cambiar_foto(saveLocation,FU_CambiarFoto.PostedFile.InputStream,extension,datos,nombreArchivo, SaveLocationAnt);
         //Session["Sesion"] = res.Datos;
         Modal(res.Mensage, res.Pagina_redir);
     }

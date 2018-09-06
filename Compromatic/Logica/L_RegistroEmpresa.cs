@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using Datos;
 using Utilitarios;
-using System.Web;
 
 namespace Logica
 {
@@ -89,14 +88,19 @@ namespace Logica
             }
         }
 
-        public void guardar_imagen(HttpPostedFile file,bool valido,String saveLocation)
+        public void guardar_imagen(Stream file,bool valido,String saveLocation)
         {
             if (valido)
             {
                 //GUARDO LA IMAGEN DE LA NUEVA EMPRESA
                 try
                 {
-                    file.SaveAs(saveLocation);
+                    //file.SaveAs(saveLocation);
+                    using (var stream = new FileStream(saveLocation, FileMode.Create))
+                    {
+                        Stream inputStream = file;
+                        inputStream.CopyTo(stream);
+                    }
                 }
                 catch (Exception exp)
                 {

@@ -2,7 +2,7 @@
 using Utilitarios;
 using Datos;
 using System.Data;
-using System.Web;
+using System.IO;
 
 namespace Logica
 {
@@ -124,7 +124,7 @@ namespace Logica
             }
         }
         //FUNCION PARA CAMBIAR LA IMAGEN DE USUARIO
-        public U_Modificar_Pfi_Usr cambiar_foto(String saveLocation,HttpPostedFile new_file,String extension,DataTable datos,String nombreArchivo,String SaveLocationAnt)
+        public U_Modificar_Pfi_Usr cambiar_foto(String saveLocation,Stream new_file,String extension,DataTable datos,String nombreArchivo,String SaveLocationAnt)
         {
             U_Modificar_Pfi_Usr response = new U_Modificar_Pfi_Usr();
             if (extension.Equals(".jpg") || extension.Equals(".jepg") || extension.Equals(".png") || extension.Equals(".JPG") || extension.Equals(".JEPG") || extension.Equals(".PNG"))
@@ -138,7 +138,13 @@ namespace Logica
                 }
                 try
                 {
-                    new_file.SaveAs(saveLocation);
+                    using (var stream = new FileStream(saveLocation, FileMode.Create))
+                    {
+                        Stream inputStream = new_file;
+                        inputStream.CopyTo(stream);
+                    }
+
+                    //new_file.SaveAs(saveLocation);
                     DDAOUsuario foto = new DDAOUsuario();
                     UEUsuario user = new UEUsuario();
                     user.IdUsr = int.Parse(datos.Rows[0]["idUsuario"].ToString());

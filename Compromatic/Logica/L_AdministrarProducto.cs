@@ -2,8 +2,8 @@
 using System.Data;
 using Utilitarios;
 using Datos;
-using System.Web;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Logica
 {
@@ -187,7 +187,7 @@ namespace Logica
             return "0";
         }
 
-        public String AgregarFotosProd(int TableImagenes,String idProducto,int numFotos,Object Session,String saveLocation, IList <HttpPostedFile> Fotos,String extension, String nombreArchivo)
+        public String AgregarFotosProd(int TableImagenes,String idProducto,int numFotos,Object Session,String saveLocation, IList <Stream> Fotos,String extension, String nombreArchivo)
         {
             int limite = 5 - TableImagenes;
             if (idProducto == "0")
@@ -201,7 +201,7 @@ namespace Logica
                 return "Limite de fotos excedido/0";
             }
             DataTable Empresa = (DataTable)Session;
-            foreach (HttpPostedFile postedFile in Fotos)
+            foreach (Stream postedFile in Fotos)
             {
 
                 //String extension = System.IO.Path.GetExtension(FU_FotoProducto.PostedFile.FileName);
@@ -213,7 +213,13 @@ namespace Logica
 
                     try
                     {
-                        postedFile.SaveAs(saveLocation);
+                        using (var stream = new FileStream(saveLocation, FileMode.Create))
+                        {
+                            Stream inputStream = postedFile;
+                            inputStream.CopyTo(stream);
+                        }
+
+                        //postedFile.SaveAs(saveLocation);
                         this.RegistrarFoto(int.Parse(idProducto), nombreArchivo, "../Archivos/FotosProductos/" + nombreArchivo, Empresa.Rows[0]["nomEmpresa"].ToString());
                     }
                     catch (Exception ex)
