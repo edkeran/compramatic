@@ -167,7 +167,7 @@ namespace Logica
 
         public void validarException(String msg)
         {
-            if (!msg.Equals("valido"))
+            if (!msg.Equals("Valido"))
             {
                 //NO ES VALIDO 
                 throw new ArgumentException(msg);

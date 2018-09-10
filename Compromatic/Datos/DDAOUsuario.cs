@@ -455,5 +455,60 @@ namespace Datos
                 conexion.Close();
             }
         }
+
+        public Boolean ExistenciaCorreo(String correo)
+        {
+            Boolean existencia;
+            DataTable Correo = new DataTable();
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_existencia_usuario", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_correo", NpgsqlTypes.NpgsqlDbType.Varchar).Value = correo;
+                connection.Open();
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(command);
+                adapter.Fill(Correo);
+                existencia = bool.Parse(Correo.Rows[0][0].ToString());
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+                connection = null;
+            }
+            return existencia;
+        }
+
+        public DataTable obtenerContrase(String correo)
+        {
+            DataTable Correo = new DataTable();
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_pass_usuario", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_correo", NpgsqlTypes.NpgsqlDbType.Varchar).Value = correo;
+                connection.Open();
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(command);
+                adapter.Fill(Correo);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+                connection = null;
+            }
+            return Correo;
+        }
     }
 }

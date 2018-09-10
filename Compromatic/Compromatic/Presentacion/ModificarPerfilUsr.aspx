@@ -90,13 +90,14 @@
                                         </tr>
                                         <tr>
                                             <td class="field">Número telefónico</td>
-                                            <td><asp:TextBox ID="TB_Telefono" runat="server" CssClass="form-control" TextMode="Number" max="999999999999999"/> </td>
+                                            <td><asp:TextBox ID="TB_Telefono" runat="server" CssClass="form-control" TextMode="Number" max="9999999999"/> </td>
                                             <td><asp:label ID="LB_Telefono" runat="server" CssClass="control-label"></asp:label>    <i class="fa fa-phone"></i></td>
                                         </tr>
                                         <tr>
                                             <td class="field">Dirección</td>
                                             <td><asp:TextBox ID="TB_Direccion" runat="server" CssClass="form-control" MaxLength="50" /></td>
                                             <td><asp:label ID="LB_Direccion" runat="server" CssClass="control-label"></asp:label>   <i class="fa fa-map-marker"></i></td>
+                                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ForeColor="Red" ControlToValidate="TB_Direccion" ErrorMessage="Error, caracteres" ToolTip="La cadena contiene caracteres no validos" ValidationExpression="^[a-zA-Z ñÑ]*$"></asp:RegularExpressionValidator>
                                         </tr>
                                         <tr>
                                             <td class="field">Correo electrónico</td>

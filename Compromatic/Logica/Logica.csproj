@@ -50,6 +50,7 @@
     <Compile Include="L_CambiarPass_Usr.cs" />
     <Compile Include="L_Componentes.cs" />
     <Compile Include="L_DashEmpresa.cs" />
+    <Compile Include="L_ForgotPass.cs" />
     <Compile Include="L_HistorialUsr.cs" />
     <Compile Include="L_HistoricoCalificaciones.cs" />
     <Compile Include="L_Invertario.cs" />

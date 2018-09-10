@@ -41,6 +41,7 @@
                 </div>
                 <div class="news-caption">
                     <h4 class="caption-title">COMPROMATIC</h4>
+                    <asp:HyperLink ID="HL_Index" runat="server" ForeColor="#CCCC00" NavigateUrl="~/Presentacion/Home.aspx" ValidateRequestMode="Disabled">Volver A La Pagina De Inicio</asp:HyperLink><br />
                     <p>
                         Registrate en este espacio para poder realizar tus compras de todos los productos que te interesan, explora nuestro sitio y sorprendete con él.                   </p>
                 </div>
@@ -74,11 +75,11 @@
                         <div class="row m-b-15">      
                        
                             <div class="col-md-6 m-b-15">
-                                <asp:TextBox ID="TB_cc" CssClass="form-control" placeholder="Número de identificación" runat="server" TextMode="Number" Required="Required" max="9999999999"></asp:TextBox>
+                                <asp:TextBox ID="TB_cc" CssClass="form-control" placeholder="Número de identificación" runat="server" TextMode="Number" Required="Required" max="9999999999" MaxLength="10"></asp:TextBox>
                             </div>
                             
                             <div class="col-md-6 m-b-15">
-                                <asp:TextBox ID="TB_Telefono" CssClass="form-control" placeholder="Número móvil o linea fija" runat="server" TextMode="Number" Required="Required" max="999999999999999"></asp:TextBox>
+                                <asp:TextBox ID="TB_Telefono" CssClass="form-control" placeholder="Número móvil o linea fija" runat="server" TextMode="Number" Required="Required" max="9999999999" MaxLength="10"></asp:TextBox>
                             </div>
                         </div>
 
@@ -86,6 +87,7 @@
                         <div class="row m-b-15">
                             <div class="col-md-15">
                                 <asp:TextBox ID="TB_Direccion" CssClass="form-control" placeholder="Direccion de domicilio" runat="server" Required="Required" MaxLength="50"></asp:TextBox>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ForeColor="Red" ControlToValidate="TB_Direccion" ErrorMessage="Error, caracteres no permitidos" ToolTip="La cadena contiene caracteres no validos" ValidationExpression="^[a-zA-Z ñÑ]*$"></asp:RegularExpressionValidator>
                             </div>
                         </div>
 
@@ -99,10 +101,10 @@
                         <asp:label runat="server" CssClass="control-label">Contraseña</asp:label>
                         <div class="row m-b-15">
                            <div class="col-md-6 m-b-15">
-                                <asp:TextBox ID="TB_Pass1" CssClass="form-control" placeholder="Contraseña" runat="server" TextMode="Password" Required="Required" MaxLength="45"></asp:TextBox>
+                                <asp:TextBox ID="TB_Pass1" CssClass="form-control" placeholder="Contraseña" runat="server" TextMode="Password" Required="Required" MaxLength="20"></asp:TextBox>
                             </div>
                             <div class="col-md-6 m-b-15">
-                                <asp:TextBox ID="TB_Pass2" CssClass="form-control" placeholder="Confima tu contraseña" runat="server" TextMode="Password" Required="Required" MaxLength="45"></asp:TextBox>
+                                <asp:TextBox ID="TB_Pass2" CssClass="form-control" placeholder="Confima tu contraseña" runat="server" TextMode="Password" Required="Required" MaxLength="20"></asp:TextBox>
                             </div>
                         </div>
                         

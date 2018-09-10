@@ -69,11 +69,11 @@
                     <form id="form1" runat="server">
 
                         <div class="form-group m-b-15">
-                            <asp:TextBox ID="TB_Email" runat="server" CssClass="form-control" placeholder="Dirección de correo electrónico" TextMode="Email" required="required" />
+                            <asp:TextBox ID="TB_Email" runat="server" CssClass="form-control" placeholder="Dirección de correo electrónico" TextMode="Email" required="required" MaxLength="30" />
 
                         </div>
                         <div class="form-group m-b-15">
-                            <asp:TextBox ID="TB_Pass" runat="server" CssClass="form-control" placeholder="Contraseña" TextMode="Password" Required="required"></asp:TextBox>
+                            <asp:TextBox ID="TB_Pass" runat="server" CssClass="form-control" placeholder="Contraseña" TextMode="Password" Required="required" MaxLength="30"></asp:TextBox>
                         </div>
                         <div class="form-group">
                             <asp:DropDownList ID="DDL_TipoLog" runat="server" CssClass="form-control" datasize="10" data-live-search="true" data-style="btn-white">
@@ -87,10 +87,9 @@
                             <asp:Button ID="Btn_Login" runat="server" class="btn btn-primary btn-block btn-lg" Text="Ingresar al sitio" OnClick="BtnLogin_Click" />
 
                         </div>
-
-
                         <div class="m-t-20 m-b-40 p-b-40">
-                            Aún no eres miembro? Da click <a href="../Presentacion/RegistroUsuario.aspx" class="text-success">aquí</a> para registrarte.
+                            Aún no eres miembro? Da click <a href="../Presentacion/RegistroUsuario.aspx" class="text-success">aquí</a> para registrarte.<br/>
+                             Haz Olvidado Tu Contraseña Da Click <a href="../Presentacion/forgotPass.aspx" class="text-success">aquí</a>.
                         </div>
                         <div class="m-t-20 m-b-40 p-b-40">
                             Eres Empresa? Quieres vender tus productos? Da click <a href="../Presentacion/RegistroEmpresa.aspx" class="text-success">aquí</a> para registrarte.

@@ -43,6 +43,7 @@
                         <div class="panel panel-inverse panel-expand">
                             <div class="panel-heading">
                                 <h4 class="panel-title">Asistente de Registro</h4>
+                                 <asp:HyperLink ID="HL_Index" runat="server" ForeColor="#CC9900" NavigateUrl="~/Presentacion/Home.aspx">Volver A La Pagina De Inicio</asp:HyperLink>
                             </div>
                             <div class="panel-body">
                                 <form runat="server" name="form-wizard" id="form1" data-parsley-validate="true">
@@ -69,7 +70,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group block1">
                                                             <label>NIT Compañia</label>
-                                                            <asp:TextBox placeholder="NIT" runat="server" MaxLength="15" ID="TB_Nit" CssClass="form-control" data-parsley-group="wizard-step-1" required="required"></asp:TextBox>
+                                                            <asp:TextBox placeholder="NIT" runat="server" MaxLength="15" ID="TB_Nit" CssClass="form-control" data-parsley-group="wizard-step-1" required="required" TextMode="Number" max="9999999999"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <!-- end col-4 -->
@@ -77,7 +78,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Nombre Compañia</label>
-                                                            <asp:TextBox runat="server" MaxLength="45" ID="TB_NombreCompañia" placeholder="Nombre" class="form-control" data-parsley-group="wizard-step-1" required="required" data-parsley-pattern="/^[[a-zñáéíóúA-ZÑÁÉÍÓÚ\_\-\.\s\xF1\xD1]+$/"></asp:TextBox>
+                                                            <asp:TextBox runat="server" MaxLength="30" ID="TB_NombreCompañia" placeholder="Nombre" class="form-control" data-parsley-group="wizard-step-1" required="required" data-parsley-pattern="/^[[a-zñáéíóúA-ZÑÁÉÍÓÚ\_\-\.\s\xF1\xD1]+$/"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <!-- end col-4 -->
@@ -104,7 +105,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Teléfono</label>
-                                                            <asp:TextBox ID="TB_Telefono" runat="server" placeholder="1234567890" CssClass="form-control" data-parsley-group="wizard-step-2" required="required" data-parsley-pattern="/^[0-9\-\(\)\ ]+$/"></asp:TextBox>
+                                                            <asp:TextBox ID="TB_Telefono" runat="server" placeholder="1234567890" CssClass="form-control" data-parsley-group="wizard-step-2" required="required" data-parsley-pattern="/^[0-9\-\(\)\ ]+$/" max="9999999999"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <!-- end col-4 -->
@@ -120,7 +121,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Dirección</label>
-                                                            <asp:TextBox ID="TB_Direccion" MaxLength="20" runat="server" placeholder="Dirección" data-parsley-group="wizard-step-2" required="required" CssClass="form-control"></asp:TextBox>
+                                                            <asp:TextBox ID="TB_Direccion" MaxLength="20" runat="server" placeholder="Dirección" data-parsley-group="wizard-step-2" data-parsley-pattern="/^[a-zA-Z0-9.- ]+$/" required="required" CssClass="form-control"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <!-- end col-4 -->
