@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="forgotPass.aspx.cs" Inherits="Presentacion_forgotPass" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="~/LogicaPresentacion/forgotPass.aspx.cs" Inherits="Presentacion_forgotPass" %>
 
 <!DOCTYPE html>
 
