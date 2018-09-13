@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="utf-8" />
-    <title>COMPRAMATIC | CLIENTE</title>
+    <title runat="server" id="titulo">COMPRAMATIC | CLIENTE</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -61,9 +61,9 @@
                             </a>
                             <ul class="dropdown-menu animated fadeInLeft">
                                 <li class="arrow"></li>
-                                <li><a href="PerfilUsr.aspx">Mi perfil  <i class="fa fa-user"></i></a></li>
+                                <li><a href="PerfilUsr.aspx" runat="server" id="perfil">Mi perfil  <i class="fa fa-user"></i></a></li>
                                 <li class="arrow"></li>
-                                <li><a href="ModificarPerfilUsr.aspx">Editar información    <i class="fa fa-edit"></i></a></li>
+                                <li><a href="ModificarPerfilUsr.aspx" runat="server" id="Edit_Info">Editar información    <i class="fa fa-edit"></i></a></li>
                                 <li class="divider"></li>
                                 <li><a>
                                     <asp:ImageButton ID="Btn_Log_Out" runat="server" CssClass="control-label" AlternateText="Log out" OnClick="BtnLogOut_Click" />
@@ -101,32 +101,32 @@
                         <li class="nav-header">Menú <i class="fa fa-bars"></i></li>
                         <li class="has-sub">
                             <a href="PerfilUsr.aspx">
-                                <span>Ver perfil <i class="fa fa-eye"></i></span>
+                                <span runat="server" id="mirar_perfil"> Ver perfil <i class="fa fa-eye"></i></span>
                             </a>
                         </li>
                         <li class="has-sub">
                             <a href="ModificarPerfilUsr.aspx">
-                                <span>Cambiar información <i class="fa fa-edit"></i></span>
+                                <span id="camb_info" runat="server">Cambiar información <i class="fa fa-edit"></i></span>
                             </a>
                         </li>
                         <li class="has-sub">
                             <a href="CambiarPassUsr.aspx">
-                                <span>Cambiar contraseña <i class="fa fa-key"></i></span>
+                                <span id="camb_pass" runat="server">Cambiar contraseña <i class="fa fa-key"></i></span>
                             </a>
                         </li>
                         <li class="has-sub">
                             <a href="MisComprasUsr.aspx">
-                                <span>Mis peticiones y compras <i class="fa fa-shopping-cart"></i></span>
+                                <span id="peticiones" runat="server">Mis peticiones y compras <i class="fa fa-shopping-cart"></i></span>
                             </a>
                         </li>
                         <li class="has-sub">
                             <a href="TopDiezUsr.aspx">
-                                <span>Últimos visitados <i class="fa fa-binoculars"></i></span>
+                                <span id="ult_visit" runat="server">Últimos visitados <i class="fa fa-binoculars"></i></span>
                             </a>
                         </li>
                         <li class="has-sub">
                             <a href="javascript:;">
-                                <span>Bloquear perfil <i class="fa fa-ban"></i></span>
+                                <span id="bloq_perfi" runat="server">Bloquear perfil <i class="fa fa-ban"></i></span>
                             </a>
                             <ul class="sub-menu" style="display: none;">
                                 <li>

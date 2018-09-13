@@ -7,9 +7,9 @@
 			
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
-			<h1 class="page-header">Perfil de cliente 
-                <br />
-                <small>Modificar perfil</small></h1>
+			<h1 class="page-header" id="perf_client" runat="server">Perfil de cliente
+               </h1>
+             <small id="mod_client"  runat="server" style="font-weight:300;font-size:120%;">Modificar perfil</small>
 			<!-- end page-header -->
 			
 		</div>
@@ -30,9 +30,9 @@
                         <!-- end profile-image -->
                         <div class="m-b-10">
                             <div class="btn-group">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-camera"></i>Cambiar foto de perfil <span class="caret"></span></button>
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="btn_photo" runat="server"></button>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li class="dropdown-header">Carga aquí tu foto</li>
+                                        <li class="dropdown-header" id="load_img"  runat="server">Carga aquí tu foto</li>
                                         <li>
                                             <asp:FileUpload ID="FU_CambiarFoto" runat="server" CssClass="document-file" /></li>
                                         <asp:RequiredFieldValidator runat="server" CssClass="alert-warning" ErrorMessage="Archivo Necesario" ForeColor="Red" ControlToValidate="FU_CambiarFoto" ValidationGroup="CambiarFoto"></asp:RequiredFieldValidator>
@@ -68,19 +68,19 @@
                                 <table class="table table-profile">
                                    <tbody>
                                         <tr>
-                                            <td class="field">Nombres:</td>
+                                            <td class="field" id="names_usr"  runat="server">Nombres:</td>
                                             <td><asp:TextBox ID="TB_Nombre" runat="server" CssClass="form-control" MaxLength="20"/></td>
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ForeColor="Red" ControlToValidate="TB_Nombre" ErrorMessage="Error, caracteres" ToolTip="La cadena contiene caracteres no validos" ValidationExpression="^[a-zA-Z ñÑ]*$"></asp:RegularExpressionValidator>
                                             <td><asp:label ID="LB_Nombre" runat="server" CssClass="control-label"></asp:label></td>
                                         </tr>
                                         <tr>
-                                            <td class="field">Apellidos:</td>
+                                            <td class="field" id="apell_usr" runat="server">Apellidos:</td>
                                             <td><asp:TextBox ID="TB_Apellido" runat="server" CssClass="form-control" MaxLength="20"/> </td>
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ForeColor="Red" ControlToValidate="TB_Apellido" ErrorMessage="Error, caracteres" ToolTip="La cadena contiene caracteres no validos" ValidationExpression="^[a-zA-Z ñÑ]*$"></asp:RegularExpressionValidator>
                                             <td><asp:label ID="LB_Apellido" runat="server" CssClass="control-label"></asp:label></td>
                                         </tr>
                                        <tr>
-                                            <td class="field">Númerdo de identidad:</td>
+                                            <td class="field" id="cc_usr" runat="server">Númerdo de identidad:</td>
                                             <td><asp:TextBox ID="TB_Cc" runat="server" CssClass="form-control" TextMode="Number" max="9999999999" /></td>
                                             
                                             <td><asp:label ID="LB_Cc" runat="server" CssClass="control-label"></asp:label></td>
@@ -89,18 +89,18 @@
                                             <td colspan="2"></td>
                                         </tr>
                                         <tr>
-                                            <td class="field">Número telefónico</td>
+                                            <td class="field" id="tel_usr" runat="server">Número telefónico</td>
                                             <td><asp:TextBox ID="TB_Telefono" runat="server" CssClass="form-control" TextMode="Number" max="9999999999"/> </td>
                                             <td><asp:label ID="LB_Telefono" runat="server" CssClass="control-label"></asp:label>    <i class="fa fa-phone"></i></td>
                                         </tr>
                                         <tr>
-                                            <td class="field">Dirección</td>
+                                            <td class="field" id="dir_usr" runat="server">Dirección</td>
                                             <td><asp:TextBox ID="TB_Direccion" runat="server" CssClass="form-control" MaxLength="50" /></td>
                                             <td><asp:label ID="LB_Direccion" runat="server" CssClass="control-label"></asp:label>   <i class="fa fa-map-marker"></i></td>
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ForeColor="Red" ControlToValidate="TB_Direccion" ErrorMessage="Error, caracteres" ToolTip="La cadena contiene caracteres no validos" ValidationExpression="^[a-zA-Z ñÑ]*$"></asp:RegularExpressionValidator>
                                         </tr>
                                         <tr>
-                                            <td class="field">Correo electrónico</td>
+                                            <td class="field" id="email_usr" runat="server">Correo electrónico</td>
                                             <td><asp:TextBox ID="TB_Correo" runat="server" CssClass="form-control" TextMode="Email" MaxLength="30"/></td>
                                             <td><asp:label ID="LB_Correo" runat="server" CssClass="control-label"> </asp:label> <i class="fa fa-envelope"></i></td>
                                         </tr>

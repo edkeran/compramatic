@@ -4,7 +4,7 @@
     <!-- begin #content -->
     <div class="content-full-width">
         <!-- begin page-header -->
-        <h1 class="page-header">Perfil
+        <h1 class="page-header" id="perfil" runat="server">Perfil
             <small>Informacion de la empresa</small>
         </h1>
         <!-- end page-header -->
@@ -51,6 +51,7 @@
                                     <asp:Label runat="server" CssClass="control-label">Telefono</asp:Label>
                                     <asp:TextBox runat="server" MaxLength="15" CssClass="form-control" ID="TB_Telefono" TextMode="Phone"></asp:TextBox>
                                     <asp:RequiredFieldValidator runat="server" CssClass="alert-warning" ErrorMessage="Campo Vacio" ForeColor="Red" ControlToValidate="TB_Telefono" ValidationGroup="Info"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ForeColor="Red" ControlToValidate="TB_Telefono" ErrorMessage="Error, caracteres" ToolTip="La cadena contiene caracteres no validos" ValidationExpression="^[0-9]*$" ValidationGroup="Info"></asp:RegularExpressionValidator>
                                 </div>
                                 <!-- end col-4 -->
                                 <!-- begin col-4 -->

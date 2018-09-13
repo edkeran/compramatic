@@ -7,10 +7,9 @@
 			
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
-			<h1 class="page-header">Perfil de cliente 
-                <br />
-                <small>Información del perfil</small></h1>
-			<!-- end page-header -->
+			<h1 class="page-header" id="perf_client" runat="server">Perfil de cliente</h1>
+  			<!-- end page-header -->
+            <small id="inf_client" runat="server" style="font-weight:300;font-size:120%;">Información del perfil</small>
 			
 		</div>
 		<!-- end #content -->
@@ -43,30 +42,30 @@
                                 <table class="table table-profile">
                                    <tbody>
                                         <tr>
-                                            <td class="field">Nombres:</td>
+                                            <td class="field" id="nomb_usr" runat="server">Nombres:</td>
                                             <td><asp:label ID="LB_Nombre" runat="server" CssClass="control-label"></asp:label></td>
                                         </tr>
                                         <tr>
-                                            <td class="field">Apellidos:</td>
+                                            <td class="field" id="apell_usr" runat="server">Apellidos:</td>
                                             <td><asp:label ID="LB_Apellidos" runat="server" CssClass="control-label"></asp:label></td>
                                         </tr>
                                        <tr>
-                                            <td class="field">Númerdo de identidad:</td>
+                                            <td class="field" id="num_id" runat="server">Númerdo de identidad:</td>
                                             <td><asp:label ID="LB_Cc" runat="server" CssClass="control-label"></asp:label></td>
                                         </tr>
                                         <tr class="divider">
                                             <td colspan="2"></td>
                                         </tr>
                                         <tr>
-                                            <td class="field">Número telefónico</td>
+                                            <td class="field" id="num_tel" runat="server">Número telefónico</td>
                                             <td><asp:label ID="LB_Telefono" runat="server" CssClass="control-label"></asp:label>    <i class="fa fa-phone"></i></td>
                                         </tr>
                                         <tr>
-                                            <td class="field">Dirección</td>
+                                            <td class="field" id="dir_usr" runat="server">Dirección</td>
                                             <td><asp:label ID="LB_Direccion" runat="server" CssClass="control-label"></asp:label>   <i class="fa fa-map-marker"></i></td>
                                         </tr>
                                         <tr>
-                                            <td class="field">Correo electrónico</td>
+                                            <td class="field" id="email_usr" runat="server">Correo electrónico</td>
                                             <td><asp:label ID="LB_Correo" runat="server" CssClass="control-label"> </asp:label> <i class="fa fa-envelope"></i></td>
                                         </tr>
                                           
@@ -74,7 +73,7 @@
                                             <td colspan="2"></td>
                                         </tr>
                                         <tr class="highlight">
-                                            <td class="field">Calificación general</td>
+                                            <td class="field" id="cal_usr"  runat="server">Calificación general</td>
                                             <td><asp:label ID="LB_Calificacion" runat="server" CssClass="control-label"></asp:label></td>
                                         </tr>
                                         <tr class="divider">

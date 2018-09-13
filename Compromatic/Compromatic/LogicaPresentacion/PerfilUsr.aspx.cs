@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Data;
 using Logica;
 using Utilitarios;
@@ -18,6 +19,38 @@ public partial class Presentacion_PerfilUsr : System.Web.UI.Page
             LB_Calificacion.Text = usr.Calificacion;
             string rutaFoto = usr.RutaArch;
             IMG_FotoPerfil.ImageUrl=rutaFoto;
+        //IDIOMA
+        Object sesidioma = 1;
+        Int32 formulario = 2;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        L_Idioma idiot = new L_Idioma();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            this.perf_client.InnerHtml= compIdioma["perf_client"].ToString();
+            this.inf_client.InnerText= compIdioma["inf_client"].ToString();
+            this.nomb_usr.InnerText= compIdioma["nomb_usr"].ToString();
+            this.apell_usr.InnerText = compIdioma["apell_usr"].ToString();
+            this.num_id.InnerText= compIdioma["num_id"].ToString();
+            this.num_tel.InnerText= compIdioma["num_tel"].ToString();
+            this.dir_usr.InnerText = compIdioma["dir_usr"].ToString();
+            this.email_usr.InnerText= compIdioma["email_usr"].ToString();
+            this.cal_usr.InnerText= compIdioma["cal_usr"].ToString();
+            //this.titulo.Text = compIdioma["titulo"].ToString();
+            //this.perfil.InnerText = compIdioma["perfil"].ToString();
+            //this.Edit_Info.InnerText = compIdioma["Edit_Info"].ToString();
+            //this.mirar_perfil.InnerText = compIdioma["mirar_perfil"].ToString();
+            //this.camb_info.InnerText = compIdioma["camb_info"].ToString();
+            //this.camb_pass.InnerText = compIdioma["camb_pass"].ToString();
+            //this.peticiones.InnerText = compIdioma["peticiones"].ToString();
+            //this.ult_visit.InnerText = compIdioma["ult_visit"].ToString();
+            //this.bloq_perfi.InnerText = compIdioma["bloq_perfi"].ToString();
+        }
+        catch (Exception ex)
+        {
+
+        }
         String texto = "redireccionar('"+ usr.Redireccion +"');";
         Page.ClientScript.RegisterStartupScript(this.GetType(), "scripts", texto, true);
 

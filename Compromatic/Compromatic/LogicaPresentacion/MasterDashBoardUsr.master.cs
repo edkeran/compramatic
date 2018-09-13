@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Data;
 using Logica;
 using Utilitarios;
@@ -10,50 +11,45 @@ public partial class Presentacion_MasterDashBoardUsr : System.Web.UI.MasterPage
         L_MasterBoardUsr logica = new L_MasterBoardUsr();
         U_aux_master_Usr response = logica.page_load(Session["Sesion"]);
         String rutaFoto = response.User.RutaArch + response.User.NomArch;
-            DataTable datos = (DataTable)Session["Sesion"];
-       
-            IMG_FotoPerfilSideBar.ImageUrl = rutaFoto;
-            LB_NombreSideBar.Text = response.User.NomUsr;
-            LB_ApellidoSideBar.Text = response.User.ApelUsr;
-        
-            IMG_PerfilHeatherNR.ImageUrl = rutaFoto;
-            LB_NombreHeatherNR.Text = response.User.NomUsr;
+        DataTable datos = (DataTable)Session["Sesion"];
+
+        IMG_FotoPerfilSideBar.ImageUrl = rutaFoto;
+        LB_NombreSideBar.Text = response.User.NomUsr;
+        LB_ApellidoSideBar.Text = response.User.ApelUsr;
+
+        IMG_PerfilHeatherNR.ImageUrl = rutaFoto;
+        LB_NombreHeatherNR.Text = response.User.NomUsr;
 
         //Redireccion Segun Sea El Caso
-        String texto ="redireccionar('"+response.Response+"');";
+        String texto = "redireccionar('" + response.Response + "');";
         Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", texto);
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        //Object sesidioma = Session["idiomases"];
+        Object sesidioma = 2;
+        Int32 formulario = 1;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            this.titulo.Text= compIdioma["titulo"].ToString();
+            this.perfil.InnerText = compIdioma["perfil"].ToString();
+            this.Edit_Info.InnerText = compIdioma["Edit_Info"].ToString();
+            this.mirar_perfil.InnerText = compIdioma["mirar_perfil"].ToString();
+            this.camb_info.InnerText= compIdioma["camb_info"].ToString();
+            this.camb_pass.InnerText = compIdioma["camb_pass"].ToString();
+            this.peticiones.InnerText= compIdioma["peticiones"].ToString();
+            this.ult_visit.InnerText= compIdioma["ult_visit"].ToString();
+            this.bloq_perfi.InnerText= compIdioma["bloq_perfi"].ToString();
+        }
+        catch (Exception ex)
+        {
+
+        }
 
 
     }
-    /**
-     * if (Session["Sesion"] == null)
-        {
-            Response.Redirect("LoginUsr.aspx");
-        }
-        else
-        {
-            DataTable datos = (DataTable)Session["Sesion"];
-            //String rutaFoto = datos.Rows[0]["rutaArchivo"].ToString() + datos.Rows[0]["nomArchivo"].ToString();
-            if (int.Parse(datos.Rows[0]["idTipo"].ToString()) != 3)
-            {
-                Response.Redirect("LoginUsr.aspx");
-            }
-
-
-            //sideBar
-            IMG_FotoPerfilSideBar.ImageUrl = rutaFoto;
-            LB_NombreSideBar.Text = response.User.NomUsr;
-            LB_ApellidoSideBar.Text = response.User.ApelUsr;
-
-            //End sideBar
-
-            //Heather Navigation Right
-            IMG_PerfilHeatherNR.ImageUrl = rutaFoto;
-            LB_NombreHeatherNR.Text = response.User.NomUsr;
-            ////Heather Navigation Right
-        }
-     * */
-
 
     protected void BtnSi_Click(object sender, EventArgs e)
     {

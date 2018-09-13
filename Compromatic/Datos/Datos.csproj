@@ -57,6 +57,7 @@
     <Compile Include="DDAOadministrador.cs" />
     <Compile Include="DDAOEmpresa.cs" />
     <Compile Include="DDAOHome.cs" />
+    <Compile Include="DDAOidioma.cs" />
     <Compile Include="DDAOPqr.cs" />
     <Compile Include="DDAOProducto.cs" />
     <Compile Include="DDAOTag.cs" />

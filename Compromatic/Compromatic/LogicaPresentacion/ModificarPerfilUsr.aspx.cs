@@ -3,6 +3,7 @@ using System.Data;
 using System.Web.UI;
 using Utilitarios;
 using Logica;
+using System.Collections;
 
 public partial class Presentacion_ModificarPerfilUsr : System.Web.UI.Page
 {
@@ -18,31 +19,39 @@ public partial class Presentacion_ModificarPerfilUsr : System.Web.UI.Page
         LB_Cc.Text = user.CcUsr;
         LB_Correo.Text = user.CorreoUsr;
         LB_Direccion.Text = user.DirUsr;
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        //Object sesidioma = Session["idiomases"];
+        Object sesidioma = 2;
+        Int32 formulario = 3;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            this.perf_client.InnerText = compIdioma["perf_client"].ToString();
+            this.mod_client.InnerText = compIdioma["mod_client"].ToString();
+            this.load_img.InnerText = compIdioma["load_img"].ToString();
+            this.names_usr.InnerText = compIdioma["names_usr"].ToString();
+            this.apell_usr.InnerText = compIdioma["apell_usr"].ToString();
+            this.cc_usr.InnerText = compIdioma["cc_usr"].ToString();
+            this.tel_usr.InnerText = compIdioma["tel_usr"].ToString();
+            this.dir_usr.InnerText = compIdioma["dir_usr"].ToString();
+            this.email_usr.InnerText = compIdioma["email_usr"].ToString();
+            this.BTN_CambiarInf.Text= compIdioma["BTN_CambiarInf"].ToString();
+            this.btn_photo.InnerHtml = "<i class='fa fa-camera'></i>" + compIdioma["btn_photo"].ToString()+ "<span class='caret'></span>";
+            this.BTN_QuitarFoto.Text= compIdioma["BTN_QuitarFoto"].ToString();
+            this.BTN_CambiarFoto.Text= compIdioma["BTN_CambiarFoto"].ToString();
+        }
+        catch (Exception ex)
+        {
+
+        }
+
         String texto = "redireccionar('" + user.Redireccion + "');";
         Page.ClientScript.RegisterStartupScript(this.GetType(), "scrt", texto, true);
     }
 
-    /**
-     *if (Session["Sesion"] == null)
-        {
-            Response.Redirect("LoginUsr.aspx");
-        }
-        DataTable datos = (DataTable)Session["Sesion"];
-        if (datos.Rows[0]["idTipo"].ToString() != "3")
-        {
-            Response.Redirect("LoginUsr.aspx");
-        }
-        else
-        {
-            IMG_FotoPerfil.ImageUrl = datos.Rows[0]["rutaArchivo"].ToString() + datos.Rows[0]["nomArchivo"].ToString();
-            LB_Nombre.Text = datos.Rows[0]["nomUsuario"].ToString();
-            LB_Apellido.Text = datos.Rows[0]["apeUsuario"].ToString();
-            LB_Telefono.Text = datos.Rows[0]["telUsuario"].ToString();
-            LB_Cc.Text = datos.Rows[0]["ccUsuario"].ToString();
-            LB_Correo.Text = datos.Rows[0]["correoUsuario"].ToString();
-            LB_Direccion.Text = datos.Rows[0]["dirUsuario"].ToString();
-        } 
-     **/
 
     protected void CambiarInf_Click(object sender, EventArgs e)
     {
@@ -62,81 +71,6 @@ public partial class Presentacion_ModificarPerfilUsr : System.Web.UI.Page
         //Response.Redirect(res.Pagina_redir);
     }
 
-    /**
-     * CODIGO DE LA MODIFICACION ORIGINAL
-     *  if ((envio.ComprobarCorreo(TB_Correo.Text)) == 1)
-        {
-            Modal("El correo ya existe, registra uno diferente.");
-        }
-        else
-        {
-            //Nombre
-            if (TB_Nombre.Text.Length != 0)
-            {
-                cliente.NomUsr = TB_Nombre.Text;
-                datos.Rows[0]["nomUsuario"] = TB_Nombre.Text;
-            }
-            if (TB_Nombre.Text.Length == 0)
-            {
-                cliente.NomUsr = datos.Rows[0]["nomUsuario"].ToString();
-            }
-            //Apellido
-            if (TB_Apellido.Text.Length != 0)
-            {
-                cliente.ApelUsr = TB_Apellido.Text;
-                datos.Rows[0]["apeUsuario"] = TB_Apellido.Text;
-            }
-            if (TB_Apellido.Text.Length == 0)
-            {
-                cliente.ApelUsr = datos.Rows[0]["apeUsuario"].ToString();
-            }
-            //Telefono
-            if (TB_Telefono.Text.Length != 0)
-            {
-                cliente.TelUsr = TB_Telefono.Text;
-                datos.Rows[0]["telUsuario"] = TB_Telefono.Text;
-            }
-            if (TB_Telefono.Text.Length == 0)
-            {
-                cliente.TelUsr = datos.Rows[0]["telUsuario"].ToString();
-            }
-            //Cc
-            if (TB_Cc.Text.Length != 0)
-            {
-                cliente.CcUsr = TB_Cc.Text;
-                datos.Rows[0]["ccUsuario"] = TB_Cc.Text;
-            }
-            if (TB_Cc.Text.Length == 0)
-            {
-                cliente.CcUsr = datos.Rows[0]["ccUsuario"].ToString();
-            }
-            //Correo
-            if (TB_Correo.Text.Length != 0)
-            {
-                cliente.CorreoUsr = TB_Correo.Text;
-                datos.Rows[0]["correoUsuario"] = TB_Correo.Text;
-            }
-            if (TB_Correo.Text.Length == 0)
-            {
-                cliente.CorreoUsr = datos.Rows[0]["correoUsuario"].ToString();
-            }
-            //Direccion
-            if (TB_Direccion.Text.Length != 0)
-            {
-                cliente.DirUsr = TB_Direccion.Text;
-                datos.Rows[0]["dirUsuario"] = TB_Direccion.Text;
-            }
-            if (TB_Direccion.Text.Length == 0)
-            {
-                cliente.DirUsr = datos.Rows[0]["dirUsuario"].ToString();
-            }
-            DAOUsuario modificar = new DAOUsuario();
-            modificar.ModificarInf(cliente,datos.Rows[0]["nomUsuario"].ToString());
-            Session["Sesion"] = datos;
-            Modal("Modificacion Exitosa");
-            Response.Redirect("PerfilUsr.aspx");
-        }
-     * */
 
     public void Modal(String mensaje,String pagina)
     {
@@ -158,44 +92,7 @@ public partial class Presentacion_ModificarPerfilUsr : System.Web.UI.Page
         Modal(res.Mensage, res.Pagina_redir);
     }
 
-    /**
-     * CODIGO ORIGINAL
-     * if (extension.Equals(".jpg") || extension.Equals(".jepg") || extension.Equals(".png") || extension.Equals(".JPG") || extension.Equals(".JEPG") || extension.Equals(".PNG"))
-        {
-            String nomArchivoAnt = datos.Rows[0]["nomArchivo"].ToString();
-            String[] aux = nomArchivoAnt.Split('.');
-            nomArchivoAnt = aux[0];
-            if (nomArchivoAnt == datos.Rows[0]["idUsuario"].ToString())
-            {
-               
-                System.IO.File.Delete(SaveLocationAnt);
-            }
-
-            try
-            {
-                FU_CambiarFoto.PostedFile.SaveAs(saveLocation);
-                DAOUsuario foto = new DAOUsuario();
-                EUsuario user = new EUsuario();
-                user.IdUsr = int.Parse(datos.Rows[0]["idUsuario"].ToString());
-                user.NomArch = nombreArchivo + extension;
-                foto.CambiarFoto(user,datos.Rows[0]["nomUsuario"].ToString());
-                datos.Rows[0]["nomArchivo"] = nombreArchivo + extension;
-                Session["Sesion"] = datos;
-                Response.Redirect("PerfilUsr.aspx");
-            }
-            catch (Exception exp)
-            {
-                throw exp;
-            }
-        }
-        else
-        {
-            Modal("Formato Invalido","0");
-            return;
-        }
-     **/
-
-
+    
     protected void BTN_QuitarFoto_Click(object sender, EventArgs e)
     {
         DataTable datos = (DataTable)Session["Sesion"];

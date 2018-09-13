@@ -3,6 +3,7 @@ using System.Data;
 using System.Web.UI;
 using Utilitarios;
 using Logica;
+using System.Collections;
 
 public partial class Presentacion_CambiarPassUsr : System.Web.UI.Page
 {
@@ -12,24 +13,29 @@ public partial class Presentacion_CambiarPassUsr : System.Web.UI.Page
         L_CambiarPass_Usr logic = new L_CambiarPass_Usr();
         String response= logic.page_load(Session["Sesion"]);
         String texto = "redireccionar('"+response+"')";
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        //Object sesidioma = Session["idiomases"];
+        Object sesidioma = 2;
+        Int32 formulario = 4;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            this.usr_ch_pass.InnerText= compIdioma["usr_ch_pass"].ToString();
+            this.pass_usr.InnerText= compIdioma["pass_usr"].ToString();
+            this.ant_pass.InnerText= compIdioma["ant_pass"].ToString();
+            this.new_pass.InnerText= compIdioma["new_pass"].ToString();
+            this.new_pass2.InnerText= compIdioma["new_pass2"].ToString();
+            Btn_Modificar.Text= compIdioma["Btn_Modificar"].ToString();
+        }
+        catch (Exception ex)
+        {
+
+        }
         Page.ClientScript.RegisterStartupScript(this.GetType(), "script", texto);
     }
-
-    /**
-     * 
-     *   if (Session["Sesion"] == null)
-        {
-            Response.Redirect("LoginUsr.aspx");
-        }
-        else
-        {
-            DataTable datos = (DataTable)Session["Sesion"];
-            if (int.Parse(datos.Rows[0]["idTipo"].ToString()) != 3)
-            {
-                Response.Redirect("LoginUsr.aspx");
-            }
-        }
-     **/
 
     public void Modal(String mensaje,String Redireccion)
     {

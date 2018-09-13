@@ -16,26 +16,4 @@ public partial class Presentacion_MostrarTabla : System.Web.UI.Page
         GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
         Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redireccionar('" + res.Redir + "');", true);
     }
-    /**
-     *  if (Session["Sesion"] == null)
-        {
-            Response.Redirect("LoginUsr.aspx");
-        }
-        else
-        {
-            if (GridView1.Rows.Count > 0)
-            {
-                GridView1.UseAccessibleHeader = true;
-                GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
-            }
-            int num = int.Parse(((DataTable)(Session["sesion"])).Rows[0]["idTipo"].ToString());
-            if (int.Parse(((DataTable)(Session["sesion"])).Rows[0]["idTipo"].ToString()) == 1)
-            {}
-            else
-            {
-                Response.Redirect("LoginUsr.aspx");
-            }
-        }
-     **/
-
 }
