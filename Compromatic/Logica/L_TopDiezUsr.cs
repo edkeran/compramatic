@@ -11,7 +11,7 @@ namespace Logica
 {
     public class L_TopDiezUsr
     {
-        public DataTable page_load(bool post,Object Session,DataTable old)
+        public DataTable page_load(bool post,Object Session,DataTable old,String btn_text)
         {
             if (!post)
             {
@@ -29,6 +29,11 @@ namespace Logica
                 DataTable user = (DataTable)Session;
                 DDAOUsuario dao = new DDAOUsuario();
                 DataTable topten = dao.ObtenerTopTen(int.Parse(user.Rows[0]["idUsuario"].ToString()));
+                DataColumn column = new DataColumn();
+                column.DefaultValue = btn_text;
+                column.ColumnName="BTN_idioma";
+                column.DataType = typeof(String);
+                topten.Columns.Add(column);
                 return topten;
             }
             else

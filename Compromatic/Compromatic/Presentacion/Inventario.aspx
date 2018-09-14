@@ -4,7 +4,7 @@
     <!-- begin #content -->
     <div id="content">
         <!-- begin page-header -->
-        <h1 class="page-header">Inventario</h1>
+        <h1 class="page-header" id="inv" runat="server">Inventario</h1>
         <!-- end page-header -->
 
         <div class="row">
@@ -16,19 +16,19 @@
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                         </div>
-                        <h4 class="panel-title">Productos con bajo inventario</h4>
+                        <h4 class="panel-title" id="Produc" runat="server">Productos con bajo inventario</h4>
                     </div>
                     <div class="panel-body">
                         <div class="col-md-12">
                             <table id="data-table" class="table table-striped table-bordered data-table" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Descripcion</th>
-                                        <th>Cantidad</th>
-                                        <th>Cantidad Minima</th>
-                                        <th>Categoria</th>
-                                        <th>Modificar</th>
+                                        <th id="nom" runat="server">Nombre</th>
+                                        <th id="desc" runat="server">Descripcion</th>
+                                        <th id="cant" runat="server">Cantidad</th>
+                                        <th id="min_cant" runat="server">Cantidad Minima</th>
+                                        <th id="categ" runat="server">Categoria</th>
+                                        <th id="modi" runat="server">Modificar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -51,7 +51,7 @@
                                                     <asp:Label ID="Label4" Width="3px" runat="server"><%# Eval("[nomCategoria]") %></asp:Label>
                                                 </td>
                                                 <td>
-                                                    <asp:Button runat="server" CommandName="Modificar" Text="Modificar Cantidad" CssClass="btn btn-primary" CommandArgument='<%# Eval("[idProducto]")%>'/>
+                                                    <asp:Button ID="BTN_Mod" runat="server" CommandName="Modificar" Text="Modificar Cantidad" CssClass="btn btn-primary" CommandArgument='<%# Eval("[idProducto]")%>'/>
                                                 </td>
                                             </tr>
                                         </ItemTemplate>

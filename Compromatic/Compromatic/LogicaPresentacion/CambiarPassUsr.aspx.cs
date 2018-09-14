@@ -16,7 +16,7 @@ public partial class Presentacion_CambiarPassUsr : System.Web.UI.Page
         //Seteando Idiomas
         L_Idioma idiot = new L_Idioma();
         //Object sesidioma = Session["idiomases"];
-        Object sesidioma = 2;
+        Object sesidioma = 1;
         Int32 formulario = 4;
         Int32 idiom = Convert.ToInt32(sesidioma);
         Hashtable compIdioma = new Hashtable();

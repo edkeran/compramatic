@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Web.UI;
 using Logica;
 using Utilitarios;
@@ -15,6 +16,32 @@ public partial class Presentacion_MasterHome : System.Web.UI.MasterPage
         IMG_UsuarioBarraHome.ImageUrl = info.RutaFoto;
         LB_NombreUsuarioBarraHome.Text = info.NomUsuario;
         Registro.Visible = info.RegistroVisible;
+
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        //Object sesidioma = Session["idiomases"];
+        Object sesidioma = 1;
+        Int32 formulario = 7;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            this.man_usr.InnerText = compIdioma["man_usr"].ToString();
+            this.tien.InnerText= compIdioma["tien"].ToString();
+            this.tienda.InnerText = compIdioma["tien"].ToString();
+            this.pags.InnerHtml= compIdioma["pags"].ToString()+ " <i class='fa fa-angle-down'></i> <span class='arrow top'></span>";
+            this.perf.InnerText= compIdioma["perf"].ToString();
+            this.about_us.InnerText= compIdioma["about_us"].ToString();
+            this.who_are.InnerText= compIdioma["who_are"].ToString(); 
+            this.regi.InnerHtml = compIdioma["regi"].ToString()+" <i class='fa fa-angle-down'></i> <span class='arrow top'></span>";
+            this.as_usr.InnerText = compIdioma["as_usr"].ToString();
+            this.as_company.InnerText = compIdioma["as_company"].ToString();
+            this.start_session.InnerText = compIdioma["start_session"].ToString();
+
+        }
+        catch (Exception ex)
+        {}
     }
     //NO CAMBIAR FUNCION
     protected void BTN_LogOut_Click(object sender, EventArgs e)
@@ -42,56 +69,5 @@ public partial class Presentacion_MasterHome : System.Web.UI.MasterPage
         String texto ="redireccionar_Home('"+url+"');";
         Page.ClientScript.RegisterStartupScript(this.GetType(), "scripts", texto,true);
     }
-
-    //CODIGO ORGINAL
-
-    //DAOProducto pdto = new DAOProducto();
-    /**if (!IsPostBack)
-    {
-        if (Session["Sesion"] == null)
-        {
-            //PerfilUsr.Visible = false;
-        }
-        else
-        {
-            //<asp:ObjectDataSource runat="server" ID="OBSCategoria" SelectMethod="MostrarCategoria" TypeName="DAOProducto"></asp:ObjectDataSource>
-            DataTable datos = (DataTable)Session["Sesion"];
-            if (datos.Rows[0]["idTipo"].ToString() == "1" || datos.Rows[0]["idTipo"].ToString() == "3")
-            {
-                String rutaFoto = datos.Rows[0]["rutaArchivo"].ToString() + datos.Rows[0]["nomArchivo"].ToString();
-                IMG_UsuarioBarraHome.ImageUrl = rutaFoto;
-                LB_NombreUsuarioBarraHome.Text = datos.Rows[0]["nomUsuario"].ToString();
-                Registro.Visible = false;
-            }
-            if (datos.Rows[0]["idTipo"].ToString() == "2")
-            {
-                String rutaFoto = datos.Rows[0]["rutaArchivo"].ToString() + datos.Rows[0]["nomArchivo"].ToString();
-                IMG_UsuarioBarraHome.ImageUrl = rutaFoto;
-                LB_NombreUsuarioBarraHome.Text = datos.Rows[0]["nomEmpresa"].ToString();
-                Registro.Visible = false;
-            }
-        }
-    }**/
-
-
-    /**if (String.IsNullOrWhiteSpace(TB_Search.Text))
-       {
-           DAOProducto DAO_Producto = new DAOProducto();
-           Session["Tienda"] = DAO_Producto.TodoProductos();
-           Response.Redirect("Store.aspx");
-       }
-       DAOHome datos = new DAOHome();
-       String palabra = TB_Search.Text.ToString();
-       palabra = palabra.Replace(' ', '|');
-       if(datos.Buscador(palabra).Rows.Count>0)
-       {
-           Session["Tienda"] = datos.Buscador(palabra);
-           Response.Redirect("Store.aspx");
-       }
-       else
-       {
-           Modal("No se encontraron resultados");
-       }**/
-
 
 }

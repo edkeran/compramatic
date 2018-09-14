@@ -66,23 +66,20 @@
                         <div class="header-nav">
                             <div class=" collapse navbar-collapse" id="navbar-collapse">
                                 <ul class="nav">
-                                    <li><a href="../Archivos/MANUAL DE USUARIO.pdf">Manual De Usuario</a></li>
+                                    <li><a href="../Archivos/MANUAL DE USUARIO.pdf" id="man_usr" runat="server">Manual De Usuario</a></li>
                                     <li><a href="Home.aspx">Home</a></li>
-                                    <li><a href="Store.aspx">Tienda</a></li>
+                                    <li><a href="Store.aspx" id="tien" runat="server">Tienda</a></li>
                                     <li class="dropdown dropdown-hover">
-                                        <a href="#" data-toggle="dropdown">Páginas
-                                        <i class="fa fa-angle-down"></i>
-                                            <span class="arrow top"></span>
-                                        </a>
+                                        <a href="#" data-toggle="dropdown" id="pags" runat="server">Páginas</a>
                                         <ul class="dropdown-menu">
                                             <li><a href="Home.aspx">Compramatic</a></li>
-                                            <li><a href="Store.aspx">Tienda</a></li>
-                                            <li><a href="PerfilUsr.aspx">Perfil</a></li>
-                                            <li><a href="AboutUs.aspx">¿Quienes somos?</a></li>
+                                            <li><a href="Store.aspx" id="tienda" runat="server">Tienda</a></li>
+                                            <li><a href="PerfilUsr.aspx" id="perf" runat="server">Perfil</a></li>
+                                            <li><a href="AboutUs.aspx" id="about_us" runat="server">¿Quienes somos?</a></li>
                                             
                                         </ul>
                                     </li>
-                                    <li><a href="AboutUs.aspx">¿Quienes somos?</a></li>
+                                    <li><a href="AboutUs.aspx" id="who_are" runat="server">¿Quienes somos?</a></li>
                                     <li class="dropdown dropdown-hover">
                                         <a href="#" data-toggle="dropdown">
                                             <i class="fa fa-search search-btn"></i>
@@ -116,28 +113,21 @@
                                             <asp:Button runat="server" ID="BTN_LogOut" Text="Log out" CssClass="btn btn-white btn-xs" OnClick="BTN_LogOut_Click" /></span>
                                     </a>
                                 </li>
-
-
                             </ul>
                             <div class="header-nav" runat="server" id="Registro">
                                 <div class=" collapse navbar-collapse">
                                     <ul class="nav">
                                         <li class="dropdown dropdown-hover">
-                                            <a href="#" data-toggle="dropdown">Registrate
-                                            <i class="fa fa-angle-down"></i>
-                                            <span class="arrow top"></span>
-                                            </a>
+                                            <a href="#" data-toggle="dropdown" id="regi" runat="server">Registrate</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="RegistroUsuario.aspx">Como cliente</a></li>
-                                            <li><a href="RegistroEmpresa.aspx">Como empresa</a></li>
+                                            <li><a href="RegistroUsuario.aspx" id="as_usr" runat="server">Como cliente</a></li>
+                                            <li><a href="RegistroEmpresa.aspx" id="as_company" runat="server">Como empresa</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="LoginUsr.aspx">Inicia sesión</a></li>
+                                    <li><a href="LoginUsr.aspx" id="start_session" runat="server">Inicia sesión</a></li>
                                     </ul>
                                 </div>
                             </div>
-
-
                         </div>
                         <!-- END header-nav -->
                     </div>

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 	<meta charset="utf-8" />
-	<title>Registro</title>
+	<title id="title" runat="server">Registro</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -42,7 +42,7 @@
                 <div class="news-caption">
                     <h4 class="caption-title">COMPROMATIC</h4>
                     <asp:HyperLink ID="HL_Index" runat="server" ForeColor="#CCCC00" NavigateUrl="~/Presentacion/Home.aspx" ValidateRequestMode="Disabled">Volver A La Pagina De Inicio</asp:HyperLink><br />
-                    <p>
+                    <p id="desc1" runat="server">
                         Registrate en este espacio para poder realizar tus compras de todos los productos que te interesan, explora nuestro sitio y sorprendete con él.                   </p>
                 </div>
             </div>
@@ -50,15 +50,15 @@
             <!-- begin right-content -->
             <div class="right-content">
                 <!-- begin register-header -->
-                <h1 class="register-header">
+                <h1 class="register-header" id="reg" runat="server">
                     REGISTRO
-                    <small>Crea tu cuenta cliente. Esto es gratis y siempre lo será!.</small>
+                    <small id="desc_reg" runat="server">Crea tu cuenta cliente. Esto es gratis y siempre lo será!.</small>
                 </h1>
                 <!-- end register-header -->
                 <!-- begin register-content -->
                 <div class="register-content">
                     <form id="form1" runat="server">
-                        <asp:label runat="server" class="control-label">Nombre completo</asp:label>
+                        <asp:label runat="server" class="control-label" ID="LB_Nmbr">Nombre completo</asp:label>
                         <div class="row row-space-15">
                             <div class="col-md-6 m-b-15">
                                 <asp:TextBox ID="TB_FirstName" CssClass="form-control" placeholder="Nombres" runat="server" Required="Required" MaxLength="20"></asp:TextBox>
@@ -70,7 +70,7 @@
                             </div>
                         </div>
 
-                        <asp:label runat="server" class="control-label">Número de identificación y número telefónico</asp:label>
+                        <asp:label runat="server" class="control-label" ID="LB_ID">Número de identificación y número telefónico</asp:label>
                         
                         <div class="row m-b-15">      
                        
@@ -83,7 +83,7 @@
                             </div>
                         </div>
 
-                        <asp:label runat="server" class="control-label">Dirección</asp:label>
+                        <asp:label runat="server" class="control-label" ID="LB_Dir">Dirección</asp:label>
                         <div class="row m-b-15">
                             <div class="col-md-15">
                                 <asp:TextBox ID="TB_Direccion" CssClass="form-control" placeholder="Direccion de domicilio" runat="server" Required="Required" MaxLength="50"></asp:TextBox>
@@ -91,14 +91,14 @@
                             </div>
                         </div>
 
-                        <asp:label runat="server" class="control-label">Correo</asp:label>
+                        <asp:label runat="server" class="control-label" ID="LB_Email">Correo</asp:label>
                         <div class="row m-b-15">
                             <div class="col-md-15">
                                 <asp:TextBox ID="TB_Email" CssClass="form-control" placeholder="Direccion de correo electrónico" runat="server" TextMode="Email" Required="Required" MaxLength="30"></asp:TextBox>
                             </div>
                         </div>
                         
-                        <asp:label runat="server" CssClass="control-label">Contraseña</asp:label>
+                        <asp:label runat="server" CssClass="control-label" ID="LB_Pass">Contraseña</asp:label>
                         <div class="row m-b-15">
                            <div class="col-md-6 m-b-15">
                                 <asp:TextBox ID="TB_Pass1" CssClass="form-control" placeholder="Contraseña" runat="server" TextMode="Password" Required="Required" MaxLength="20"></asp:TextBox>
@@ -110,22 +110,19 @@
                         
                         
                         <div class="checkbox m-b-30">
-                            <label>
-                                <asp:CheckBox id="CB_Terminos" runat="server"/>
-                                Confirma tu registro, recuerda que todos los campos son obligatorios.
-                            </label>
+                            <asp:CheckBox id="CB_Terminos" runat="server" Text="Confirma tu registro, recuerda que todos los campos son obligatorios."/>
                         </div>
                         <div class="register-buttons">
                              
                             <asp:Button ID="BtnRegistrar" runat="server" class="btn btn-primary btn-block btn-lg" Text="REGISTRATE" OnClick="BtnRegistrar_Click" />
                            
                         </div>
-                        <div class="m-t-20 m-b-40 p-b-40">
-                            Ya eres miembro? Presiona <a href="../Presentacion/LoginUsr.aspx">aquí</a> para ingresar.
+                        <div class="m-t-20 m-b-40 p-b-40" id="div_alr" runat="server">
+                            Ya eres miembro? Presiona <a href="../Presentacion/LoginUsr.aspx" id="here">aquí</a> para ingresar.
                         </div>
                         <hr />
                         <p class="text-center text-inverse">
-                            &copy; COMPROMATIC 2016.
+                            &copy; COMPROMATIC 2018.
                         </p>
                     </form>
                 </div>

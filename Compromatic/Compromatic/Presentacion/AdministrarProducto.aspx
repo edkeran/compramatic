@@ -7,7 +7,7 @@
     <div id="content">
 
         <!-- begin page-header -->
-        <h1 class="page-header">Administrar Productos</h1>
+        <h1 class="page-header" id="header" runat="server">Administrar Productos</h1>
         <!-- end page-header -->
 
         <div class="row">
@@ -19,25 +19,25 @@
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                         </div>
-                        <h4 class="panel-title">Tabla de Productos</h4>
+                        <h4 class="panel-title" id="tbl_produ" runat="server">Tabla de Productos</h4>
                     </div>
                     <div class="panel-body">
                         <div class="col-md-12">
                             <table id="data-table" class="table table-striped table-bordered data-table" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Descripcion</th>
-                                        <th>Cantidad</th>
-                                        <th>Precio</th>
-                                        <th>Categoria</th>
-                                        <th>Alerta</th>
-                                        <th>Modificar</th>
-                                        <th>Eliminar</th>
+                                        <th id="nom" runat="server">Nombre</th>
+                                        <th id="desc" runat="server">Descripcion</th>
+                                        <th id="cant" runat="server">Cantidad</th>
+                                        <th id="perc" runat="server">Precio</th>
+                                        <th id="cate" runat="server">Categoria</th>
+                                        <th id="alert" runat="server">Alerta</th>
+                                        <th id="modif" runat="server">Modificar</th>
+                                        <th id="delete" runat="server">Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <asp:Repeater runat="server" ID="Prueba1" OnItemCommand="Prueba1_ItemCommand">
+                                    <asp:Repeater runat="server" ID="Prueba1" OnItemCommand="Prueba1_ItemCommand" OnItemDataBound="RptDos_ItemDataBound">
                                         <ItemTemplate>
                                             <tr>
                                                 <td>
@@ -62,10 +62,10 @@
                                                     <asp:Label ID="Label3" Width="30px" runat="server"><%# Eval("[bajoInventario]") %></asp:Label>
                                                 </td>
                                                 <td>
-                                                    <asp:Button runat="server" CommandName="Select" Text="Seleccionar" CssClass="btn btn-primary" />
+                                                    <asp:Button id="BTN_select" runat="server" CommandName="Select" Text="Seleccionar" CssClass="btn btn-primary" />
                                                 </td>
                                                 <td>
-                                                    <asp:Button runat="server" CommandName="Delete" Text="Eliminar" CommandArgument='<%# Eval("[idProducto]") %>' CssClass="btn btn-danger" />
+                                                    <asp:Button id="BTN_del" runat="server" CommandName="Delete" Text="Eliminar" CommandArgument='<%# Eval("[idProducto]") %>' CssClass="btn btn-danger" />
                                                 </td>
                                             </tr>
                                         </ItemTemplate>
@@ -88,7 +88,7 @@
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                 </div>
-                                <h4 class="panel-title">Modificar Datos</h4>
+                                <h4 class="panel-title" id="mod_data" runat="server">Modificar Datos</h4>
                             </div>
                             <div class="panel-body">
                                 <div class="row">
@@ -96,21 +96,21 @@
                                     <asp:Label runat="server" ID="idProducto" Visible="false">0</asp:Label>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Nombre</label>
+                                            <label id="nombr" runat="server">Nombre</label>
                                             <asp:TextBox runat="server" MaxLength="45" ID="TB_Nombre" CssClass="form-control"></asp:TextBox>
                                             <asp:RequiredFieldValidator runat="server" ErrorMessage="Campo Necesario" ForeColor="Red" ControlToValidate="TB_Nombre" ValidationGroup="Modificar"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Cantidad</label>
+                                            <label id="quant" runat="server">Cantidad</label>
                                             <asp:TextBox runat="server" ID="TB_Cantidad" TextMode="Number" max="1000000" min="0" CssClass="form-control"></asp:TextBox>
                                             <asp:RequiredFieldValidator runat="server" ErrorMessage="Campo Necesario" ForeColor="Red" ControlToValidate="TB_Cantidad" ValidationGroup="Modificar"></asp:RequiredFieldValidator>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Precio</label>
+                                            <label id="price" runat="server">Precio</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>
                                                 <asp:TextBox runat="server" ID="TB_Precio" max="20000000" CssClass="form-control" TextMode="Number" min="1"></asp:TextBox>
@@ -120,7 +120,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Categoria</label>
+                                            <label id="cat" runat="server">Categoria</label>
                                             <asp:DropDownList runat="server" CssClass="form-control selectpicker" data-live-search="true" data-style="btn-success" DataSourceID="OBSCategoria" DataTextField="nomCategoria" DataValueField="idCategoria" AppendDataBoundItems="true" ID="DDL_Categoria">
                                             </asp:DropDownList>
                                             <asp:ObjectDataSource runat="server" ID="OBSCategoria" SelectMethod="MostrarCategoria" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
@@ -130,7 +130,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Descripcion</label>
+                                            <label id="descri" runat="server">Descripcion</label>
                                             <asp:TextBox runat="server" ID="TB_Descripcion" TextMode="MultiLine" Rows="4" CssClass="form-control" />
                                             <asp:RequiredFieldValidator runat="server" ErrorMessage="Campo Necesario" ForeColor="Red" ControlToValidate="TB_Descripcion" ValidationGroup="Modificar"></asp:RequiredFieldValidator>
                                             <asp:RegularExpressionValidator runat="server" ID="valInput"
@@ -161,7 +161,7 @@
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                 </div>
-                                <h4 class="panel-title">Imagenes</h4>
+                                <h4 class="panel-title" id="img" runat="server">Imagenes</h4>
                             </div>
                             <div class="panel-body">
                                 <div class="form-group">
@@ -175,7 +175,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div id="gallery" class="gallery">
-                                        <asp:Repeater ID="TablaImagenes" runat="server" DataSourceID="OBS_Fotos" OnItemCommand="TablaImagenes_ItemCommand">
+                                        <asp:Repeater ID="TablaImagenes" runat="server" DataSourceID="OBS_Fotos" OnItemCommand="TablaImagenes_ItemCommand" OnItemDataBound="RptUno_ItemDataBound">
                                             <ItemTemplate>
                                                 <div class="image gallery-group-1">
                                                     <div class="image-inner">
@@ -186,7 +186,7 @@
                                                     </div>
                                                     <div class="image-info">
                                                         <div class="desc">
-                                                            <asp:Button runat="server" CssClass="btn btn-danger" CommandName="Delete" CommandArgument='<%# Eval("[idProducto]") %>' Text="Eliminar"></asp:Button>
+                                                            <asp:Button id="BTN_delete_img" runat="server" CssClass="btn btn-danger" CommandName="Delete" CommandArgument='<%# Eval("[idProducto]") %>' Text="Eliminar"></asp:Button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -216,7 +216,7 @@
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                 </div>
-                                <h4 class="panel-title">Palabras Clave</h4>
+                                <h4 class="panel-title" id="key_words" runat="server">Palabras Clave</h4>
                             </div>
                             <div class="panel-body">
                                 <!-- begin col-8 -->
@@ -239,7 +239,7 @@
                                 <!-- begin col-4 -->
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Añadir</label>
+                                        <label id="add" runat="server">Añadir</label>
                                         <asp:Button runat="server" ID="BTN_AñadirTag" Text="+" CssClass="form-control btn-success" OnClick="BTN_AñadirTag_Click" ValidationGroup="Tags" />
                                         <asp:Button runat="server" ID="BTN_BorrarTag" Text="-" CssClass="form-control btn-danger" OnClick="BTN_BorrarTag_Click" />
                                     </div>
@@ -260,7 +260,7 @@
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                         </div>
-                        <h4 class="panel-title">Alerta</h4>
+                        <h4 class="panel-title" id="alr" runat="server">Alerta</h4>
                     </div>
                     <div class="panel-body">
                         <div class="col-md-12">

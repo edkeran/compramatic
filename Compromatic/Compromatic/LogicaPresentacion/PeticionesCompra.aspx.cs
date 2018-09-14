@@ -28,42 +28,6 @@ public partial class Presentacion_PeticionesCompra : System.Web.UI.Page
         }
     }
 
-    /**
-     *PAGE LOAD ORIGINAL
-     * 
-     *  DAOEmpresa DAO_Empresa = new DAOEmpresa();
-        if (!IsPostBack)
-        {
-
-            if (Session["Sesion"] == null)
-            {
-                Response.Redirect("LoginUsr.aspx");
-            }
-            DataTable Empresa = (DataTable)Session["Sesion"];
-            if (Empresa.Rows[0]["idTipo"].ToString() != "2")
-            {
-                Response.Redirect("LoginUsr.aspx");
-            }
-            if (int.Parse(Empresa.Rows[0]["estadoEmpresa"].ToString()) != 1)
-            {
-                Response.Redirect("PerfilEmpresa.aspx");
-            }
-
-            DataTable Productos = DAO_Empresa.PeticionesCompra(int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()));
-            RP_Peticiones.DataSource = Productos;
-            RP_Peticiones.DataBind();
-            Productos = DAO_Empresa.PeticionesEnProceso(int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()));
-            RP_EnProceso.DataSource = Productos;
-            RP_EnProceso.DataBind();
-            Productos = DAO_Empresa.PeticionesFinalizadas(int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()));
-            RP_VentasRealizadas.DataSource = Productos;
-            RP_VentasRealizadas.DataBind();
-            Productos = DAO_Empresa.PeticionesHechas(int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()));
-            RP_Finalizadas.DataSource = Productos;
-            RP_Finalizadas.DataBind();
-        }
-     **/
-
     protected void RP_Peticiones_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         L_PeticionesCompra logica = new L_PeticionesCompra();
@@ -74,29 +38,6 @@ public partial class Presentacion_PeticionesCompra : System.Web.UI.Page
         Page.ClientScript.RegisterStartupScript(this.GetType(), "str", texto,true);
 
     }
-    /**
-     * int resultado;
-        DataTable Empresa = (DataTable)Session["Sesion"];
-        DAOEmpresa DAO_Empresa= new DAOEmpresa();
-        if(e.CommandName.Equals("Aceptar"))
-        {
-           resultado= DAO_Empresa.AprobarVenta(int.Parse(e.CommandArgument.ToString()),Empresa.Rows[0]["nomEmpresa"].ToString());
-            if(resultado==1)
-            {
-                Modal("Inventario Insuficiente");
-            }else
-            {
-                 Modal("Transaccion Exitosa");
-                 Response.Redirect(Request.Url.AbsoluteUri);
-            }
-        }
-        if (e.CommandName.Equals("Declinar"))
-        {
-            DAO_Empresa.RechazarVenta(int.Parse(e.CommandArgument.ToString()),Empresa.Rows[0]["nomEmpresa"].ToString());
-            Response.Redirect(Request.Url.AbsoluteUri);
-        }
-     **/
-
 
     public void Modal(String mensaje)
     {
@@ -114,15 +55,6 @@ public partial class Presentacion_PeticionesCompra : System.Web.UI.Page
         string res= logi.enProceso_ItemCommand(e.CommandName, e.CommandArgument.ToString(), Empresa);
         Page.ClientScript.RegisterStartupScript(this.GetType(), "stg", "redireccionar('" + res + "');", true);
     }
-    /**
-     * 
-     * if (e.CommandName.Equals("Cancelar"))
-        {
-            DAOEmpresa DAO_Empresa = new DAOEmpresa();
-            DAO_Empresa.RechazarVenta(int.Parse(e.CommandArgument.ToString()),Empresa.Rows[0]["nomEmpresa"].ToString());
-            Response.Redirect(Request.Url.AbsoluteUri);
-        }
-     * */
 
     protected void RP_VentasRealizadas_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
@@ -141,8 +73,6 @@ public partial class Presentacion_PeticionesCompra : System.Web.UI.Page
         //MIRAR VERSION ANTERIOR
         L_PeticionesCompra logi = new L_PeticionesCompra();
         logi.btn_Calificar(Empresa,TB_Calificacion.Text,TB_Comentario.Text,LB_Usuario.Text,LB_Venta.Text);
-        //DAOEmpresa DAO_Empresa = new DAOEmpresa();
-       
         Response.Redirect(Request.Url.AbsoluteUri);
     }
 }

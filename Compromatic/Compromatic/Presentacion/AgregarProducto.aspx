@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Compramatic | Agregar Producto</title>
+    <title id="title" runat="server">Compramatic | Agregar Producto</title>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link href="../App_Themes/Assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
     <link href="../App_Themes/Assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -45,32 +45,32 @@
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                     </div>
-                    <h4 class="panel-title">Agregar Productos</h4>
+                    <h4 class="panel-title" id="add_pro" runat="server">Agregar Productos</h4>
                 </div>
                 <div class="panel-body">
                     <form id="form1" name="form-wizard" data-parsley-validate="true" runat="server">
                         <div id="wizard">
                             <ol>
-                                <li>Informacion del Producto
-										    <small>Nombre y descripcion el cual verá el cliente a la hora de buscar el producto</small>
+                                <li id="inf_prod1" runat="server">Informacion del Producto
+										    <small id="desc1">Nombre y descripcion el cual verá el cliente a la hora de buscar el producto</small>
                                 </li>
-                                <li>Inventario del Producto
-										    <small>Informacion del stock, cantidad disponible a la venta y precio unitario</small>
+                                <li id="inf_prod2" runat="server">Inventario del Producto
+										    <small id="desc2">Informacion del stock, cantidad disponible a la venta y precio unitario</small>
                                 </li>
-                                <li>Terminado
-										    <small>Proceda a ver sus productos</small>
+                                <li id="end_pro" runat="server">Terminado
+										    <small id="desc3">Proceda a ver sus productos</small>
                                 </li>
                             </ol>
                             <!-- begin wizard step-1 -->
                             <div class="wizard-step-1">
                                 <fieldset>
-                                    <legend class="pull-left width-full">Identification</legend>
+                                    <legend class="pull-left width-full" id="ident" runat="server">Identification</legend>
                                     <!-- begin row -->
                                     <div class="row">
                                         <!-- begin col-5 -->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Nombre</label>
+                                                <label id="nom" runat="server">Nombre</label>
                                                 <asp:TextBox runat="server" MaxLength="45" placeholder="Nombre" CssClass="form-control" ID="TB_Nombre" data-parsley-group="wizard-step-1" required="required" data-parsley-pattern="/^[[a-zñáéíóúA-ZÑÁÉÍÓÚ\_\-\.\s\xF1\xD1]+$/"></asp:TextBox>
                                             </div>
                                         </div>
@@ -78,7 +78,7 @@
                                         <!-- begin col-6 -->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Descripcion (Maximo 150)</label>
+                                                <label id="desc" runat="server">Descripcion (Maximo 150)</label>
                                                 <asp:TextBox runat="server" ID="TB_Descripcion" TextMode="MultiLine" placeholder="Descripcion" CssClass="form-control" Rows="4" data-parsley-maxlength="150" data-parsley-group="wizard-step-1" required="required" data-parsley-pattern="/^[[a-zñáéíóúA-ZÑÁÉÍÓÚ\_\-\.\s\xF1\xD1]+$/"></asp:TextBox>
                                             </div>
                                         </div>
@@ -92,13 +92,13 @@
                             <!-- begin wizard step-2 -->
                             <div class="wizard-step-2">
                                 <fieldset>
-                                    <legend class="pull-left width-full">Inventario</legend>
+                                    <legend class="pull-left width-full" id="inven" runat="server">Inventario</legend>
                                     <!-- begin row -->
                                     <div class="row">
                                         <!-- begin col-4 -->
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Cantidad</label>
+                                                <label id="cant" runat="server">Cantidad</label>
                                                 <asp:TextBox runat="server" data-parsley-group="wizard-step-2" required="required" max="1000000" data-parsley-type="number" min="1" CssClass="form-control" ID="TB_Cantidad" TextMode="Number"></asp:TextBox>
                                             </div>
                                         </div>
@@ -106,7 +106,7 @@
                                         <!-- begin col-4 -->
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Precio</label>
+                                                <label id="pric" runat="server">Precio</label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon">$</span>
                                                     <asp:TextBox runat="server" CssClass="form-control" data-parsley-group="wizard-step-2" min="50" max="99999950" required="required" ID="TB_Precio" data-parsley-type="number" TextMode="Number"></asp:TextBox>
@@ -118,7 +118,7 @@
                                         <!-- begin col-4 -->
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Categoria</label>
+                                                <label id="cat" runat="server">Categoria</label>
                                                 <asp:DropDownList runat="server" ID="DDL_Categoria" CssClass="form-control" AutoPostBack="false" DataSourceID="OBSCategoria" DataTextField="nomCategoria" DataValueField="idCategoria"></asp:DropDownList>
                                                 <asp:ObjectDataSource runat="server" ID="OBSCategoria" SelectMethod="MostrarCategoria" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
                                             </div>
@@ -132,8 +132,8 @@
                             <!-- begin wizard step-3 -->
                             <div>
                                 <div class="jumbotron m-b-0 text-center">
-                                    <h1>Creacion Exitosa</h1>
-                                    <p>La Creacion del producto ha sido exitosa, ahora proceda a agregar las fotos con las cuales su producto será mostrado al publico. </p>
+                                    <h1 id="exito" runat="server">Creacion Exitosa</h1>
+                                    <p id="desc_exit" runat="server">La Creacion del producto ha sido exitosa, ahora proceda a agregar las fotos con las cuales su producto será mostrado al publico. </p>
                                     <div runat="server" id="resultado"></div>
                                     <p>
                                         <asp:Button runat="server" ID="BTN_Guardar" Text="Guardar Producto" CssClass="btn btn-primary btn-lg" OnClick="AñadirProducto" />

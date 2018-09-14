@@ -10,16 +10,16 @@
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                     </div>
-                    <h4 class="panel-title">Últimos 10 productos vistos por el cliente</h4>
+                    <h4 class="panel-title" runat="server" id="title_panel">Últimos 10 productos vistos por el cliente</h4>
                 </div>
                 <div class="panel-body">
                     <table id="data-table" class="table table-striped table-bordered data-table" width="100%">
                         <thead>
                             <tr>
-                                <th>Fecha</th>
-                                <th>Nombre Producto</th>
-                                <th>Nombre Empresa</th>
-                                <th>Ver Producto</th>
+                                <th runat="server" id="dat">Fecha</th>
+                                <th runat="server" id="nom_pro">Nombre Producto</th>
+                                <th runat="server" id="nom_emp">Nombre Empresa</th>
+                                <th runat="server" id="ver_prod">Ver Producto</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,7 +38,7 @@
                                          <td>
                                             <div class="btn-group">
                                                 <div class="m-b-5">
-                                                    <asp:Button runat="server" ID="BTN_VerProducto" Text="Ver producto" CssClass="btn btn-primary btn-default " CommandName="Ver" CommandArgument='<%# Eval("[idProducto]") %>'/>
+                                                    <asp:Button runat="server" ID="BTN_VerProducto" Text='<%# Eval("[BTN_idioma]") %>' CssClass="btn btn-primary btn-default " CommandName="Ver" CommandArgument='<%# Eval("[idProducto]") %>'/>
                                                 </div>
                                             </div>
                                         </td>

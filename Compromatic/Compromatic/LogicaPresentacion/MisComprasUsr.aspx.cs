@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -31,6 +32,51 @@ public partial class Presentacion_MisComprasUsr : System.Web.UI.Page
             RP_ComprasHechas.DataSource = res.Hechas;
             RP_ComprasHechas.DataBind();
 
+            //Seteando Idiomas
+            L_Idioma idiot = new L_Idioma();
+            //Object sesidioma = Session["idiomases"];
+            Object sesidioma = 2;
+            Int32 formulario = 5;
+            Int32 idiom = Convert.ToInt32(sesidioma);
+            Hashtable compIdioma = new Hashtable();
+            idiot.mostraridioma(formulario, idiom, compIdioma);
+            try
+            {
+                this.ti_pet.InnerText= compIdioma["ti_pet"].ToString();
+                this.pet_acept.InnerText= compIdioma["pet_acept"].ToString();
+                this.N_ven.InnerText = compIdioma["N_ven"].ToString();
+                this.fech.InnerText = compIdioma["fech"].ToString();
+                this.quantity.InnerText = compIdioma["quantity"].ToString();
+                this.value.InnerText = compIdioma["value"].ToString();
+                this.emp_nom.InnerText = compIdioma["emp_nom"].ToString();
+                this.nom_product.InnerText = compIdioma["nom_product"].ToString();
+                this.num_ven.InnerText = compIdioma["num_ven"].ToString();
+                this.fecha.InnerText = compIdioma["fecha"].ToString();
+                this.cant.InnerText = compIdioma["cant"].ToString();
+                this.val.InnerText = compIdioma["val"].ToString();
+                this.emp_nomb.InnerText = compIdioma["emp_nomb"].ToString();
+                this.nom_produ.InnerText = compIdioma["nom_produ"].ToString();
+                this.conf_recib.InnerText = compIdioma["conf_recib"].ToString();
+                this.rech_pet.InnerText = compIdioma["rech_pet"].ToString();
+                this.nume_venta.InnerText = compIdioma["nume_venta"].ToString();
+                this.date.InnerText = compIdioma["date"].ToString();
+                this.cantidad.InnerText = compIdioma["cantidad"].ToString();
+                this.valor.InnerText = compIdioma["valor"].ToString();
+                this.nom_empre.InnerText = compIdioma["nom_empre"].ToString();
+                this.nom_prod.InnerText = compIdioma["nom_prod"].ToString();
+                this.comp_done.InnerText = compIdioma["comp_done"].ToString();
+                this.n_vnt.InnerText = compIdioma["n_vnt"].ToString();
+                this.pet_date.InnerText = compIdioma["pet_date"].ToString();
+                this.entre_date.InnerText = compIdioma["entre_date"].ToString();
+                this.quan.InnerText = compIdioma["quan"].ToString();
+                this.valu.InnerText = compIdioma["valu"].ToString();
+                this.nombe_producto.InnerText = compIdioma["nombe_producto"].ToString();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
             String texto = "redireccionar('" + res.Redireccion + "')";
             Page.ClientScript.RegisterStartupScript(this.GetType(), "scripts", texto, true);
         } catch (Exception ex)
@@ -38,43 +84,6 @@ public partial class Presentacion_MisComprasUsr : System.Web.UI.Page
             //No Hago Nada
         }
     }
-
-    /**
-     * Codigo Orginal Page Load
-     * 
-     *  if (!IsPostBack)
-        {
-            if (Session["Sesion"] == null)
-            {
-                Response.Redirect("LoginUSr.aspx");
-            }
-            DataTable datos = (DataTable)Session["Sesion"];
-            if (int.Parse(datos.Rows[0]["idTipo"].ToString()) != 3)
-            {
-                Response.Redirect("LoginUsr.aspx");
-            }
-            DataTable datouser = (DataTable)Session["Sesion"];
-            EUsuario cliente = new EUsuario();
-            cliente.IdUsr = int.Parse(datouser.Rows[0]["idUsuario"].ToString());
-
-
-            DataTable peticiones = user.HistorialCompras(cliente, 1);
-            RP_Peticiones.DataSource = peticiones;
-            RP_Peticiones.DataBind();
-
-            DataTable aceptadas = user.HistorialCompras(cliente, 2);
-            RP_PeticionesAceptadas.DataSource = aceptadas;
-            RP_PeticionesAceptadas.DataBind();
-
-            DataTable rechazadas = user.HistorialCompras(cliente, 3);
-            RP_PeticionesRechazadas.DataSource = rechazadas;
-            RP_PeticionesRechazadas.DataBind();
-
-            DataTable hechas = user.HistorialCompras(cliente, 4);
-            RP_ComprasHechas.DataSource = hechas;
-            RP_ComprasHechas.DataBind();
-        }
-     **/
 
     protected void BTN_Historial_Click(object sender, EventArgs e)
     {

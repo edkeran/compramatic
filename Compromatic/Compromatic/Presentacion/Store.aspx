@@ -11,7 +11,7 @@
             <!-- END page-header-cover -->
             <!-- BEGIN container -->
         <div class="container">
-            <h1 class="page-header">Productos</h1>
+            <h1 class="page-header" id="prod" runat="server">Productos</h1>
         </div>
             <!-- END container -->
     </div>
@@ -39,7 +39,7 @@
                                                 </h4>
                                                 <p class="item-desc"><%# Eval("[_desproducto]") %></p>
                                                 <div class="item-price">$ <%# Eval("[_precioproducto]") %></div>
-                                                <asp:Button ID="BTN_VerPdto" runat="server" CssClass="btn btn-default" CommandName="Ver" CommandArgument='<%# Eval("[_idproducto]") %>' Text="Ver Producto" OnClick="load_product" />
+                                                <asp:Button ID="BTN_VerPdto" runat="server" CssClass="btn btn-default" CommandName="Ver" CommandArgument='<%# Eval("[_idproducto]") %>' Text='<%# Eval("[btn_comp]") %>' OnClick="load_product" />
                                             </div>
                                         </div>
                                     </ItemTemplate>
@@ -47,11 +47,7 @@
                            </div>
                         </div>
                     </div>
-             
             </div>
     </div>
-
-
-
 </asp:Content>
 

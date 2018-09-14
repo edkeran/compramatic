@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Data;
 using System.Linq;
 using System.Web;
@@ -12,7 +12,6 @@ public partial class Presentacion_PerfilEmpresa : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        this.perfil.InnerText = "Profile";
         try
         {
             Response.Cache.SetCacheability(HttpCacheability.ServerAndNoCache);
@@ -25,6 +24,46 @@ public partial class Presentacion_PerfilEmpresa : System.Web.UI.Page
             TB_Telefono.Text = emp.Numero;
             TB_Correo.Text = emp.Correo;
             TB_Direccion.Text = emp.Direccion;
+
+            //Seteando Idiomas
+            L_Idioma idiot = new L_Idioma();
+            //Object sesidioma = Session["idiomases"];
+            Object sesidioma = 1;
+            Int32 formulario = 10;
+            Int32 idiom = Convert.ToInt32(sesidioma);
+            Hashtable compIdioma = new Hashtable();
+            idiot.mostraridioma(formulario, idiom, compIdioma);
+            try
+            {
+                this.perfil.InnerText= compIdioma["perfil"].ToString();
+                this.info_empr.InnerText = compIdioma["info_empr"].ToString();
+                this.inf_emp.InnerText= compIdioma["inf_emp"].ToString();
+                this.LB_nombre.Text= compIdioma["LB_nombre"].ToString();
+                this.contact.InnerText= compIdioma["contact"].ToString();
+                this.LB_Telef.Text= compIdioma["LB_Telef"].ToString();
+                this.LB_correo.Text= compIdioma["LB_correo"].ToString();
+                this.LB_Dire.Text= compIdioma["LB_Dire"].ToString();
+                this.photo.InnerText = compIdioma["photo"].ToString();
+                this.profile_pic.InnerText= compIdioma["profile_pic"].ToString();
+                this.load_pictu.InnerText= compIdioma["load_pictu"].ToString();
+                this.security.InnerText= compIdioma["security"].ToString();
+                this.change_pass.InnerText = compIdioma["change_pass"].ToString();
+                this.LB_PASS.Text= compIdioma["LB_PASS"].ToString();
+                this.LB_New_Pass.Text= compIdioma["LB_New_Pass"].ToString();
+                this.LB_rep_pass.Text = compIdioma["LB_rep_pass"].ToString();
+                this.files.InnerText= compIdioma["files"].ToString();
+                this.note.InnerText= compIdioma["note"].ToString();
+                this.onlyPDF.InnerText= compIdioma["onlyPDF"].ToString();
+                this.docs.InnerText = compIdioma["docs"].ToString();
+                this.BTN_Modif.Text = compIdioma["BTN_Modif"].ToString();
+                this.img_btn.InnerHtml= "<i class='fa fa-camera'></i>"+ compIdioma["img_btn"].ToString() +"<span class='caret'></span>";
+                this.BTN_CambiarFoto.Text= compIdioma["BTN_CambiarFoto"].ToString();
+                this.btn_change_pass.Text= compIdioma["btn_change_pass"].ToString();
+                this.BTN_SubirArchivo.Text= compIdioma["BTN_SubirArchivo"].ToString();
+            }
+            catch (Exception ex)
+            { }
+
             String texto = "redireccionar('" + emp.Redireccion + "');";
             Page.ClientScript.RegisterStartupScript(this.GetType(), "scrpt", texto, true);
         }

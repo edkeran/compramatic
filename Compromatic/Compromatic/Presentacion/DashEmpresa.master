@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="utf-8" />
-    <title>Compramatic | Empresa</title>
+    <title runat="server" id="title">Compramatic | Empresa</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -97,46 +97,46 @@
                     <!-- end sidebar user -->
                     <!-- begin sidebar nav -->
                     <ul class="nav">
-                        <li class="nav-header">Menu</li>
+                        <li class="nav-header" id="menu" runat="server">Menu</li>
                         <li class="has-sub">
                             <a href="PerfilEmpresa.aspx">
                                 <i class="fa fa-user"></i>
-                                <span>Ver Perfil</span>
+                                <span id="ver_perf" runat="server">Ver Perfil</span>
                             </a>
                         </li>
                         <li class="has-sub">
                             <a href="javascript:;">
                                 <b class="caret pull-right"></b>
                                 <i class="fa fa-suitcase"></i>
-                                <span>Productos</span>
+                                <span id="productos" runat="server">Productos</span>
                             </a>
                             <ul class="sub-menu">
-                                <li><a href="AgregarProducto.aspx">Agregar Producto</a></li>
-                                <li><a href="AdministrarProducto.aspx">Administrar Productos</a></li>
+                                <li><a href="AgregarProducto.aspx" id="add_prod" runat="server">Agregar Producto</a></li>
+                                <li><a href="AdministrarProducto.aspx" id="adm_pro" runat="server">Administrar Productos</a></li>
                             </ul>
                         </li>
                         <li class="has-sub">
                             <a href="Inventario.aspx">
                                 <i class="fa fa-barcode"></i>
-                                <span>Bajo Inventario</span>
+                                <span id="low_inv" runat="server">Bajo Inventario</span>
                             </a>
                         </li>
                         <li class="has-sub">
                             <a href="PeticionesCompra.aspx">
                                 <i class="fa fa-flag-o"></i>
-                                <span>Peticiones</span>
+                                <span id="pet" runat="server">Peticiones</span>
                             </a>
                         </li>
                         <li class="has-sub">
                             <a href="AumentarMembresia.aspx">
                                 <i class="fa fa-money"></i>
-                                <span>Membresia</span>
+                                <span id="mem" runat="server">Membresia</span>
                             </a>
                         </li>
                         <li class="has-sub">
                             <a href="HistoricoCalificaciones.aspx">
                                 <i class="fa fa-binoculars"></i>
-                                <span>Calificaciones</span>
+                                <span id="cali" runat="server">Calificaciones</span>
                             </a>
                         </li>
                         <!-- begin sidebar minify button -->
