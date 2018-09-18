@@ -21,8 +21,7 @@ public partial class Presentacion_ModificarPerfilUsr : System.Web.UI.Page
         LB_Direccion.Text = user.DirUsr;
         //Seteando Idiomas
         L_Idioma idiot = new L_Idioma();
-        //Object sesidioma = Session["idiomases"];
-        Object sesidioma = 1;
+        Object sesidioma = Session["idiomases"];
         Int32 formulario = 3;
         Int32 idiom = Convert.ToInt32(sesidioma);
         Hashtable compIdioma = new Hashtable();

@@ -13,8 +13,7 @@ public partial class Presentacion_TopDiezUsr : System.Web.UI.Page
         {
             //Seteando Idiomas
             L_Idioma idiot = new L_Idioma();
-            //Object sesidioma = Session["idiomases"];
-            Object sesidioma = 1;
+            Object sesidioma = Session["idiomases"];
             Int32 formulario = 6;
             Int32 idiom = Convert.ToInt32(sesidioma);
             Hashtable compIdioma = new Hashtable();

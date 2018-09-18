@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <!-- begin page-header -->
-    <h1 class="page-header">Membresia</h1>
+    <h1 class="page-header" id="H1_Mem" runat="server">Membresia</h1>
     <!-- end page-header -->
 
     <div class="row">
@@ -14,20 +14,20 @@
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                     </div>
-                    <h4 class="panel-title">Plan Actual</h4>
+                    <h4 class="panel-title" id="H4_Pln_Act" runat="server">Plan Actual</h4>
                 </div>
                 <div class="panel-body">
                     <div class="col-md-12 form-group">
                         <div class="col-md-4">
-                            <label>Fecha Inicial</label>
+                            <label id="LB_Act_Date" runat="server">Fecha Inicial</label>
                             <asp:TextBox runat="server" CssClass="form-control" ID="TB_Inicial" ReadOnly="true"></asp:TextBox>
                         </div>
                         <div class="col-md-4">
-                            <label>Fecha Final</label>
+                            <label runat="server" id="LB_End_Date">Fecha Final</label>
                             <asp:TextBox runat="server" CssClass="form-control" ID="TB_Final" ReadOnly="true"></asp:TextBox>
                         </div>
                         <div class="col-md-4">
-                            <label>Estado</label>
+                            <label runat="server" id="LB_Esta">Estado</label>
                             <asp:TextBox runat="server" CssClass="form-control" ID="TB_Plan" ReadOnly="true"></asp:TextBox>
                         </div>
                     </div>
@@ -44,25 +44,25 @@
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                     </div>
-                    <h4 class="panel-title">Aumentar Membresia</h4>
+                    <h4 class="panel-title" id="H4_Aum_Mem" runat="server">Aumentar Membresia</h4>
                 </div>
                 <div class="panel-body">
                     <div class="col-md-12 form-group">
                         <div class="col-md-3">
-                            <label>Tipos</label>
+                            <label id="LB_Tip" runat="server">Tipos</label>
                             <asp:DropDownList runat="server" ID="DDL_Memebresia" CssClass="form-control" AutoPostBack="true" DataSourceID="ODS_Membresia" DataTextField="nomMembresia" DataValueField="idTipo_membresia" OnSelectedIndexChanged="DDL_Memebresia_SelectedIndexChanged"></asp:DropDownList>
                             <asp:ObjectDataSource runat="server" ID="ODS_Membresia" SelectMethod="MostrarTipos" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
                         </div>
                         <div class="col-md-3">
-                            <label>Nuevo Inicio</label>
+                            <label runat="server" id="LB_New_In">Nuevo Inicio</label>
                             <asp:TextBox runat="server" CssClass="form-control" ID="TB_FechaInicio" ReadOnly="true"></asp:TextBox>
                         </div>
                         <div class="col-md-3">
-                            <label>Nuevo Final</label>
+                            <label id="LB_New_En" runat="server">Nuevo Final</label>
                             <asp:TextBox runat="server" CssClass="form-control" ID="TB_FechaFinal" ReadOnly="true"></asp:TextBox>
                         </div>
                         <div class="col-md-3">
-                            <label>Precio</label>
+                            <label id="price" runat="server">Precio</label>
                             <asp:TextBox runat="server" CssClass="form-control" ID="TB_Precio" ReadOnly="true"></asp:TextBox>
                         </div>
                     </div>

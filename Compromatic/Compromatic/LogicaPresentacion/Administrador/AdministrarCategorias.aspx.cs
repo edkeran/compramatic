@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Data;
 using System.Linq;
 using System.Web;
@@ -15,33 +16,41 @@ public partial class Presentacion_AdministrarCategorias : System.Web.UI.Page
         U_AuxQuejAdm res = log.pageLoad(Session["Sesion"], Session["sesion"], GridView1.Rows.Count);
         GridView1.UseAccessibleHeader = true;
         GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        Object sesidioma = Session["idiomases"];
+        Int32 formulario = 27;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            this.adm.InnerText = compIdioma["adm"].ToString();
+            this.cat.InnerText= compIdioma["cat"].ToString();
+            this.cat2.InnerHtml= compIdioma["cat"].ToString()+" <small id='comp_our' runat='server'>" + compIdioma["comp_our"].ToString() + "</small>";
+            this.all_cat.InnerText= compIdioma["all_cat"].ToString();
+            this.reg_cat.InnerText= compIdioma["reg_cat"].ToString();
+            this.Button2.Text = compIdioma["Button2"].ToString();
+            this.Button1.Text = compIdioma["Button1"].ToString();
+            this.vent_cat.InnerText = compIdioma["vent_cat"].ToString();
+            this.Label1.Text= compIdioma["Label1"].ToString();
+            this.NombreCategoria.Attributes.Remove("placeholder");
+            this.NombreCategoria.Attributes.Add("placeholder", compIdioma["Nomb_Cat"].ToString());
+            this.GridView2.Columns[1].HeaderText = compIdioma["GV2_Nom"].ToString();
+            this.GridView1.Columns[0].HeaderText = compIdioma["GV2_Nom"].ToString();
+            this.GridView1.Columns[1].HeaderText = compIdioma["GV1_N_EMP"].ToString();
+            this.GridView1.Columns[2].HeaderText = compIdioma["GV1_N_VEN"].ToString();
+            this.GridView1.Columns[3].HeaderText = compIdioma["GV1_T_VEN"].ToString();
+            //this.bloq_perfi.InnerText = compIdioma["bloq_perfi"].ToString();
+        }
+        catch (Exception ex)
+        {
+
+        }
         Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redireccionar('" + res.Redir + "');", true);
     }
-    /**
-     * 
-     *  if (Session["Sesion"] == null)
-        {
-            Response.Redirect("LoginUsr.aspx");
-        }
-        else
-        {
-            if (int.Parse(((DataTable)(Session["sesion"])).Rows[0]["idTipo"].ToString()) == 1)
-            {
-                if (GridView1.Rows.Count > 0)
-                {
-                    GridView1.UseAccessibleHeader = true;
-                    GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
-                }
-                int num = int.Parse(((DataTable)(Session["sesion"])).Rows[0]["idTipo"].ToString());
-
-            }
-
-            else
-            {
-                Response.Redirect("LoginUsr.aspx");
-            }
-        }
-     **/
+  
 
     protected void Button1_Click(object sender, EventArgs e)
     {
@@ -55,16 +64,7 @@ public partial class Presentacion_AdministrarCategorias : System.Web.UI.Page
         catch (Exception ey) {}
     }
 
-      /**if (IsValid)
-        {
-            String categoria;
-            categoria = NombreCategoria.Text.ToString();
-            DAOadministrador datos = new DAOadministrador();
-            datos.registrarCategoria(categoria,((DataTable)(Session["sesion"])).Rows[0]["nomUsuario"].ToString());
-            GridView2.DataBind();
-            NombreCategoria.Text = null;
-        }
-     **/
+     
 
     protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
     {
@@ -72,31 +72,14 @@ public partial class Presentacion_AdministrarCategorias : System.Web.UI.Page
         args.IsValid=log.ServerValidate(NombreCategoria.Text.ToString());
     }
 
-    /**
-     *  String validacion;
-        validacion = NombreCategoria.Text.ToString();
-        if (validacion.Length <= 20)
-            args.IsValid = true;
-        else
-            args.IsValid = false;     
-     **/
-
+   
     protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
     {
         L_AdministrarCategorias logi = new L_AdministrarCategorias();
         args.IsValid=logi.ServerValidate2(NombreCategoria.Text.ToString());
     }
 
-    /**
-     * String validacion;
-        validacion = NombreCategoria.Text.ToString();
-        DAOadministrador datos = new DAOadministrador();
-        DataTable resul = datos.verificarCategoria(validacion);
-        if (resul.Rows.Count > 0)
-            args.IsValid = false;
-        else
-            args.IsValid = true; 
-     **/
+   
 
     protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -126,18 +109,5 @@ public partial class Presentacion_AdministrarCategorias : System.Web.UI.Page
         }
         catch (Exception eg) { }
     }
-    /**
-     *  if (IsValid)
-        {
-            String categoria;
-            categoria = NombreCategoria.Text.ToString();
-            DAOadministrador datos = new DAOadministrador();
-            datos.ModificarCategorias(categoria, Label5.Text.ToString(), ((DataTable)(Session["sesion"])).Rows[0]["nomUsuario"].ToString());
-            Button2.Visible = false;
-            Button1.Visible = true;
-            NombreCategoria.Text = null;
-            GridView2.DataBind();
-        }
-     **/
 
 }

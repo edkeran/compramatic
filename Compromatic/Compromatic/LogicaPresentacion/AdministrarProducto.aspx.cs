@@ -12,10 +12,10 @@ using Utilitarios;
 
 public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
 {
-    //Object sesidioma = Session["idiomases"];
-    Object sesidioma = 1;
+   
     protected void Page_Load(object sender, EventArgs e)
     {
+        Object sesidioma = Session["idiomases"];
         try
         {
             L_AdministrarProducto logica = new L_AdministrarProducto();
@@ -207,6 +207,7 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
 
     protected void RptUno_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
+        Object sesidioma = Session["idiomases"];
         Button btn=(Button)e.Item.FindControl("BTN_delete_img");
         //Seteando Idiomas
         L_Idioma idiot = new L_Idioma();
@@ -226,6 +227,7 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
 
     protected void RptDos_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
+        Object sesidioma = Session["idiomases"];
         Button btn = (Button)e.Item.FindControl("BTN_select");
         Button btn1 = (Button)e.Item.FindControl("BTN_del");
         //Seteando Idiomas

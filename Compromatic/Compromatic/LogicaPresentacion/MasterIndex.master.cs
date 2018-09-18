@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Web.UI;
 using Logica;
 using Utilitarios;
@@ -12,21 +13,23 @@ public partial class Presentacion_MasterIndex : System.Web.UI.MasterPage
         DropDownPerfilUsr.Visible = re.DLL_perfilUsr1;
         IMG_PerfilHeatherNR.ImageUrl = re.RutaFoto;
         LB_NombreHeatherNR.Text = re.NombreHeather;
-    }
-    /**
-     *if (Session["Sesion"] == null)
-            {
-                DropDownPerfilUsr.Visible = false;
-            }
-            else
-            {
-                DataTable user = (DataTable)Session["Sesion"];
-                String rutaFoto = user.Rows[0]["rutaArchivo"].ToString() + user.Rows[0]["nomArchivo"].ToString();
 
-                IMG_PerfilHeatherNR.ImageUrl = rutaFoto;
-                LB_NombreHeatherNR.Text = user.Rows[0]["nomUsuario"].ToString();
-            } 
-     **/
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        Object sesidioma = Session["idiomases"];
+        Int32 formulario = 18;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            this.prof.InnerHtml= compIdioma["prof"].ToString()+ "  <i class='fa fa-user'></i>";
+            this.edit_info.InnerHtml = compIdioma["edit_info"].ToString() + "    <i class='fa fa-edit'></i>";
+        }
+        catch (Exception ex)
+        { }
+    }
+   
     protected void TB_Buscar_Click(object sender, EventArgs e)
     {
         //DAOHome datos = new DAOHome();

@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Utilitarios;
 using Logica;
+using System.Collections;
 
 public partial class Presentacion_PrincipalAdministrador : System.Web.UI.Page
 {
@@ -19,37 +16,33 @@ public partial class Presentacion_PrincipalAdministrador : System.Web.UI.Page
         L_Empresas.Text = res.L_Empresas1;
         L_totalVentas.Text = res.L_totalVentas1;
         L_Pqr.Text = res.L_Pqr1;
+
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        Object sesidioma = Session["idiomases"];
+        Int32 formulario = 26;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            this.welco.InnerText = compIdioma["welco"].ToString();
+            this.main.InnerHtml = compIdioma["main"].ToString() + " <small id='comp' runat='server'>"+ compIdioma["comp"].ToString() + "</small>";
+            this.ven.InnerText = compIdioma["ven"].ToString();
+            this.ven_his.InnerText= compIdioma["ven_his"].ToString();
+            this.emp_reg.InnerText= compIdioma["emp_reg"].ToString();
+            this.act_emp.InnerText= compIdioma["act_emp"].ToString();
+            this.client_reg.InnerText= compIdioma["client_reg"].ToString();
+            this.usr_act.InnerText= compIdioma["usr_act"].ToString();
+            this.pqr_se.InnerText= compIdioma["pqr_se"].ToString();
+            this.L_texto.Text= compIdioma["L_texto"].ToString();
+
+            //this.bloq_perfi.InnerText = compIdioma["bloq_perfi"].ToString();
+        }
+        catch (Exception ex)
+        {
+
+        }
         Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redireccionar('" + res.Redireccion + "');", true);
     }
-
-    /**
-     *if (Session["Sesion"] == null)
-        {
-            Response.Redirect("LoginUsr.aspx");
-        }
-        else
-        {
-            if (int.Parse(((DataTable)(Session["sesion"])).Rows[0]["idTipo"].ToString()) == 1)
-            {
-                
-                int num = int.Parse(((DataTable)(Session["sesion"])).Rows[0]["idTipo"].ToString());
-                DAOadministrador user = new DAOadministrador();
-                DataTable totalcliente = user.MostrarTotalClientes();
-                DataTable TotalEmpresa = user.MostrarTotalEmpresas();
-                DataTable totalVentas = user.MostrarTotalVentas();
-                DataTable not = user.LlenarNotificacion();
-                DataTable notAcep = user.LlenarNotificacionAceptadas();
-                DataTable notRecha = user.LlenarNotificacionRechazada();
-                L_Usuarios.Text = totalcliente.Rows[0]["count"].ToString();
-                L_Empresas.Text = TotalEmpresa.Rows[0]["count"].ToString();
-                L_totalVentas.Text = totalVentas.Rows[0]["valor"].ToString();
-                L_Pqr.Text = ((int.Parse(notAcep.Rows[0]["Activas"].ToString())) + (int.Parse(notRecha.Rows[0]["Activas"].ToString())) + (int.Parse(not.Rows[0]["Activas"].ToString()))).ToString();
-            }
-
-            else
-            {
-                Response.Redirect("LoginUsr.aspx");
-            }
-        } 
-     **/
 }

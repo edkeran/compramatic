@@ -6,7 +6,7 @@
 
 <head runat="server">
     <meta charset="utf-8" />
-    <title>Compramatic | Login Usuario</title>
+    <title runat="server" id="title">Compramatic | Login Usuario</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -56,7 +56,7 @@
                 <div class="login-header">
                     <div class="brand">
                         COMPRAMATIC
-                        <small>Ingresa tus datos</small>
+                        <small runat="server" id="data">Ingresa tus datos</small>
                     </div>
                     <div class="icon">
                         <i class="fa fa-sign-in"></i>
@@ -88,23 +88,23 @@
 
                         </div>
                         <div class="m-t-20 m-b-40 p-b-40">
-                            Aún no eres miembro? Da click <a href="../Presentacion/RegistroUsuario.aspx" class="text-success">aquí</a> para registrarte.<br/>
-                             Haz Olvidado Tu Contraseña Da Click <a href="../Presentacion/forgotPass.aspx" class="text-success">aquí</a>.
+                            <asp:Label ID="LB_M1" runat="server" Text="Label">Aún no eres miembro? Da click </asp:Label> <a href="../Presentacion/RegistroUsuario.aspx" class="text-success" runat="server" id="here1">aquí</a> <asp:Label ID="LB_M2" runat="server" Text="Label">para registrarte.</asp:Label><br/>
+                            <asp:Label ID="LB_Contra" runat="server" Text="Haz Olvidado Tu Contraseña Da Click"></asp:Label> <a href="../Presentacion/forgotPass.aspx" class="text-success" runat="server" id="here2">aquí</a>.
                         </div>
                         <div class="m-t-20 m-b-40 p-b-40">
-                            Eres Empresa? Quieres vender tus productos? Da click <a href="../Presentacion/RegistroEmpresa.aspx" class="text-success">aquí</a> para registrarte.
+                            <asp:Label ID="LB_E1" runat="server" Text="Label">Eres Empresa? Quieres vender tus productos? Da click</asp:Label> <a href="../Presentacion/RegistroEmpresa.aspx" class="text-success" runat="server" id="here3">aquí</a> <asp:Label ID="LB_E2" runat="server">para registrarte.</asp:Label>
                         </div>
 
                         <hr />
                         <p class="text-center text-inverse">
-                            &copy; COMPRAMATIC All Right Reserved 2016
+                            &copy; COMPRAMATIC All Right Reserved 2018
                         </p>
                         <div class="modal fade" id="modal-dialog">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                        <h4 class="modal-title">RESPUESTA</h4>
+                                        <h4 class="modal-title" runat="server" id="respo">RESPUESTA</h4>
                                     </div>
                                     <div class="modal-body">
                                         <asp:Label runat="server" ID="MensajeModal"></asp:Label>

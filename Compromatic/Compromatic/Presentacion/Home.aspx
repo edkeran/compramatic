@@ -37,6 +37,13 @@
                         <td><a href="#"><i class="fa fa-dribbble f-s-14"></i></a></td>
                         <td><a href="#"><i class="fa fa-google-plus f-s-14"></i></a></td>
                </div>
+                <!--Div para el DLL de los Idiomas En La BD-->
+                <asp:DropDownList ID="DDL_Idioma" runat="server" DataSourceID="ObjectDataSource1" DataTextField="terminacion" DataValueField="id_idioma" OnSelectedIndexChanged="DDL_Idioma_SelectedIndexChanged" OnTextChanged="DDL_Idioma_SelectedIndexChanged"></asp:DropDownList>
+                <asp:Button ID="BTN_Idioma" runat="server" Text="Cambiar Idioma" OnClick="BTN_Idioma_Click" CssClass="btn btn-primary" />
+                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="obtener_Idiomas" TypeName="Logica.L_Home"></asp:ObjectDataSource>
+                <div>
+
+                </div>
                 <div class="copyright">
                     COMPRAMATIC &copy; 2018 A NEW SHOPPING WAY. All rights reserved.
                 </div>

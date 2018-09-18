@@ -10,8 +10,7 @@ public partial class Presentacion_RegistroEmpresa : System.Web.UI.Page
     {
         //Seteando Idiomas
         L_Idioma idiot = new L_Idioma();
-        //Object sesidioma = Session["idiomases"];
-        Object sesidioma = 1;
+        Object sesidioma = Session["idiomases"];
         Int32 formulario = 15;
         Int32 idiom = Convert.ToInt32(sesidioma);
         Hashtable compIdioma = new Hashtable();
@@ -31,9 +30,6 @@ public partial class Presentacion_RegistroEmpresa : System.Web.UI.Page
             this.BtnRegistrar.Text= compIdioma["BtnRegistrar"].ToString();
             this.div_alr.InnerHtml= compIdioma["div_alr"].ToString()+ "<a href='../Presentacion/LoginUsr.aspx' id='here'>"+ 
                 compIdioma["here"].ToString() + "</a>"+" "+compIdioma["end_div"].ToString();
-
-            //this.inv.InnerText = compIdioma["inv"].ToString();
-            //this.Produc.InnerText = compIdioma["Produc"].ToString();
         }
         catch (Exception ex)
         { }

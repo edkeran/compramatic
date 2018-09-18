@@ -66,12 +66,12 @@
 <body>
     <form id="form1" runat="server">
         <div class="auto-style1">
-            <h2>Bienvenido a la pagina de recuperacion de contraseña</h2>
+            <h2 id="lb_h2" runat="server">Bienvenido a la pagina de recuperacion de contraseña</h2>
             <br />
             <table class="auto-style2">
                 <tr>
                     <td class="auto-style4">
-                        <h4 class="auto-style2">Ingrese Su Correo Electronico</h4>
+                        <h4 class="auto-style2" id="email" runat="server">Ingrese Su Correo Electronico</h4>
                     </td>
                     <td>
                         <asp:TextBox ID="TB_Correo" runat="server" CssClass="auto-style3"></asp:TextBox>
@@ -81,7 +81,7 @@
             <br />
             <asp:Button ID="Button1" runat="server" Text="Aceptar" class="btn btn-primary btn-block btn-lg" OnClick="Button1_Click"/>
              <br />
-            <asp:HyperLink ID="HL_Index" runat="server" NavigateUrl="~/Presentacion/Home.aspx">Volver a la pagina principal</asp:HyperLink>
+            <asp:HyperLink ID="HL_Index" runat="server" NavigateUrl="~/Presentacion/Home.aspx"></asp:HyperLink>
         </div>
     </form>
 </body>

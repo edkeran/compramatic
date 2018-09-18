@@ -23,10 +23,10 @@ public partial class Presentacion_MasterDashBoardUsr : System.Web.UI.MasterPage
         //Redireccion Segun Sea El Caso
         String texto = "redireccionar('" + response.Response + "');";
         Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", texto);
+
         //Seteando Idiomas
         L_Idioma idiot = new L_Idioma();
-        //Object sesidioma = Session["idiomases"];
-        Object sesidioma = 2;
+        Object sesidioma = Session["idiomases"];
         Int32 formulario = 1;
         Int32 idiom = Convert.ToInt32(sesidioma);
         Hashtable compIdioma = new Hashtable();
@@ -47,8 +47,6 @@ public partial class Presentacion_MasterDashBoardUsr : System.Web.UI.MasterPage
         {
 
         }
-
-
     }
 
     protected void BtnSi_Click(object sender, EventArgs e)

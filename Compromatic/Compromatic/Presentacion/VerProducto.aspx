@@ -45,21 +45,21 @@
                      <!-- END product-info-header -->
                 <!-- BEGIN product-info-list -->
                 <ul class="product-info-list">
-                    <li>Información: 
+                    <li><asp:Label ID="LB_info" runat="server">Informacion:</asp:Label>
                         <asp:Label ID="LB_DescripcionProducto" runat="server"></asp:Label></li>
 
                 </ul>
                 <!-- END product-info-list -->
                 <ul class="product-info-list">
-                    <li>Cantidad disponible:
+                    <li><asp:Label ID="LB_Cant_Disp" runat="server">Cantidad Disponible:</asp:Label>
                     <asp:Label ID="LB_CantidadProducto" runat="server"></asp:Label></li>
                 </ul>
                 <ul class="product-info-list">
-                    <li>Empresa:
+                    <li><asp:Label ID="LB_Empresa" runat="server">Empresa:</asp:Label>
                     <asp:Label ID="LB_NombreEmpresa" runat="server"></asp:Label></li>
                 </ul>
                 <ul class="product-info-list">
-                    <li>Categoria:
+                    <li><asp:Label ID="LB_Cat" runat="server">Categoria:</asp:Label>
                     <asp:Label ID="LB_CategoriaProducto" runat="server"></asp:Label></li>
                 </ul>
                 <!-- BEGIN product-purchase-container -->
@@ -72,7 +72,7 @@
                          </ul>
                     </div>
                     <ul class="product-info-list">
-                        <li>Cantidad a Comprar:
+                        <li><asp:Label ID="LB_Cantidad_Comprar" runat="server">Cantidad A Comprar:</asp:Label>
                             <asp:TextBox ID="TB_CantidadVenta" runat="server" TextMode="Number" min="1" max="1000000"></asp:TextBox></li>
 
                     </ul>
@@ -93,7 +93,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">Advertencia</h4>
+                    <h4 class="modal-title" runat="server" id="advert">Advertencia</h4>
                 </div>
                 <div class="modal-body">
                     <asp:Label runat="server" ID="MensajeModal"></asp:Label>
@@ -110,7 +110,7 @@
         <div class="theme-panel">
             <a href="javascript:;" data-click="theme-panel-expand" class="theme-collapse-btn"><i class="fa fa-ban"></i></a>
             <div class="theme-panel-content">
-                <h5 class="m-t-0">Reportar producto</h5>
+                <h5 class="m-t-0" runat="server" id="rep_prod">Reportar producto</h5>
                 <div class="row m-t-10">
                     <div class="col-lg-12">
                         <div class="form-group">

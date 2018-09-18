@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data;
 using Logica;
 using Utilitarios;
+using System.Collections;
 
 public partial class Presentacion_MasterSuperAdministrador : System.Web.UI.MasterPage
 {
@@ -27,60 +24,53 @@ public partial class Presentacion_MasterSuperAdministrador : System.Web.UI.Maste
         FotoPerfil2.ImageUrl = response.FotoPerfil1;
         NombrePerfil.Text = response.NombrePerfil1;
         NombrePerfil2.Text = response.NombrePerfil21;
+
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        Object sesidioma = Session["idiomases"];
+        Int32 formulario = 25;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            this.title.Text = compIdioma["title"].ToString();
+            this.adm.InnerText = compIdioma["adm"].ToString();
+            this.solic.InnerText = compIdioma["solic"].ToString();
+            this.emp_acept.InnerText = compIdioma["emp_acept"].ToString();
+            this.emp_rech.InnerText = compIdioma["emp_rech"].ToString();
+            this.emp_pend.InnerText = compIdioma["emp_pend"].ToString();
+            this.rep_cry.InnerHtml = "<span></span>"+ compIdioma["rep_cry"].ToString();
+            this.Salir.Text= compIdioma["Salir"].ToString();
+            this.contr.InnerText= compIdioma["contr"].ToString();
+            this.navigate_menu.InnerText= compIdioma["navigate_menu"].ToString();
+            this.main.InnerText= compIdioma["main"].ToString();
+            this.quej.InnerText= compIdioma["quej"].ToString();
+            this.repor.InnerText= compIdioma["repor"].ToString();
+            this.usr.InnerHtml= compIdioma["usr"].ToString()+"<span class='label label-theme m-l-5'></span>";
+            this.cliet.InnerHtml = "<b class='caret pull-right'></b>"+ compIdioma["cliet"].ToString();
+            this.ver_all.InnerText = compIdioma["ver_all"].ToString();
+            this.empre.InnerHtml = "<b class='caret pull-right'></b>"+ compIdioma["empre"].ToString();
+            this.ver_all2.InnerText= compIdioma["ver_all"].ToString();
+            this.tot_vent.InnerText= compIdioma["tot_vent"].ToString();
+            this.request.InnerText= compIdioma["request"].ToString();
+            this.accep.InnerText= compIdioma["accep"].ToString();
+            this.rech.InnerText= compIdioma["rech"].ToString();
+            this.pend.InnerText= compIdioma["pend"].ToString();
+            this.admi_cat.InnerText= compIdioma["admi_cat"].ToString();
+            this.adm_mem.InnerText= compIdioma["adm_mem"].ToString();
+            this.adm_mot.InnerText= compIdioma["adm_mot"].ToString();
+            //this.respo.InnerText = compIdioma["respo"].ToString();
+        }
+        catch (Exception ex)
+        { }
         Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redireccionar('" + response.Redireccion + "');", true);
     }
-    /**
-     *  if(Session["Sesion"] ==null){
-            Response.Redirect("LoginUsr.aspx");
-        }
-        else{
-            int num = int.Parse(((DataTable)(Session["sesion"])).Rows[0]["idTipo"].ToString());
-            if (int.Parse(((DataTable)(Session["sesion"])).Rows[0]["idTipo"].ToString()) == 1)
-            {
-                DAOadministrador user = new DAOadministrador();
-                
-                DataTable not=user.LlenarNotificacion();
-                DataTable notAcep = user.LlenarNotificacionAceptadas();
-                DataTable notRecha = user.LlenarNotificacionRechazada();
-                if (not.Rows.Count == 0){
-                    Numero_noti.Text = "0";
-                }
-                if(notAcep.Rows.Count == 0){
-                    cantidadAceptadas.Text = "0";
-                }
-                if (notRecha.Rows.Count == 0)
-                {
-                    cantidadRechazadas.Text = "0";
-                }
-                else{
-
-                    Numero_noti.Text = not.Rows[0]["Activas"].ToString();
-                    cantidadAceptadas.Text = notAcep.Rows[0]["Activas"].ToString();
-                    cantidadRechazadas.Text = notRecha.Rows[0]["Activas"].ToString();
-                    cantidadPendientes.Text = not.Rows[0]["Activas"].ToString();
-                    TotalAceptadas.Text = notAcep.Rows[0]["Activas"].ToString();
-                    TotalRechazadas.Text = notRecha.Rows[0]["Activas"].ToString();
-                    TotalPendientes.Text = not.Rows[0]["Activas"].ToString();
-                }
-                TotalSolicitudes.Text = ((int.Parse(notAcep.Rows[0]["Activas"].ToString())) + (int.Parse(notRecha.Rows[0]["Activas"].ToString())) + (int.Parse(not.Rows[0]["Activas"].ToString()))).ToString();
-
-                String img=((DataTable)(Session["sesion"])).Rows[0]["rutaArchivo"].ToString() + ((DataTable)(Session["sesion"])).Rows[0]["nomArchivo"].ToString();
-                FotoPerfil.ImageUrl = img;
-                FotoPerfil2.ImageUrl = img;
-                NombrePerfil.Text = ((DataTable)(Session["sesion"])).Rows[0]["nomUsuario"].ToString() +" "+ ((DataTable)(Session["sesion"])).Rows[0]["apeUsuario"].ToString();
-                NombrePerfil2.Text = ((DataTable)(Session["sesion"])).Rows[0]["nomUsuario"].ToString();
-            }
-            else
-            {
-                Response.Redirect("LoginUsr.aspx");
-            }
-        }
-     * */
+    
     protected void ImageNotificacionPendientes_Click(object sender, ImageClickEventArgs e)
     {
         Response.Redirect("SolicitudesPendientes.aspx");
     }
-
 
     protected void Salir_Click(object sender, EventArgs e)
     {

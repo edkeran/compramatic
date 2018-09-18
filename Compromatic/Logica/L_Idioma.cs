@@ -23,8 +23,6 @@ namespace Logica
             {
                 compIdioma.Add(info.Rows[i]["control"].ToString(), info.Rows[i]["valor"].ToString());
             }
-
-
         }
 
         public DataTable editaridioma()
@@ -54,6 +52,18 @@ namespace Logica
                 aux_log.Modal_message = "Dato modificado";
             }
             return aux_log;
+        }
+
+        public DataTable traer_idioma()
+        {
+            DDAOidioma db = new DDAOidioma();
+            return db.Idiomas();
+        }
+
+        public DataTable traer_formulario()
+        {
+            DDAOidioma db = new DDAOidioma();
+            return db.Formularios();
         }
     }
 }

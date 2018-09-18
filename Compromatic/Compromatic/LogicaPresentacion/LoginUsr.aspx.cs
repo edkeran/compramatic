@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Web.UI;
 using Logica;
 using Utilitarios;
@@ -10,6 +11,39 @@ public partial class Presentacion_LoginUsr : System.Web.UI.Page
         //Validacion De La Sesion sin un IF Explicito
         L_LogginUsr log = new L_LogginUsr();
         String session = log.validar_session(Session["Sesion"],IsPostBack);
+
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        Object sesidioma = Session["idiomases"];
+        Int32 formulario = 19;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            this.title.Text = compIdioma["title"].ToString();
+            this.data.InnerText = compIdioma["data"].ToString();
+            String attr = "placeholder";
+            this.TB_Email.Attributes.Remove(attr);
+            this.TB_Email.Attributes.Add(attr, compIdioma["TB_Email"].ToString());
+            this.TB_Pass.Attributes.Remove(attr);
+            this.TB_Pass.Attributes.Add(attr, compIdioma["TB_Pass"].ToString());
+            this.DDL_TipoLog.Items[0].Text = compIdioma["EMP"].ToString();
+            this.DDL_TipoLog.Items[1].Text = compIdioma["CLIEN"].ToString();
+            this.DDL_TipoLog.Items[2].Text = compIdioma["ADMIN"].ToString();
+            this.Btn_Login.Text= compIdioma["Btn_Login"].ToString();
+            this.LB_M1.Text= compIdioma["LB_M1"].ToString();
+            this.LB_M2.Text= compIdioma["LB_M2"].ToString();
+            this.LB_E2.Text= compIdioma["LB_M2"].ToString();
+            this.LB_E1.Text= compIdioma["LB_E1"].ToString();
+            this.here1.InnerText= compIdioma["here"].ToString();
+            this.here2.InnerText= compIdioma["here"].ToString();
+            this.here3.InnerText= compIdioma["here"].ToString();
+            this.LB_Contra.Text= compIdioma["LB_Contra"].ToString();
+            this.respo.InnerText= compIdioma["respo"].ToString();
+        }
+        catch (Exception ex)
+        { }
         Page.ClientScript.RegisterStartupScript(this.GetType(),"Script" ,"redireccionar('"+session+"');",true);
     }
     public void Modal(String mensaje,String page)
@@ -30,74 +64,4 @@ public partial class Presentacion_LoginUsr : System.Web.UI.Page
         Modal(respuesta.Modal_message,respuesta.New_page);
     }
 }
-
-/**
- * 
- *
- *Codigo Original
-if (DDL_TipoLog.SelectedValue=="0")
-{
-    IADEmpresa IAD_Empresa = new IADEmpresa();
-    DataTable Empresa = IAD_Empresa.Login(TB_Email.Text, TB_Pass.Text);
-
-    if(Empresa.Rows.Count>0)
-    {
-        Session["Sesion"] = Empresa;
-        Session["IdEmpresa"] = Empresa.Rows[0]["idEmpresa"].ToString(); ;
-        Response.Redirect("PerfilEmpresa.aspx");
-        
-    }
-    else
-    {
-        Modal("La contraseña y/o el correo no coinciden.");
-       
-    }
-    
-}
-else
-{
-    DAOUsuario login = new DAOUsuario();
-    EUsuario user = new EUsuario();
-    user.PassUsr = TB_Pass.Text;
-    user.CorreoUsr = TB_Email.Text;
-    DataTable datos = login.Login(user);
-
-    
-    if (datos.Rows.Count > 0)
-    {
-        if (DDL_TipoLog.SelectedValue == "2")
-        {
-            Session["Sesion"] = datos;
-            Response.Redirect("PrincipalAdministrador.aspx");
-        }                
-        else if (int.Parse(datos.Rows[0]["estadoUsuario"].ToString()) == 0)
-        {
-            user.IdUsr = int.Parse(datos.Rows[0]["idUsuario"].ToString());
-            Modal("Qué bueno que regreses!");
-            login.BloqueoUser(user,1,"");
-            datos = login.Login(user);
-            Session["Sesion"] = datos;
-            Response.Redirect("Home.aspx");
-        }
-        else if (int.Parse(datos.Rows[0]["estadoUsuario"].ToString()) == 1 && datos.Rows[0]["idTipo"].ToString() == "3")
-        {
-            Session["Sesion"] = datos;
-            Response.Redirect("Home.aspx");
-        }
-        else
-        {
-           Modal("Estas bloqueado por un tiempo, regresa cuando acabe tu sansion.");
-           
-        }
-    }
-    else
-    {
-        Modal("La contraseña y/o el correo no coinciden.");
-       
-      
-    }
-
-}
- * 
- * */
 

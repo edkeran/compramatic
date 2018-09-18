@@ -127,9 +127,9 @@
                         
 						<ul class="dropdown-menu animated fadeInLeft">
 							<li class="arrow"></li>
-							<li><a href="PerfilUsr.aspx">Mi perfil  <i class="fa fa-user"></i> </a></li>
+							<li><a href="PerfilUsr.aspx" runat="server" id="prof">Mi perfil  <i class="fa fa-user"></i> </a></li>
                             <li class="arrow"></li>
-							<li><a href="ModificarPerfilUsr.aspx">Editar información    <i class="fa fa-edit"></i> </a></li>
+							<li><a href="ModificarPerfilUsr.aspx" runat="server" id="edit_info">Editar información    <i class="fa fa-edit"></i> </a></li>
 							<li class="divider"></li>
 							<li><a><asp:ImageButton ID="Btn_Log_Out" runat="server" CssClass="control-label" AlternateText="Log out"  OnClick="Btn_Log_Out_Click"/>   <i class="fa fa-sign-out"></i></a></li>
 						</ul>

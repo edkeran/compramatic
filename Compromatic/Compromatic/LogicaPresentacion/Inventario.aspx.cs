@@ -12,8 +12,7 @@ public partial class Presentacion_Inventario : System.Web.UI.Page
         String redir = logic.page_load(IsPostBack, Session["Sesion"]);
         //Seteando Idiomas
         L_Idioma idiot = new L_Idioma();
-        //Object sesidioma = Session["idiomases"];
-        Object sesidioma = 1;
+        Object sesidioma = Session["idiomases"];
         Int32 formulario = 14;
         Int32 idiom = Convert.ToInt32(sesidioma);
         Hashtable compIdioma = new Hashtable();

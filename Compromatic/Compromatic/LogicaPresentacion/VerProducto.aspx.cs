@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -25,6 +26,31 @@ public partial class Presentacion_VerProducto : System.Web.UI.Page
             LB_CategoriaProducto.Text = resp.NomCategoria;
             RP_FotosProductos.DataSource = resp.Fotos;
             RP_FotosProductos.DataBind();
+
+            //Seteando Idiomas
+            L_Idioma idiot = new L_Idioma();
+            Object sesidioma = Session["idiomases"];
+            Int32 formulario = 17;
+            Int32 idiom = Convert.ToInt32(sesidioma);
+            Hashtable compIdioma = new Hashtable();
+            idiot.mostraridioma(formulario, idiom, compIdioma);
+            try
+            {
+                this.advert.InnerText = compIdioma["advert"].ToString();
+                this.rep_prod.InnerText = compIdioma["rep_prod"].ToString();
+                this.LB_info.Text = compIdioma["LB_info"].ToString();
+                this.LB_Cant_Disp.Text= compIdioma["LB_Cant_Disp"].ToString();
+                this.LB_Empresa.Text= compIdioma["LB_Empresa"].ToString();
+                this.LB_Cat.Text= compIdioma["LB_Cat"].ToString();
+                this.LB_Cantidad_Comprar.Text= compIdioma["LB_Cantidad_Comprar"].ToString();
+                this.BTN_ComprarProducto.Text= compIdioma["BTN_ComprarProducto"].ToString();
+                this.BTN_Reportar.Text= compIdioma["BTN_Reportar"].ToString();
+                this.BTN_Modal.Text= compIdioma["BTN_Modal"].ToString();
+                this.BTN_Yes.Text= compIdioma["BTN_Yes"].ToString();
+
+            }
+            catch (Exception ex)
+            { }
         }
         catch(Exception ex)
         {}

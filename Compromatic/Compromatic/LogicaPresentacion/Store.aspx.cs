@@ -14,8 +14,7 @@ public partial class Presentacion_Store : System.Web.UI.Page
         DataTable res =logica.L_Page_Load(IsPostBack, Session["Tienda"], null);
         //Seteando Idiomas
         L_Idioma idiot = new L_Idioma();
-        //Object sesidioma = Session["idiomases"];
-        Object sesidioma = 1;
+        Object sesidioma = Session["idiomases"];
         Int32 formulario = 9;
         Int32 idiom = Convert.ToInt32(sesidioma);
         Hashtable compIdioma = new Hashtable();

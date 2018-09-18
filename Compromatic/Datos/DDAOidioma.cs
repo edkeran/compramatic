@@ -97,5 +97,63 @@ namespace Datos
             }
             return Competencia;
         }
+
+        public DataTable Idiomas()
+        {
+            DataTable pdtos = new DataTable();
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("idioma.fn_get_idiomas", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                connection.Open();
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(command);
+                adapter.Fill(pdtos);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+            return pdtos;
+
+        }
+
+        public DataTable Formularios()
+        {
+            DataTable pdtos = new DataTable();
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("idioma.fn_get_formularios", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                connection.Open();
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(command);
+                adapter.Fill(pdtos);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+            return pdtos;
+
+        }
     }
 }

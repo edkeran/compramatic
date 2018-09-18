@@ -6,7 +6,7 @@
     <section>
         <div class="container" style="margin-top:20px;">
             <div class="row">
-                <h1 class="title" style="text-align:center">Tienda</h1>
+                <h1 class="title" style="text-align:center" runat="server" id="title">Tienda</h1>
                 <div class="col-md-10 col-md-offset-1 main-shop text-center">
                     <div class="row shop-container">
                         <asp:Repeater runat="server" ID="RP_MostrarProducto" OnItemCommand="RP_MostrarProducto_ItemCommand">

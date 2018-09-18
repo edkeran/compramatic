@@ -52,6 +52,7 @@
     <Compile Include="L_ForgotPass.cs" />
     <Compile Include="L_HistorialUsr.cs" />
     <Compile Include="L_HistoricoCalificaciones.cs" />
+    <Compile Include="L_Home.cs" />
     <Compile Include="L_Idioma.cs" />
     <Compile Include="L_Invertario.cs" />
     <Compile Include="L_LogginUsr.cs" />

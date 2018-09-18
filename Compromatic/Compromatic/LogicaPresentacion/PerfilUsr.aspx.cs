@@ -20,7 +20,7 @@ public partial class Presentacion_PerfilUsr : System.Web.UI.Page
             string rutaFoto = usr.RutaArch;
             IMG_FotoPerfil.ImageUrl=rutaFoto;
         //IDIOMA
-        Object sesidioma = 1;
+        Object sesidioma = Session["idiomases"];
         Int32 formulario = 2;
         Int32 idiom = Convert.ToInt32(sesidioma);
         Hashtable compIdioma = new Hashtable();
@@ -37,15 +37,6 @@ public partial class Presentacion_PerfilUsr : System.Web.UI.Page
             this.dir_usr.InnerText = compIdioma["dir_usr"].ToString();
             this.email_usr.InnerText= compIdioma["email_usr"].ToString();
             this.cal_usr.InnerText= compIdioma["cal_usr"].ToString();
-            //this.titulo.Text = compIdioma["titulo"].ToString();
-            //this.perfil.InnerText = compIdioma["perfil"].ToString();
-            //this.Edit_Info.InnerText = compIdioma["Edit_Info"].ToString();
-            //this.mirar_perfil.InnerText = compIdioma["mirar_perfil"].ToString();
-            //this.camb_info.InnerText = compIdioma["camb_info"].ToString();
-            //this.camb_pass.InnerText = compIdioma["camb_pass"].ToString();
-            //this.peticiones.InnerText = compIdioma["peticiones"].ToString();
-            //this.ult_visit.InnerText = compIdioma["ult_visit"].ToString();
-            //this.bloq_perfi.InnerText = compIdioma["bloq_perfi"].ToString();
         }
         catch (Exception ex)
         {

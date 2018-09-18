@@ -3,6 +3,7 @@ using System.Data;
 using System.Web.UI;
 using Utilitarios;
 using Logica;
+using System.Collections;
 
 public partial class Presentacion_RegistroEmpresa : System.Web.UI.Page
 {
@@ -12,22 +13,59 @@ public partial class Presentacion_RegistroEmpresa : System.Web.UI.Page
         String inf = emp.validar_session(Session["Sesion"]);
         String texto = "<script>redireccionar('"+inf+"');</script>";
         Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", texto);
-        //FUNCIONES A MIGRAR
         DateTime Fecha = DateTime.Now.Date;
         TB_FechaInicio.Text = Fecha.ToShortDateString();
         Fecha=Fecha.AddMonths(1);
         TB_FechaFinal.Text = Fecha.ToShortDateString();
-        //DAOMembresia DAO_Membresia = new DAOMembresia();
         DataTable Membresia = new DataTable();
         Membresia = emp.mostrar_Membresia(1);
         TB_Precio.Text = "$" + Membresia.Rows[0]["valorMembresia"].ToString() + " COP";
+
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        Object sesidioma = Session["idiomases"];
+        Int32 formulario = 22;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            this.title.Text= compIdioma["title"].ToString();
+            this.asis_reg.InnerText= compIdioma["asis_reg"].ToString();
+            this.HL_Index.Text= compIdioma["HL_Index"].ToString();
+            this.id.InnerText= compIdioma["id"].ToString();
+            this.cont.InnerText = compIdioma["cont"].ToString();
+            this.ini_ses.InnerText= compIdioma["ini_ses"].ToString();
+            this.info_pago.InnerText = compIdioma["info_pago"].ToString();
+            this.end_reg.InnerText= compIdioma["End_reg"].ToString();
+            this.id2.InnerText= compIdioma["id"].ToString();
+            this.comp.InnerText= compIdioma["comp"].ToString();
+            this.nom_com.InnerText= compIdioma["nom_com"].ToString();
+            this.pic.InnerText= compIdioma["pic"].ToString();
+            this.inf_cont.InnerText= compIdioma["inf_cont"].ToString();
+            this.LB_Tel.InnerText= compIdioma["LB_Tel"].ToString();
+            this.dir.InnerText= compIdioma["dir"].ToString();
+            this.str_session.InnerText= compIdioma["str_session"].ToString();
+            this.pass.InnerText = compIdioma["pass"].ToString();
+            this.conf_pass.InnerText= compIdioma["conf_pass"].ToString();
+            this.pay.InnerText= compIdioma["pay"].ToString();
+            this.member.InnerText= compIdioma["member"].ToString();
+            this.LB_St_date.InnerText = compIdioma["LB_St_date"].ToString();
+            this.LB_End_date.InnerText= compIdioma["LB_End_date"].ToString();
+            this.price.InnerText= compIdioma["price"].ToString();
+            this.End_reg1.InnerText= compIdioma["End_reg"].ToString();
+            this.BTN_Registro.Text= compIdioma["BTN_Registro"].ToString();
+            this.BTN_Cancelar.Text= compIdioma["BTN_Cancelar"].ToString();
+            //this.respo.InnerText = compIdioma["respo"].ToString();
+        }
+        catch (Exception ex)
+        { }
+
     }
 
     protected void BTN_Registro_Click(object sender, EventArgs e)
     {
         L_RegistroEmpresa emp = new L_RegistroEmpresa();
-        //DAOEmpresa envio = new DAOEmpresa();
-        //CAMBIAR A JS LA VALIDACION
         Boolean val = emp.Validar_Existencia_Correo(TB_Email.Text);
         String extension = System.IO.Path.GetExtension(FU_Foto.PostedFile.FileName);
         String nombreArchivo = TB_Nit.Text;

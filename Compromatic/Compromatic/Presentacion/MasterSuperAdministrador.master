@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta charset="utf-8" />
-	<title>COMPRAMATIC | ADMINISTRADOR</title>
+	<title id="title" runat="server">COMPRAMATIC | ADMINISTRADOR</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -42,7 +42,7 @@
 			<div class="container-fluid">
 				<!-- begin mobile sidebar expand / collapse button -->
 				<div class="navbar-header">
-					<a href="index.html" class="navbar-brand">ADMINISTRADOR</a>
+					<a href="index.html" class="navbar-brand" id="adm" runat="server">ADMINISTRADOR</a>
 					<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -59,7 +59,7 @@
 							            <asp:Label ID="Numero_noti" runat="server" class="label" Text=""  />
 						            </a>
                             <ul class="dropdown-menu media-list pull-right animated fadeInDown">
-                            <li class="dropdown-header">Solicitudes</li>
+                            <li class="dropdown-header" runat="server" id="solic">Solicitudes</li>
                             <li class="media">
                                 <a href="javascript:;">
                                     <div class="media-left">
@@ -67,7 +67,7 @@
 
                                     </div>
                                     <div class="media-body">
-                                        <h6 class="media-heading">Empresas aceptadas</h6>
+                                        <h6 class="media-heading" runat="server" id="emp_acept">Empresas aceptadas</h6>
                                         <div>
                                             <asp:Label ID="Label1" runat="server" class="text-muted f-s-11" Text="Actualmente  "  />
                                             <asp:Label ID="cantidadAceptadas" runat="server" class="text-muted f-s-11" Text=""/>
@@ -80,7 +80,7 @@
 
                                     </div>
                                     <div class="media-body">
-                                        <h6 class="media-heading">Empresas rechazadas</h6>
+                                        <h6 class="media-heading" runat="server" id="emp_rech">Empresas rechazadas</h6>
                                         <div>
                                             <asp:Label ID="Label2" runat="server" class="text-muted f-s-11" Text="Actualmente  "  />
                                             <asp:Label ID="cantidadRechazadas" runat="server" class="text-muted f-s-11" Text=""  />
@@ -93,7 +93,7 @@
 
                                     </div>
                                     <div class="media-body">
-                                        <h6 class="media-heading">Empresas pendientes</h6>
+                                        <h6 class="media-heading" id="emp_pend" runat="server">Empresas pendientes</h6>
                                         <div>
                                             <asp:Label ID="Label3" runat="server" class="text-muted f-s-11" Text="Actualmente  "  />
                                             <asp:Label ID="cantidadPendientes" runat="server" class="text-muted f-s-11" Text=""  />
@@ -115,7 +115,7 @@
 							<li class="arrow"></li>
 							
 							<li><a href="Home.aspx"><span></span>Home</a></li>
-							<li><a href="ReporteTotalVentaAdmin.aspx"><span></span>Reporte Crystal</a></li>
+							<li><a href="ReporteTotalVentaAdmin.aspx" id="rep_cry" runat="server"><span></span>Reporte Crystal</a></li>
 							<li class="divider"></li>
 							<li><a><asp:Button ID="Salir" runat="server" Text="Salir" class="btn btn-danger btn-xs m-r-5" OnClick="Salir_Click"/></a></li>
 						</ul>
@@ -139,18 +139,18 @@
 						</div>
 						<div class="info">
 							<asp:Label ID="NombrePerfil2" runat="server" class="hidden-xs" Text=""/>
-							<small>Tengo el control</small>
+							<small id="contr" runat="server">Tengo el control</small>
 						</div>
 					</li>
 				</ul>
 				<!-- end sidebar user -->
 				<!-- begin sidebar nav -->
 				<ul class="nav">
-					<li class="nav-header">Menu de navegacion</li>
+					<li class="nav-header" id="navigate_menu" runat="server">Menu de navegacion</li>
 					<li class="has-sub">
 						<a href="PrincipalAdministrador.aspx">
 						    <i class="fa fa-laptop"></i>
-						    <span>Principal</span>
+						    <span runat="server" id="main">Principal</span>
 					    </a>
 						
 					</li>
@@ -161,8 +161,8 @@
 							<span>PQR</span>
 						</a>
 						<ul class="sub-menu">
-						    <li><a href="QuejasAdministrador.aspx">Quejas</a></li>
-						    <li><a href="ReportesAdministrador.aspx">Reportes</a></li>
+						    <li><a href="QuejasAdministrador.aspx" runat="server" id="quej">Quejas</a></li>
+						    <li><a href="ReportesAdministrador.aspx" runat="server" id="repor">Reportes</a></li>
 						    
 						</ul>
 					</li>
@@ -170,20 +170,20 @@
 						<a href="javascript:;">
 						    <b class="caret pull-right"></b>
 						    <i class="fa fa-th"></i>
-						    <span>Usuarios<span class="label label-theme m-l-5"></span></span>
+						    <span runat="server" id="usr">Usuarios<span class="label label-theme m-l-5"></span></span>
 						</a>
 						<ul class="sub-menu"> 
 							<li class="has-sub">
-							    <a href="javascript:;"><b class="caret pull-right"></b>Cliente</a>
+							    <a href="javascript:;" id="cliet" runat="server"><b class="caret pull-right"></b>Cliente</a>
 							    <ul class="sub-menu">
-							        <li><a href="MostrarTablaCliente.aspx">Ver todos</a></li>
+							        <li><a href="MostrarTablaCliente.aspx" runat="server" id="ver_all">Ver todos</a></li>
 							    </ul>
 							</li>
 							<li class="has-sub">
-							    <a href="javascript:;"><b class="caret pull-right"></b>Empresa</a>
+							    <a href="javascript:;" id="empre" runat="server"><b class="caret pull-right"></b>Empresa</a>
 							    <ul class="sub-menu">
-							        <li><a href="MostrarTablaEmpresa.aspx">Ver todas</a></li>
-							        <li><a href="MostrarTotalventasporEmpresa.aspx">Ventas totales</a></li>
+							        <li><a href="MostrarTablaEmpresa.aspx" id="ver_all2" runat="server">Ver todas</a></li>
+							        <li><a href="MostrarTotalventasporEmpresa.aspx" runat="server" id="tot_vent">Ventas totales</a></li>
 							        
 							    </ul>
 							</li>
@@ -195,7 +195,7 @@
                                 <asp:Label ID="TotalSolicitudes" runat="server" class="badge pull-right" Text=""/>
                             </div>
 							<i class="fa fa-cubes"></i> 
-							<span>Solicitudes</span>
+							<span id="request" runat="server">Solicitudes</span>
 						</a>
 						<ul class="sub-menu">
 						    <li>
@@ -203,33 +203,39 @@
                                     <asp:Label ID="TotalAceptadas" runat="server" class="badge pull-right" Text=""/>
                                    
                                 </div>
-                                <a href="SolicitudesAceptadas.aspx">S. aceptadas</a>
+                                <a href="SolicitudesAceptadas.aspx" id="accep" runat="server">S. aceptadas</a>
                             </li>
 						    <li>
                                 <div>
                                     <asp:Label ID="TotalRechazadas" runat="server" class="badge pull-right" Text=""/>
                                 </div>
-                                <a href="SolicitudesRechazadas.aspx">S. rechazadas</a>
+                                <a href="SolicitudesRechazadas.aspx" id="rech" runat="server">S. rechazadas</a>
 						    </li>
 							<li>
                                 <div>
                                     <asp:label runat="server" ID="TotalPendientes" class="badge pull-right" Text="0" />
                                 </div>
-                                <a href="SolicitudesPendientes.aspx">S. pendientes</a>
+                                <a href="SolicitudesPendientes.aspx" id="pend" runat="server">S. pendientes</a>
 							</li>
 						</ul>
 					</li>
 					
-					<li><a href="AdministrarCategorias.aspx"><i class="fa fa-cogs"></i> <span>Administrar Categorias</span></a></li>
+					<li><a href="AdministrarCategorias.aspx"><i class="fa fa-cogs"></i> <span  id="admi_cat" runat="server">Administrar Categorias</span></a></li>
                     <li><a href="AdministrarMembresias.aspx">       
 					        <i class="fa fa-key"></i>
-					        <span>Administrar Membresias</span>
+					        <span runat="server" id="adm_mem">Administrar Membresias</span>
 					    </a>
 					    
 					</li>
                     <li><a href="AdministrarMotivosPQR.aspx">       
 					        <i class="fa fa-inbox"></i>
-					        <span>Administrar Motivos PQR</span>
+					        <span runat="server" id="adm_mot">Administrar Motivos PQR</span>
+					    </a>
+					    
+					</li>
+                    <li><a href="AdministrarIdiomas.aspx">       
+					        <i class="fas fa-language"></i>
+					        <span runat="server" id="Span1">Administrar Idiomas</span>
 					    </a>
 					    
 					</li>

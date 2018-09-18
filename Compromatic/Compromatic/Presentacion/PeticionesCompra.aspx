@@ -10,22 +10,22 @@
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                     </div>
-                    <h4 class="panel-title">Peticiones de Compra</h4>
+                    <h4 class="panel-title" runat="server" id="pet">Peticiones de Compra</h4>
                 </div>
                 <div class="panel-body">
                     <table id="data-table" class="table table-striped table-bordered data-table" width="100%">
                         <thead>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Telefono</th>
-                                <th>Correo</th>
-                                <th>Direccion</th>
-                                <th>Calif</th>
-                                <th>Producto</th>
+                                <th id="nom" runat="server">Nombre</th>
+                                <th id="celular" runat="server">Telefono</th>
+                                <th id="mail" runat="server">Correo</th>
+                                <th id="dir" runat="server">Direccion</th>
+                                <th id="cal" runat="server">Calificacion</th>
+                                <th id="prod" runat="server">Producto</th>
                                 <th>#</th>
-                                <th>Stock</th>
-                                <th>Valor</th>
-                                <th>Fecha</th>
+                                <th id="stk" runat="server">Stock</th>
+                                <th id="val" runat="server">Valor</th>
+                                <th id="fe" runat="server">Fecha</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -91,20 +91,20 @@
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                     </div>
-                    <h4 class="panel-title">Compras en Proceso</h4>
+                    <h4 class="panel-title" id="comp_proc" runat="server">Compras en Proceso</h4>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped table-bordered data-table" width="100%">
                         <thead>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Telefono</th>
-                                <th>Correo</th>
-                                <th>Direccion</th>
-                                <th>Calificacion</th>
-                                <th>Producto</th>
-                                <th>Valor</th>
-                                <th>Fecha</th>
+                                <th id="nomb" runat="server">Nombre</th>
+                                <th id="telefo" runat="server">Telefono</th>
+                                <th id="mai" runat="server">Correo</th>
+                                <th id="direc" runat="server">Direccion</th>
+                                <th id="calif" runat="server">Calificacion</th>
+                                <th id="product" runat="server">Producto</th>
+                                <th id="valu" runat="server">Valor</th>
+                                <th id="date" runat="server">Fecha</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -157,20 +157,20 @@
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                     </div>
-                    <h4 class="panel-title">Calificar</h4>
+                    <h4 class="panel-title" id="calific" runat="server">Calificar</h4>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped table-bordered data-table" width="100%">
                         <thead>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Telefono</th>
-                                <th>Correo</th>
-                                <th>Direccion</th>
-                                <th>Calificacion</th>
-                                <th>Producto</th>
-                                <th>Valor</th>
-                                <th>Fecha</th>
+                                <th id="nomber" runat="server">Nombre</th>
+                                <th id="celu" runat="server">Telefono</th>
+                                <th id="corr" runat="server">Correo</th>
+                                <th id="direcc" runat="server">Direccion</th>
+                                <th id="cali" runat="server">Calificacion</th>
+                                <th id="prdcto" runat="server">Producto</th>
+                                <th id="valo" runat="server">Valor</th>
+                                <th id="fha" runat="server">Fecha</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -223,20 +223,20 @@
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                     </div>
-                    <h4 class="panel-title">Ventas Hechas</h4>
+                    <h4 class="panel-title" id="vent_made" runat="server">Ventas Hechas</h4>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped table-bordered data-table" width="100%">
                         <thead>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Telefono</th>
-                                <th>Correo</th>
-                                <th>Direccion</th>
-                                <th>Calificacion</th>
-                                <th>Producto</th>
-                                <th>Valor</th>
-                                <th>Fecha</th>
+                                <th id="nbre" runat="server">Nombre</th>
+                                <th id="tfn" runat="server">Telefono</th>
+                                <th id="maii" runat="server">Correo</th>
+                                <th id="dirc" runat="server">Direccion</th>
+                                <th id="calificar" runat="server">Calificacion</th>
+                                <th id="pcto" runat="server">Producto</th>
+                                <th id="valor" runat="server">Valor</th>
+                                <th id="fecha" runat="server">Fecha</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -299,17 +299,17 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">Calificar</h4>
+                    <h4 class="modal-title" id="calfc" runat="server">Calificar</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <label>Calificacion:</label><asp:TextBox runat="server" ID="TB_Calificacion" placeholder="1-10" TextMode="Number" min="1" max="10" CssClass="form-control"></asp:TextBox>
+                                <label id="LB_Calif" runat="server">Calificacion:</label><asp:TextBox runat="server" ID="TB_Calificacion" placeholder="1-10" TextMode="Number" min="1" max="10" CssClass="form-control"></asp:TextBox>
                                 <asp:RequiredFieldValidator runat="server" CssClass="alert-warning" ErrorMessage="Campo Necesario" ForeColor="Red" ControlToValidate="TB_Calificacion" ValidationGroup="calificacion"></asp:RequiredFieldValidator>
                             </div>
                             <div class="col-md-12">
-                                <label>Comentario:</label><asp:TextBox runat="server" ID="TB_Comentario" placeholder="max 100" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                <label id="coment" runat="server">Comentario:</label><asp:TextBox runat="server" ID="TB_Comentario" placeholder="max 100" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
                                 <asp:RegularExpressionValidator runat="server" ValidationGroup="calificacion" ValidationExpression="^[\s\S]{0,850}$" ErrorMessage="Numero de Caracteres Excedido (Max 100)" ControlToValidate="TB_Comentario"></asp:RegularExpressionValidator>
                                 <asp:RequiredFieldValidator runat="server" CssClass="alert-warning" ErrorMessage="Campo Necesario" ForeColor="Red" ControlToValidate="TB_Comentario" ValidationGroup="calificacion"></asp:RequiredFieldValidator>
                             </div>
