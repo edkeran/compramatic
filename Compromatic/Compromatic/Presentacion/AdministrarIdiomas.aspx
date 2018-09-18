@@ -30,14 +30,16 @@
                                     <asp:DropDownList runat="server" ID="DDL_Idiomas" DataSourceID="ODS_Idioma" DataTextField="nombre_idioma" DataValueField="id_idioma"></asp:DropDownList>
                                      </div>
                                     <br /><br />
+                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                        <ContentTemplate>
                                     <div class="col-md-12">
                                     <asp:Label runat="server" ID="LB_Form">Selecciona Un Formulario</asp:Label>
-                                    <asp:DropDownList runat="server" ID="DLL_forms" DataSourceID="ODS_Form" DataTextField="nombre_form" DataValueField="id_form"></asp:DropDownList>
+                                    <asp:DropDownList runat="server" ID="DLL_forms" DataSourceID="ODS_Form" DataTextField="nombre_form" DataValueField="id_form" OnSelectedIndexChanged="DLL_forms_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                     </div>
                                     <br /><br />
                                     <div class="col-md-12">
                                     <asp:Label runat="server" ID="LB_Contr">Selecciona Un Control</asp:Label>
-                                    <asp:DropDownList runat="server" ID="DDL_Controles"></asp:DropDownList>
+                                    <asp:DropDownList runat="server" ID="DDL_Controles" OnSelectedIndexChanged="DDL_Controles_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                     </div>
                                     <br /><br />
                                     <div class="col-md-12">
@@ -46,9 +48,21 @@
                                     </div>
                                     <br /><br />
                                     <div class="col-md-12">
-                                    <asp:Label runat="server" ID="LB_TB">Ingresa La Traduccion:</asp:Label>
-                                    <asp:TextBox ID="TB_Trad" runat="server" placeholder="Ingresa Una Traduccion"></asp:TextBox>
+                                        <asp:Label runat="server" ID="LB_TB">Ingresa La Traduccion:</asp:Label>
+                                        <asp:TextBox ID="TB_Trad" runat="server" placeholder="Ingresa Una Traduccion"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ForeColor="Red" ControlToValidate="TB_Trad" runat="server" ErrorMessage="Error campo vacio" ValidationGroup="S_Idiom"></asp:RequiredFieldValidator>
+                                                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ForeColor="Red" ControlToValidate="TB_Trad" ErrorMessage="Error, caracteres" ToolTip="La cadena contiene caracteres no validos" ValidationExpression="^[a-zA-Z ñÑáéíóú]*$" ValidationGroup="S_Idiom"></asp:RegularExpressionValidator>
                                     </div>
+                                    <br /><br />
+                                    <div class="col-md-12">
+                                        <asp:Button ID="Button2" runat="server" class="btn btn-sm btn-success" Text="Registrar Traduccion" ValidationGroup="S_Idiom"  OnClick="Button2_Click"/>
+                                    </div>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                      <asp:AsyncPostBackTrigger ControlID="DLL_forms" EventName="selectedindexchanged" />
+                                      <asp:AsyncPostBackTrigger ControlID="DDL_Controles" EventName="selectedindexchanged" />
+                                    </Triggers>
+                                    </asp:UpdatePanel>
                                     <asp:ObjectDataSource ID="ODS_Form" runat="server" SelectMethod="traer_formulario" TypeName="Logica.L_Idioma"></asp:ObjectDataSource>
                                     <asp:ObjectDataSource ID="ODS_Idioma" runat="server" SelectMethod="traer_idioma" TypeName="Logica.L_Idioma"></asp:ObjectDataSource>
                                 </asp:Panel>
@@ -79,11 +93,13 @@
                                             <asp:Label ID="Label2" class="col-md-3 control-label" runat="server" Text="Terminacion Idioma."></asp:Label>
                                             <div class="col-md-9">
                                                 <asp:TextBox ID="Termin_Idioma" class="form-control" runat="server" placeHolder="Terminacion Idioma (es-co)" MaxLength="20"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ForeColor="Red" ControlToValidate="Termin_Idioma" runat="server" ErrorMessage="Error campo vacio" ValidationGroup="N_Idioma"></asp:RequiredFieldValidator>
+                                                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ForeColor="Red" ControlToValidate="Termin_Idioma" ErrorMessage="Error, caracteres" ToolTip="La cadena contiene caracteres no validos" ValidationExpression="^[a-zA-Z ñÑáéíóú]*$" ValidationGroup="N_Idioma"></asp:RegularExpressionValidator>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-md-9">
-                                                <asp:Button ID="Button1" runat="server" class="btn btn-sm btn-success" Text="Registrar Idioma" ValidationGroup="N_Idioma" />
+                                                <asp:Button ID="Button1" runat="server" class="btn btn-sm btn-success" Text="Registrar Idioma" ValidationGroup="N_Idioma"  OnClick="Button1_Click"/>
                                             </div>
                                         </div>
                                     </div>

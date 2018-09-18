@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using Npgsql;
 using NpgsqlTypes;
 using System.Configuration;
+using Utilitarios;
 
 namespace Datos
 {
@@ -153,7 +151,84 @@ namespace Datos
                 }
             }
             return pdtos;
+        }
 
+        //FUNCION PARA EL CAMBIO DE LOS CONTROLES DE LOS FORMULARIOS
+        public DataTable Controles(int id_form,int id_idioma)
+        {
+            DataTable pdtos = new DataTable();
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("idioma.fn_obtener_controles", connection);
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                dataAdapter.SelectCommand.Parameters.Add("_id_form", NpgsqlDbType.Integer).Value = id_form;
+                dataAdapter.SelectCommand.Parameters.Add("_id_idioma", NpgsqlDbType.Integer).Value = id_idioma;
+                connection.Open();
+                dataAdapter.Fill(pdtos);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+            return pdtos;
+        }
+        //FUNCION PARA INSERTAR UN NUEVO IDIOMA
+        public void insertar_idioma(String idioma,String termi)
+        {
+            NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                conexion.Open();
+                NpgsqlCommand comando = new NpgsqlCommand("idioma.fn_insertar_idioma", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add("_termina", NpgsqlTypes.NpgsqlDbType.Varchar).Value = termi;
+                comando.Parameters.Add("_idioma", NpgsqlTypes.NpgsqlDbType.Varchar).Value = idioma;
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        //FUNCION PARA INSERTAR UNA TRADUCCION
+        public void insertar_traduccion(UEUTraduccion data)
+        {
+            NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                conexion.Open();
+                NpgsqlCommand comando = new NpgsqlCommand("idioma.fn_insertar_traduccion", conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.Add("_text", NpgsqlTypes.NpgsqlDbType.Varchar).Value = data.Texto;
+                comando.Parameters.Add("_nom_contr", NpgsqlTypes.NpgsqlDbType.Varchar).Value = data.Control;
+                comando.Parameters.Add("_idioma", NpgsqlTypes.NpgsqlDbType.Integer).Value = data.Idioma;
+                comando.Parameters.Add("_form", NpgsqlTypes.NpgsqlDbType.Integer).Value = data.Form;
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                conexion.Close();
+            }
         }
     }
 }

@@ -65,5 +65,29 @@ namespace Logica
             DDAOidioma db = new DDAOidioma();
             return db.Formularios();
         }
+
+        public DataTable obtner_controles(int id_form,int id_idioma)
+        {
+            DDAOidioma db = new DDAOidioma();
+            return db.Controles(id_form,id_idioma);
+        }
+
+        public void insertar_idioma(String idioma, String termin)
+        {
+            DDAOidioma db = new DDAOidioma();
+            db.insertar_idioma(idioma, termin);
+        }
+
+        public void insertar_traduccion(int idioma, int form,String texto, String control)
+        {
+            DDAOidioma db = new DDAOidioma();
+            UEUTraduccion data = new UEUTraduccion();
+            data.Idioma = idioma;
+            data.Form = form;
+            data.Texto = texto;
+            data.Control = control;
+            db.insertar_traduccion(data);
+           
+        }
     }
 }
