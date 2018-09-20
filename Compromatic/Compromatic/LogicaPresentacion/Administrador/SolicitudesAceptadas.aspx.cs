@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Utilitarios;
 using Logica;
+using System.Collections;
 
 public partial class Presentacion_SolicitudesAceptadas : System.Web.UI.Page
 {
@@ -15,27 +14,28 @@ public partial class Presentacion_SolicitudesAceptadas : System.Web.UI.Page
         Response.Cache.SetCacheability(HttpCacheability.ServerAndNoCache);
         L_SolicitudesPendientes logi = new L_SolicitudesPendientes();
         String respo = logi.page_load(Session["Sesion"], Session["sesion"]);
+
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        Object sesidioma = Session["idiomases"];
+        Int32 formulario = 28;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            this.sol.InnerText= compIdioma["sol"].ToString();
+            this.accep.InnerText= compIdioma["accep"].ToString();
+            this.sol_acept.InnerText= compIdioma["sol_acept"].ToString();
+            this.new_opt.InnerText= compIdioma["new_opt"].ToString();
+            this.Titulo.Text= compIdioma["Titulo"].ToString();
+            //this.respo.InnerText
+        }
+        catch (Exception ex)
+        { }
         Page.ClientScript.RegisterStartupScript(this.GetType(), "scrt", "redireccionar('" + respo + "');", true);
        
     }
-
-    /**
-     *  if (Session["Sesion"] == null)
-        {
-            Response.Redirect("LoginUsr.aspx");
-        }
-        else
-        {
-
-            int num = int.Parse(((DataTable)(Session["sesion"])).Rows[0]["idTipo"].ToString());
-            if (int.Parse(((DataTable)(Session["sesion"])).Rows[0]["idTipo"].ToString()) == 1)
-            { }
-            else
-            {
-                Response.Redirect("LoginUsr.aspx");
-            }
-        }
-     **/
 
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -67,26 +67,27 @@ public partial class Presentacion_SolicitudesAceptadas : System.Web.UI.Page
         String texto = "<script   src='https://code.jquery.com/jquery-2.2.4.min.js'> </script>" + "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>" + "<script>$('#modal-dialog').modal('show');</script>";
         Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", texto);
     }
-    /**
-     * 
-     * if (e.Rows.Count <= 2)
-        {
-            Titulo.Text = "No tiene documentos cargados";
-            String texto = "<script   src='https://code.jquery.com/jquery-2.2.4.min.js'> </script>" + "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>" + "<script>$('#modal-dialog').modal('show');</script>";
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", texto);
-            HyperLink1.Enabled = false;
-            HyperLink2.Enabled = false;
-            HyperLink3.Enabled = false;
 
-        }
-        else
-        {
-            String texto = "<script   src='https://code.jquery.com/jquery-2.2.4.min.js'> </script>" + "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>" + "<script>$('#modal-dialog').modal('show');</script>";
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", texto);
-            HyperLink1.NavigateUrl = e.Rows[0]["rutaArchivo"].ToString()+".pdf";
-            HyperLink2.NavigateUrl = e.Rows[1]["rutaArchivo"].ToString() + ".pdf";
-            HyperLink3.NavigateUrl = e.Rows[2]["rutaArchivo"].ToString() + ".pdf";
-        }
-     **/
 
+
+    protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)
+    {
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        Object sesidioma = Session["idiomases"];
+        Int32 formulario = 28;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            GridView gv = (GridView)sender;
+            ((Button)e.Row.FindControl("Button1")).Text = compIdioma["Button1"].ToString();
+            ((Label)e.Row.FindControl("ad_ver")).Text= compIdioma["ad_ver"].ToString();
+            ((Label)e.Row.FindControl("LB_correo")).Text = compIdioma["LB_correo"].ToString();
+            //this.respo.InnerText
+        }
+        catch (Exception ex)
+        { }
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Data;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,25 @@ public partial class Presentacion_ReportesAdministrador : System.Web.UI.Page
         Response.Cache.SetCacheability(HttpCacheability.ServerAndNoCache);
         L_ReporteAdmin logi = new L_ReporteAdmin();
         String res = logi.page_load(Session["Sesion"],Session["sesion"]);
+
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        Object sesidioma = Session["idiomases"];
+        Int32 formulario = 30;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            this.pro_rep2.InnerHtml= compIdioma["pro_rep"].ToString()+ "<small id='n_opt' runat='server'> "+compIdioma["n_opt"].ToString()+"</small>";
+            this.reporte.InnerText = compIdioma["reporte"].ToString();
+            this.pro_rep.InnerText = compIdioma["pro_rep"].ToString();
+
+            //this.sol.InnerText = compIdioma["sol"].ToString();
+            //this.respo.InnerText
+        }
+        catch (Exception ex)
+        { }
         Page.ClientScript.RegisterStartupScript(this.GetType(), "scr", "redireccionar('" + res + "');", true);
     }
 
@@ -59,5 +79,30 @@ public partial class Presentacion_ReportesAdministrador : System.Web.UI.Page
         }
 
         Response.Redirect(Request.Url.AbsoluteUri);
+    }
+
+    protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)
+    {
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        Object sesidioma = Session["idiomases"];
+        Int32 formulario = 30;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            GridView gv = (GridView)sender;
+            ((Label)e.Row.FindControl("Label3")).Text = compIdioma["Label3"].ToString();
+            ((Label)e.Row.FindControl("Label4")).Text = compIdioma["Label4"].ToString();
+            ((Label)e.Row.FindControl("Label7")).Text = compIdioma["Label7"].ToString();
+            ((Label)e.Row.FindControl("LB_Parr")).Text = compIdioma["LB_Parr"].ToString();
+            ((Button)e.Row.FindControl("Button1")).Text = compIdioma["Button1"].ToString();
+            ((Label)e.Row.FindControl("LB_Corr")).Text = compIdioma["LB_Corr"].ToString();
+            ((Label)e.Row.FindControl("LB_Date")).Text = compIdioma["LB_Date"].ToString();
+            //this.respo.InnerText
+        }
+        catch (Exception ex)
+        { }
     }
 }

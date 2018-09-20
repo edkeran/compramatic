@@ -4,10 +4,10 @@
     <div id="content" class="content">
         <ol class="breadcrumb pull-right">
             <li><a href="javascript:;">Home</a></li>
-            <li><a href="javascript:;">Administrar</a></li>
-            <li class="active">Motivos</li>
+            <li><a href="javascript:;" id="adm" runat="server">Administrar</a></li>
+            <li class="active" id="mot" runat="server">Motivos</li>
         </ol>
-        <h1 class="page-header">Motivos PQR <small>nuestro compromiso es contigo</small></h1>
+        <h1 class="page-header" id="mot_pqr" runat="server">Motivos PQR <small id="comp" runat="server">nuestro compromiso es contigo</small></h1>
         <div class="row">
             <asp:ScriptManager runat="server"></asp:ScriptManager>
             <asp:UpdatePanel runat="server">
@@ -21,7 +21,7 @@
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                                 </div>
-                                <h4 class="panel-title">Regitrar nuevo motivo para queja</h4>
+                                <h4 class="panel-title" id="reg_mot" runat="server">Regitrar nuevo motivo para queja</h4>
                             </div>
                             <div class="panel-body bg-red text-white">
                                 <asp:Panel ID="Panel3" runat="server">
@@ -58,7 +58,7 @@
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                                 </div>
-                                <h4 class="panel-title">Regitrar nuevo motivo para reporte</h4>
+                                <h4 class="panel-title" id="new_mot_rep" runat="server">Regitrar nuevo motivo para reporte</h4>
                             </div>
                             <div class="panel-body bg-black text-white">
                                 <asp:Panel ID="Panel4" runat="server">
@@ -96,11 +96,11 @@
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                                 </div>
-                                <h4 class="panel-title">Motivos para quejas</h4>
+                                <h4 class="panel-title" id="mot_quej" runat="server">Motivos para quejas</h4>
                             </div>
                             <div class="panel-body">
                                 <asp:Panel ID="Panel2" runat="server">
-                                    <asp:GridView ID="GridView2" runat="server" BorderStyle="None" DataKeyNames="idMotivo_queja" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" class="table table-hover" AutoGenerateColumns="False" Width="100%" DataSourceID="ObjectDataSource1">
+                                    <asp:GridView ID="GridView2" runat="server" BorderStyle="None" DataKeyNames="idMotivo_queja" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" class="table table-hover" AutoGenerateColumns="False" Width="100%" DataSourceID="ObjectDataSource1" OnRowCreated="GridView1_RowCreated">
                                         <Columns>
                                             <asp:BoundField DataField="idMotivo_queja" HeaderText="ID"></asp:BoundField>
                                             <asp:BoundField DataField="nomQueja" HeaderText="NOMBRE"></asp:BoundField>
@@ -129,11 +129,11 @@
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                                 </div>
-                                <h4 class="panel-title">Motivos para reporte</h4>
+                                <h4 class="panel-title" id="rep_mot" runat="server">Motivos para reporte</h4>
                             </div>
                             <div class="panel-body">
                                 <asp:Panel ID="Panel1" runat="server">
-                                    <asp:GridView ID="GridView1" runat="server" BorderStyle="None" DataKeyNames="idMotivoR" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" class="table table-hover" AutoGenerateColumns="False" Width="100%" DataSourceID="ObjectDataSource2">
+                                    <asp:GridView ID="GridView1" runat="server" BorderStyle="None" DataKeyNames="idMotivoR" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" class="table table-hover" AutoGenerateColumns="False" Width="100%" DataSourceID="ObjectDataSource2" OnRowCreated="GridView1_RowCreated">
                                         <Columns>
                                             <asp:BoundField DataField="idMotivoR" HeaderText="ID"></asp:BoundField>
                                             <asp:BoundField DataField="desMotivo" HeaderText="NOMBRE"></asp:BoundField>

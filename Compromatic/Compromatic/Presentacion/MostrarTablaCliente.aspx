@@ -43,13 +43,6 @@
                             Estos son los clientes registrados actualmente. <br />
                             Bienvenido Administrador.
                         </div>
-                    <!--    <div>
-                          <asp:DropDownList ID="DropDownList1" runat="server" class="btn btn-default dropdown-toggle" AutoPostBack="true"  >
-                          <asp:ListItem Value="0">Activos</asp:ListItem>
-                          <asp:ListItem Value="1">Inactivos</asp:ListItem>
-                          <asp:ListItem Selected="True" Value="2">Todos</asp:ListItem>
-                          </asp:DropDownList>
-		            	</div>-->
                         <div class="panel-body">
                             <asp:Panel ID="Panel1" runat="server" >
                             <asp:GridView ID="GridView1" runat="server"  class="table table-striped table-bordered nowrap data-table" DataSourceID="ObjectDataSource1" AllowSorting="True" AutoGenerateColumns="False" Width="100%" >

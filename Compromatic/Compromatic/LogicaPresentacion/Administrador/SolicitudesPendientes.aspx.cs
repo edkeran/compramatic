@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Utilitarios;
 using Logica;
+using System.Collections;
 
 public partial class Presentacion_SolicitudesPendientes : System.Web.UI.Page
 {
@@ -15,43 +14,27 @@ public partial class Presentacion_SolicitudesPendientes : System.Web.UI.Page
         Response.Cache.SetCacheability(HttpCacheability.ServerAndNoCache);
         L_SolicitudesPendientes logi = new L_SolicitudesPendientes();
         String respo = logi.page_load(Session["Sesion"], Session["sesion"]);
+
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        Object sesidioma = Session["idiomases"];
+        Int32 formulario = 32;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            this.soli.InnerText = compIdioma["soli"].ToString();
+            this.pend.InnerText = compIdioma["pend"].ToString();
+            this.sol_pen.InnerHtml = compIdioma["sol_pen"].ToString() + "<small id='new_opt' runat='server'> " + compIdioma["new_opt"].ToString() + "</small>";
+        }
+        catch (Exception ex)
+        { }
+
         Page.ClientScript.RegisterStartupScript(this.GetType(), "scrt", "redireccionar('" + respo + "');", true);
 
     }
-    /**
-     * if (Session["Sesion"] == null)
-         {
-             Response.Redirect("LoginUsr.aspx");
-         }
-         else
-         {
-             
-             int num = int.Parse(((DataTable)(Session["sesion"])).Rows[0]["idTipo"].ToString());
-             if (int.Parse(((DataTable)(Session["sesion"])).Rows[0]["idTipo"].ToString()) == 1)
-             { }
-             else
-             {
-                 Response.Redirect("LoginUsr.aspx");
-             }
-         }
-     **/
 
-    /*  protected void BT_Aceptar_Click(object sender, EventArgs e)
-      {
-       //   GridViewRow row = GridView1.SelectedDataKey;
-       //   int id =Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value);
-          DAOUsuario conexion = new DAOUsuario();
-          conexion.ModificarEstados(10,1,0);
-         // Response.Redirect("SolicitudesPendientes.aspx");
-
-      }
-      protected void BT_Rechazar_Click(object sender, EventArgs e)
-      {
-          GridViewRow row = GridView1.SelectedRow;
-          int id = Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value);
-          DAOUsuario conexion = new DAOUsuario();
-          conexion.ModificarEstados(id, 0, 0);
-      }*/
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
         //
@@ -98,5 +81,31 @@ public partial class Presentacion_SolicitudesPendientes : System.Web.UI.Page
         {
 
         }
+    }
+
+    protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)
+    {
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        Object sesidioma = Session["idiomases"];
+        Int32 formulario = 32;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            GridView gv = (GridView)sender;
+            ((Button)e.Row.FindControl("Button1")).Text = compIdioma["Button1"].ToString();
+            ((Label)e.Row.FindControl("Label3")).Text = compIdioma["Label3"].ToString();
+            ((Label)e.Row.FindControl("Label4")).Text = compIdioma["Label4"].ToString();
+            ((Label)e.Row.FindControl("Label7")).Text = compIdioma["Label7"].ToString();
+            ((Label)e.Row.FindControl("LB_Parr")).Text = compIdioma["LB_Parr"].ToString();
+            ((Label)e.Row.FindControl("corre")).Text = compIdioma["corre"].ToString();
+            ((Button)e.Row.FindControl("BT_Aceptar")).Text = compIdioma["BT_Aceptar"].ToString();
+            ((Button)e.Row.FindControl("BT_Rechazar")).Text = compIdioma["BT_Rechazar"].ToString();
+            //this.respo.InnerText
+        }
+        catch (Exception ex)
+        { }
     }
 }

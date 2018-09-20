@@ -5,13 +5,13 @@
             <br />
             <ol class="breadcrumb pull-right">
 				<li><a href="javascript:;">Home</a></li>
-				<li><a href="javascript:;">Solicitudes</a></li>
-				<li class="active">Rechazadas</li>
+				<li><a href="javascript:;" id="soli" runat="server">Solicitudes</a></li>
+				<li class="active" id="rech" runat="server">Rechazadas</li>
 			</ol>
-            <h1 class="page-header">Solicitudes rechazadas<small> nuevas oportunidades de negocio</small></h1>
+            <h1 class="page-header" id="sol_rech" runat="server">Solicitudes rechazadas<small id="new_opt" runat="server"> nuevas oportunidades de negocio</small></h1>
             <asp:Panel ID="Panel1" runat="server" class="col-md-12">
                <div class="result-container">
-                   <asp:GridView ID="GridView1" runat="server" Width="100%" DataKeyNames="idSolicitud_registro" OnSelectedIndexChanged="GridView1_SelectedIndexChanged"  AutoGenerateColumns="False" BorderStyle="None" DataSourceID="ObjectDataSource1">
+                   <asp:GridView ID="GridView1" runat="server" Width="100%" DataKeyNames="idSolicitud_registro" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowCreated="GridView1_RowCreated" AutoGenerateColumns="False" BorderStyle="None" DataSourceID="ObjectDataSource1">
                        <AlternatingRowStyle BorderStyle="None" />
 
                        <Columns>
@@ -34,7 +34,7 @@
                                                    <asp:Label ID="Label4" runat="server" Text="Telefono : "></asp:Label><asp:Label ID="Label5" runat="server" Text='<%# Eval("telEmpresa") %>'></asp:Label></p>
                                                <p class="location">
                                                    <asp:Label ID="Label7" runat="server" Text="Direccion : "></asp:Label><asp:Label ID="Label8" runat="server" Text='<%# Eval("dirEmpresa") %>'></asp:Label></p>
-                                               <p class="desc">El administrador debe verificar el origen de los documentos enviados, ademas debe investigar la legalidad e historial que precede a susodicha empresa solicitante.</p>
+                                               <p class="desc"><asp:Label id="LB_parr" runat="server" Text="El administrador debe verificar el origen de los documentos enviados, ademas debe investigar la legalidad e historial que precede a susodicha empresa solicitante."></asp:Label></p>
                                                <div>
                                                    <i class="fa fa-expand fa-2x pull-left fa-fw"></i>
                                                    <asp:Button ID="Button1" runat="server" Text="Descargar" class="btn btn-link m-b-5" CommandName="Select" />
@@ -42,7 +42,7 @@
                                            </div>
 
                                            <div class="result-price">
-                                               <asp:Label ID="Label6" runat="server" Text='<%# Eval("correoEmpresa") %>'></asp:Label><small>CORREO</small>
+                                               <asp:Label ID="Label6" runat="server" Text='<%# Eval("correoEmpresa") %>'></asp:Label><small><asp:Label runat="server" id="corre" Text="Label">CORREO</asp:Label></small>
                                            </div>
                                        </li>
                                        <li></li>

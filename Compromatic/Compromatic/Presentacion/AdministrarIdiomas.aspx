@@ -5,9 +5,9 @@
         <ol class="breadcrumb pull-right">
             <li><a href="javascript:;">Home</a></li>
             <li><a href="javascript:;" id="adm" runat="server">Administrar</a></li>
-            <li class="active" id="cat" runat="server">Idiomas</li>
+            <li class="active" id="idiom" runat="server">Idiomas</li>
         </ol>
-      <h1 class="page-header" id="cat2" runat="server">Idiomas <small id="comp_our" runat="server"> nuestro compromiso es contigo</small></h1>
+      <h1 class="page-header" id="idiom1" runat="server">Idiomas <small id="comp_our" runat="server"> nuestro compromiso es contigo</small></h1>
         <div class="row">
             <asp:ScriptManager runat="server"></asp:ScriptManager>
             <asp:UpdatePanel runat="server">
@@ -21,7 +21,7 @@
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                                 </div>
-                                <h4 class="panel-title" runat="server" id="all_cat">Traducir Controles</h4>
+                                <h4 class="panel-title" runat="server" id="all_cont">Traducir Controles</h4>
                             </div>
                             <div class="panel-body">
                                 <asp:Panel ID="Panel2" runat="server">
@@ -78,7 +78,7 @@
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                                 </div>
-                                <h4 class="panel-title" id="reg_cat" runat="server">Regitrar nuevo Idioma</h4>
+                                <h4 class="panel-title" id="reg_idm" runat="server">Regitrar nuevo Idioma</h4>
                             </div>
                             <div class="panel-body bg-orange text-white">
                                 <asp:Panel ID="Panel3" runat="server">

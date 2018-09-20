@@ -234,7 +234,7 @@
 					    
 					</li>
                     <li><a href="AdministrarIdiomas.aspx">       
-					        <i class="fas fa-language"></i>
+					        <i class="fa fa-list-alt"></i>
 					        <span runat="server" id="Span1">Administrar Idiomas</span>
 					    </a>
 					    

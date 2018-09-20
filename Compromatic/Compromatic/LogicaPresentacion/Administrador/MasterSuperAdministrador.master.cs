@@ -60,7 +60,7 @@ public partial class Presentacion_MasterSuperAdministrador : System.Web.UI.Maste
             this.admi_cat.InnerText= compIdioma["admi_cat"].ToString();
             this.adm_mem.InnerText= compIdioma["adm_mem"].ToString();
             this.adm_mot.InnerText= compIdioma["adm_mot"].ToString();
-            //this.respo.InnerText = compIdioma["respo"].ToString();
+            this.Span1.InnerText= compIdioma["Span1"].ToString();
         }
         catch (Exception ex)
         { }

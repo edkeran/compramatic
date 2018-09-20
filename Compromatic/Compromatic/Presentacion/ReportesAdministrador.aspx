@@ -5,14 +5,14 @@
     <div id="content" class="content">
         <ol class="breadcrumb pull-right">
             <li><a href="javascript:;">Home</a></li>
-            <li><a href="javascript:;">Reporte</a></li>
-            <li class="active">Productos reportados</li>
+            <li><a href="javascript:;" id="reporte" runat="server">Reporte</a></li>
+            <li class="active" id="pro_rep" runat="server">Productos reportados</li>
         </ol>
-        <h1 class="page-header">Productos reportados<small> nuevas oportunidades de negocio</small></h1>
+        <h1 class="page-header" id="pro_rep2" runat="server">Productos reportados<small id="n_opt" runat="server"> nuevas oportunidades de negocio</small></h1>
         <asp:Panel ID="Panel1" runat="server" class="col-md-12">
             <div class="result-container">
                 <asp:Label runat="server" ID="idProducto" Visible="false">0</asp:Label>
-                <asp:GridView ID="GridView1" runat="server" Width="100%" DataKeyNames="idProducto" AutoGenerateColumns="False" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" BorderStyle="None" DataSourceID="ObjectDataSource1">
+                <asp:GridView ID="GridView1" runat="server" Width="100%" DataKeyNames="idProducto" AutoGenerateColumns="False" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" BorderStyle="None" DataSourceID="ObjectDataSource1" OnRowCreated="GridView1_RowCreated">
                     <AlternatingRowStyle BorderStyle="None" />
 
                     <Columns>
@@ -39,7 +39,8 @@
                                                 <asp:Label ID="Label7" runat="server" Text="Enviado por : "></asp:Label><asp:Label ID="Label8" runat="server" Text='<%# Eval("nomUsuario") %>'></asp:Label>
                                             </p>
 
-                                            <p class="desc">Cada producto tendra un tope de reportes, cuando este sea excedido el producto sera bloqueado.</p>
+                                            <p class="desc">
+                                                <asp:Label ID="LB_Parr" runat="server" Text="Cada producto tendra un tope de reportes, cuando este sea excedido el producto sera bloqueado."></asp:Label></p>
 
                                             <div>
                                                 <i class="fa fa-expand fa-2x pull-left fa-fw"></i>
@@ -48,7 +49,7 @@
                                         </div>
 
                                         <div class="result-price">
-                                            <asp:Label ID="Label6" runat="server" Text='<%# Eval("correoEmpresa") %>'></asp:Label><small>CORREO</small>
+                                            <asp:Label ID="Label6" runat="server" Text='<%# Eval("correoEmpresa") %>'></asp:Label><small><asp:Label ID="LB_Corr" runat="server" Text="CORREO"></asp:Label></small>
                                             <p class="desc">
                                             </p>
                                             <p class="desc">
@@ -56,7 +57,7 @@
                                             <p class="desc">
                                             </p>
                                             <small>
-                                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("fechaReporte") %>'></asp:Label></small><small>Fecha del reporte</small>
+                                                <asp:Label ID="Label9" runat="server" Text='<%# Eval("fechaReporte") %>'></asp:Label></small><small><asp:Label ID="LB_Date" runat="server" Text="Fecha del reporte"></asp:Label></small>
 
 
                                         </div>

@@ -4,10 +4,10 @@
     <div id="content" class="content">
         <ol class="breadcrumb pull-right">
             <li><a href="javascript:;">Home</a></li>
-            <li><a href="javascript:;">Administrar</a></li>
-            <li class="active">Memebresias</li>
+            <li><a href="javascript:;" id="adm" runat="server">Administrar</a></li>
+            <li class="active" id="mem" runat="server">Memebresias</li>
         </ol>
-        <h1 class="page-header">Membresias <small>nuestro compromiso es contigo</small></h1>
+        <h1 class="page-header" id="mem1" runat="server">Membresias <small id="compro" runat="server">nuestro compromiso es contigo</small></h1>
         <div class="row">
             <asp:ScriptManager runat="server"></asp:ScriptManager>
             <asp:UpdatePanel runat="server">
@@ -21,11 +21,11 @@
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                                 </div>
-                                <h4 class="panel-title">Todas las Membresias</h4>
+                                <h4 class="panel-title" id="all_mem" runat="server">Todas las Membresias</h4>
                             </div>
                             <div class="panel-body">
                                 <asp:Panel ID="Panel2" runat="server">
-                                    <asp:GridView ID="GridView2" runat="server" BorderStyle="None" class="table table-hover" DataKeyNames="nomMembresia" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" AutoGenerateColumns="False" Width="100%" DataSourceID="ObjectDataSource1">
+                                    <asp:GridView ID="GridView2" runat="server" BorderStyle="None" class="table table-hover" DataKeyNames="nomMembresia" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" AutoGenerateColumns="False" Width="100%" DataSourceID="ObjectDataSource1" OnRowCreated="GridView2_RowCreated">
                                         <Columns>
                                             <asp:BoundField DataField="nomMembresia" HeaderText="NOMBRE "></asp:BoundField>
                                             <asp:BoundField DataField="tiempo" HeaderText="DURACION"></asp:BoundField>
@@ -54,7 +54,7 @@
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                                 </div>
-                                <h4 class="panel-title">Regitrar nueva Membresia</h4>
+                                <h4 class="panel-title" id="add_membership" runat="server">Regitrar nueva Membresia</h4>
                             </div>
                             <div class="panel-body bg-orange text-white">
                                 <asp:Panel ID="Panel3" runat="server">
