@@ -9,12 +9,12 @@
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
 				<li><a href="javascript:;">Home</a></li>
-				<li><a href="javascript:;">Cliente</a></li>
-				<li class="active">Ver todos</li>
+				<li><a href="javascript:;" id="clien" runat="server">Cliente</a></li>
+				<li class="active" id="see_all" runat="server">Ver todos</li>
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
-			<h1 class="page-header">Usuarios - Clientes <small>nuestro compromiso es contigo</small></h1>
+			<h1 class="page-header" id="usr_clien" runat="server">Usuarios - Clientes <small id="our_comp" runat="server">nuestro compromiso es contigo</small></h1>
 			<!-- end page-header -->
 			
 			<!-- begin row -->
@@ -34,15 +34,23 @@
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                             </div>
-                            <h4 class="panel-title">Clientes</h4>
+                            <h4 class="panel-title" id="clien2" runat="server">Clientes</h4>
                         </div>
                         <div class="alert alert-success fade in">
                             <button type="button" class="close" data-dismiss="alert">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            Estos son los clientes registrados actualmente. <br />
-                            Bienvenido Administrador.
+                            <asp:Label runat="server" id="LB_parr" Text="Estos son los clientes registrados actualmente. "></asp:Label>
+                            <br />
+                            <asp:Label runat="server" id="LB_Wel" Text="Bienvenido Administrador."></asp:Label>
                         </div>
+                         <!--    <div>
+                          <asp:DropDownList ID="DropDownList1" runat="server" class="btn btn-default dropdown-toggle" AutoPostBack="true"  >
+                          <asp:ListItem Value="0">Activos</asp:ListItem>
+                          <asp:ListItem Value="1">Inactivos</asp:ListItem>
+                          <asp:ListItem Selected="True" Value="2">Todos</asp:ListItem>
+                          </asp:DropDownList>
+		            	</div>-->
                         <div class="panel-body">
                             <asp:Panel ID="Panel1" runat="server" >
                             <asp:GridView ID="GridView1" runat="server"  class="table table-striped table-bordered nowrap data-table" DataSourceID="ObjectDataSource1" AllowSorting="True" AutoGenerateColumns="False" Width="100%" >

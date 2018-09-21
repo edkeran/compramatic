@@ -9,12 +9,12 @@
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
 				<li><a href="javascript:;">Home</a></li>
-				<li><a href="javascript:;">Empresa</a></li>
-				<li class="active">Total Ventas</li>
+				<li><a href="javascript:;" id="emp" runat="server">Empresa</a></li>
+				<li class="active" id="tot" runat="server">Total Ventas</li>
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
-			<h1 class="page-header">Ventas totales por empresa <small> nuestro compromiso es contigo</small></h1>
+			<h1 class="page-header" id="tot_ven" runat="server">Ventas totales por empresa <small id="our_comp" runat="server"> nuestro compromiso es contigo</small></h1>
 			<!-- end page-header -->
 			
 			<!-- begin row -->
@@ -34,14 +34,15 @@
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                             </div>
-                            <h4 class="panel-title">Ventas</h4>
+                            <h4 class="panel-title" id="vent" runat="server">Ventas</h4>
                         </div>
                         <div class="alert alert-success fade in">
                             <button type="button" class="close" data-dismiss="alert">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            Estas son las ventas totales de cada empresa registrada<br />
-                            Bienvenido Administrador.
+                            <asp:Label ID="LB_Ve_Tot" runat="server" Text=" Estas son las ventas totales de cada empresa registrada"></asp:Label>
+                           <br />
+                            <asp:Label ID="LB_Wel" runat="server" Text=" Bienvenido Administrador."></asp:Label>
                         </div>
                         <div class="panel-body">
                             <asp:Panel ID="Panel1" runat="server" >

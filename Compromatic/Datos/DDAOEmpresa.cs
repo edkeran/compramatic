@@ -113,8 +113,10 @@ namespace Datos
                 command.Parameters.Add("_rutaarchivo", NpgsqlTypes.NpgsqlDbType.Varchar).Value = EU_Empresa.RutaArchivo;
                 command.Parameters.Add("_idtipo", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Empresa.IdTipo;
                 command.Parameters.Add("_contraseña", NpgsqlTypes.NpgsqlDbType.Varchar).Value = EU_Empresa.Contraseña;
-                command.Parameters.Add("_fechainicio", NpgsqlTypes.NpgsqlDbType.Timestamp).Value = EU_Empresa.FechaInicio;
-                command.Parameters.Add("_fechafin", NpgsqlTypes.NpgsqlDbType.Timestamp).Value = EU_Empresa.FechaFin;
+                DateTime da = DateTime.Parse(EU_Empresa.FechaInicio);
+                DateTime fq = DateTime.Parse(EU_Empresa.FechaFin);
+                command.Parameters.Add("_fechainicio", NpgsqlTypes.NpgsqlDbType.Timestamp).Value = da;
+                command.Parameters.Add("_fechafin", NpgsqlTypes.NpgsqlDbType.Timestamp).Value = fq;
                 command.Parameters.Add("_idtipo_membresia", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Empresa.IdTipoMembresia;
 
 

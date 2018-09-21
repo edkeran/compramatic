@@ -121,7 +121,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label runat="server" id="dir">Dirección</label>
-                                                            <asp:TextBox ID="TB_Direccion" MaxLength="20" runat="server" placeholder="Dirección" data-parsley-group="wizard-step-2" data-parsley-pattern="/^[a-zA-Z0-9.- ]+$/" required="required" CssClass="form-control"></asp:TextBox>
+                                                            <asp:TextBox ID="TB_Direccion" MaxLength="20" runat="server" placeholder="Dirección" data-parsley-group="wizard-step-2" data-parsley-pattern="/^[0-9\-\(\)\ a-zA-Z]+$/" required="required" CssClass="form-control"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <!-- end col-4 -->

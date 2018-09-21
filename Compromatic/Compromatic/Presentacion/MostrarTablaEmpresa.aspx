@@ -9,12 +9,12 @@
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
 				<li><a href="javascript:;">Home</a></li>
-				<li><a href="javascript:;">Empresa</a></li>
-				<li class="active">Ver todas</li>
+				<li><a href="javascript:;" id="emp" runat="server">Empresa</a></li>
+				<li class="active" id="all" runat="server">Ver todas</li>
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
-			<h1 class="page-header">Usuarios - Empresas <small> nuestro compromiso es contigo</small></h1>
+			<h1 class="page-header" id="usr_emp" runat="server">Usuarios - Empresas <small id="our_com" runat="server"> nuestro compromiso es contigo</small></h1>
 			<!-- end page-header -->
 			
 			<!-- begin row -->
@@ -34,14 +34,15 @@
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                             </div>
-                            <h4 class="panel-title">Empresas</h4>
+                            <h4 class="panel-title" id="empres" runat="server">Empresas</h4>
                         </div>
                         <div class="alert alert-success fade in">
                             <button type="button" class="close" data-dismiss="alert">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            Estas son las empresas registrados actualmente. <br />
-                            Bienvenido Administrador.
+                            <asp:Label ID="LB_Emp_Reg" runat="server" Text="Estas son las empresas registrados actualmente."></asp:Label>
+                             <br />
+                            <asp:Label ID="LB_Wel" runat="server" Text=" Bienvenido Administrador."></asp:Label>
                         </div>
                      <!--   <div>
                           <asp:DropDownList ID="DropDownList1" runat="server" class="btn btn-default dropdown-toggle" AutoPostBack="True" >
