@@ -11,6 +11,7 @@
 	<meta content="" name="author" />
 	
 	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="../App_Themes/Assets/css/Main_Ajax.css" rel="stylesheet" />
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
 	<link href="../App_Themes/Assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
 	<link href="../App_Themes/Assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -87,7 +88,7 @@
                         <div class="row m-b-15">
                             <div class="col-md-15">
                                 <asp:TextBox ID="TB_Direccion" CssClass="form-control" placeholder="Direccion de domicilio" runat="server" Required="Required" MaxLength="50"></asp:TextBox>
-                                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ForeColor="Red" ControlToValidate="TB_Direccion" ErrorMessage="Error, caracteres no permitidos" ToolTip="La cadena contiene caracteres no validos" ValidationExpression="^[a-zA-Z ñÑ]*$"></asp:RegularExpressionValidator>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ForeColor="Red" ControlToValidate="TB_Direccion" ErrorMessage="Error, caracteres no permitidos" ToolTip="La cadena contiene caracteres no validos" ValidationExpression="^[a-zA-Z ñÑ0-9-]*$"></asp:RegularExpressionValidator>
                             </div>
                         </div>
 
@@ -102,6 +103,19 @@
                         <div class="row m-b-15">
                            <div class="col-md-6 m-b-15">
                                 <asp:TextBox ID="TB_Pass1" CssClass="form-control" placeholder="Contraseña" runat="server" TextMode="Password" Required="Required" MaxLength="20"></asp:TextBox>
+                               <ajaxToolkit:PasswordStrength ID="PS" runat="server"
+                                    TargetControlID="TB_Pass1"
+                                    DisplayPosition="BelowLeft"
+                                    StrengthIndicatorType="Text"
+                                    PreferredPasswordLength="10"
+                                    PrefixText="Seguridad: "
+                                    StrengthStyles="TextIndicator_TextBox1"
+                                    MinimumNumericCharacters="0"
+                                    MinimumSymbolCharacters="0"
+                                    RequiresUpperAndLowerCaseCharacters="false"
+                                    TextStrengthDescriptions="Muy Debil;Debil;Aceptable;Fuerte;Excelente"
+                                    TextStrengthDescriptionStyles="cssClass1;cssClass2;cssClass3;cssClass4;cssClass5"
+                                    CalculationWeightings="50;15;15;20" />
                             </div>
                             <div class="col-md-6 m-b-15">
                                 <asp:TextBox ID="TB_Pass2" CssClass="form-control" placeholder="Confima tu contraseña" runat="server" TextMode="Password" Required="Required" MaxLength="20"></asp:TextBox>
@@ -110,7 +124,16 @@
                         
                         
                         <div class="checkbox m-b-30">
+                            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                             <asp:CheckBox id="CB_Terminos" runat="server" Text="Confirma tu registro, recuerda que todos los campos son obligatorios."/>
+                            <ajaxToolkit:ToggleButtonExtender ID="ToggleEx" runat="server"
+                                TargetControlID="CB_Terminos" 
+                                ImageWidth="19" 
+                                ImageHeight="19"
+                                CheckedImageAlternateText="Acepto"
+                                UncheckedImageAlternateText="No Acepto"
+                                UncheckedImageUrl="~/Archivos/Img_Checkbox/rechazo.png" 
+                                CheckedImageUrl="~/Archivos/Img_Checkbox/accept.png" />
                         </div>
                         <div class="register-buttons">
                              

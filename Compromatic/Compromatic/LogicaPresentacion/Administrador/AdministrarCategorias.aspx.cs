@@ -110,4 +110,22 @@ public partial class Presentacion_AdministrarCategorias : System.Web.UI.Page
         catch (Exception eg) { }
     }
 
+    protected void GridView2_RowCreated(object sender, GridViewRowEventArgs e)
+    {
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        Object sesidioma = Session["idiomases"];
+        Int32 formulario = 27;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            ((Button)e.Row.FindControl("Select")).Text = compIdioma["Select"].ToString();
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
 }

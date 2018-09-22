@@ -22,5 +22,17 @@ namespace Logica
                 return idiom;
             }
         }
+
+        public Object validar_region(Object region)
+        {
+            if (region == null)
+            {
+                return "es-Co";
+            }
+            else
+            {
+                return region;
+            }
+        }
     }
 }

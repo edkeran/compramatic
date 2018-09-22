@@ -10,6 +10,7 @@ public partial class Presentacion_Inventario : System.Web.UI.Page
     {
         L_Invertario logic = new L_Invertario();
         String redir = logic.page_load(IsPostBack, Session["Sesion"]);
+
         //Seteando Idiomas
         L_Idioma idiot = new L_Idioma();
         Object sesidioma = Session["idiomases"];
@@ -27,7 +28,6 @@ public partial class Presentacion_Inventario : System.Web.UI.Page
             this.min_cant.InnerText= compIdioma["min_cant"].ToString();
             this.categ.InnerText= compIdioma["categ"].ToString();
             this.modi.InnerText= compIdioma["modi"].ToString();
-            //this.man_usr.InnerText = compIdioma["man_usr"].ToString();
         }
         catch (Exception ex)
         { }
@@ -40,5 +40,22 @@ public partial class Presentacion_Inventario : System.Web.UI.Page
         L_Invertario logic = new L_Invertario();
         String redir=logic.Productos_ItemCommand(e.CommandName, ((TextBox)e.Item.FindControl("TB_Cantidad")).Text, e.CommandArgument.ToString(), ((TextBox)e.Item.FindControl("TB_Alerta")).Text,Empresa, Request.Url.AbsoluteUri);
         Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redireccionar('" + redir + "');", true);
+    }
+
+    protected void Productos_ItemCreated(object sender, RepeaterItemEventArgs e)
+    {
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        Object sesidioma = Session["idiomases"];
+        Int32 formulario = 14;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            ((Button)e.Item.FindControl("BTN_Mod")).Text= compIdioma["BTN_Mod"].ToString();
+        }
+        catch (Exception ex)
+        { }  
     }
 }

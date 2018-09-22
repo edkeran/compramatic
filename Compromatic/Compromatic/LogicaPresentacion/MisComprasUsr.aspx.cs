@@ -13,7 +13,6 @@ public partial class Presentacion_MisComprasUsr : System.Web.UI.Page
     {
         try
         {
-            //DAOUsuario user = new DAOUsuario();
             L_MisComprasUsr logica = new L_MisComprasUsr();
             U_aux_MisComprasUsr orig = new U_aux_MisComprasUsr();
             U_aux_MisComprasUsr res = logica.page_load(Session["Sesion"], IsPostBack);
@@ -24,9 +23,6 @@ public partial class Presentacion_MisComprasUsr : System.Web.UI.Page
             res = logica.Caso_nulos(orig, res);
             RP_Peticiones.DataSource = res.Peticiones;
             RP_Peticiones.DataBind();
-            aux = RP_PeticionesAceptadas;
-            RP_PeticionesAceptadas.DataSource = res.Aceptadas;
-            RP_PeticionesAceptadas.DataBind();
             RP_PeticionesRechazadas.DataSource = res.Rechazadas;
             RP_PeticionesRechazadas.DataBind();
             RP_ComprasHechas.DataSource = res.Hechas;
@@ -41,8 +37,8 @@ public partial class Presentacion_MisComprasUsr : System.Web.UI.Page
             idiot.mostraridioma(formulario, idiom, compIdioma);
             try
             {
-                this.ti_pet.InnerText= compIdioma["ti_pet"].ToString();
-                this.pet_acept.InnerText= compIdioma["pet_acept"].ToString();
+                this.ti_pet.InnerText = compIdioma["ti_pet"].ToString();
+                this.pet_acept.InnerText = compIdioma["pet_acept"].ToString();
                 this.N_ven.InnerText = compIdioma["N_ven"].ToString();
                 this.fech.InnerText = compIdioma["fech"].ToString();
                 this.quantity.InnerText = compIdioma["quantity"].ToString();
@@ -70,12 +66,27 @@ public partial class Presentacion_MisComprasUsr : System.Web.UI.Page
                 this.quan.InnerText = compIdioma["quan"].ToString();
                 this.valu.InnerText = compIdioma["valu"].ToString();
                 this.nombe_producto.InnerText = compIdioma["nombe_producto"].ToString();
+                DataColumn colum = new DataColumn();
+                colum.DefaultValue = compIdioma["LB_Califi"].ToString();
+                colum.ColumnName = "LB_Califi";
+                res.Aceptadas.Columns.Add(colum);
+                colum = new DataColumn();
+                colum.ColumnName = "LB_Comment";
+                colum.DefaultValue = compIdioma["LB_Comment"].ToString();
+                res.Aceptadas.Columns.Add(colum);
+                colum = new DataColumn();
+                colum.ColumnName = "BTN_Confirmar";
+                colum.DefaultValue = compIdioma["BTN_Confirmar"].ToString();
+                res.Aceptadas.Columns.Add(colum);
+                this.BTN_Historial.Text= compIdioma["BTN_Historial"].ToString();
             }
             catch (Exception ex)
             {
 
             }
-
+            aux = RP_PeticionesAceptadas;
+            RP_PeticionesAceptadas.DataSource = res.Aceptadas;
+            RP_PeticionesAceptadas.DataBind();
             String texto = "redireccionar('" + res.Redireccion + "')";
             Page.ClientScript.RegisterStartupScript(this.GetType(), "scripts", texto, true);
         } catch (Exception ex)

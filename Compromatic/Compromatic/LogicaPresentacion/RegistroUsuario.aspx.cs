@@ -27,6 +27,22 @@ public partial class Presentacion_RegistroEmpresa : System.Web.UI.Page
             this.LB_Email.Text= compIdioma["LB_Email"].ToString();
             this.LB_Pass.Text= compIdioma["LB_Pass"].ToString();
             this.CB_Terminos.Text= compIdioma["CB_Terminos"].ToString();
+            this.TB_FirstName.Attributes.Remove("placeholder");
+            this.TB_FirstName.Attributes.Add("placeholder", compIdioma["TB_FirstName"].ToString());
+            this.TB_LastName.Attributes.Remove("placeholder");
+            this.TB_LastName.Attributes.Add("placeholder", compIdioma["TB_LastName"].ToString());
+            this.TB_cc.Attributes.Remove("placeholder");
+            this.TB_cc.Attributes.Add("placeholder", compIdioma["TB_cc"].ToString());
+            this.TB_Telefono.Attributes.Remove("placeholder");
+            this.TB_Telefono.Attributes.Add("placeholder", compIdioma["TB_Telefono"].ToString());
+            this.TB_Direccion.Attributes.Remove("placeholder");
+            this.TB_Direccion.Attributes.Add("placeholder", compIdioma["TB_Direccion"].ToString());
+            this.TB_Email.Attributes.Remove("placeholder");
+            this.TB_Email.Attributes.Add("placeholder", compIdioma["TB_Email"].ToString());
+            this.TB_Pass1.Attributes.Remove("placeholder");
+            this.TB_Pass1.Attributes.Add("placeholder", compIdioma["TB_Pass1"].ToString());
+            this.TB_Pass2.Attributes.Remove("placeholder");
+            this.TB_Pass2.Attributes.Add("placeholder", compIdioma["TB_Pass2"].ToString());
             this.BtnRegistrar.Text= compIdioma["BtnRegistrar"].ToString();
             this.div_alr.InnerHtml= compIdioma["div_alr"].ToString()+ "<a href='../Presentacion/LoginUsr.aspx' id='here'>"+ 
                 compIdioma["here"].ToString() + "</a>"+" "+compIdioma["end_div"].ToString();

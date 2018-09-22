@@ -23,16 +23,12 @@ namespace Logica
                     aux_log.New_page = "PerfilEmpresa.aspx";
                     aux_log.Modal_message = "Acceso Concebido";
                     aux_log.Id_empresa= Empresa.Rows[0]["idEmpresa"].ToString();
-                    //Session["Sesion"] = Empresa;
-                    //Session["IdEmpresa"] = Empresa.Rows[0]["idEmpresa"].ToString(); ;
-                    //Response.Redirect("PerfilEmpresa.aspx");
                     return aux_log;
 
                 }
                 else
                 {
                     //Retornar Datos
-                    //Modal("La contraseña y/o el correo no coinciden.");
                     U_aux_loggin aux_log = new U_aux_loggin();
                     aux_log.Modal_message = "La contraseña y/o el correo no coinciden.";
                     return aux_log;
@@ -52,10 +48,8 @@ namespace Logica
                     {
                         U_aux_loggin aux_log = new U_aux_loggin();
                         aux_log.Datos = datos;
-                        //Session["Sesion"] = datos;
                         aux_log.Modal_message = "Bienvenido de nuevo administrador!";
                         aux_log.New_page = "PrincipalAdministrador.aspx";
-                        //Response.Redirect("PrincipalAdministrador.aspx");
                         return aux_log;
                     }
                     else if (int.Parse(datos.Rows[0]["estadoUsuario"].ToString()) == 0)
@@ -63,13 +57,10 @@ namespace Logica
                         user.IdUsr = int.Parse(datos.Rows[0]["idUsuario"].ToString());
                         U_aux_loggin aux_log = new U_aux_loggin();
                         aux_log.Modal_message = "Qué bueno que regreses!";
-                        //Modal("Qué bueno que regreses!");
                         login.BloqueoUser(user, 1, "");
                         datos = login.Login(user);
                         aux_log.Datos = datos;
-                        //Session["Sesion"] = datos;
                         aux_log.New_page = "Home.aspx";
-                        //Response.Redirect("Home.aspx");
                         return aux_log;
                     }
                     else if (int.Parse(datos.Rows[0]["estadoUsuario"].ToString()) == 1 && datos.Rows[0]["idTipo"].ToString() == "3")
@@ -79,8 +70,6 @@ namespace Logica
                             U_aux_loggin aux_log = new U_aux_loggin();
                             aux_log.Datos = null;
                             aux_log.Modal_message = "Esta Ingresando Desde Un Rol Que No Le Corresponde";
-                            //Session["Sesion"] = datos;
-                            //Response.Redirect("Home.aspx");
                             aux_log.New_page = "Home.aspx";
                             return aux_log;
                         }
@@ -88,8 +77,6 @@ namespace Logica
                         {
                             U_aux_loggin aux_log = new U_aux_loggin();
                             aux_log.Datos = datos;
-                            //Session["Sesion"] = datos;
-                            //Response.Redirect("Home.aspx");
                             aux_log.Modal_message = "Bienvenido De Nuevo Es Un Placer Volver A Verte";
                             aux_log.New_page = "Home.aspx";
                             return aux_log;
@@ -99,7 +86,6 @@ namespace Logica
                     {
                         U_aux_loggin aux_log = new U_aux_loggin();
                         aux_log.Modal_message = "Estas bloqueado por un tiempo, regresa cuando acabe tu sansion.";
-                        //Modal("Estas bloqueado por un tiempo, regresa cuando acabe tu sansion.");
                         return aux_log;
 
                     }
@@ -108,7 +94,6 @@ namespace Logica
                 {
                     U_aux_loggin aux_log = new U_aux_loggin();
                     aux_log.Modal_message = "La contraseña y/o el correo no coinciden.";
-                    //Modal("La contraseña y/o el correo no coinciden.");
                     return aux_log;
                 }
             }

@@ -32,7 +32,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <asp:Repeater runat="server" ID="Productos" DataSourceID="OBS_Productos" OnItemCommand="Productos_ItemCommand">
+                                    <asp:Repeater runat="server" ID="Productos" DataSourceID="OBS_Productos" OnItemCommand="Productos_ItemCommand" OnItemCreated="Productos_ItemCreated">
                                         <ItemTemplate>
                                             <tr>
                                                 <td>

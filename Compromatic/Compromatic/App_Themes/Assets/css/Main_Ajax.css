@@ -1,0 +1,48 @@
+﻿.cssClass1 {
+    border-style: solid;
+    border-color: #52527a;
+    margin-left: 45px;
+    background-color: red;
+}
+.cssClass2 {
+    border-style: solid;
+    border-color: #52527a;
+    margin-left: 45px;
+    background-color:#ff6633;
+}
+.cssClass3 {
+    border-style: solid;
+    border-color: #52527a;
+    margin-left: 45px;
+    background-color: #ffcc00;
+}
+.cssClass4 {
+    border-style: solid;
+    border-color: #52527a;
+    background-color: #99ff33;
+    margin-left: 45px;
+}
+.cssClass5 {
+    border-style: solid;
+    border-color: #52527a;
+    background-color: #00ff00;
+    margin-left: 45px;
+}
+.modalBackground {
+    background-color: Black;
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+}
+.modalPopup {
+    background-color: #FFFFFF;
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+}
+.modalHeader{
+    background-color:lightgray;
+    color:black;
+    cursor:pointer;
+    font-size:large;
+    font-weight:bold;
+}

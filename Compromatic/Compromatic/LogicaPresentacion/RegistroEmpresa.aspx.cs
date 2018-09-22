@@ -4,6 +4,8 @@ using System.Web.UI;
 using Utilitarios;
 using Logica;
 using System.Collections;
+using System.Globalization;
+using System.Threading;
 
 public partial class Presentacion_RegistroEmpresa : System.Web.UI.Page
 {
@@ -40,14 +42,26 @@ public partial class Presentacion_RegistroEmpresa : System.Web.UI.Page
             this.end_reg.InnerText= compIdioma["End_reg"].ToString();
             this.id2.InnerText= compIdioma["id"].ToString();
             this.comp.InnerText= compIdioma["comp"].ToString();
+            this.TB_Nit.Attributes.Remove("placeholder");
+            this.TB_Nit.Attributes.Add("placeholder", compIdioma["comp"].ToString());
             this.nom_com.InnerText= compIdioma["nom_com"].ToString();
+            this.TB_NombreCompañia.Attributes.Remove("placeholder");
+            this.TB_NombreCompañia.Attributes.Add("placeholder", compIdioma["nom_com"].ToString());
             this.pic.InnerText= compIdioma["pic"].ToString();
             this.inf_cont.InnerText= compIdioma["inf_cont"].ToString();
             this.LB_Tel.InnerText= compIdioma["LB_Tel"].ToString();
+            this.TB_Telefono.Attributes.Remove("placeholder");
+            this.TB_Telefono.Attributes.Add("placeholder", compIdioma["LB_Tel"].ToString());
             this.dir.InnerText= compIdioma["dir"].ToString();
+            this.TB_Direccion.Attributes.Remove("plceholder");
+            this.TB_Direccion.Attributes.Add("placeholder", compIdioma["dir"].ToString());
             this.str_session.InnerText= compIdioma["str_session"].ToString();
             this.pass.InnerText = compIdioma["pass"].ToString();
+            this.TB_Contraseña.Attributes.Remove("placeholder");
+            this.TB_Contraseña.Attributes.Add("placeholder", compIdioma["pass"].ToString());
             this.conf_pass.InnerText= compIdioma["conf_pass"].ToString();
+            this.TB_Contraseña2.Attributes.Remove("placeholder");
+            this.TB_Contraseña2.Attributes.Add("placeholder", compIdioma["conf_pass"].ToString());
             this.pay.InnerText= compIdioma["pay"].ToString();
             this.member.InnerText= compIdioma["member"].ToString();
             this.LB_St_date.InnerText = compIdioma["LB_St_date"].ToString();
@@ -56,7 +70,8 @@ public partial class Presentacion_RegistroEmpresa : System.Web.UI.Page
             this.End_reg1.InnerText= compIdioma["End_reg"].ToString();
             this.BTN_Registro.Text= compIdioma["BTN_Registro"].ToString();
             this.BTN_Cancelar.Text= compIdioma["BTN_Cancelar"].ToString();
-            //this.respo.InnerText = compIdioma["respo"].ToString();
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(Session["global"].ToString());
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(Session["global"].ToString());
         }
         catch (Exception ex)
         { }

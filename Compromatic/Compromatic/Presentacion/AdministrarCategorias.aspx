@@ -26,7 +26,7 @@
                             </div>
                             <div class="panel-body">
                                 <asp:Panel ID="Panel2" runat="server">
-                                    <asp:GridView ID="GridView2" runat="server" DataKeyNames="nomCategoria" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" class="table table-hover" AutoGenerateColumns="False" Width="100%" BorderStyle="None" DataSourceID="ObjectDataSource2">
+                                    <asp:GridView ID="GridView2" runat="server" DataKeyNames="nomCategoria" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" class="table table-hover" AutoGenerateColumns="False" Width="100%" BorderStyle="None" DataSourceID="ObjectDataSource2" OnRowCreated="GridView2_RowCreated">
                                         <Columns>
                                             <asp:BoundField DataField="idCategoria" HeaderText="ID"></asp:BoundField>
                                             <asp:BoundField DataField="nomCategoria" HeaderText="NOMBRE "></asp:BoundField>

@@ -103,15 +103,15 @@
                                         </td>
                                         <td>
                                             <div class="m-b-5">
-                                                    <asp:Label Text="Calificación:" runat="server" ID="LB_Califi" />
+                                                    <asp:Label Text='<%# Eval("[LB_Califi]") %>' runat="server" ID="LB_Califi" />
                                                     <br />
-                                                    <asp:TextBox runat="server"   ID="TB_Calificacion" TextMode="Number" Text="5"  CssClass="form-control" min="0" max="10"  />
+                                                    <asp:TextBox runat="server" ID="TB_Calificacion" TextMode="Number" Text="5"  CssClass="form-control" min="0" max="10"  />
                                                     <br />
-                                                    <asp:Label Text="Comentarios:" runat="server" />
+                                                    <asp:Label Text='<%# Eval("[LB_Comment]") %>' runat="server" ID="LB_Comment"/>
                                                 <br />
                                                     <asp:TextBox runat="server"  ID="TB_Comentario" CssClass="form-control" MaxLength="100" />
                                                     <br />
-                                                    <asp:Button runat="server" ID="BTN_Confirmar" Text="Confirmar" CssClass="btn btn-primary btn-default " CommandName="Confirmar" CommandArgument='<%# Eval("[idVenta]") %>' />
+                                                    <asp:Button runat="server" ID="BTN_Confirmar" Text='<%# Eval("[BTN_Confirmar]") %>' CssClass="btn btn-primary btn-default " CommandName="Confirmar" CommandArgument='<%# Eval("[idVenta]") %>' />
                                             </div>
                                        </td>
                                     </tr>
