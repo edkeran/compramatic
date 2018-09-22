@@ -2,7 +2,6 @@
 using System.Data;
 using Utilitarios;
 using Npgsql;
-using NpgsqlTypes;
 using System.Configuration;
 
 namespace Datos
