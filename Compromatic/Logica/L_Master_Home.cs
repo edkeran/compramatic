@@ -91,6 +91,40 @@ namespace Logica
                 //Modal("No se encontraron resultados");
             }
         }
+
+        //FUNCION DEL LOGOUT GENERAL
+        public void log_out(Object Session,Object sesion)
+        {
+            if (Session == null)
+            {
+                if (sesion != null)
+                {
+
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                DataTable Sess = (DataTable)Session;
+                if (Sess.Rows[0]["idTipo"].ToString() == "2")
+                {
+                    //para la empresa
+                    DDAOEmpresa db = new DDAOEmpresa();
+                    UEUEmpresa data = new UEUEmpresa();
+                    data.Id = int.Parse(Sess.Rows[0]["idEmpresa"].ToString());
+                    data.Sessiones = int.Parse(Sess.Rows[0]["Sesiones_Abiertas"].ToString());
+                    data.Sessiones = data.Sessiones - 1;
+                    db.ActualizarSesion(data);
+                }
+                else
+                {
+                    //para el usuario
+                }
+            }
+        }
     }
 }
 

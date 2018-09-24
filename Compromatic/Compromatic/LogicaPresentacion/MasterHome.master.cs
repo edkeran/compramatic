@@ -45,6 +45,8 @@ public partial class Presentacion_MasterHome : System.Web.UI.MasterPage
     //NO CAMBIAR FUNCION
     protected void BTN_LogOut_Click(object sender, EventArgs e)
     {
+        L_Master_Home logica = new L_Master_Home();
+        logica.log_out(Session["sesion"],Session["Sesion"]);
         Session["Sesion"] = null;
         Response.Redirect("Home.aspx");
     }

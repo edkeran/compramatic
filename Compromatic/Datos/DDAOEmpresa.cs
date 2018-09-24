@@ -504,5 +504,32 @@ namespace Datos
 
             return Archivos;
         }
+
+        public void ActualizarSesion(UEUEmpresa EU_Empresa)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_actualizar_session", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_id_empresa", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Empresa.Id;
+                command.Parameters.Add("_sessiones", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Empresa.Sessiones;
+                connection.Open();
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+        }
     }
 }

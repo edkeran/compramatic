@@ -52,6 +52,9 @@ public partial class Presentacion_DashEmpresa : System.Web.UI.MasterPage
   
     protected void BorrarSesion(object sender, EventArgs e)
     {
+        L_DashEmpresa logica= new L_DashEmpresa();
+        DataTable data = (DataTable)Session["Sesion"];
+        logica.cerrar_session_empresa(data);
         Session["Sesion"] = null;
         Response.Redirect("LoginUsr.aspx");
     }

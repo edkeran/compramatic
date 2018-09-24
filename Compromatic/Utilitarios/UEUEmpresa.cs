@@ -116,5 +116,12 @@ namespace Utilitarios
         { get => redireccion;
           set => redireccion = value;
         }
+        private int sessiones;
+
+        public int Sessiones
+        { get => sessiones;
+          set => sessiones = value;
+        }
+
     }
 }

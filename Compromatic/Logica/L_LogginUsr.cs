@@ -22,7 +22,26 @@ namespace Logica
                     //La Variable Empresa Va A Session Al Igual Que Su ID
                     aux_log.New_page = "PerfilEmpresa.aspx";
                     aux_log.Modal_message = "Acceso Concebido";
-                    aux_log.Id_empresa= Empresa.Rows[0]["idEmpresa"].ToString();
+                    aux_log.Id_empresa = Empresa.Rows[0]["idEmpresa"].ToString();
+                    //actualizar sesion
+                    DDAOEmpresa DB = new DDAOEmpresa();
+                    int sess = int.Parse(Empresa.Rows[0]["Sesiones_Abiertas"].ToString());
+                    if (sess < 3)
+                    {
+                        //llamar db
+                        UEUEmpresa emp = new UEUEmpresa();
+                        emp.Id = int.Parse(Empresa.Rows[0]["idEmpresa"].ToString());
+                        emp.Sessiones = sess + 1;
+                        Empresa.Rows[0]["Sesiones_Abiertas"]=emp.Sessiones;
+                        DB.ActualizarSesion(emp);
+                    }
+                    else
+                    {
+                        aux_log.New_page = "LoginUsr.aspx";
+                        aux_log.Modal_message = "Has Excedido el numero de sesiones abiertas";
+                        aux_log.Datos = null;
+                        aux_log.Id_empresa = null;
+                    }
                     return aux_log;
 
                 }
@@ -50,6 +69,8 @@ namespace Logica
                         aux_log.Datos = datos;
                         aux_log.Modal_message = "Bienvenido de nuevo administrador!";
                         aux_log.New_page = "PrincipalAdministrador.aspx";
+                        //actualizar sesion
+
                         return aux_log;
                     }
                     else if (int.Parse(datos.Rows[0]["estadoUsuario"].ToString()) == 0)
@@ -61,6 +82,9 @@ namespace Logica
                         datos = login.Login(user);
                         aux_log.Datos = datos;
                         aux_log.New_page = "Home.aspx";
+                        //actualizar sesion
+
+
                         return aux_log;
                     }
                     else if (int.Parse(datos.Rows[0]["estadoUsuario"].ToString()) == 1 && datos.Rows[0]["idTipo"].ToString() == "3")
@@ -79,6 +103,9 @@ namespace Logica
                             aux_log.Datos = datos;
                             aux_log.Modal_message = "Bienvenido De Nuevo Es Un Placer Volver A Verte";
                             aux_log.New_page = "Home.aspx";
+                            //actualizar sesion
+
+
                             return aux_log;
                         }
                     }
