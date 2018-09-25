@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Globalization;
 using System.Threading;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI.WebControls;
 using Logica;
 
@@ -45,4 +47,14 @@ public partial class Presentacion_Index : System.Web.UI.Page
         Session["global"] = DDL_Idioma.SelectedItem;
         Response.Redirect("Home.aspx");
     }
+
+    
+    protected void BTN_LogOut_Click(object sender, EventArgs e)
+    {
+        L_Master_Home logica = new L_Master_Home();
+        logica.log_out(Session["sesion"], Session["Sesion"]);
+        Session["Sesion"] = null;
+        Response.Redirect("Home.aspx");
+    }
+
 }

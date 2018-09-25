@@ -510,5 +510,123 @@ namespace Datos
             }
             return Correo;
         }
+
+        public void actualizar_session(UEUsuario data)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_actualizar_session_usr", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_id_usr", NpgsqlTypes.NpgsqlDbType.Integer).Value = data.IdUsr;
+                command.Parameters.Add("_sessiones", NpgsqlTypes.NpgsqlDbType.Integer).Value = data.Sessiones;
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connection.Close();
+                connection = null;
+            }
+        }
+        //FUNCION PARA OBTENER EL NUMERO DEL USUARIO DE SESIONES
+        public int GET_NUM_SESSION(UEUsuario UE_user)
+        {
+            DataTable session = new DataTable();
+
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_obtener_session_usr", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_id_usr", NpgsqlTypes.NpgsqlDbType.Integer).Value = UE_user.IdUsr;
+                connection.Open();
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(command);
+                adapter.Fill(session);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+
+            return int.Parse(session.Rows[0]["Sesiones_Abiertas"].ToString());
+        }
+
+        //FUNCION PARA OBTENER EL USUARIO POR EL CORREO
+        public DataTable GET_USER(String correo)
+        {
+            DataTable session = new DataTable();
+
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_obtener_usr_corr", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_correo", NpgsqlTypes.NpgsqlDbType.Text).Value =correo;
+                connection.Open();
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(command);
+                adapter.Fill(session);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+
+            return session;
+        }
+
+        //FUNCION PARA ACTUALIZAR BLOQUEO   
+        public void UPDATE_BLOQUEO(String correo, DateTime h_in, DateTime h_fi, int intentos)
+        {
+            NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand("sp_actualizar_intentos_usr", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_correo", NpgsqlTypes.NpgsqlDbType.Text).Value = correo;
+                command.Parameters.Add("_intentos", NpgsqlTypes.NpgsqlDbType.Integer).Value = intentos;
+                command.Parameters.Add("_h_ini", NpgsqlTypes.NpgsqlDbType.Timestamp).Value = h_in;
+                command.Parameters.Add("_h_fin", NpgsqlTypes.NpgsqlDbType.Timestamp).Value = h_fi;
+
+                connection.Open();
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+
+        }
     }
 }

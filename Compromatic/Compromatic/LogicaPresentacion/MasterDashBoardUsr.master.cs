@@ -64,6 +64,9 @@ public partial class Presentacion_MasterDashBoardUsr : System.Web.UI.MasterPage
 
     protected void BtnLogOut_Click(object sender, EventArgs e)
     {
+        L_MasterBoardUsr logica = new L_MasterBoardUsr();
+        DataTable data = (DataTable)Session["Sesion"];
+        logica.cerrar_session_usuario(data);
         Session["Sesion"] = null;
         Response.Redirect("AboutUs.aspx");
     }

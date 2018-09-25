@@ -107,9 +107,13 @@ namespace Utilitarios
         { get => calificacion;
           set => calificacion = value; }
 
-       
+        private int sessiones;
 
-        
+        public int Sessiones
+        { get => sessiones;
+          set => sessiones = value; }
+
+
 
     }
 }

@@ -26,6 +26,14 @@ namespace Logica
                     //actualizar sesion
                     DDAOEmpresa DB = new DDAOEmpresa();
                     int sess = int.Parse(Empresa.Rows[0]["Sesiones_Abiertas"].ToString());
+                    if (int.Parse(Empresa.Rows[0]["intentos"].ToString()) >= 3)
+                    {
+                        aux_log.New_page = "LoginUsr.aspx";
+                        aux_log.Modal_message = "Has Excedido El Numero De Intentos De Loggin Intentalo A Las "+ Empresa.Rows[0]["fin_bloqueo"].ToString();
+                        aux_log.Datos = null;
+                        aux_log.Id_empresa = null;
+                        return aux_log;
+                    }
                     if (sess < 3)
                     {
                         //llamar db
@@ -63,27 +71,69 @@ namespace Logica
                 DataTable datos = login.Login(user);
                 if (datos.Rows.Count > 0)
                 {
-                    if ((seleccion == "2") && (datos.Rows[0]["idTipo"].ToString()=="1"))
+                    if ((seleccion == "2") && (datos.Rows[0]["idTipo"].ToString() == "1"))
                     {
                         U_aux_loggin aux_log = new U_aux_loggin();
                         aux_log.Datos = datos;
                         aux_log.Modal_message = "Bienvenido de nuevo administrador!";
                         aux_log.New_page = "PrincipalAdministrador.aspx";
+                        int sess = int.Parse(datos.Rows[0]["Sesiones_Abiertas"].ToString());
                         //actualizar sesion
+                        if (sess < 1)
+                        {
+                            //llamar db
+                            UEUsuario usr = new UEUsuario();
+                            DDAOUsuario db = new DDAOUsuario();
+                            usr.IdUsr = int.Parse(datos.Rows[0]["idUsuario"].ToString());
+                            usr.Sessiones = sess + 1;
+                            db.actualizar_session(usr);
+                        }
+                        else
+                        {
+                            aux_log.New_page = "LoginUsr.aspx";
+                            aux_log.Modal_message = "Has Excedido el numero de sesiones abiertas";
+                            aux_log.Datos = null;
+                            aux_log.Id_empresa = null;
+                        }
 
                         return aux_log;
                     }
                     else if (int.Parse(datos.Rows[0]["estadoUsuario"].ToString()) == 0)
                     {
-                        user.IdUsr = int.Parse(datos.Rows[0]["idUsuario"].ToString());
                         U_aux_loggin aux_log = new U_aux_loggin();
+                        if (int.Parse(datos.Rows[0]["intentos"].ToString()) >= 3)
+                        {
+                            //NO LOGGUEAR
+                            aux_log.New_page = "LoginUsr.aspx";
+                            aux_log.Modal_message = "Has Excedido el numero de intentos de logueo intentalo a las " + datos.Rows[0]["fin_bloqueo"];
+                            aux_log.Datos = null;
+                            aux_log.Id_empresa = null;
+                            return aux_log;
+                        }
+                        user.IdUsr = int.Parse(datos.Rows[0]["idUsuario"].ToString());
                         aux_log.Modal_message = "Qué bueno que regreses!";
                         login.BloqueoUser(user, 1, "");
                         datos = login.Login(user);
                         aux_log.Datos = datos;
                         aux_log.New_page = "Home.aspx";
+                        int sess = int.Parse(datos.Rows[0]["Sesiones_Abiertas"].ToString());
                         //actualizar sesion
-
+                        if (sess < 3)
+                        {
+                            //llamar db
+                            UEUsuario usr = new UEUsuario();
+                            DDAOUsuario db = new DDAOUsuario();
+                            usr.IdUsr = int.Parse(datos.Rows[0]["idUsuario"].ToString());
+                            usr.Sessiones = sess + 1;
+                            db.actualizar_session(usr);
+                        }
+                        else
+                        {
+                            aux_log.New_page = "LoginUsr.aspx";
+                            aux_log.Modal_message = "Has Excedido el numero de sesiones abiertas";
+                            aux_log.Datos = null;
+                            aux_log.Id_empresa = null;
+                        }
 
                         return aux_log;
                     }
@@ -103,8 +153,33 @@ namespace Logica
                             aux_log.Datos = datos;
                             aux_log.Modal_message = "Bienvenido De Nuevo Es Un Placer Volver A Verte";
                             aux_log.New_page = "Home.aspx";
-                            //actualizar sesion
-
+                            int sess = int.Parse(datos.Rows[0]["Sesiones_Abiertas"].ToString());
+                            if (int.Parse(datos.Rows[0]["intentos"].ToString()) >= 3)
+                            {
+                                //DEBO RETORNAR NULOS Y UN MENSAJE DE ERROR
+                                aux_log.New_page = "LoginUsr.aspx";
+                                aux_log.Modal_message = "Tu Cuenta Ha Tenido Demasiados Intentos Erroneo Intentalo a Las "+ datos.Rows[0]["fin_bloqueo"].ToString();
+                                aux_log.Datos = null;
+                                aux_log.Id_empresa = null;
+                                return aux_log;
+                            }
+                            //actualizar session
+                            if (sess < 3)
+                            {
+                                //llamar db
+                                UEUsuario usr = new UEUsuario();
+                                DDAOUsuario db = new DDAOUsuario();
+                                usr.IdUsr = int.Parse(datos.Rows[0]["idUsuario"].ToString());
+                                usr.Sessiones = sess + 1;
+                                db.actualizar_session(usr);
+                            }
+                            else
+                            {
+                                aux_log.New_page = "LoginUsr.aspx";
+                                aux_log.Modal_message = "Has Excedido el numero de sesiones abiertas";
+                                aux_log.Datos = null;
+                                aux_log.Id_empresa = null;
+                            }
 
                             return aux_log;
                         }
@@ -119,6 +194,17 @@ namespace Logica
                 }
                 else
                 {
+                    DDAOUsuario db = new DDAOUsuario();
+                    DataTable data = db.GET_USER(email);
+                    if (data.Rows.Count > 0)
+                    {
+                        //AUMENTAR BLOQUEO
+                        DateTime hora_incio = DateTime.Now;
+                        DateTime hora_fin = hora_incio.AddMinutes(30);
+                        int intentos = int.Parse(data.Rows[0]["intentos"].ToString());
+                        intentos = intentos + 1;
+                        db.UPDATE_BLOQUEO(email, hora_incio, hora_fin, intentos);
+                    }
                     U_aux_loggin aux_log = new U_aux_loggin();
                     aux_log.Modal_message = "La contraseña y/o el correo no coinciden.";
                     return aux_log;
@@ -134,6 +220,20 @@ namespace Logica
             EU_Empresa.Correo = correo;
             EU_Empresa.Contraseña = contraseña;
             DataTable Datos = DAO_Empresa.LoginEmpresa(EU_Empresa);
+            //Codigo Nuevo Para El Caso Del Bloqueo
+            DataTable res=DAO_Empresa.GET_EMP(correo);
+            if (Datos.Rows.Count <= 0)
+            {
+                if (res.Rows.Count > 0)
+                {
+                    //AUMENTAR INTENTOS
+                    int intentos=int.Parse(res.Rows[0]["intentos"].ToString());
+                    intentos = intentos + 1;
+                    DateTime hora_inicio = DateTime.Now;
+                    DateTime hora_fin = hora_inicio.AddMinutes(30);
+                    DAO_Empresa.UPDATE_BLOQUEO(correo, hora_inicio, hora_fin, intentos);
+                }
+            }
             return Datos;
         }
 

@@ -64,5 +64,17 @@ namespace Logica
             DDAOPqr queja = new DDAOPqr();
             queja.QuejaUsr(pqr,nom_usr);
         }
+
+        public void cerrar_session_usuario(DataTable sesion)
+        {
+            DDAOUsuario DB = new DDAOUsuario();
+            UEUsuario data = new UEUsuario();
+            int ID = int.Parse(sesion.Rows[0]["idUsuario"].ToString());
+            data.IdUsr = ID;
+            int Session = DB.GET_NUM_SESSION(data);
+            Session = Session - 1;
+            data.Sessiones = Session;
+            DB.actualizar_session(data);
+        }
     }
 }

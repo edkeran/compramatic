@@ -99,7 +99,13 @@ namespace Logica
             {
                 if (sesion != null)
                 {
-
+                    DataTable Sess = (DataTable)sesion;
+                    DDAOUsuario DB = new DDAOUsuario();
+                    UEUsuario data = new UEUsuario();
+                    data.IdUsr = int.Parse(Sess.Rows[0]["idUsuario"].ToString());
+                    data.Sessiones = DB.GET_NUM_SESSION(data);
+                    data.Sessiones = data.Sessiones - 1;
+                    DB.actualizar_session(data);
                 }
                 else
                 {
@@ -115,13 +121,19 @@ namespace Logica
                     DDAOEmpresa db = new DDAOEmpresa();
                     UEUEmpresa data = new UEUEmpresa();
                     data.Id = int.Parse(Sess.Rows[0]["idEmpresa"].ToString());
-                    data.Sessiones = int.Parse(Sess.Rows[0]["Sesiones_Abiertas"].ToString());
+                    data.Sessiones = db.GET_NUM_SESSION(data);
                     data.Sessiones = data.Sessiones - 1;
                     db.ActualizarSesion(data);
                 }
                 else
                 {
                     //para el usuario
+                    DDAOUsuario DB = new DDAOUsuario();
+                    UEUsuario data = new UEUsuario();
+                    data.IdUsr = int.Parse(Sess.Rows[0]["idUsuario"].ToString());
+                    data.Sessiones = DB.GET_NUM_SESSION(data);
+                    data.Sessiones = data.Sessiones - 1;
+                    DB.actualizar_session(data);
                 }
             }
         }

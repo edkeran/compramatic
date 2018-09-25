@@ -4,6 +4,7 @@ using System.Web.UI;
 using Logica;
 using Utilitarios;
 using System.Collections;
+using System.Data;
 
 public partial class Presentacion_MasterSuperAdministrador : System.Web.UI.MasterPage
 {
@@ -74,6 +75,9 @@ public partial class Presentacion_MasterSuperAdministrador : System.Web.UI.Maste
 
     protected void Salir_Click(object sender, EventArgs e)
     {
+        L_MasterBoardUsr logica = new L_MasterBoardUsr();
+        DataTable data = (DataTable)Session["Sesion"];
+        logica.cerrar_session_usuario(data);
         Session["Sesion"] = null;
         Response.Redirect("LoginUsr.aspx");
         Response.Cache.SetCacheability(HttpCacheability.ServerAndNoCache);

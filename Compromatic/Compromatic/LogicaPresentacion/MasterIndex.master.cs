@@ -42,6 +42,8 @@ public partial class Presentacion_MasterIndex : System.Web.UI.MasterPage
 
     protected void Btn_Log_Out_Click(object sender, ImageClickEventArgs e)
     {
+        L_Master_Home logica = new L_Master_Home();
+        logica.log_out(Session["sesion"], Session["Sesion"]);
         Session["Sesion"] = null;
         Response.Redirect("LoginUsr.aspx");
     }

@@ -33,11 +33,11 @@ namespace Logica
 
         public void cerrar_session_empresa(DataTable sesion)
         {
-            int ID = int.Parse(sesion.Rows[0]["idEmpresa"].ToString());
-            int Session = int.Parse(sesion.Rows[0]["Sesiones_Abiertas"].ToString());
             DDAOEmpresa DB = new DDAOEmpresa();
             UEUEmpresa data = new UEUEmpresa();
+            int ID = int.Parse(sesion.Rows[0]["idEmpresa"].ToString());
             data.Id = ID;
+            int Session = DB.GET_NUM_SESSION(data);
             Session=Session-1;
             data.Sessiones = Session;
             DB.ActualizarSesion(data);
