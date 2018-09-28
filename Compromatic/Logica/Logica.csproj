@@ -81,6 +81,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DatosPersistencia\DatosPersistencia.csproj">
+      <Project>{aa9fe9f1-e7b3-4dcf-9087-6f0918fd4f13}</Project>
+      <Name>DatosPersistencia</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Datos\Datos.csproj">
       <Project>{60518286-b996-4631-8353-128d86af03ef}</Project>
       <Name>Datos</Name>

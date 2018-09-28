@@ -55,31 +55,31 @@
                             <asp:Panel ID="Panel1" runat="server" >
                             <asp:GridView ID="GridView1" runat="server"  class="table table-striped table-bordered nowrap data-table" DataSourceID="ObjectDataSource1" AllowSorting="True" AutoGenerateColumns="False" Width="100%" >
                                 <Columns>
-                                    <asp:BoundField HeaderText="NOMBRE" DataField="nomUsuario" >
+                                    <asp:BoundField HeaderText="NOMBRE" DataField="NomUsr" >
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="apeUsuario" HeaderText="APELLIDO" />
-                                    <asp:BoundField HeaderText="TELEFONO" DataField="telUsuario"/>
-                                    <asp:BoundField DataField="correoUsuario" HeaderText="CORREO" />
-                                    <asp:BoundField DataField="ccUsuario" HeaderText="C.C" />
-                                    <asp:BoundField DataField="dirUsuario" HeaderText="DIRECCION"/>
+                                    <asp:BoundField DataField="ApelUsr" HeaderText="APELLIDO" />
+                                    <asp:BoundField HeaderText="TELEFONO" DataField="TelUsr"/>
+                                    <asp:BoundField DataField="CorreoUsr" HeaderText="CORREO" />
+                                    <asp:BoundField DataField="CcUsr" HeaderText="C.C" />
+                                    <asp:BoundField DataField="DirUsr" HeaderText="DIRECCION"/>
                                     <asp:TemplateField HeaderText="CALIFICACION">
                                         <EditItemTemplate>
-                                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("calificacionUsuario") %>'></asp:TextBox>
+                                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Calificacion2") %>'></asp:TextBox>
                                         </EditItemTemplate>
                                         <ItemTemplate>
                                             <span class="badge badge-inverse">
-                                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("calificacionUsuario") %>' ></asp:Label>
+                                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Calificacion2") %>' ></asp:Label>
                                             </span>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:BoundField DataField="fechaCreacion_usuario" HeaderText="CREACION" />
+                                    <asp:BoundField DataField="Crea_Usr" HeaderText="CREACION" />
                                 </Columns>
                                 <RowStyle CssClass="sorting_1" />
                             </asp:GridView>
                                 <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="MostrarClientes" TypeName="Logica.L_Componentes">
-                                    <SelectParameters>
+                                   <%--<SelectParameters>
                                         <asp:ControlParameter ControlID="DropDownList1" DefaultValue="2" Name="idBusqueda" PropertyName="SelectedValue" Type="Int32" />
-                                    </SelectParameters>
+                                    </SelectParameters>--%>
                                 </asp:ObjectDataSource>
                               
                            </asp:Panel>

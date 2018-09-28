@@ -2,6 +2,8 @@
 using System.Data;
 using Datos;
 using Utilitarios;
+using DatosPersistencia;
+using System.Collections.Generic;
 
 namespace Logica
 {
@@ -66,8 +68,10 @@ namespace Logica
             {
                 DDAOUsuario login = new DDAOUsuario();
                 UEUsuario user = new UEUsuario();
+                DBUsr db_usr = new DBUsr();
                 user.PassUsr = pass;
                 user.CorreoUsr = email;
+                //LOGGING ANTIGUO
                 DataTable datos = login.Login(user);
                 if (datos.Rows.Count > 0)
                 {
@@ -260,7 +264,6 @@ namespace Logica
             }
             return "0";
         }
-
 
     }
 }

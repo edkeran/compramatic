@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using Datos;
+using DatosPersistencia;
 using Utilitarios;
 
 namespace Logica
@@ -106,10 +107,18 @@ namespace Logica
             return db.MostrarCategorias();
         }
 
-        public DataTable MostrarClientes(int idBusqueda)
+        //public DataTable MostrarClientes(int idBusqueda)
+        //{
+        //    DDAOadministrador db = new DDAOadministrador();
+        //    return db.MostrarClientes(idBusqueda);
+        //}
+
+        public List<UEUsuario> MostrarClientes()
         {
-            DDAOadministrador db = new DDAOadministrador();
-            return db.MostrarClientes(idBusqueda);
+            DBUsr db = new DBUsr();
+
+            //DDAOadministrador db = new DDAOadministrador();
+            return db.obtenerUsuario();
         }
 
         public DataTable MostrarEmpresas(int idBusqueda)
