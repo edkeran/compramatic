@@ -78,6 +78,11 @@ namespace Logica
             db.insertar_idioma(idioma, termin);
         }
 
+        public void insertar_idioma_persistencia(UEUIdioma datos)
+        {
+            DDAOidioma db= new DDAOidioma();
+        }
+
         public void insertar_traduccion(int idioma, int form,String texto, String control)
         {
             DDAOidioma db = new DDAOidioma();

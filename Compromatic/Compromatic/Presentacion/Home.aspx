@@ -59,6 +59,17 @@
                         OkControlID="BTN_Acep"
                         CancelControlID="BTN_Can"
                         PopupDragHandleControlID="PopupHeader"/>
+
+                <ajaxToolkit:AnimationExtender ID="ae"
+                      runat="server" TargetControlID="BTN_Idioma">
+                        <Animations>
+                            <OnClick> 
+                                <Sequence>
+                                   <FadeIn Duration="1.5" Fps="60" AnimationTarget="Panel1"/>
+                                </Sequence>
+                            </OnClick>
+                        </Animations>
+                    </ajaxToolkit:AnimationExtender>
                 <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup" align="center">
                      <asp:Panel runat="server" ID="PopupHeader" CssClass="modalHeader">
                         <asp:Label ID="LB_head" runat="server" Text="Deseas Cambiar El Idioma?"></asp:Label>

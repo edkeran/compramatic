@@ -25,14 +25,20 @@ namespace DatosPersistencia
             }
         }
 
-        public void actualizarUsuario(UEUsuario usr)
+        public void actualizarUsuario(UEUsuario user,string modif)
         {
             using (var db = new Mapeo("public"))
             {
-                db.user.Attach(usr);
-
-                var entry = db.Entry(usr);
-                entry.State = EntityState.Modified;
+                var usuario = db.user.Find(user.IdUsr);
+                //PARAMETROS UPDATE
+                usuario.IdUsr = user.IdUsr;
+                usuario.NomUsr = user.NomUsr;
+                usuario.ApelUsr = user.ApelUsr;
+                usuario.TelUsr = user.TelUsr;
+                usuario.CcUsr = user.CcUsr;
+                usuario.CorreoUsr = user.CorreoUsr;
+                usuario.DirUsr = user.DirUsr;
+                usuario.ModifBy = modif;
                 db.SaveChanges();
             }
         }

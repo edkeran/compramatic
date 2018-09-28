@@ -61,6 +61,7 @@ public partial class Presentacion_AdministrarIdiomas : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+        //METODO QUE ME REGISTRA EL IDIOMA
         String term = Termin_Idioma.Text;
         String idioma = Nombre_Idioma.Text;
         L_Idioma logi = new L_Idioma();

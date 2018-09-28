@@ -21,7 +21,7 @@ namespace DatosPersistencia
 
         //TABLAS DE LA BD A MAPEAR
         public DbSet<UEUsuario> user { get; set; }
-        //public DbSet<Raza> raza { get; set; }
+        public DbSet<UEUIdioma> idiom { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder builder)
         {

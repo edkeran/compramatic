@@ -97,7 +97,7 @@
                                             <td class="field" id="dir_usr" runat="server">Dirección</td>
                                             <td><asp:TextBox ID="TB_Direccion" runat="server" CssClass="form-control" MaxLength="50" /></td>
                                             <td><asp:label ID="LB_Direccion" runat="server" CssClass="control-label"></asp:label>   <i class="fa fa-map-marker"></i></td>
-                                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ForeColor="Red" ControlToValidate="TB_Direccion" ErrorMessage="Error, caracteres" ToolTip="La cadena contiene caracteres no validos" ValidationExpression="^[a-zA-Z ñÑ]*$"></asp:RegularExpressionValidator>
+                                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ForeColor="Red" ControlToValidate="TB_Direccion" ErrorMessage="Error, caracteres" ToolTip="La cadena contiene caracteres no validos" ValidationExpression="^[a-zA-Z ñÑ0-9-]*$"></asp:RegularExpressionValidator>
                                         </tr>
                                         <tr>
                                             <td class="field" id="email_usr" runat="server">Correo electrónico</td>

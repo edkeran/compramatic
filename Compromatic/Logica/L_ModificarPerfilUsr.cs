@@ -3,6 +3,7 @@ using Utilitarios;
 using Datos;
 using System.Data;
 using System.IO;
+using DatosPersistencia;
 
 namespace Logica
 {
@@ -115,7 +116,9 @@ namespace Logica
                     newInfo.DirUsr = datos.Rows[0]["dirUsuario"].ToString();
                 }
                 //Ya Organizada La Informacion Se Procede A Actualizarla EN LA BD
-                db.ModificarInf(newInfo, datos.Rows[0]["nomUsuario"].ToString());
+                //db.ModificarInf(newInfo, datos.Rows[0]["nomUsuario"].ToString());
+                DBUsr daoUser = new DBUsr();
+                daoUser.actualizarUsuario(newInfo, datos.Rows[0]["nomUsuario"].ToString());
                 response.Valido = valido;
                 response.Mensage = "Modificacion Exitosa";
                 response.Datos = datos;
