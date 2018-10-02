@@ -101,10 +101,12 @@ namespace Logica
             return db.Membresia();
         }
 
-        public DataTable MostrarCategorias()
+        public List<UEUCategoria> MostrarCategorias()
         {
-            DDAOadministrador db = new DDAOadministrador();
-            return db.MostrarCategorias();
+            //metodo que me trae las categorias a modificar
+            DBCategoria dao = new DBCategoria();
+            List<UEUCategoria> data = dao.leer_categorias();
+            return data;
         }
 
         //public DataTable MostrarClientes(int idBusqueda)

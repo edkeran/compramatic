@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data;
+using Utilitarios;
 using Datos;
+using DatosPersistencia;
 
 namespace Logica
 {
@@ -10,12 +12,13 @@ namespace Logica
         {
             if (IsValid)
             {
+                UEUCategoria catego= new UEUCategoria();
                 String categoria;
                 categoria = NombreCategoria;
-                DDAOadministrador datos = new DDAOadministrador();
-                datos.registrarCategoria(categoria, ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString());
-                //GridView2.DataBind();
-                //NombreCategoria.Text = null;
+                catego.nomCategoria=categoria;
+                catego.ModifBy=((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString();
+                DBCategoria daoCat = new DBCategoria();
+                daoCat.insertar_categoria(catego);
             }
             else
             {
@@ -45,18 +48,18 @@ namespace Logica
                 return true;
         }
 
-        public void btn2(bool IsValid,String NombreCategoria,String Label5,Object sesion)
+        public void btn2(bool IsValid,String NombreCategoria,String Label5,Object sesion, String Id)
         {
             if (IsValid)
             {
+                UEUCategoria categories = new UEUCategoria();
                 String categoria;
                 categoria = NombreCategoria;
-                DDAOadministrador datos = new DDAOadministrador();
-                datos.ModificarCategorias(categoria, Label5, ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString());
-                ///Button2.Visible = false;
-                ///Button1.Visible = true;
-                //NombreCategoria.Text = null;
-                //GridView2.DataBind();
+                categories.nomCategoria = categoria;
+                categories.Id_cate = int.Parse(Id);
+                categories.ModifBy = ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString();
+                DBCategoria daoCat = new DBCategoria();
+                daoCat.editar_categoria(categories);
             }
             else
             {

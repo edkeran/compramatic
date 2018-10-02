@@ -33,6 +33,7 @@ namespace Logica
                 user.ModifBy = "";
                 user.Sessiones = 0;
                 user.EstUsr = 1;
+                user.Calificacion2=5;
                 //accion.RegistrarUsuario(user, "");
                 daBase.insertarUsuarioPersistencia(user);
                 return "Tu registro se ha sido realizado satisfactoriamente.";

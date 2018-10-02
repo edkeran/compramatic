@@ -87,6 +87,7 @@ public partial class Presentacion_RegistroEmpresa : System.Web.UI.Page
         String saveLocation = (Server.MapPath("~\\Archivos\\FotosPerfil") + "\\" + nombreArchivo+extension);
         U_aux_reg_emp data = new U_aux_reg_emp();
         data = emp.validar_extenciones(extension, TB_Contraseña.Text, TB_Contraseña2.Text, val);
+        //CAMBIAR PARAMETROS PARA CRUD EMPRESA
         emp.CrearEmpresa(TB_Nit.Text, TB_NombreCompañia.Text, nombreArchivo + extension, "../Archivos/FotosPerfil/", TB_Telefono.Text, TB_Direccion.Text, TB_Email.Text, TB_Contraseña.Text, 2, TB_FechaFinal.Text, TB_FechaInicio.Text, int.Parse(DDL_Memebresia.SelectedValue),"",data.Valido);
         emp.guardar_imagen(FU_Foto.PostedFile.InputStream, data.Valido, saveLocation);
         Page.ClientScript.RegisterStartupScript(this.GetType(), "sc", "Redir_Reg_Emp('" + data.Info + "','" + data.Valido + "');", true);

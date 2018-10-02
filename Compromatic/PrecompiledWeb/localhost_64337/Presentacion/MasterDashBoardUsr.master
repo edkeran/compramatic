@@ -1,0 +1,218 @@
+﻿<%@ master language="C#" autoeventwireup="true" inherits="Presentacion_MasterDashBoardUsr, App_Web_hoeagowv" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title runat="server" id="titulo">COMPRAMATIC | CLIENTE</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="../App_Themes/Usuario/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../App_Themes/Usuario/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../App_Themes/Usuario/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../App_Themes/Usuario/assets/css/animate.min.css" rel="stylesheet" />
+    <link href="../App_Themes/Usuario/assets/css/style.min.css" rel="stylesheet" />
+    <link href="../App_Themes/Usuario/assets/css/style-responsive.min.css" rel="stylesheet" />
+    <link href="../App_Themes/Usuario/assets/css/theme/default.css" rel="stylesheet" id="theme" />
+    <!-- ================== END BASE CSS STYLE ================== -->
+
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="../App_Themes/Assets/assets/plugins/pace/pace.min.js"></script>
+    <script src="../App_Themes/JS-Redireccion/Funiones.js"></script>
+    <!-- ================== END BASE JS ================== -->
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- begin #page-loader -->
+        <div id="page-loader" class="fade in"><span class="spinner"></span></div>
+        <!-- end #page-loader -->
+        <!-- begin #page-container -->
+        <div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+            <!-- begin #header -->
+            <div id="header" class="header navbar navbar-default navbar-fixed-top">
+                <!-- begin container-fluid -->
+                <div class="container-fluid">
+                    <!-- begin mobile sidebar expand / collapse button -->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="Home.aspx">
+                            <img alt="" src="../App_Themes/Assets/img/logo.png" /></a>
+                        <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <!-- end mobile sidebar expand / collapse button -->
+
+                    <!-- begin header navigation right -->
+                    <ul class="nav navbar-nav navbar-right">
+
+
+                        <li class="dropdown navbar-user">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                                <asp:Image runat="server" ID="IMG_PerfilHeatherNR" />
+                                <span class="hidden-xs">
+                                    <asp:Label ID="LB_NombreHeatherNR" runat="server" CssClass="control-label"></asp:Label></span> <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInLeft">
+                                <li class="arrow"></li>
+                                <li><a href="PerfilUsr.aspx" runat="server" id="perfil">Mi perfil  <i class="fa fa-user"></i></a></li>
+                                <li class="arrow"></li>
+                                <li><a href="ModificarPerfilUsr.aspx" runat="server" id="Edit_Info">Editar información    <i class="fa fa-edit"></i></a></li>
+                                <li class="divider"></li>
+                                <li><a>
+                                    <asp:ImageButton ID="Btn_Log_Out" runat="server" CssClass="control-label" AlternateText="Log out" OnClick="BtnLogOut_Click" />
+                                    <i class="fa fa-sign-out"></i></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- end header navigation right -->
+                </div>
+                <!-- end container-fluid -->
+            </div>
+            <!-- end #header -->
+
+            <!-- begin #sidebar -->
+            <div id="sidebar" class="sidebar" runat="server">
+                <!-- begin sidebar scrollbar -->
+                <div data-scrollbar="true" data-height="100%">
+                    <!-- begin sidebar user -->
+                    <ul class="nav">
+                        <li class="nav-profile">
+                            <div class="image">
+                                <asp:Image runat="server" ID="IMG_FotoPerfilSideBar" />
+
+                            </div>
+                            <div class="info">
+                                <asp:Label ID="LB_NombreSideBar" runat="server" CssClass="control-label"></asp:Label>
+                                <small>
+                                    <asp:Label ID="LB_ApellidoSideBar" runat="server" CssClass="control-label"></asp:Label></small>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- end sidebar user -->
+                    <!-- begin sidebar nav -->
+                    <ul class="nav" runat="server">
+                        <li class="nav-header">Menú <i class="fa fa-bars"></i></li>
+                        <li class="has-sub">
+                            <a href="PerfilUsr.aspx">
+                                <span runat="server" id="mirar_perfil"> Ver perfil <i class="fa fa-eye"></i></span>
+                            </a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="ModificarPerfilUsr.aspx">
+                                <span id="camb_info" runat="server">Cambiar información <i class="fa fa-edit"></i></span>
+                            </a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="CambiarPassUsr.aspx">
+                                <span id="camb_pass" runat="server">Cambiar contraseña <i class="fa fa-key"></i></span>
+                            </a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="MisComprasUsr.aspx">
+                                <span id="peticiones" runat="server">Mis peticiones y compras <i class="fa fa-shopping-cart"></i></span>
+                            </a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="TopDiezUsr.aspx">
+                                <span id="ult_visit" runat="server">Últimos visitados <i class="fa fa-binoculars"></i></span>
+                            </a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="javascript:;">
+                                <span id="bloq_perfi" runat="server">Bloquear perfil <i class="fa fa-ban"></i></span>
+                            </a>
+                            <ul class="sub-menu" style="display: none;">
+                                <li>
+                                    <a>
+                                        <span style="border-style: none; background-image: none;">
+                                            <asp:ImageButton ID="Btn_Si" CssClass="control-label" runat="server" AlternateText=" Si " OnClick="BtnSi_Click" />
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <br />
+                                </li>
+                                <li><a href="PerfilUsr.aspx" class="control-label">No </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- end sidebar nav -->
+                </div>
+                <!-- end sidebar scrollbar -->
+            </div>
+            <div class="sidebar-bg"></div>
+            <!-- end #sidebar -->
+
+            <div id="content" class="content">
+
+                <div>
+
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+
+                </div>
+
+            </div>
+            <!-- begin scroll to top btn -->
+            <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+            <!-- end scroll to top btn -->
+        </div>
+        <!-- end page container -->
+        <!-- ================== BEGIN BASE JS ================== -->
+        <script src="../App_Themes/Usuario/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+        <script src="../App_Themes/Usuario/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+        <script src="../App_Themes/Usuario/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+        <script src="../App_Themes/Usuario/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <!--[if lt IE 9]>
+		<script src="assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="assets/crossbrowserjs/respond.min.js"></script>
+		<script src="assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+        <script src="../App_Themes/Usuario/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="../App_Themes/Usuario/assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+        <!-- ================== END BASE JS ================== -->
+
+        <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+        <script src="../App_Themes/Usuario/assets/js/apps.min.js"></script>
+        <!-- ================== END PAGE LEVEL JS ================== -->
+
+        <script>
+            $(document).ready(function () {
+                App.init();
+            });
+        </script>
+        <!-- begin PQR-panel -->
+        <div class="theme-panel">
+            <a href="javascript:;" data-click="theme-panel-expand" class="theme-collapse-btn"><i class="fa fa-comments-o"></i></a>
+            <div class="theme-panel-content">
+                <h5 class="m-t-0">Quejas</h5>
+                <div class="row m-t-10">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <asp:TextBox runat="server" ID="TB_Descripcion" TextMode="MultiLine" Rows="3" placeholder="Descripcion" CssClass="form-control"></asp:TextBox>
+                            <asp:RegularExpressionValidator runat="server" ValidationGroup="pqr" ValidationExpression="^[\s\S]{0,850}$" ErrorMessage="Numero de Caracteres Excedido (Max 850)" ControlToValidate="TB_Descripcion"></asp:RegularExpressionValidator>
+                            <asp:RequiredFieldValidator runat="server" CssClass="alert-warning" ErrorMessage="Campo Necesario" ForeColor="Red" ControlToValidate="TB_Descripcion" ValidationGroup="pqr"></asp:RequiredFieldValidator>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-t-10">
+                    <div class="col-md-12">
+                        <asp:Button runat="server" ID="BTN_Enviar" OnClick="BTN_Enviar_Click" class="btn btn-inverse btn-block btn-sm" Text="Enviar" ValidationGroup="pqr"></asp:Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</body>
+</html>
+

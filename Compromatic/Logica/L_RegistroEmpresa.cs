@@ -2,6 +2,7 @@
 using System.Data;
 using System.IO;
 using Datos;
+using DatosPersistencia;
 using Utilitarios;
 
 namespace Logica
@@ -70,7 +71,7 @@ namespace Logica
             String direccion, String correo, String contraseña, int idTipo, String fechaFin, String fechaIncio, int idTipoMemebresia, String modif,Boolean data)
         {
             if (data) {
-                DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
+                //DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
                 UEUEmpresa EU_Empresa = new UEUEmpresa();
                 EU_Empresa.Nit = nit;
                 EU_Empresa.Nombre = nombre;
@@ -84,7 +85,10 @@ namespace Logica
                 EU_Empresa.FechaFin = fechaFin;
                 EU_Empresa.FechaInicio = fechaIncio;
                 EU_Empresa.IdTipoMembresia = idTipoMemebresia;
-                DAO_Empresa.CrearEmpresa(EU_Empresa, modif);
+                EU_Empresa.ModifBy = modif;
+                DBEmpresa daoEmpresa = new DBEmpresa();
+                daoEmpresa.InsertarEmpresa(EU_Empresa);
+                //DAO_Empresa.CrearEmpresa(EU_Empresa, modif);
             }
         }
 

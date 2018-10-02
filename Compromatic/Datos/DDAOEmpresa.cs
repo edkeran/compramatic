@@ -117,9 +117,6 @@ namespace Datos
                 command.Parameters.Add("_fechainicio", NpgsqlTypes.NpgsqlDbType.Timestamp).Value = da;
                 command.Parameters.Add("_fechafin", NpgsqlTypes.NpgsqlDbType.Timestamp).Value = fq;
                 command.Parameters.Add("_idtipo_membresia", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Empresa.IdTipoMembresia;
-
-
-
                 command.ExecuteNonQuery();
             }
             catch (Exception e)

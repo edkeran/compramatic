@@ -7,6 +7,7 @@ using Utilitarios;
 using System.Data;
 using Datos;
 using System.Collections;
+using DatosPersistencia;
 
 
 namespace Logica
@@ -60,6 +61,14 @@ namespace Logica
             return db.Idiomas();
         }
 
+        public List<UEUIdioma> traer_idioma_persistencia()
+        {
+            List<UEUIdioma> data = new List<UEUIdioma>();
+            DBIdiom daoIdioma = new DBIdiom();
+            data = daoIdioma.traer_idioma();
+            return data;
+        }
+
         public DataTable traer_formulario()
         {
             DDAOidioma db = new DDAOidioma();
@@ -80,7 +89,10 @@ namespace Logica
 
         public void insertar_idioma_persistencia(UEUIdioma datos)
         {
-            DDAOidioma db= new DDAOidioma();
+            //DDAOidioma db= new DDAOidioma();
+            DBIdiom db= new DBIdiom();
+            db.insertar_idioma(datos);
+
         }
 
         public void insertar_traduccion(int idioma, int form,String texto, String control)
@@ -93,6 +105,35 @@ namespace Logica
             data.Control = control;
             db.insertar_traduccion(data);
            
+        }
+
+        //ELIMINAR IDIOMA PERSISTENCIA
+        public void eliminar_idioma(int id_idioma)
+        {
+            DBIdiom dao = new DBIdiom();
+            dao.delete_idiom(id_idioma);
+        }
+
+        //METODO PARA TRAER UN SOLO IDIOMA
+        public UEUIdioma traer_datos(int id)
+        {
+            DBIdiom dao = new DBIdiom();
+            return dao.get_idiom(id);
+        }
+
+        //EVITAR ERROR DEL GV
+        public void validar_postback(bool post)
+        {
+            if (post)
+            {
+                throw new SystemException();
+            }
+        }
+
+        public void update_idiom(UEUIdioma idiom)
+        {
+            DBIdiom dao = new DBIdiom();
+            dao.update_idioma(idiom);
         }
     }
 }

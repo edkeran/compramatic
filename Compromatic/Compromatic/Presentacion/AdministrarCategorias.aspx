@@ -28,7 +28,7 @@
                                 <asp:Panel ID="Panel2" runat="server">
                                     <asp:GridView ID="GridView2" runat="server" DataKeyNames="nomCategoria" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" class="table table-hover" AutoGenerateColumns="False" Width="100%" BorderStyle="None" DataSourceID="ObjectDataSource2" OnRowCreated="GridView2_RowCreated">
                                         <Columns>
-                                            <asp:BoundField DataField="idCategoria" HeaderText="ID"></asp:BoundField>
+                                            <asp:BoundField DataField="Id_cate" HeaderText="ID"></asp:BoundField>
                                             <asp:BoundField DataField="nomCategoria" HeaderText="NOMBRE "></asp:BoundField>
                                             <asp:TemplateField>
                                                 <ItemTemplate>
@@ -135,7 +135,7 @@
                 </div>
             </div>
         </div>
-
+        <asp:Label ID="LB_ID_ITEM" runat="server" Text="" Visible="false"></asp:Label>
     </div>
     <!-- ================== BEGIN PAGE LEVEL JS ================== -->
     <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>

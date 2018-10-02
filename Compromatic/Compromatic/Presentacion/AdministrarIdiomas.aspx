@@ -49,13 +49,14 @@
                                     <br /><br />
                                     <div class="col-md-12">
                                         <asp:Label runat="server" ID="LB_TB">Ingresa La Traduccion:</asp:Label>
-                                        <asp:TextBox ID="TB_Trad" runat="server" placeholder="Ingresa Una Traduccion"></asp:TextBox>
+                                        <asp:TextBox ID="TB_Trad" runat="server" placeholder="Ingresa Una Traduccion" CssClass="TB_Tradclass"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ForeColor="Red" ControlToValidate="TB_Trad" runat="server" ErrorMessage="Error campo vacio" ValidationGroup="S_Idiom"></asp:RequiredFieldValidator>
                                                 <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ForeColor="Red" ControlToValidate="TB_Trad" ErrorMessage="Error, caracteres" ToolTip="La cadena contiene caracteres no validos" ValidationExpression="^[a-zA-Z ñÑáéíóú]*$" ValidationGroup="S_Idiom"></asp:RegularExpressionValidator>
                                     </div>
                                     <br /><br />
                                     <div class="col-md-12">
                                         <asp:Button ID="Button2" runat="server" class="btn btn-sm btn-success" Text="Registrar Traduccion" ValidationGroup="S_Idiom"  OnClick="Button2_Click"/>
+                                        <asp:Label ID="LB_Succ" runat="server" Text=""></asp:Label>
                                     </div>
                                     </ContentTemplate>
                                     <Triggers>
@@ -94,12 +95,13 @@
                                             <div class="col-md-9">
                                                 <asp:TextBox ID="Termin_Idioma" class="form-control" runat="server" placeHolder="Terminacion Idioma (es-co)" MaxLength="20"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ForeColor="Red" ControlToValidate="Termin_Idioma" runat="server" ErrorMessage="Error campo vacio" ValidationGroup="N_Idioma"></asp:RequiredFieldValidator>
-                                                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ForeColor="Red" ControlToValidate="Termin_Idioma" ErrorMessage="Error, caracteres" ToolTip="La cadena contiene caracteres no validos" ValidationExpression="^[a-zA-Z ñÑáéíóú]*$" ValidationGroup="N_Idioma"></asp:RegularExpressionValidator>
+                                                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ForeColor="Red" ControlToValidate="Termin_Idioma" ErrorMessage="Error, caracteres" ToolTip="La cadena contiene caracteres no validos" ValidationExpression="^[a-zA-Z ñÑáéíóú-]*$" ValidationGroup="N_Idioma"></asp:RegularExpressionValidator>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-md-9">
-                                                <asp:Button ID="Button1" runat="server" class="btn btn-sm btn-success" Text="Registrar Idioma" ValidationGroup="N_Idioma"  OnClick="Button1_Click"/>
+                                                <asp:Button ID="Button1" runat="server" class="btn btn-sm btn-success Btn_evnt1" Text="Registrar Idioma" ValidationGroup="N_Idioma"  OnClick="Button1_Click" OnClientClick="limpiar_text()"/>
+                                                <asp:Button ID="BTN_chang" runat="server" Text="Modificar" Visible="false" class="btn btn-sm btn-success" onClick="BTN_chang_Click"/>
                                             </div>
                                         </div>
                                     </div>
@@ -107,11 +109,49 @@
                             </div>
                         </div>
                     </div>
-
-
                 </ContentTemplate>
             </asp:UpdatePanel>
-        </div>
-    </div>
-</asp:Content>
+
+            <!--INICIO GRIDVIEW PARA EL UPDATE DE LOS IDIOMAS EXISTENTES-->
+
+            <div class="col-md-6 ui-sortable">
+                        <div class="panel panel-inverse">
+                            <div class="panel-heading">
+                                <div class="panel-heading-btn">
+                                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                                </div>
+                                <h4 class="panel-title" runat="server" id="H_Idiom">Idiomas</h4>
+                            </div>
+                            <div class="panel-body">
+                                <asp:Panel ID="Panel1" runat="server">
+                                       <div class="dataTables_empty">
+                                           <asp:GridView ID="GridView1" runat="server" BorderStyle="None" class="table table-hover" AutoGenerateColumns="False" Width="100%" OnRowCreated="GridView1_RowCreated">
+                                               <AlternatingRowStyle BackColor="White" />
+                                               <Columns>
+                                                   <asp:BoundField DataField="Id_Idioma" HeaderText="Id" />
+                                                   <asp:BoundField DataField="Nombre_Idioma" HeaderText="Nombre Idioma" />
+                                                   <asp:BoundField DataField="Terminacion" HeaderText="Terminacion Idioma" />
+                                                   <asp:TemplateField HeaderText="Editar">
+                                                       <ItemTemplate>
+                                                           <asp:Button ID="BTN_Edit" runat="server" Text="Editar" CssClass="btn btn-warning" OnClick="BTN_Edit_Click" CommandArgument='<%#Eval("Id_Idioma")%>' />
+                                                       </ItemTemplate>
+                                                   </asp:TemplateField>
+                                                   <asp:TemplateField HeaderText="Eliminar">
+                                                       <ItemTemplate>
+                                                           <asp:Button ID="BTN_Delet" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="BTN_Delet_Click" CommandArgument='<%#Eval("Id_Idioma")%>' />
+                                                       </ItemTemplate>
+                                                   </asp:TemplateField>
+                                               </Columns>
+                                           </asp:GridView>
+                                        </div>
+                                </asp:Panel>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </asp:Content>
 

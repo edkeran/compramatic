@@ -88,6 +88,9 @@ public partial class Presentacion_AdministrarCategorias : System.Web.UI.Page
         // Obtengo el id de la entidad que se esta editando
         // en este caso de la entidad Person
         //
+        String Id = Convert.ToString(GridView2.Rows[row.RowIndex].Cells[0].Text);
+        //OBTENG EL ID Y SE LO ASIGNO A UN LABEL OCULTO
+        this.LB_ID_ITEM.Text = Id;
         String nom = Convert.ToString(GridView2.DataKeys[row.RowIndex].Value);
         NombreCategoria.Text = nom;
         Button1.Visible = false;
@@ -101,7 +104,7 @@ public partial class Presentacion_AdministrarCategorias : System.Web.UI.Page
         try
         {
             L_AdministrarCategorias logi = new L_AdministrarCategorias();
-            logi.btn2(IsValid, NombreCategoria.Text.ToString(), Label5.Text.ToString(), Session["sesion"]);
+            logi.btn2(IsValid, NombreCategoria.Text.ToString(), Label5.Text.ToString(), Session["sesion"], this.LB_ID_ITEM.Text);
             Button2.Visible = false;
             Button1.Visible = true;
             NombreCategoria.Text = null;

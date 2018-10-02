@@ -1,0 +1,242 @@
+﻿<%@ master language="C#" autoeventwireup="true" inherits="Presentacion_DashEmpresa, App_Web_hoeagowv" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title runat="server" id="title">Compramatic | Empresa</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <link href="../App_Themes/Assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../App_Themes/Assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../App_Themes/Assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../App_Themes/Assets/css/animate.min.css" rel="stylesheet" />
+    <link href="../App_Themes/Assets/css/style.min.css" rel="stylesheet" />
+    <link href="../App_Themes/Assets/css/style-responsive.min.css" rel="stylesheet" />
+    <link href="../App_Themes/Assets/css/theme/default.css" rel="stylesheet" id="theme" />
+    <!-- ================== END BASE CSS STYLE ================== -->
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+    <link href="../App_Themes/Assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="../App_Themes/Assets/assets/plugins/DataTables/extensions/Buttons/css/buttons.bootstrap.min.css" rel="stylesheet" />
+    <link href="../App_Themes/Assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    <!-- ================== END PAGE LEVEL STYLE ================== -->
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+    <link href="../App_Themes/Assets/plugins/isotope/isotope.css" rel="stylesheet" />
+    <link href="../App_Themes/Assets/plugins/lightbox/css/lightbox.css" rel="stylesheet" />
+    <link href="../App_Themes/Assets/plugins/parsley/src/parsley.css" rel="stylesheet" />
+
+    <!-- ================== END PAGE LEVEL STYLE ================== -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="../App_Themes/Assets/assets/plugins/pace/pace.min.js"></script>
+    <script src="../App_Themes/JS-Redireccion/Funiones.js"></script>
+    <!-- ================== END BASE JS ================== -->
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- begin #page-loader -->
+        <div id="page-loader" class="fade in"><span class="spinner"></span></div>
+        <!-- end #page-loader -->
+        <!-- begin #page-container -->
+        <div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+            <!-- begin #header -->
+            <div id="header" class="header navbar navbar-default navbar-fixed-top">
+                <!-- begin container-fluid -->
+                <div class="container-fluid">
+                    <!-- begin mobile sidebar expand / collapse button -->
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="Home.aspx">
+                            <img alt="" src="../App_Themes/Assets/img/logo.png" /></a>
+                        <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <!-- end mobile sidebar expand / collapse button -->
+
+                    <!-- begin header navigation right -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown navbar-user">
+                            <a onclick="log_out();" class="dropdown-toggle" data-toggle="dropdown" style="cursor: pointer">
+                                <asp:Image runat="server" ID="IMG_PerfilHeatherNR" />
+                                <span class="hidden-xs">
+                                    <asp:Label ID="LB_NombreHeatherNR" runat="server" CssClass="control-label"></asp:Label></span> <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInLeft" id="barra" style="cursor: pointer">
+                                <li class="arrow"></li>
+                                <li>
+                                    <asp:Button runat="server" OnClick="BorrarSesion" Text="Log-out" CssClass="btn btn-white-without-border col-md-12"></asp:Button></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- end header navigation right -->
+                </div>
+                <!-- end container-fluid -->
+            </div>
+            <!-- end #header -->
+            <!-- begin #sidebar -->
+            <div id="sidebar" class="sidebar">
+                <!-- begin sidebar scrollbar -->
+                <div data-scrollbar="true" data-height="100%">
+                    <!-- begin sidebar user -->
+                    <ul class="nav">
+                        <li class="nav-profile">
+                            <div class="image">
+                                <asp:Image runat="server" ID="IMG_FotoPerfilSideBar" />
+                            </div>
+                            <div class="info">
+                                <asp:Label ID="LB_NombreSideBar" runat="server" CssClass="control-label"></asp:Label>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- end sidebar user -->
+                    <!-- begin sidebar nav -->
+                    <ul class="nav">
+                        <li class="nav-header" id="menu" runat="server">Menu</li>
+                        <li class="has-sub">
+                            <a href="PerfilEmpresa.aspx">
+                                <i class="fa fa-user"></i>
+                                <span id="ver_perf" runat="server">Ver Perfil</span>
+                            </a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="javascript:;">
+                                <b class="caret pull-right"></b>
+                                <i class="fa fa-suitcase"></i>
+                                <span id="productos" runat="server">Productos</span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li><a href="AgregarProducto.aspx" id="add_prod" runat="server">Agregar Producto</a></li>
+                                <li><a href="AdministrarProducto.aspx" id="adm_pro" runat="server">Administrar Productos</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a href="Inventario.aspx">
+                                <i class="fa fa-barcode"></i>
+                                <span id="low_inv" runat="server">Bajo Inventario</span>
+                            </a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="PeticionesCompra.aspx">
+                                <i class="fa fa-flag-o"></i>
+                                <span id="pet" runat="server">Peticiones</span>
+                            </a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="AumentarMembresia.aspx">
+                                <i class="fa fa-money"></i>
+                                <span id="mem" runat="server">Membresia</span>
+                            </a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="HistoricoCalificaciones.aspx">
+                                <i class="fa fa-binoculars"></i>
+                                <span id="cali" runat="server">Calificaciones</span>
+                            </a>
+                        </li>
+                        <!-- begin sidebar minify button -->
+                        <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
+                        <!-- end sidebar minify button -->
+                    </ul>
+                    <!-- end sidebar nav -->
+                </div>
+                <!-- end sidebar scrollbar -->
+            </div>
+            <div class="sidebar-bg"></div>
+            <!-- end #sidebar -->
+            <div id="content" class="content">
+                <div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <!-- begin scroll to top btn -->
+            <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+            <!-- end scroll to top btn -->
+        </div>
+        <!-- end page container -->
+        <!-- begin PQR-panel -->
+        <div class="theme-panel">
+            <a href="javascript:;" data-click="theme-panel-expand" class="theme-collapse-btn"><i class="fa fa-question"></i></a>
+            <div class="theme-panel-content">
+                <h5 class="m-t-0">PQR</h5>
+                <div class="row m-t-10">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <asp:DropDownList runat="server" ID="DDL_PQR" CssClass="form-control" datasize="10" data-live-search="true" data-style="btn-white" DataSourceID="OBS_Motivos" DataTextField="nomQueja" DataValueField="idMotivo_queja">
+                            </asp:DropDownList>
+                            <asp:ObjectDataSource runat="server" ID="OBS_Motivos" SelectMethod="MostrarMotivos" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
+                        </div>
+                        <div class="form-group">
+                            <asp:TextBox runat="server" ID="TB_Descripcion" TextMode="MultiLine" Rows="3" placeholder="Descripcion" CssClass="form-control" MaxLength="150"></asp:TextBox>
+                            <asp:RegularExpressionValidator runat="server" ValidationGroup="pqr" ValidationExpression="^[\s\S]{0,850}$" ErrorMessage="Numero de Caracteres Excedido (Max 100)" ControlToValidate="TB_Descripcion"></asp:RegularExpressionValidator>
+                            <asp:RequiredFieldValidator runat="server" CssClass="alert-warning" ErrorMessage="Campo Necesario" ForeColor="Red" ControlToValidate="TB_Descripcion" ValidationGroup="pqr"></asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-t-10">
+                    <div class="col-md-12">
+                        <asp:Button runat="server" ID="BTN_Enviar" OnClick="BTN_Enviar_Click" class="btn btn-inverse btn-block btn-sm" Text="Enviar" ValidationGroup="pqr"></asp:Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end theme-panel -->
+    </form>
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="../App_Themes/Assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+    <script src="../App_Themes/Assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+    <script src="../App_Themes/Assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+    <script src="../App_Themes/Assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+		<script src="assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="assets/crossbrowserjs/respond.min.js"></script>
+		<script src="assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+    <script src="../App_Themes/Assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../App_Themes/Assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+    <!-- ================== END BASE JS ================== -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="../App_Themes/Assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+    <script src="../App_Themes/Assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+    <script src="../App_Themes/Assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+    <script src="../App_Themes/Assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../App_Themes/Assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../App_Themes/Assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+    <!-- ================== END BASE JS ================== -->
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+    <!-- ================== BEGIN DATATABLE  ================== -->
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.20/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.0.0/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.20/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
+    <!-- ================== END DATATABLE ================== -->
+    <script async="async" src="../App_Themes/Assets/plugins/parsley/dist/parsley.js"></script>
+    <script src="../App_Themes/Assets/js/table-manage-buttons.demo.min.js"></script>
+    <script src="../App_Themes/Assets/plugins/isotope/jquery.isotope.min.js"></script>
+    <script src="../App_Themes/Assets/plugins/lightbox/js/lightbox-2.6.min.js"></script>
+    <script src="../App_Themes/Assets/js/gallery.demo.min.js"></script>
+    <script src="../App_Themes/Assets/js/apps.min.js"></script>
+    <!-- ================== END PAGE LEVEL JS ================== -->
+    <script>
+        $(document).ready(function () {
+            App.init();
+            Gallery.init();
+            TableManageButtons.init();
+        });
+    </script>
+</body>
+</html>

@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Utilitarios
 {
+    [Serializable]
+    [Table("Empresa", Schema = "public")]
     public class UEUEmpresa
     {
         private String nit;
+        //[Key]
 
+        [Column("nitEmpresa")]
         public String Nit
         {
             get { return nit; }
@@ -17,6 +19,7 @@ namespace Utilitarios
         }
         private String nombre;
 
+        [Column("nomEmpresa")]
         public String Nombre
         {
             get { return nombre; }
@@ -24,6 +27,7 @@ namespace Utilitarios
         }
         private String nomArchivo;
 
+        [Column("nomArchivo")]
         public String NomArchivo
         {
             get { return nomArchivo; }
@@ -31,6 +35,7 @@ namespace Utilitarios
         }
         private String rutaArchivo;
 
+        [Column("rutaArchivo")]
         public String RutaArchivo
         {
             get { return rutaArchivo; }
@@ -38,6 +43,7 @@ namespace Utilitarios
         }
         private String numero;
 
+        [Column("telEmpresa")]
         public String Numero
         {
             get { return numero; }
@@ -45,6 +51,7 @@ namespace Utilitarios
         }
         private String correo;
 
+        [Column("correoEmpresa")]
         public String Correo
         {
             get { return correo; }
@@ -52,6 +59,7 @@ namespace Utilitarios
         }
         private String direccion;
 
+        [Column("dirEmpresa")]
         public String Direccion
         {
             get { return direccion; }
@@ -59,6 +67,7 @@ namespace Utilitarios
         }
         private String contraseña;
 
+        [Column("passEmpresa")]
         public String Contraseña
         {
             get { return contraseña; }
@@ -66,6 +75,7 @@ namespace Utilitarios
         }
         private int idTipo;
 
+        [Column("idTipo")]
         public int IdTipo
         {
             get { return idTipo; }
@@ -74,6 +84,8 @@ namespace Utilitarios
 
         private String fechaInicio;
 
+        //[Column("idTipo")]
+        [NotMapped]
         public String FechaInicio
         {
             get { return fechaInicio; }
@@ -81,6 +93,7 @@ namespace Utilitarios
         }
         private String fechaFin;
 
+        [NotMapped]
         public String FechaFin
         {
             get { return fechaFin; }
@@ -89,6 +102,8 @@ namespace Utilitarios
 
         private int idTipoMembresia;
 
+        //[Column("idTipo")]
+        [NotMapped]
         public int IdTipoMembresia
         {
             get { return idTipoMembresia; }
@@ -96,6 +111,8 @@ namespace Utilitarios
         }
         private int id;
 
+        [Key]
+        [Column("idEmpresa")]
         public int Id
         {
             get { return id; }
@@ -104,6 +121,7 @@ namespace Utilitarios
 
         private double calificacion;
 
+        [Column("calificacionEmpresa")]
         public double Calificacion
         {
             get { return calificacion; }
@@ -112,16 +130,27 @@ namespace Utilitarios
 
         private String redireccion;
 
+        [NotMapped]
         public string Redireccion
         { get => redireccion;
           set => redireccion = value;
         }
+
         private int sessiones;
 
+        [Column("Sesiones_Abiertas")]
         public int Sessiones
         { get => sessiones;
           set => sessiones = value;
         }
 
+        private String modifBy;
+        [Column("modified_by")]
+        public string ModifBy { get => modifBy; set => modifBy = value; }
+
+
+        private int estadoEmpre;
+        [Column("estadoEmpresa")]
+        public int EstadoEmpre { get => estadoEmpre; set => estadoEmpre = value; }
     }
 }

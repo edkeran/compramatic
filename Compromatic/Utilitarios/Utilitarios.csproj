@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -49,8 +48,10 @@
     <Compile Include="UAuxPrinciAdmin.cs" />
     <Compile Include="UAuxVenta.cs" />
     <Compile Include="UEUIdioma.cs" />
+    <Compile Include="UEUMembresia.cs" />
     <Compile Include="UEUProducto.cs" />
     <Compile Include="UEURango.cs" />
+    <Compile Include="UEUSolici_Regist.cs" />
     <Compile Include="UEUTag.cs" />
     <Compile Include="UEUTraduccion.cs" />
     <Compile Include="UEUVenta.cs" />
@@ -85,6 +86,7 @@
     <None Include="DataSet.xss">
       <DependentUpon>DataSet.xsd</DependentUpon>
     </None>
+    <Compile Include="UEUCategoria.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
