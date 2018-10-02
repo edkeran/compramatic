@@ -45,5 +45,27 @@ namespace DatosPersistencia
             }
         }
 
+        public void actualizar_contrasena_empresa(UEUEmpresa emp)
+        {
+            using (var db = new Mapeo("public"))
+            {
+                //UPDATE PASSWORD OF THE COMPANY
+                var empresa = db.empre.Find(emp.Id);
+                empresa.Contraseña = emp.Contraseña;
+                empresa.ModifBy = emp.ModifBy;
+                db.SaveChanges();
+            }
+        }
+
+        //METODO PARA TRAER LA EMPRESA ACTUAL Y POR LO LO TANTO SABER LA CONTRASEÑA ACTUAL
+        public UEUEmpresa traer_empresa_actual(UEUEmpresa emp)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var empresa = db.empre.Find(emp.Id);
+                return (UEUEmpresa)empresa;
+            }
+        }
+
     }
 }

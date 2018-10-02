@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using Utilitarios;
 using Datos;
+using DatosPersistencia;
 
 namespace Logica
 {
@@ -46,13 +47,22 @@ namespace Logica
 
         public void btn1(bool IsValid,String NombreMembresia,String TB_Tiempo,String TB_Valor,Object sesion)
         {
+            //INSERTAR UNA NUEVA MEMBRESIA AL PROYECTO
             if (IsValid)
             {
-                 DDAOadministrador datos = new DDAOadministrador();
                 String nombre = NombreMembresia.ToString();
                 int tiempo = int.Parse(TB_Tiempo);
                 double valor = double.Parse(TB_Valor);
-                datos.registrarMembresia(nombre, tiempo, valor, ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString());
+                UEUTipoMembresia new_membership = new UEUTipoMembresia();
+                new_membership.ModifBy = ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString();
+                new_membership.Nom_mem = nombre;
+                new_membership.Tmpo_mem = tiempo;
+                new_membership.Valor_mem = valor;
+                DBTipoMembresia t_mem = new DBTipoMembresia();
+                t_mem.insertar_membresia(new_membership);
+                //OLD METHOD
+                //DDAOadministrador datos = new DDAOadministrador();
+                //datos.registrarMembresia(nombre, tiempo, valor, ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString());
             }
             else
             {

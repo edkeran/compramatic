@@ -26,6 +26,7 @@ namespace DatosPersistencia
         public DbSet<UEUEmpresa> empre { get; set; }
         public DbSet<UEUSolici_Regist> sol_reg { get; set; }
         public DbSet<UEUMembresia> membresia{ get; set; }
+        public DbSet<UEUTipoMembresia> type_membership { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder builder)
         {

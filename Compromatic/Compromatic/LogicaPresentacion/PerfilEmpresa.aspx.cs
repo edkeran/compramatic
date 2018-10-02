@@ -75,8 +75,11 @@ public partial class Presentacion_PerfilEmpresa : System.Web.UI.Page
     protected void CambiarContraseña(object sender, EventArgs e)
     {
         DataTable Empresa = (DataTable)Session["Sesion"];
-        String contraseñaAntigua = Empresa.Rows[0]["passEmpresa"].ToString();
         L_PerfilEmpresa logica = new L_PerfilEmpresa();
+        //cambiar por una nueva funcion en logica que haga este seteo
+        //String contraseñaAntigua = Empresa.Rows[0]["passEmpresa"].ToString();
+        int id= int.Parse(Empresa.Rows[0]["idEmpresa"].ToString());
+        String contraseñaAntigua = logica.traer_old_pass_empresa(id);
         String mensage = logica.cambiarContraseña(TB_Contraseña.Text, TB_Contraseña2.Text, Empresa, contraseñaAntigua, TB_AntiguaContraseña.Text, TB_Nit.Text);
         Modal(mensage);
     }

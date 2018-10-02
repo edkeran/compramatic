@@ -53,6 +53,7 @@
     <Compile Include="UEURango.cs" />
     <Compile Include="UEUSolici_Regist.cs" />
     <Compile Include="UEUTag.cs" />
+    <Compile Include="UEUTipoMembresia.cs" />
     <Compile Include="UEUTraduccion.cs" />
     <Compile Include="UEUVenta.cs" />
     <Compile Include="U_AuxAumMemb.cs" />

@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Utilitarios
 {
+    //DSFASD
+    [Serializable]
+    [Table("Membresia", Schema = "public")]
     public class UEUMembresia
     {
         private int id_memb;
@@ -23,7 +26,7 @@ namespace Utilitarios
         public string Fecha_fin { get => fecha_fin; set => fecha_fin = value; }
         [Column("estadoMembresia")]
         public int Estado_mem { get => estado_mem; set => estado_mem = value; }
-        [Column("idTipoMembresia")]
+        [Column("idTipo_membresia")]
         public int Id_tipo_mem { get => id_tipo_mem; set => id_tipo_mem = value; }
         [Column("idEmpresa")]
         public int Id_empresa { get => id_empresa; set => id_empresa = value; }

@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="DBCategoria.cs" />
     <Compile Include="DBEmpresa.cs" />
+    <Compile Include="DBTipoMembresia.cs" />
     <Compile Include="DBUsr.cs" />
     <Compile Include="Mapeo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

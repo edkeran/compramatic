@@ -63,6 +63,7 @@ public partial class Presentacion_AdministrarMembresias : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+        //INSERTAR UNA NUEVA MEMBRESIA AL PROYECTO
         try
         {
             L_AdminMembre logi = new L_AdminMembre();
@@ -74,7 +75,7 @@ public partial class Presentacion_AdministrarMembresias : System.Web.UI.Page
             TB_Tiempo.Text = null;
             TB_Valor.Text = null;
         }
-        catch (Exception ex) {}
+        catch (Exception ex) {  }
     }
 
     protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)

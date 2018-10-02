@@ -3,6 +3,7 @@ using System.Data;
 using Utilitarios;
 using Datos;
 using System.IO;
+using DatosPersistencia;
 
 namespace Logica
 {
@@ -62,17 +63,22 @@ namespace Logica
                 //Modal("Contraseña Incorrecta");
                 return "Contraseña Incorrecta";
             }
-            this.CambiarContraseña(nit, Contra1, Empresa.Rows[0]["nomEmpresa"].ToString());
+            this.CambiarContraseña(nit, Contra1, Empresa.Rows[0]["nomEmpresa"].ToString(),Empresa.Rows[0]["idEmpresa"].ToString());
             return "Cambio Exitoso";
         }
 
-        private void CambiarContraseña(String nit, String contraseña, String modif)
+        private void CambiarContraseña(String nit, String contraseña, String modif,String id_emp)
         {
             DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
             UEUEmpresa EU_Empresa = new UEUEmpresa();
             EU_Empresa.Nit = nit;
+            EU_Empresa.Id = int.Parse(id_emp);
             EU_Empresa.Contraseña = contraseña;
-            DAO_Empresa.CambiarContraseña(EU_Empresa, modif);
+            //CAMBIAR POR EL NUEVO METODO 
+            DBEmpresa daoEmp = new DBEmpresa();
+            EU_Empresa.ModifBy = modif;
+            daoEmp.actualizar_contrasena_empresa(EU_Empresa);
+            //DAO_Empresa.CambiarContraseña(EU_Empresa, modif);
         }
 
         public U_aux_PerfilEmp ModificarDatos(DataTable Empresa,String tb_correo,String tb_nombre,String tb_nit,String tb_telefono,String tb_direccion,String urlRedir)
@@ -214,6 +220,15 @@ namespace Logica
             EU_Empresa.Nit = nit;
             EU_Empresa.NomArchivo = nomArchivo;
             DAO_Empresa.CambiarFoto(EU_Empresa, modif);
+        }
+
+        public String traer_old_pass_empresa(int id)
+        {
+            UEUEmpresa emp = new UEUEmpresa();
+            emp.Id = id;
+            DBEmpresa daoEmpre = new DBEmpresa();
+            UEUEmpresa res = daoEmpre.traer_empresa_actual(emp);
+            return res.Contraseña;
         }
     }
 }

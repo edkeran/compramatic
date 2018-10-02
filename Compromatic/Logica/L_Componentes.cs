@@ -125,6 +125,8 @@ namespace Logica
 
         public DataTable MostrarEmpresas(int idBusqueda)
         {
+            //CAMBIAR POR METODO GENERICO DE PERSISTENCIA
+
             DDAOadministrador db = new DDAOadministrador();
             return db.MostrarEmpresas(idBusqueda);
         }
