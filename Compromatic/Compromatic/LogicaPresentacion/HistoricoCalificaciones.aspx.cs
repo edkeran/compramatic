@@ -15,7 +15,8 @@ public partial class Presentacion_HistoricoCalificaciones : System.Web.UI.Page
             Page.ClientScript.RegisterStartupScript(this.GetType(), "scrt", "redireccionar('" + res + "');", true);
         }
         catch(Exception eg)
-        {}
+        {
+        }
     }
 
     protected Utilitarios.DataSet Calificaciones()

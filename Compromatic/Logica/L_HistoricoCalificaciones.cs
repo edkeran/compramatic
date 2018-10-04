@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Utilitarios;
+using DatosPersistencia;
 using Datos;
 using System.Data;
 
@@ -40,21 +41,20 @@ namespace Logica
 
         public void Calificaciones(Object idEmpresa,DataTable data)
         {
-            //DataSet compras = new DataSet();
             DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
-            DataTable historial = DAO_Empresa.MostrarCalificaciones(int.Parse(idEmpresa.ToString()));
-            //DataTable data = new DataTable();
-            //data = compras.Calificaciones;
+            //DataTable historial = DAO_Empresa.MostrarCalificaciones(int.Parse(idEmpresa.ToString()));
             DataRow fila;
+            DBReporteEmpresa daoRep = new DBReporteEmpresa();
+            UEURango [] historial=daoRep.obtener_calificaciones(int.Parse(idEmpresa.ToString()));
 
-            for (int i = 0; i < historial.Rows.Count; i++)
+            for (int i = 0; i < historial.Length; i++)
             {
                 fila = data.NewRow();
 
-                fila["Rango"] = historial.Rows[i]["rango"].ToString();
-                fila["Comentario"] = historial.Rows[i]["comentarios"].ToString();
-                fila["FechaRango"] = historial.Rows[i]["fechaRango"].ToString();
-                fila["nomUsuario"] = historial.Rows[i]["nomUsuario"].ToString();
+                fila["Rango"] = historial[i].Rango;
+                fila["Comentario"] = historial[i].Comentario;
+                fila["FechaRango"] = historial[i].FechaRango;
+                fila["nomUsuario"] = historial[i].Nom_usuario;
                 data.Rows.Add(fila);
             }
         }

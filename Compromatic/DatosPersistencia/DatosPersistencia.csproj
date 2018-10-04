@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="DBCategoria.cs" />
     <Compile Include="DBEmpresa.cs" />
+    <Compile Include="DBReporteEmpresa.cs" />
     <Compile Include="DBTipoMembresia.cs" />
     <Compile Include="DBUsr.cs" />
     <Compile Include="DB_ReporteAdmin.cs" />
