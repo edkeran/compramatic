@@ -2,6 +2,7 @@
 using System.Data;
 using Datos;
 using Utilitarios;
+using DatosPersistencia;
 
 namespace Logica
 {
@@ -20,8 +21,6 @@ namespace Logica
                 {
                     throw new ArgumentException("Valido");
                 }
-                //CRS_Ventas.ReportDocument.SetDataSource(obtenerVentas());
-                //CRV_Ventas.ReportSource = CRS_Ventas;
             }
         }
 
@@ -29,18 +28,21 @@ namespace Logica
         {
             DataRow fila;
             DDAOadministrador bdventa = new DDAOadministrador();
-            DataTable historial = bdventa.MostrarVentasPorEmpresa();
+            DB_ReporteAdmin daoTest = new DB_ReporteAdmin();
+            vistaReporteAdmin [] historial = daoTest.crear_vista_reporte();
+            //DataTable historial = bdventa.MostrarVentasPorEmpresa();
 
-            for (int i = 0; i < historial.Rows.Count; i++)
+            for (int i = 0; i < historial.Length; i++)
             {
+                //FILA ES DATA
                 fila = data.NewRow();
 
-                fila["nitEmp"] = historial.Rows[i]["nitEmpresa"].ToString();
+                fila["nitEmp"] = historial[i].Nit_empresa;
 
-                fila["nomEmp"] = historial.Rows[i]["nomEmpresa"].ToString();
-                fila["calEmp"] = historial.Rows[i]["calificacionEmpresa"].ToString();
-                fila["valorVentas"] = historial.Rows[i]["valor"].ToString();
-                fila["totalVentas"] = historial.Rows[i]["ventas"].ToString();
+                fila["nomEmp"] = historial[i].Nom_empresa;
+                fila["calEmp"] = historial[i].Cal_empresa;
+                fila["valorVentas"] = historial[i].Valor;
+                fila["totalVentas"] = historial[i].Ventas;
 
                 data.Rows.Add(fila);
             }

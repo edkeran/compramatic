@@ -1,15 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Utilitarios
 {
+    [Serializable]
+    [Table("Venta", Schema = "public")]
     public class UEUVenta
     {
         private int valor;
 
+        [Column("valorVenta")]
         public int Valor
         {
             get { return valor; }
@@ -17,6 +18,7 @@ namespace Utilitarios
         }
         private int cantidad;
 
+        [Column("cantVenta")]
         public int Cantidad
         {
             get { return cantidad; }
@@ -24,6 +26,9 @@ namespace Utilitarios
         }
         private int idVenta;
 
+
+        [Key]
+        [Column("idVenta")]
         public int IdVenta
         {
             get { return idVenta; }
@@ -31,6 +36,7 @@ namespace Utilitarios
         }
         private int idUsr;
 
+        [Column("idUsuario")]
         public int IdUsr
         {
             get { return idUsr; }
@@ -39,6 +45,7 @@ namespace Utilitarios
 
         private int idProducto;
 
+        [Column("idProducto")]
         public int IdProducto
         {
             get { return idProducto; }
@@ -47,6 +54,7 @@ namespace Utilitarios
 
         private int estadoVenta;
 
+        [Column("estadoVenta")]
         public int EstadoVenta
         {
             get { return estadoVenta; }

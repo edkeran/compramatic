@@ -16,5 +16,13 @@ namespace DatosPersistencia
                 db.SaveChanges();
             }
         }
+
+        public List<UEUTipoMembresia> traer_membresias()
+        {
+            using(var db= new Mapeo("public"))
+            {
+                return db.type_membership.ToList<UEUTipoMembresia>();
+            }
+        }
     }
 }

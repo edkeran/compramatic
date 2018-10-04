@@ -74,6 +74,7 @@
     <Compile Include="U_aux_reg_emp.cs" />
     <Compile Include="U_Aux_SoliciRechaza.cs" />
     <Compile Include="U_Modificar_Pfi_Usr.cs" />
+    <Compile Include="vistaReporteAdmin.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataSet.xsc">

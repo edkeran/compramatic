@@ -21,24 +21,7 @@ public partial class Presentacion_ReporteTotalVentaAdmin : System.Web.UI.Page
       
     }
 
-    /**
-     * if (Session["Sesion"] == null)
-        {
-            Response.Redirect("LoginUsr.aspx");
-        }
-        else
-        {
-            DataTable datos = (DataTable)Session["Sesion"];
-            if (int.Parse(datos.Rows[0]["idTipo"].ToString()) != 1)
-            {
-                Response.Redirect("LoginUsr.aspx");
-            }
-            
-            CRS_Ventas.ReportDocument.SetDataSource(obtenerVentas());
-            CRV_Ventas.ReportSource = CRS_Ventas;
-
-        } 
-     * */
+    
     protected Utilitarios.DataSet obtenerVentas()
     {
         Utilitarios.DataSet compras = new Utilitarios.DataSet();
