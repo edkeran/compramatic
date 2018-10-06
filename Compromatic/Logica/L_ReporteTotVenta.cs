@@ -30,8 +30,7 @@ namespace Logica
             DDAOadministrador bdventa = new DDAOadministrador();
             DB_ReporteAdmin daoTest = new DB_ReporteAdmin();
             vistaReporteAdmin [] historial = daoTest.crear_vista_reporte();
-            //DataTable historial = bdventa.MostrarVentasPorEmpresa();
-
+  
             for (int i = 0; i < historial.Length; i++)
             {
                 //FILA ES DATA

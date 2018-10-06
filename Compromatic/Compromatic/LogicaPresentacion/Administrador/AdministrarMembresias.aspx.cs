@@ -123,6 +123,17 @@ public partial class Presentacion_AdministrarMembresias : System.Web.UI.Page
 
     protected void GridView2_RowCreated(object sender, GridViewRowEventArgs e)
     {
-
+        L_Idioma idiot = new L_Idioma();
+        Object sesidioma = Session["idiomases"];
+        Int32 formulario = 33;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            ((Button)e.Row.FindControl("Select")).Text= compIdioma["BTN_Modi"].ToString();
+        }
+        catch (Exception ex)
+        { }
     }
 }

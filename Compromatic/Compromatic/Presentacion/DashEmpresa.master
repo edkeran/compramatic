@@ -168,7 +168,7 @@
                 <div class="row m-t-10">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <asp:DropDownList runat="server" ID="DDL_PQR" CssClass="form-control" datasize="10" data-live-search="true" data-style="btn-white" DataSourceID="OBS_Motivos" DataTextField="nomQueja" DataValueField="idMotivo_queja">
+                            <asp:DropDownList runat="server" ID="DDL_PQR" CssClass="form-control" datasize="10" data-live-search="true" data-style="btn-white" DataSourceID="OBS_Motivos" DataTextField="Nom_queja" DataValueField="Id_queja">
                             </asp:DropDownList>
                             <asp:ObjectDataSource runat="server" ID="OBS_Motivos" SelectMethod="MostrarMotivos" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
                         </div>

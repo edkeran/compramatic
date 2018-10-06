@@ -30,6 +30,8 @@ namespace DatosPersistencia
         public DbSet<UEUVenta> ventas { get; set; }
         public DbSet<UEUProducto>productos { get; set; }
         public DbSet<UEURango> rangos { get; set; }
+        public DbSet<UEUQueja> quejas { get; set; }
+        public DbSet<UEUMotiRepo> report { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder builder)
         {

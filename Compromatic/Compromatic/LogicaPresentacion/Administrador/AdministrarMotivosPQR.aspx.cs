@@ -45,7 +45,6 @@ public partial class Presentacion_AdministrarMotivosPQR : System.Web.UI.Page
             this.GridView1.Columns[1].HeaderText = compIdioma["GV_NAME"].ToString();
             this.GridView2.Columns[0].HeaderText = compIdioma["GV_ID"].ToString();
             this.GridView2.Columns[1].HeaderText = compIdioma["GV_NAME"].ToString();
-            //this.adm.InnerText = compIdioma["adm"].ToString();
         }
         catch (Exception ex)
         { }
@@ -55,6 +54,7 @@ public partial class Presentacion_AdministrarMotivosPQR : System.Web.UI.Page
 
     protected void B_RegistrarMQueja_Click(object sender, EventArgs e)
     {
+        //BOTON QUE ME REGISTRA LA NUEVA QUEJA
         try
         {
             L_AdminMotPqr logi = new L_AdminMotPqr();
@@ -63,7 +63,9 @@ public partial class Presentacion_AdministrarMotivosPQR : System.Web.UI.Page
             GridView2.DataBind();
         }
         catch(Exception et)
-        {}
+        {
+            //throw et;
+        }
     }
 
     protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
@@ -105,6 +107,7 @@ public partial class Presentacion_AdministrarMotivosPQR : System.Web.UI.Page
 
     protected void Button2_Click(object sender, EventArgs e)
     {
+        //BUTTON PARA MODIFICAR UNA QUEJA
         try
         {
             L_AdminMotPqr logi = new L_AdminMotPqr();
@@ -143,9 +146,6 @@ public partial class Presentacion_AdministrarMotivosPQR : System.Web.UI.Page
 
     protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)
     {
-        //FALTA EL BTN
-        //
-        //Seteando Idiomas
         L_Idioma idiot = new L_Idioma();
         Object sesidioma = Session["idiomases"];
         Int32 formulario = 34;

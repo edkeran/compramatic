@@ -9,10 +9,12 @@ namespace Logica
 {
     public class L_Componentes
     {
-        public DataTable MostrarMotivosReporte()
+        public List<UEUMotiRepo> MostrarMotivosReporte()
         {
-            DDAOPqr db = new DDAOPqr();
-            return db.MostrarMotivosReporte();
+            //DDAOPqr db = new DDAOPqr();
+            DB_ReasosnsPQR daoReport = new DB_ReasosnsPQR();
+            return daoReport.traer_reportes();
+            //return db.MostrarMotivosReporte();
         }
 
         public DataTable MostrarArchivos(String nit)
@@ -30,10 +32,13 @@ namespace Logica
             return db.MostrarVentasPorCategoria();
         }
 
-        public DataTable MostrarMotivos()
+        public List<UEUQueja> MostrarMotivos()
         {
-            DDAOPqr db = new DDAOPqr();
-            return db.MostrarMotivos();
+            //DATATABLE PARA LOS MOTIVOS
+            DB_ReasosnsPQR daoReason = new DB_ReasosnsPQR();
+            return daoReason.traer_quejas();
+           // DDAOPqr db = new DDAOPqr();
+            //return db.MostrarMotivos();
         }
 
         public DataTable MostrarCategoria()
@@ -108,12 +113,6 @@ namespace Logica
             List<UEUCategoria> data = dao.leer_categorias();
             return data;
         }
-
-        //public DataTable MostrarClientes(int idBusqueda)
-        //{
-        //    DDAOadministrador db = new DDAOadministrador();
-        //    return db.MostrarClientes(idBusqueda);
-        //}
 
         public List<UEUsuario> MostrarClientes()
         {

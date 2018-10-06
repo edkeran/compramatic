@@ -40,7 +40,6 @@
                                                 <asp:Button ID="B_RegistrarMQueja" runat="server" class="btn btn-sm btn-success" Text="Registrar Motivo" OnClick="B_RegistrarMQueja_Click" ValidationGroup="Queja" />
                                                 <asp:Button ID="Button2" runat="server" Visible="false" class="btn btn-sm btn-success" Text="Modificar Motivo" OnClick="Button2_Click" ValidationGroup="Queja" />
                                                 <asp:Label ID="NomQueja" runat="server" Visible="false"></asp:Label>
-
                                             </div>
                                         </div>
                                     </div>
@@ -76,9 +75,7 @@
                                             <div class="col-md-9">
                                                 <asp:Button ID="B_RegistrarMReporte" runat="server" class="btn btn-sm btn-success" Text="Registrar Motivo" OnClick="B_RegistrarMReporte_Click" ValidationGroup="Reporte" />
                                                 <asp:Button ID="Button1" runat="server" Visible="false" class="btn btn-sm btn-success" Text="Modificar Motivo" OnClick="Button1_Click" ValidationGroup="Reporte" />
-
                                                 <asp:Label ID="nomReporte" runat="server" Visible="false"></asp:Label>
-
                                             </div>
                                         </div>
                                     </div>
@@ -100,10 +97,10 @@
                             </div>
                             <div class="panel-body">
                                 <asp:Panel ID="Panel2" runat="server">
-                                    <asp:GridView ID="GridView2" runat="server" BorderStyle="None" DataKeyNames="idMotivo_queja" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" class="table table-hover" AutoGenerateColumns="False" Width="100%" DataSourceID="ObjectDataSource1" OnRowCreated="GridView1_RowCreated">
+                                    <asp:GridView ID="GridView2" runat="server" BorderStyle="None" DataKeyNames="Id_queja" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" class="table table-hover" AutoGenerateColumns="False" Width="100%" DataSourceID="ObjectDataSource1" OnRowCreated="GridView1_RowCreated">
                                         <Columns>
-                                            <asp:BoundField DataField="idMotivo_queja" HeaderText="ID"></asp:BoundField>
-                                            <asp:BoundField DataField="nomQueja" HeaderText="NOMBRE"></asp:BoundField>
+                                            <asp:BoundField DataField="Id_queja" HeaderText="ID"></asp:BoundField>
+                                            <asp:BoundField DataField="Nom_queja" HeaderText="NOMBRE"></asp:BoundField>
                                             <asp:TemplateField>
                                                 <ItemTemplate>
                                                     <asp:Button ID="Select" runat="server" class="btn btn-danger btn-xs" Text="modificar" CommandName="Select" />
@@ -133,10 +130,10 @@
                             </div>
                             <div class="panel-body">
                                 <asp:Panel ID="Panel1" runat="server">
-                                    <asp:GridView ID="GridView1" runat="server" BorderStyle="None" DataKeyNames="idMotivoR" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" class="table table-hover" AutoGenerateColumns="False" Width="100%" DataSourceID="ObjectDataSource2" OnRowCreated="GridView1_RowCreated">
+                                    <asp:GridView ID="GridView1" runat="server" BorderStyle="None" DataKeyNames="IdMoti" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" class="table table-hover" AutoGenerateColumns="False" Width="100%" DataSourceID="ObjectDataSource2" OnRowCreated="GridView1_RowCreated">
                                         <Columns>
-                                            <asp:BoundField DataField="idMotivoR" HeaderText="ID"></asp:BoundField>
-                                            <asp:BoundField DataField="desMotivo" HeaderText="NOMBRE"></asp:BoundField>
+                                            <asp:BoundField DataField="IdMoti" HeaderText="ID"></asp:BoundField>
+                                            <asp:BoundField DataField="DesMotiv" HeaderText="NOMBRE"></asp:BoundField>
                                             <asp:TemplateField>
                                                 <ItemTemplate>
                                                     <asp:Button ID="Select" runat="server" class="btn btn-danger btn-xs" Text="modificar" CommandName="Select" />
@@ -152,8 +149,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>

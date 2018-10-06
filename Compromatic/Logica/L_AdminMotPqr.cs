@@ -2,6 +2,7 @@
 using System.Data;
 using Utilitarios;
 using Datos;
+using DatosPersistencia;
 
 namespace Logica
 {
@@ -36,10 +37,13 @@ namespace Logica
             if (IsValid)
             {
                 String nom = nomQueja;
-                DDAOadministrador datos = new DDAOadministrador();
-                datos.registrarQueja(nom, ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString());
-                //NombreQueja.Text = null;
-                //GridView2.DataBind();
+                //DDAOadministrador datos = new DDAOadministrador();
+                UEUQueja encQuej = new UEUQueja();
+                encQuej.Nom_queja = nom;
+                encQuej.Modifby = ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString();
+                //TOCA REPROGRAMAR EL INSERT INTO
+                DB_ReasosnsPQR daoPqr = new DB_ReasosnsPQR();
+                daoPqr.insertar_queja(encQuej);
             }
             else
             {
@@ -64,10 +68,13 @@ namespace Logica
             if (IsValid)
             {
                 String nom = NombreReporte;
-                DDAOadministrador datos = new DDAOadministrador();
-                datos.registrarReporte(nom, ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString());
-                //NombreReporte.Text = null;
-                //GridView1.DataBind();
+                //DDAOadministrador datos = new DDAOadministrador();
+                UEUMotiRepo dataInsert = new UEUMotiRepo();
+                dataInsert.DesMotiv = nom;
+                dataInsert.ModifBy = ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString();
+                //datos.registrarReporte(nom, ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString());
+                DB_ReasosnsPQR daoRpo = new DB_ReasosnsPQR();
+                daoRpo.insertar_reporte(dataInsert);
             }
             else
             {
@@ -91,12 +98,14 @@ namespace Logica
         {
             if (IsValid)
             {
-                DDAOadministrador datos = new DDAOadministrador();
-                datos.ModificarMotivoQueja(NombreQueja, int.Parse(NomQueja), ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString());
-                //B_RegistrarMQueja.Visible = true;
-                //Button2.Visible = false;
-                //NombreQueja.Text = null;
-                //GridView2.DataBind();
+                //DDAOadministrador datos = new DDAOadministrador();
+                DB_ReasosnsPQR daoQuej = new DB_ReasosnsPQR();
+                UEUQueja encQuej = new UEUQueja();
+                encQuej.Nom_queja = NombreQueja;
+                encQuej.Modifby = ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString();
+                encQuej.Id_queja = int.Parse(NomQueja);
+                daoQuej.modif_queja(encQuej);
+                //datos.ModificarMotivoQueja(NombreQueja, int.Parse(NomQueja), ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString());
             }
             else
             {
@@ -108,12 +117,16 @@ namespace Logica
         {
             if (IsValid)
             {
-                DDAOadministrador datos = new DDAOadministrador();
-                datos.ModificarMotivoReporte(NombreReporte, int.Parse(nomReporte), ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString());
-                //B_RegistrarMReporte.Visible = true;
-                // Button1.Visible = false;
-                //NombreReporte.Text = null;
-                //GridView1.DataBind();
+                //DDAOadministrador datos = new DDAOadministrador();
+                UEUMotiRepo report = new UEUMotiRepo();
+                report.DesMotiv = NombreReporte;
+                report.IdMoti = int.Parse(nomReporte);
+                report.ModifBy = ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString();
+                //datos.ModificarMotivoReporte(NombreReporte, int.Parse(nomReporte), ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString());
+                DB_ReasosnsPQR daoRep = new DB_ReasosnsPQR();
+                daoRep.actualizar_reporte(report);
+                //YA CASI !!!!!! ILL DO IT 
+
             }
             else
             {
