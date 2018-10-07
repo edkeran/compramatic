@@ -2,6 +2,7 @@
 using Datos;
 using System.Data;
 using System;
+using DatosPersistencia;
 
 namespace Logica
 {
@@ -33,7 +34,8 @@ namespace Logica
         //Metodo Para Agregar Un Producto
         public void AgregarProducto(String nombre, int cantidad, double precio, String descripcion, int categoria, int idEmpresa, String modif)
         {
-            DDAOProducto DAO_Producto = new DDAOProducto();
+            //DDAOProducto DAO_Producto = new DDAOProducto();
+            DB_Producto daoProducto = new DB_Producto();
             UEUProducto EU_Producto = new UEUProducto();
             EU_Producto.Nombre = nombre;
             EU_Producto.Cantidad = cantidad;
@@ -41,7 +43,11 @@ namespace Logica
             EU_Producto.Descripcion = descripcion;
             EU_Producto.Categoria = categoria;
             EU_Producto.IdEmpresa = idEmpresa;
-            DAO_Producto.GuardarProducto(EU_Producto, modif);
+            EU_Producto.ModifBy = modif;
+            EU_Producto.BajoInventario = 1;
+            EU_Producto.Estado_producto = 1;
+            daoProducto.insertar_producto(EU_Producto);
+            //DAO_Producto.GuardarProducto(EU_Producto, modif);
         }
     }
 }

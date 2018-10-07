@@ -72,7 +72,7 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
 
     protected void BTN_AñadirTag_Click(object sender, EventArgs e)
     {
-       
+       //BOTON PARA AÑADIR UN NUEVO TAG 
             L_AdministrarProducto logica = new L_AdministrarProducto();
             DataTable Empresa = (DataTable)Session["Sesion"];
             String response = logica.BTN_AñadirTag_Click(idProducto.Text, TB_Tags.Text, Empresa.Rows[0]["nomEmpresa"].ToString());
@@ -105,7 +105,6 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
         Page.ClientScript.RegisterStartupScript(this.GetType(), "Script", "redir_Esp_admin('" + response + "');", true);
     }
 
-    //TOCA REVISAR PARA QUE ES NO HAY QUE MIGRARLO
     public String RandomString(int length)
     {
         Random random = new Random();
@@ -114,7 +113,7 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
           .Select(s => s[random.Next(s.Length)]).ToArray());
     }
 
-    //EN REVISION
+   
     protected void AgregarFotosProductos(object sender, EventArgs e)
     {
         L_AdministrarProducto logi = new L_AdministrarProducto();

@@ -99,6 +99,7 @@ namespace Utilitarios
         }
         private String redireccion;
 
+        [NotMapped]
         public string Redireccion
         {
             get => redireccion;
@@ -107,13 +108,14 @@ namespace Utilitarios
 
         private String precioString;
 
+        [NotMapped]
         public string PrecioString
         {
             get => precioString;
             set => precioString = value;
         }
 
-       [NotMapped]
+        [NotMapped]
         public string NomEmp { get => nomEmp; set => nomEmp = value; }
         [NotMapped]
         public string NomCategoria { get => nomCategoria; set => nomCategoria = value; }
@@ -121,11 +123,14 @@ namespace Utilitarios
         public DataTable Fotos { get => fotos; set => fotos = value; }
         [Column("modified_by")]
         public string ModifBy { get => modifBy; set => modifBy = value; }
+        [Column("estadoProducto")]
+        public int Estado_producto { get => estado_producto; set => estado_producto = value; }
 
         private String nomEmp;
         private String nomCategoria;
         private DataTable fotos;
         private string modifBy="";
+        private int estado_producto;
 
     }
 }

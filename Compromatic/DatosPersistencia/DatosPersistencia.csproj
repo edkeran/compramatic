@@ -69,6 +69,7 @@
     <Compile Include="DBReporteEmpresa.cs" />
     <Compile Include="DBTipoMembresia.cs" />
     <Compile Include="DBUsr.cs" />
+    <Compile Include="DB_Producto.cs" />
     <Compile Include="DB_ReasosnsPQR.cs" />
     <Compile Include="DB_ReporteAdmin.cs" />
     <Compile Include="Mapeo.cs" />

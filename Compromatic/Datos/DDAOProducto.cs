@@ -352,10 +352,8 @@ namespace Datos
                 command.Parameters.Add("_nomarchivo", NpgsqlTypes.NpgsqlDbType.Varchar).Value = EU_Producto.NomArchivo;
                 command.Parameters.Add("_rutaarchivo", NpgsqlTypes.NpgsqlDbType.Varchar).Value = EU_Producto.RutaArchivo;
 
-
                 conection.Open();
                 command.ExecuteNonQuery();
-
             }
             catch (Exception e)
             {
