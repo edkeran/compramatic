@@ -97,13 +97,16 @@ namespace Logica
                 }
             }
             UEUEmpresa datos = new UEUEmpresa();
+            DBEmpresa daoEmpresa = new DBEmpresa();
             datos.Nombre = tb_nombre;
             datos.Nit = tb_nit;
             datos.Numero = tb_telefono;
             datos.Correo = tb_correo;
             datos.Direccion = tb_direccion;
             datos.Id = int.Parse(Empresa.Rows[0]["idEmpresa"].ToString());
-            envio.ModificarEmpresa(datos, datos.Nombre);
+            datos.ModifBy = datos.Nombre;
+            //envio.ModificarEmpresa(datos, datos.Nombre);
+            daoEmpresa.update_Empresa(datos);
             this.login(tb_correo, Empresa.Rows[0]["passEmpresa"].ToString());
             response.Data= this.login(tb_correo, Empresa.Rows[0]["passEmpresa"].ToString());
             response.Mensage = "Actualizacion Exitosa";

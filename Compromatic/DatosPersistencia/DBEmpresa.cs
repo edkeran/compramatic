@@ -67,5 +67,22 @@ namespace DatosPersistencia
             }
         }
 
+        //METODO PARA ACTUALIZAR LA EMPRESA
+        public void update_Empresa(UEUEmpresa datos)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var old = db.empre.Find(datos.Id);
+                old.Nombre = datos.Nombre;
+                old.Nit = datos.Nit;
+                old.Numero = datos.Numero;
+                old.Correo = datos.Correo;
+                old.Direccion = datos.Direccion;
+                old.ModifBy = datos.ModifBy;
+                db.SaveChanges();
+            }
+        }
+
+
     }
 }
