@@ -34,6 +34,9 @@ namespace Logica
                     return response;
                     //Response.Redirect("PerfilEmpresa.aspx");
                 }
+                DB_Producto daoProd = new DB_Producto();
+                List<UEUProducto> products = daoProd.traer_productos(int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()));
+                response.Products = products;
                 DataTable Productos = DAO_Producto.MostrarProducto(int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()));
                 response.Productos = Productos;
             }

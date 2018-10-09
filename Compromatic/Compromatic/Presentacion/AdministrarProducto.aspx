@@ -41,31 +41,31 @@
                                         <ItemTemplate>
                                             <tr>
                                                 <td>
-                                                    <asp:Label ID="Label1" Width="50px" Style="word-wrap: normal; word-break: break-all;" runat="server"><%# Eval("[nomProducto]") %></asp:Label>
+                                                    <asp:Label ID="Label1" Width="50px" Style="word-wrap: normal; word-break: break-all;" runat="server"><%# Eval("Nombre") %></asp:Label>
                                                 </td>
                                                 <td>
-                                                    <asp:TextBox runat="server" TextMode="MultiLine" Rows="3" Text='<%# Eval("[desProducto]") %>' ReadOnly="true"></asp:TextBox>
+                                                    <asp:TextBox runat="server" TextMode="MultiLine" Rows="3" Text='<%# Eval("Descripcion") %>' ReadOnly="true"></asp:TextBox>
                                                 </td>
                                                 <td>
-                                                    <asp:Label ID="Label2" CssClass="form-control" runat="server"><%# Eval("[canProducto]") %></asp:Label>
+                                                    <asp:Label ID="Label2" CssClass="form-control" runat="server"><%# Eval("Cantidad") %></asp:Label>
                                                 </td>
                                                 <td>
                                                     <div class="input-group">
                                                         <span class="input-group-addon">$</span>
-                                                        <asp:Label runat="server" CssClass="form-control"><%# Eval("[precioProducto]") %></asp:Label>
+                                                        <asp:Label runat="server" CssClass="form-control"><%# Eval("Precio") %></asp:Label>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <asp:Label ID="Label4" Width="30px" runat="server"><%# Eval("[nomCategoria]") %></asp:Label>
+                                                    <asp:Label ID="Label4" Width="30px" runat="server"><%# Eval("NomCategoria") %></asp:Label>
                                                 </td>
                                                 <td>
-                                                    <asp:Label ID="Label3" Width="30px" runat="server"><%# Eval("[bajoInventario]") %></asp:Label>
+                                                    <asp:Label ID="Label3" Width="30px" runat="server"><%# Eval("BajoInventario") %></asp:Label>
                                                 </td>
                                                 <td>
                                                     <asp:Button id="BTN_select" runat="server" CommandName="Select" Text="Seleccionar" CssClass="btn btn-primary" />
                                                 </td>
                                                 <td>
-                                                    <asp:Button id="BTN_del" runat="server" CommandName="Delete" Text="Eliminar" CommandArgument='<%# Eval("[idProducto]") %>' CssClass="btn btn-danger" />
+                                                    <asp:Button id="BTN_del" runat="server" CommandName="Delete" Text="Eliminar" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-danger" />
                                                 </td>
                                             </tr>
                                         </ItemTemplate>

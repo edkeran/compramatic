@@ -49,14 +49,36 @@ namespace DatosPersistencia
 
         }
 
-        //METODO PARA TRAER EL PRODUCTO A EDITAR
-        public void traer_productos(UEUProducto prod)
+        //METODO PARA TRAER TODOS LOS PRODUCTOS
+        public List<UEUProducto> traer_productos(int id_emp)
         {
             using (var db= new Mapeo("public"))
             {
                 //SE TRAEN LOS PRODUCTOS ACTIVOS DEL PROYECTO
-                var producto = db.productos.Where(y=>y.IdEmpresa==prod.IdEmpresa).Where(x=>x.Estado_producto == 1).ToList<UEUProducto>();
+                var producto = (from dao in db.productos
+                               join categ in db.categ on dao.Categoria equals categ.Id_cate
+                               join empres in db.empre on dao.IdEmpresa equals empres.Id
+                               select dao).Where(y=>y.IdEmpresa == id_emp && y.Estado_producto==1).ToList<UEUProducto>();
+                var otrosDatos = (from dao in db.productos
+                                  join categ in db.categ on dao.Categoria equals categ.Id_cate
+                                  join empres in db.empre on dao.IdEmpresa equals empres.Id
+                                  where dao.IdEmpresa==id_emp && dao.Estado_producto==1
+                                  select new U_Aux_Vista_Products
+                                  {
+                                      Nom_Empresa=empres.Nombre,
+                                      Nom_Categoria=categ.nomCategoria,
+                                      Id_Categoria=categ.Id_cate,
+                                      Nom_Archivo=empres.NomArchivo
+                                  }).ToList<U_Aux_Vista_Products>();
                 //SE RETORNA LA LISTA COMPLETA DE PRODUCTOS 
+                for (int i = 0; i < producto.Count; i++)
+                {
+                    producto.ElementAt(i).NomArchivo = otrosDatos.ElementAt(i).Nom_Archivo;
+                    producto.ElementAt(i).NomEmp = otrosDatos.ElementAt(i).Nom_Empresa;
+                    producto.ElementAt(i).NomCategoria = otrosDatos.ElementAt(i).Nom_Categoria;
+                }
+
+                return producto;
             }
         }
 

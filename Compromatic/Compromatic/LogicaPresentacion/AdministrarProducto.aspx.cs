@@ -21,7 +21,7 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
             L_AdministrarProducto logica = new L_AdministrarProducto();
             U_aux_AdminProd resp=logica.page_load(IsPostBack, Session["Sesion"], Session["IdProducto"]);
             Session["Productos"] = resp.Productos;
-            Prueba1.DataSource = resp.Productos;
+            Prueba1.DataSource = resp.Products;
             Prueba1.DataBind();
             idProducto.Text = resp.IdProducto.ToString();
 

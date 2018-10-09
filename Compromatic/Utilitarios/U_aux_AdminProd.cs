@@ -12,9 +12,11 @@ namespace Utilitarios
         private String redir="0";
         private DataTable productos;
         private String idProducto="";
+        private List<UEUProducto> products;
 
         public string Redir { get => redir; set => redir = value; }
         public String IdProducto { get => idProducto; set => idProducto = value; }
         public DataTable Productos { get => productos; set => productos = value; }
+        public List<UEUProducto> Products { get => products; set => products = value; }
     }
 }
