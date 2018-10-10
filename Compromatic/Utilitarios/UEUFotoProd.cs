@@ -10,7 +10,7 @@ namespace Utilitarios
     {
         private int id_foto;
         private String rutaArchi;
-        private String nomArchi;
+        private String nomArchi="default.png";
         private int id_Product;
         private String modif_By;
 

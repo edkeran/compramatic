@@ -45,6 +45,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ListToDataTable.cs" />
     <Compile Include="UAuxPrinciAdmin.cs" />
     <Compile Include="UAuxVenta.cs" />
     <Compile Include="UEUFotoProd.cs" />
@@ -59,6 +60,8 @@
     <Compile Include="UEUTipoMembresia.cs" />
     <Compile Include="UEUTraduccion.cs" />
     <Compile Include="UEUVenta.cs" />
+    <Compile Include="UEUVista_Soil_Acep.cs" />
+    <Compile Include="UEUVista_Tot_Prod.cs" />
     <Compile Include="U_AuxAumMemb.cs" />
     <Compile Include="U_AuxMasterAdmin.cs" />
     <Compile Include="U_AuxQuejAdm.cs" />

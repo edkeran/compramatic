@@ -152,5 +152,13 @@ namespace Utilitarios
         private int estadoEmpre;
         [Column("estadoEmpresa")]
         public int EstadoEmpre { get => estadoEmpre; set => estadoEmpre = value; }
+
+        private DateTime fecha_Crea = DateTime.Now;
+        [Column("fechaCreacion_empresa")]
+        public DateTime Fecha_Crea {
+            get => fecha_Crea;
+            set => fecha_Crea = value;
+        }
+
     }
 }

@@ -29,7 +29,6 @@ public partial class Presentacion_SolicitudesAceptadas : System.Web.UI.Page
             this.sol_acept.InnerText= compIdioma["sol_acept"].ToString();
             this.new_opt.InnerText= compIdioma["new_opt"].ToString();
             this.Titulo.Text= compIdioma["Titulo"].ToString();
-            //this.respo.InnerText
         }
         catch (Exception ex)
         { }

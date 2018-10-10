@@ -90,7 +90,8 @@
                                             <div class="input-group">
                                                 <asp:TextBox CssClass="form-control bg-silver-lighter" runat="server" ID="TB_Search" />
                                                 <span class="input-group-btn">
-                                                    <asp:ImageButton CssClass="btn btn-icon btn-white-without-border" ID="BTN_Buscar" OnClick="BTN_Buscar_Click" runat="server" ImageUrl="../App_Themes/Home/assets/img/lupa.png"></asp:ImageButton>
+                                                    <asp:ImageButton CssClass="btn btn-icon btn-white-without-border" ID="BTN_Buscar" OnClick="BTN_Buscar_Click" runat="server" ImageUrl="../App_Themes/Home/assets/img/lupa.png" ValidationGroup="tst"></asp:ImageButton>
+                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="valor invalido" ControlToValidate="TB_Search" ForeColor="Red" ValidationExpression="^[a-zA-Z ñÑ0-9-]*$" ValidationGroup="tst"></asp:RegularExpressionValidator>
                                                 </span>
                                             </div>
                                         </div>

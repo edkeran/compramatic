@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Utilitarios;
 using Datos;
 using System.Data;
+using DatosPersistencia;
 
 namespace Logica
 {
@@ -20,9 +21,11 @@ namespace Logica
                 }
                 else
                 {
-                    DDAOProducto DAO_Producto = new DDAOProducto();
-                    DataTable response = DAO_Producto.TodoProductos();
-                    return response;
+                    DB_Producto daoProd = new DB_Producto();
+                    //DDAOProducto DAO_Producto = new DDAOProducto();
+                    //DataTable response = DAO_Producto.TodoProductos();
+                    //return response;
+                    return daoProd.get_all_products();
                 }
             }
             else

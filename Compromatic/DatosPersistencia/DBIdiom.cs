@@ -56,5 +56,14 @@ namespace DatosPersistencia
                 db.SaveChanges();
             }
         }
+
+        public List<UEUIdioma> get_all_idioms()
+        {
+            using (var db= new Mapeo("idioma"))
+            {
+                var data = from u in db.idiom select u;
+                return data.ToList<UEUIdioma>();
+            }
+        }
     }
 }

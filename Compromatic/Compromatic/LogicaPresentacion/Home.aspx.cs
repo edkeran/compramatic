@@ -35,10 +35,7 @@ public partial class Presentacion_Index : System.Web.UI.Page
     }
 
     protected void DDL_Idioma_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        //DropDownList ddl = (DropDownList)sender;
-        //Session["idiomases"] = int.Parse(ddl.SelectedValue);
-    }
+    {}
 
     protected void BTN_Idioma_Click(object sender, EventArgs e)
     {

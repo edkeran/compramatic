@@ -84,20 +84,26 @@ namespace Logica
 
         public DataTable SolicitudesAceptadas()
         {
-            DDAOadministrador db = new DDAOadministrador();
-            return db.SolicitudesAceptadas();
+            //DDAOadministrador db = new DDAOadministrador();
+            DB_Solicit daoSolicit = new DB_Solicit();
+            return daoSolicit.traer_accept();
+            //return db.SolicitudesAceptadas();
         }
 
         public DataTable SolicitudesPendientes()
         {
-            DDAOadministrador db = new DDAOadministrador();
-            return db.SolicitudesPendientes();
+            DB_Solicit daoSolicit = new DB_Solicit();
+            return daoSolicit.traer_pendiente();
+            //DDAOadministrador db = new DDAOadministrador();
+            //return db.SolicitudesPendientes();
         }
 
         public DataTable SolicitudesRechazadas()
         {
-            DDAOadministrador db = new DDAOadministrador();
-            return db.SolicitudesRechazadas();
+            //DDAOadministrador db = new DDAOadministrador();
+            //return db.SolicitudesRechazadas();
+            DB_Solicit daoSolicit = new DB_Solicit();
+            return daoSolicit.traer_rechaza();
         }
 
         public DataTable Membresia()

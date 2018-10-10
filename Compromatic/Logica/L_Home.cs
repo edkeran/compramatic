@@ -2,13 +2,22 @@
 using System.Collections.Generic;
 using System.Data;
 using Datos;
+using DatosPersistencia;
+using Utilitarios;
+
 namespace Logica
 {
     public class L_Home {
+
         public DataTable obtener_Idiomas()
         {
             DDAOHome data = new DDAOHome();
             return data.Idiomas();
+        }
+
+        public List<UEUIdioma> get_idioms(){
+            DBIdiom daoIdiom = new DBIdiom();
+            return daoIdiom.get_all_idioms();
         }
 
         public Object validar_ses_idioma(Object idiom)

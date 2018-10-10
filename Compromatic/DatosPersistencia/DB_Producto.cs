@@ -124,5 +124,41 @@ namespace DatosPersistencia
                 db.SaveChanges();
             }
         }
+
+        //METODO PARA OBTENER TODOS LOS PRODUCTOS ACTIVOS DE LAS EMPRESAS
+        public DataTable get_all_products()
+        {
+            using (var db = new Mapeo("public"))
+            {
+                var data = (from x in db.empre
+                            join h in db.productos on x.Id equals h.IdEmpresa
+                            join l in db.categ on h.Categoria equals l.Id_cate
+                            where h.Estado_producto == 1
+                            select new UEUVista_Tot_Prod
+                            {
+                                _nomcategoria=l.nomCategoria,
+                                _idproducto=h.Id,
+                                _nomproducto=h.Nombre,
+                                _desproducto=h.Descripcion,
+                                _precioproducto=h.Precio,
+                                _canproducto=h.Cantidad,
+                                _nomempresa=x.Nombre,
+                                _idempresa=x.Id,
+                                _foto=(from k in db.fotosPro where h.Id == k.Id_Product && h.Estado_producto == 1 select k).Take(1).FirstOrDefault().NomArchi.ToString()
+                            });
+                List<UEUVista_Tot_Prod> res = data.ToList<UEUVista_Tot_Prod>();
+                foreach(UEUVista_Tot_Prod aux in res)
+                {
+                    if (aux._foto.Equals(""))
+                    {
+                        aux._foto = "default.png";
+                    }
+                    aux._foto.ToString();
+                }
+                ListToDataTable convert = new ListToDataTable();
+                DataTable retorno=convert.ToDataTable<UEUVista_Tot_Prod>(res);
+                return retorno;
+            }
+        }
     }
 }

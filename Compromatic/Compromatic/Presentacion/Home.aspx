@@ -40,7 +40,7 @@
                </div>
                 <!--Div para el DLL de los Idiomas En La BD-->
                 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                <asp:DropDownList ID="DDL_Idioma" runat="server" DataSourceID="ObjectDataSource1" DataTextField="terminacion" DataValueField="id_idioma" OnSelectedIndexChanged="DDL_Idioma_SelectedIndexChanged" OnTextChanged="DDL_Idioma_SelectedIndexChanged"></asp:DropDownList>
+                <asp:DropDownList ID="DDL_Idioma" runat="server" DataSourceID="ObjectDataSource1" DataTextField="Terminacion" DataValueField="Id_Idioma" OnSelectedIndexChanged="DDL_Idioma_SelectedIndexChanged" OnTextChanged="DDL_Idioma_SelectedIndexChanged"></asp:DropDownList>
                 <asp:Button ID="BTN_Idioma" runat="server" Text="Cambiar Idioma" OnClick="BTN_Idioma_Click" CssClass="btn btn-primary" />
                 <ajaxToolkit:ConfirmButtonExtender ID="cbe" runat="server"
                     TargetControlID="BTN_Idioma"
@@ -50,7 +50,7 @@
                     Enabled="true"
                      
                     />
-                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="obtener_Idiomas" TypeName="Logica.L_Home"></asp:ObjectDataSource>
+                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="get_idioms" TypeName="Logica.L_Home"></asp:ObjectDataSource>
                 <ajaxToolkit:ModalPopupExtender ID="MPE" runat="server"
                         TargetControlID="BTN_Idioma"
                         PopupControlID="Panel1"
