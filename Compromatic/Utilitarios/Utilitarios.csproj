@@ -46,6 +46,7 @@
       <DependentUpon>DataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ListToDataTable.cs" />
+    <Compile Include="TQuejas.cs" />
     <Compile Include="UAuxPrinciAdmin.cs" />
     <Compile Include="UAuxVenta.cs" />
     <Compile Include="UEUFotoProd.cs" />
@@ -81,7 +82,9 @@
     <Compile Include="U_Aux_SoliciRechaza.cs" />
     <Compile Include="U_Aux_Vista_Products.cs" />
     <Compile Include="U_Modificar_Pfi_Usr.cs" />
+    <Compile Include="vistaPQRempresa.cs" />
     <Compile Include="vistaReporteAdmin.cs" />
+    <Compile Include="vista_Historial_vent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataSet.xsc">

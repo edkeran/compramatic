@@ -60,5 +60,22 @@ namespace Utilitarios
             get { return estadoVenta; }
             set { estadoVenta = value; }
         }
+
+        private DateTime fechaVent= DateTime.Now;
+        [Column("fechaVenta")]
+        public DateTime FechaVent {
+            get => fechaVent;
+            set => fechaVent = value;
+        }
+        private DateTime fechaEntr;
+
+        [Column("fechaEntrega")]
+        public DateTime FechaEntr {
+            get => fechaEntr;
+            set => fechaEntr = value;
+        }
+
+        
+
     }
 }

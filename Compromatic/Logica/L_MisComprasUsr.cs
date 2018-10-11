@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using Datos;
 using Utilitarios;
+using DatosPersistencia;
 
 namespace Logica
 {
@@ -33,10 +34,13 @@ namespace Logica
                 UEUsuario cliente = new UEUsuario();
                 cliente.IdUsr = int.Parse(datouser.Rows[0]["idUsuario"].ToString());
 
-                DataTable peticiones = user.HistorialCompras(cliente, 1);
-                DataTable aceptadas = user.HistorialCompras(cliente, 2);
-                DataTable rechazadas = user.HistorialCompras(cliente, 3);
-                DataTable hechas = user.HistorialCompras(cliente, 4);
+                DBUsr daoUser = new DBUsr();
+                DataTable peticiones = daoUser.historial_compras(cliente, 1);
+
+                //DataTable peticiones = user.HistorialCompras(cliente, 1);
+                DataTable aceptadas = daoUser.historial_compras(cliente, 2);
+                DataTable rechazadas = daoUser.historial_compras(cliente, 3);
+                DataTable hechas = daoUser.historial_compras(cliente, 4);
 
                 response.Peticiones = peticiones;
                 response.Aceptadas = aceptadas;

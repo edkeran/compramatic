@@ -150,8 +150,10 @@ namespace Logica
 
         public DataTable MostrarPQRAempresa()
         {
-            DDAOPqr db = new DDAOPqr();
-            return db.MostrarPQRAempresa();
+            DB_Admin daoAdm = new DB_Admin();
+            return daoAdm.pqr_empresa();
+            //DDAOPqr db = new DDAOPqr();
+           //return db.MostrarPQRAempresa();
         }
 
         public DataTable MostrarPQRCliente()

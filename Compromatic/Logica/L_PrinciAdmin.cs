@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Utilitarios;
 using Datos;
+using DatosPersistencia;
 
 namespace Logica
 {
@@ -25,18 +26,29 @@ namespace Logica
                 {
 
                     int num = int.Parse(((DataTable)(Session)).Rows[0]["idTipo"].ToString());
+                    //LLAMAMOS A LA NUEVA DB
+                    DB_Admin daoAdm = new DB_Admin();
                     DDAOadministrador user = new DDAOadministrador();
-                    DataTable totalcliente = user.MostrarTotalClientes();
-                    DataTable TotalEmpresa = user.MostrarTotalEmpresas();
-                    DataTable totalVentas = user.MostrarTotalVentas();
-                    DataTable not = user.LlenarNotificacion();
-                    DataTable notAcep = user.LlenarNotificacionAceptadas();
-                    DataTable notRecha = user.LlenarNotificacionRechazada();
+                    int totalcliente = daoAdm.tot_clients();
+                    int totalEmpresa = daoAdm.total_empr();
+                    int totalVentas= daoAdm.tot_ventas();
+                    //DataTable totalcliente = user.MostrarTotalClientes();
+                    //DataTable TotalEmpresa = user.MostrarTotalEmpresas();
+                    //DataTable totalVentas = user.MostrarTotalVentas();
+                    //totalcliente.Rows[0]["count"].ToString();
+                    //TotalEmpresa.Rows[0]["count"].ToString();
+                    //totalVentas.Rows[0]["valor"].ToString();
+                    //DataTable not = user.LlenarNotificacion();
+                    //DataTable notAcep = user.LlenarNotificacionAceptadas();
+                    //DataTable notRecha = user.LlenarNotificacionRechazada();
+                    int not = daoAdm.llenar_notificacion();
+                    int notAcep = daoAdm.llenar_notificacionAccept();
+                    int notRecha = daoAdm.llenar_notificacionRechaz();
                     respo.Redireccion = "0";
-                    respo.L_Usuarios1 = totalcliente.Rows[0]["count"].ToString();
-                    respo.L_Empresas1 = TotalEmpresa.Rows[0]["count"].ToString();
-                    respo.L_totalVentas1 = totalVentas.Rows[0]["valor"].ToString();
-                    respo.L_Pqr1 = ((int.Parse(notAcep.Rows[0]["Activas"].ToString())) + (int.Parse(notRecha.Rows[0]["Activas"].ToString())) + (int.Parse(not.Rows[0]["Activas"].ToString()))).ToString();
+                    respo.L_Usuarios1 = totalcliente.ToString();
+                    respo.L_Empresas1 = totalEmpresa.ToString();
+                    respo.L_totalVentas1 = totalVentas.ToString("C");
+                    respo.L_Pqr1 = (notAcep + notRecha + not).ToString();
                 }
 
                 else

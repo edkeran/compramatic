@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Datos;
 using Utilitarios;
+using DatosPersistencia;
 
 namespace Logica
 {
@@ -72,11 +73,14 @@ namespace Logica
                 return data;
             }
             DDAOHome datos = new DDAOHome();
+            DB_Producto daoProd = new DB_Producto();
             String palabra = busqueda;
             palabra = palabra.Replace(' ', '|');
-            if (datos.Buscador(palabra).Rows.Count > 0)
+            //datos.Buscador(palabra).Rows.Count > 0
+            if (daoProd.find_products(palabra).Rows.Count>0)
             {
-                data.Productos= datos.Buscador(palabra);
+                data.Productos = daoProd.find_products(palabra);
+                //datos.Buscador(palabra);
                 //Session["Tienda"] = datos.Buscador(palabra);
                 data.Url="Store.aspx";
                 //Response.Redirect("Store.aspx");

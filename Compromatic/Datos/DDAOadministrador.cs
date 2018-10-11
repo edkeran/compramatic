@@ -65,7 +65,7 @@ namespace Datos
             }
             return Usuario;
         }
-
+        //MIGRADO
         public DataTable MostrarTotalClientes()
         {
             DataTable Usuario = new DataTable();
@@ -93,7 +93,7 @@ namespace Datos
             }
             return Usuario;
         }
-
+        //MIGRADO
         public DataTable MostrarTotalVentas()
         {
             DataTable Usuario = new DataTable();
@@ -121,7 +121,7 @@ namespace Datos
             }
             return Usuario;
         }
-
+        //MIGRADO
         public DataTable MostrarTotalEmpresas()
         {
             DataTable Usuario = new DataTable();
@@ -178,6 +178,7 @@ namespace Datos
             }
             return Usuario;
         }
+        //MIGRADO
         public DataTable LlenarNotificacion()
         {
             DataTable Usuario = new DataTable();
