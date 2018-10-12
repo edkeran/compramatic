@@ -17,7 +17,7 @@ namespace DatosPersistencia
                 db.SaveChanges();
             }
         }
-
+        //MODIFICAR QUEJA   
         public void modif_queja(UEUQueja queja)
         {
             using (var db= new Mapeo("public"))
@@ -61,6 +61,7 @@ namespace DatosPersistencia
             }
         }
 
+        //METODO QUE TRAE TODOS LOS REPORTES
         public List<UEUMotiRepo> traer_reportes()
         {
             using (var db= new Mapeo("public"))
@@ -68,5 +69,20 @@ namespace DatosPersistencia
                 return db.report.ToList<UEUMotiRepo>();
             }
         }
+
+        //METODO PARA VERFICAR LA QUEJA 
+        public DataTable verficarQueja(string nomQueja)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                nomQueja = nomQueja.ToUpper();
+                var consulta = (from motiQ in db.quejas where motiQ.Nom_queja.ToUpper().Contains(nomQueja) select motiQ);
+                ListToDataTable conv = new ListToDataTable();
+                return conv.ToDataTable<UEUQueja>(consulta.ToList<UEUQueja>());
+            }
+        }
+
+        //METODO PARA VERFICAR EL REPORTE
+
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using Utilitarios;
-using Datos;
 
 namespace Logica
 {
@@ -25,8 +24,6 @@ namespace Logica
                     rep.AcceHeader = true;
                     rep.Header1 = Header;
                     rep.Redir = "0";
-                    //GridView1.UseAccessibleHeader = true;
-                    //GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
                 }
                 int num = int.Parse(((DataTable)(sesion)).Rows[0]["idTipo"].ToString());
                 rep.Num = num;

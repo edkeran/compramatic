@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Utilitarios;
 using Datos;
+using DatosPersistencia;
 
 namespace Logica
 {
@@ -27,8 +28,10 @@ namespace Logica
                     //Response.Redirect("LoginUsr.aspx");
                 }
                 DataTable user = (DataTable)Session;
-                DDAOUsuario dao = new DDAOUsuario();
-                DataTable topten = dao.ObtenerTopTen(int.Parse(user.Rows[0]["idUsuario"].ToString()));
+                //DDAOUsuario dao = new DDAOUsuario();
+                //DataTable topten = dao.ObtenerTopTen(int.Parse(user.Rows[0]["idUsuario"].ToString()));
+                DBUsr daoUser = new DBUsr();
+                DataTable topten =daoUser.obtener_top_ten(int.Parse(user.Rows[0]["idUsuario"].ToString()));
                 DataColumn column = new DataColumn();
                 column.DefaultValue = btn_text;
                 column.ColumnName="BTN_idioma";

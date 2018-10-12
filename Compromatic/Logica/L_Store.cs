@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using Utilitarios;
-using Datos;
 using System.Data;
 using DatosPersistencia;
 
@@ -36,8 +33,11 @@ namespace Logica
 
         public DataTable LoadProduct(int comando)
         {
-            DDAOProducto pdto = new DDAOProducto();
-            return pdto.ProductosDetalle(comando);
+            DB_Producto daoProd = new DB_Producto();
+            return daoProd.obtener_producto(comando);
+
+            //DDAOProducto pdto = new DDAOProducto();
+            //return pdto.ProductosDetalle(comando);
         }
     }
 }

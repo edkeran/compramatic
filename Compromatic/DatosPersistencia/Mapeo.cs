@@ -35,6 +35,9 @@ namespace DatosPersistencia
         public DbSet<UEUFotoProd> fotosPro { get; set; }
         public DbSet<UEUTag> tag { get; set; }
         public DbSet<TQuejas> inf_quejas { get; set; }
+        public DbSet<UEUTopTen> top_ten { get; set; }
+        public DbSet<UEUIdimControles> idiom_contro { get; set; } 
+        public DbSet<UEUFormula_Idiom> form_idioma { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder builder)
         {

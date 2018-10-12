@@ -27,7 +27,7 @@
                                 <asp:Panel ID="Panel2" runat="server">
                                     <div class="col-md-9">
                                     <asp:Label runat="server" ID="LB_DDL1">Seleccione Un Idioma</asp:Label>
-                                    <asp:DropDownList runat="server" ID="DDL_Idiomas" DataSourceID="ODS_Idioma" DataTextField="nombre_idioma" DataValueField="id_idioma"></asp:DropDownList>
+                                    <asp:DropDownList runat="server" ID="DDL_Idiomas" DataSourceID="ODS_Idioma" DataTextField="Nombre_Idioma" DataValueField="Id_Idioma"></asp:DropDownList>
                                      </div>
                                     <br /><br />
                                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -65,7 +65,7 @@
                                     </Triggers>
                                     </asp:UpdatePanel>
                                     <asp:ObjectDataSource ID="ODS_Form" runat="server" SelectMethod="traer_formulario" TypeName="Logica.L_Idioma"></asp:ObjectDataSource>
-                                    <asp:ObjectDataSource ID="ODS_Idioma" runat="server" SelectMethod="traer_idioma" TypeName="Logica.L_Idioma"></asp:ObjectDataSource>
+                                    <asp:ObjectDataSource ID="ODS_Idioma" runat="server" SelectMethod="traer_idioma_persistencia" TypeName="Logica.L_Idioma"></asp:ObjectDataSource>
                                 </asp:Panel>
                             </div>
                         </div>

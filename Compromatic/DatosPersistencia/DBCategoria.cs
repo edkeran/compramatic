@@ -36,5 +36,17 @@ namespace DatosPersistencia
                 return db.categ.OrderBy(f=>f.Id_cate).ToList<UEUCategoria>(); 
             }
         }
+
+        public DataTable verificar_categoria(string consulta)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                consulta = consulta.ToUpper();
+                var data = from cat in db.categ where cat.nomCategoria.ToUpper().Contains(consulta) select cat;
+                ListToDataTable conv = new ListToDataTable();
+                return conv.ToDataTable<UEUCategoria>(data.ToList<UEUCategoria>());
+
+            }
+        }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using Utilitarios;
-using Datos;
 using DatosPersistencia;
 
 namespace Logica
@@ -40,8 +39,10 @@ namespace Logica
         {
             String validacion;
             validacion = NombreCategoria;
-            DDAOadministrador datos = new DDAOadministrador();
-            DataTable resul = datos.verificarCategoria(validacion);
+            DBCategoria daoCat = new DBCategoria();
+            //DDAOadministrador datos = new DDAOadministrador();
+            //datos.verificarCategoria(validacion);
+            DataTable resul = daoCat.verificar_categoria(validacion);
             if (resul.Rows.Count > 0)
                 return false;
             else

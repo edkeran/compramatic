@@ -69,12 +69,49 @@ namespace DatosPersistencia
                 return retorno;
             }
         }
+
         //VERFICAR CORREO
         public void comprobar_correo(string correo)
         {
             using (var db= new Mapeo("public"))
             {
 
+            }
+        }
+
+        public DataTable obtener_top_ten(int id_user)
+        {
+            using(var db= new Mapeo("public"))
+            {
+                var datos = (from t in db.top_ten from p in db.productos from e in db.empre
+                             where t.Id_prod == p.Id && p.IdEmpresa == e.Id
+                             select new vistaTop10
+                             {
+                                 idUsuario=t.Id_usr,
+                                 idProducto=t.Id_prod,
+                                 fechaTop=t.Fecha_top,
+                                 nomProducto=p.Nombre,
+                                 nomEmpresa = e.Nombre 
+                             }).Distinct();
+                datos = (from d in datos where d.idUsuario == id_user select d).OrderByDescending(d => d.fechaTop).Take(10);
+                List<vistaTop10> info = datos.ToList<vistaTop10>();
+                ListToDataTable conv = new ListToDataTable();
+                DataTable response=conv.ToDataTable<vistaTop10>(info);
+                return response;
+            }
+        }
+
+        //INSERCION DE LOS TOP 10   
+        public void insertar_top_10(int pdto, int usr, string usuario)
+        {
+            using (var db = new Mapeo("public"))
+            {
+                UEUTopTen top = new UEUTopTen();
+                top.Id_prod = pdto;
+                top.Id_usr = usr;
+                top.Modified_by1 = usuario;
+                db.top_ten.Add(top);
+                db.SaveChanges();
             }
         }
     }

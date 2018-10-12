@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using Utilitarios;
-using Datos;
+//using Datos;
 using System.Collections.Generic;
 using System.IO;
 using DatosPersistencia;
@@ -12,7 +12,7 @@ namespace Logica
     {
         public U_aux_AdminProd page_load(bool postback,Object Session,Object id_producto)
         {
-            DDAOProducto DAO_Producto = new DDAOProducto();
+            //DDAOProducto DAO_Producto = new DDAOProducto();
             U_aux_AdminProd response = new U_aux_AdminProd();
             if (!postback)
             {
@@ -37,8 +37,8 @@ namespace Logica
                 DB_Producto daoProd = new DB_Producto();
                 List<UEUProducto> products = daoProd.traer_productos(int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()));
                 response.Products = products;
-                DataTable Productos = DAO_Producto.MostrarProducto(int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()));
-                response.Productos = Productos;
+                //DataTable Productos = DAO_Producto.MostrarProducto(int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()));
+                //response.Productos = Productos;
             }
             else
             {
@@ -134,12 +134,14 @@ namespace Logica
             //DAO_Tag.EliminarTag(EU_Tag, modif);
         }
 
-        public UEUProducto Prueba1_ItemCommand(String comandName, DataTable Empresa, DataTable Productos, int itemIndex)
+        public UEUProducto Prueba1_ItemCommand(String comandName, DataTable Empresa,  List<UEUProducto> products, int itemIndex)
         {
+            ListToDataTable conv = new ListToDataTable();
+            DataTable Productos=conv.ToDataTable<UEUProducto>(products);
             UEUProducto response = new UEUProducto();
             if (comandName == "Delete")
             {
-                this.BorrarProducto(int.Parse(Productos.Rows[itemIndex]["idProducto"].ToString()), Empresa.Rows[0]["nomEmpresa"].ToString());
+                this.BorrarProducto(int.Parse(Productos.Rows[itemIndex]["Id"].ToString()), Empresa.Rows[0]["nomEmpresa"].ToString());
                 response.Id = 0;
                 response.Redireccion= "0";
                 throw new System.ArgumentException("Valido");
@@ -148,13 +150,13 @@ namespace Logica
             if (comandName == "Select")
             {
                 //CAMBIAR CUANDO SE CAMBIE EL TRAER PRODUCTOS
-                response.Id = int.Parse(Productos.Rows[itemIndex]["idProducto"].ToString());
-                response.Nombre = Productos.Rows[itemIndex]["nomProducto"].ToString();
-                response.Cantidad=int.Parse(Productos.Rows[itemIndex]["canProducto"].ToString());
-                response.Precio = int.Parse(Productos.Rows[itemIndex]["precioProducto"].ToString());
-                response.Descripcion = Productos.Rows[itemIndex]["desProducto"].ToString();
-                response.Categoria = int.Parse(Productos.Rows[itemIndex]["idCategoria"].ToString());
-                response.BajoInventario = int.Parse(Productos.Rows[itemIndex]["bajoInventario"].ToString());
+                response.Id = int.Parse(Productos.Rows[itemIndex]["Id"].ToString());
+                response.Nombre = Productos.Rows[itemIndex]["Nombre"].ToString();
+                response.Cantidad=int.Parse(Productos.Rows[itemIndex]["Cantidad"].ToString());
+                response.Precio = int.Parse(Productos.Rows[itemIndex]["Precio"].ToString());
+                response.Descripcion = Productos.Rows[itemIndex]["Descripcion"].ToString();
+                response.Categoria = int.Parse(Productos.Rows[itemIndex]["Categoria"].ToString());
+                response.BajoInventario = int.Parse(Productos.Rows[itemIndex]["BajoInventario"].ToString());
                 //Session["IdProducto"] = Productos.Rows[itemIndex]["idProducto"].ToString();
                 response.Redireccion = "98";
                 return response;
@@ -267,20 +269,25 @@ namespace Logica
             //DAO_Producto.RegistrarFoto(EU_Producto, modif);
         }
 
+
         public DataTable MostrarFoto(int idProducto)
         {
-            DDAOProducto DAO_Producto = new DDAOProducto();
-            DataTable Fotos = DAO_Producto.MostrarFotoProducto(idProducto);
+            DB_Producto daoProducto = new DB_Producto();
+            //DDAOProducto DAO_Producto = new DDAOProducto();
+            DataTable Fotos = daoProducto.get_picture_product(idProducto);
             return Fotos;
         }
 
+
         public void BorrarFoto(int idFoto)
         {
-            DDAOProducto DAO_Producto = new DDAOProducto();
+            DB_Producto daoProducto = new DB_Producto();
+            
+            //DDAOProducto DAO_Producto = new DDAOProducto();
             UEUProducto EU_Producto = new UEUProducto();
-
             EU_Producto.IdFoto = idFoto;
-            DAO_Producto.EliminarFoto(EU_Producto);
+            daoProducto.delete_picture(EU_Producto);
+            //DAO_Producto.EliminarFoto(EU_Producto);
         }
     }
 }

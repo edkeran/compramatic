@@ -8,7 +8,7 @@ namespace DatosPersistencia
 {
     public class DB_Producto
     {
-        //SETEAR LIBRERIAS
+        //insert Product
         public void insertar_producto(UEUProducto produ)
         {
             using (var db = new Mapeo("public"))
@@ -194,6 +194,62 @@ namespace DatosPersistencia
                 ListToDataTable convert = new ListToDataTable();
                 DataTable retorno = convert.ToDataTable<UEUVista_Tot_Prod>(res);
                 return retorno;
+            }
+        }
+        //METODO PARA OBTENER UN PRODUCTO
+        public DataTable obtener_producto(int id_produ)
+        {
+            using (var db = new Mapeo("public"))
+            {
+                var datos = (from p in db.productos join c in db.categ on p.Categoria equals c.Id_cate
+                             join e in db.empre on p.IdEmpresa equals e.Id
+                             select new vistaProductoSingle  {
+                                 nomProducto=p.Nombre,
+                                 idProducto=p.Id,
+                                 canProducto=p.Cantidad,
+                                 precioProducto=(double)p.Precio,
+                                 desProducto=p.Descripcion,
+                                 estadoProducto=p.Estado_producto,
+                                 bajoInventario=p.BajoInventario,
+                                 idEmpresa=p.IdEmpresa,
+                                 nomCategoria=c.nomCategoria,
+                                 nomEmpresa=e.Nombre,
+                                 idCategoria=p.Categoria,
+                                 nomArchivo=e.NomArchivo
+                             });
+                datos = (from d in datos where d.idProducto == id_produ select d);
+                ListToDataTable conv = new ListToDataTable();
+                DataTable data = conv.ToDataTable<vistaProductoSingle>(datos.ToList<vistaProductoSingle>());
+                data.Rows[0]["nomProducto"].ToString();
+                return data;
+
+            }
+        }
+
+        public DataTable get_picture_product(int id_produ)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var pictures = db.fotosPro.Where(x=>x.Id_Product==id_produ).ToList<UEUFotoProd>();
+                ListToDataTable conv = new ListToDataTable();
+                return conv.ToDataTable<UEUFotoProd>(pictures);
+            }
+        }
+
+        public void delete_picture(UEUProducto prod)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var update=db.fotosPro.Find(prod.IdFoto);
+                update.Modif_By = prod.ModifBy;
+                db.SaveChanges();
+
+                var delete = db.fotosPro.Find(prod.IdFoto);
+                db.Entry(delete).State = EntityState.Deleted;
+                db.SaveChanges();
+                //var idioma = db.idiom.Find(id);
+                //db.Entry(idioma).State = EntityState.Deleted;
+                //db.SaveChanges();
             }
         }
     }

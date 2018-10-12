@@ -49,7 +49,9 @@
     <Compile Include="TQuejas.cs" />
     <Compile Include="UAuxPrinciAdmin.cs" />
     <Compile Include="UAuxVenta.cs" />
+    <Compile Include="UEUFormula_Idiom.cs" />
     <Compile Include="UEUFotoProd.cs" />
+    <Compile Include="UEUIdimControles.cs" />
     <Compile Include="UEUIdioma.cs" />
     <Compile Include="UEUMembresia.cs" />
     <Compile Include="UEUMotiRepo.cs" />
@@ -59,6 +61,7 @@
     <Compile Include="UEUSolici_Regist.cs" />
     <Compile Include="UEUTag.cs" />
     <Compile Include="UEUTipoMembresia.cs" />
+    <Compile Include="UEUTopTen.cs" />
     <Compile Include="UEUTraduccion.cs" />
     <Compile Include="UEUVenta.cs" />
     <Compile Include="UEUVista_Soil_Acep.cs" />
@@ -83,7 +86,9 @@
     <Compile Include="U_Aux_Vista_Products.cs" />
     <Compile Include="U_Modificar_Pfi_Usr.cs" />
     <Compile Include="vistaPQRempresa.cs" />
+    <Compile Include="vistaProductoSingle.cs" />
     <Compile Include="vistaReporteAdmin.cs" />
+    <Compile Include="vistaTop10.cs" />
     <Compile Include="vista_Historial_vent.cs" />
   </ItemGroup>
   <ItemGroup>

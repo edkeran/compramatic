@@ -15,8 +15,8 @@
                         <asp:Repeater runat="server" ID="RP_FotosProductos">
                             <ItemTemplate>
                                 <li>
-                                    <a href="#" data-click="show-main-image" data-url='<%# Eval("[nomArchivo]") %>'>
-                                    <img src='<%# Eval("[nomArchivo]") %>' alt="" /></a>
+                                    <a href="#" data-click="show-main-image" data-url='<%# Eval("[RutaArchi]"+"[NomArchi]") %>'>
+                                    <img src='<%# Eval("[RutaArchi]"+"[NomArchi]") %>' alt="" /></a>
                                 </li>
                             </ItemTemplate>
                         </asp:Repeater>

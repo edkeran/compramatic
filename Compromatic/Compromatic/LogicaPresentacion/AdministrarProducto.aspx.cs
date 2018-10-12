@@ -20,7 +20,7 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
         {
             L_AdministrarProducto logica = new L_AdministrarProducto();
             U_aux_AdminProd resp=logica.page_load(IsPostBack, Session["Sesion"], Session["IdProducto"]);
-            Session["Productos"] = resp.Productos;
+            Session["Productos"] = resp.Products;
             Prueba1.DataSource = resp.Products;
             Prueba1.DataBind();
             idProducto.Text = resp.IdProducto.ToString();
@@ -154,7 +154,7 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
         {
             L_AdministrarProducto logica = new L_AdministrarProducto();
             DataTable Empresa = (DataTable)Session["Sesion"];
-            DataTable Productos = (DataTable)Session["Productos"];
+            List<UEUProducto> Productos = (List<UEUProducto>)Session["Productos"];
             UEUProducto resp = logica.Prueba1_ItemCommand(e.CommandName, Empresa, Productos, e.Item.ItemIndex);
             idProducto.Text =resp.Id.ToString();
             TB_Nombre.Text = resp.Nombre;
@@ -178,7 +178,7 @@ public partial class LogicaPresentacion_AdministrarProducto : System.Web.UI.Page
         DataTable Fotos = new DataTable();
         L_AdministrarProducto logica = new L_AdministrarProducto();
         Fotos = logica.MostrarFoto(int.Parse(idProducto.Text));
-        String ruta = Fotos.Rows[e.Item.ItemIndex]["rutaArchivo"].ToString();
+        String ruta = Fotos.Rows[e.Item.ItemIndex]["NomArchi"].ToString();
         ruta = (Server.MapPath("~\\Archivos\\FotosProductos") + "\\" + ruta);
         logica.BorrarFoto(int.Parse(e.CommandArgument.ToString()));
 

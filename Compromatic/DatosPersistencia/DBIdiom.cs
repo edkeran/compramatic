@@ -38,7 +38,7 @@ namespace DatosPersistencia
         }
 
         //METODO PARA TRAER UN SOLO IDI0OMA
-        public UEUIdioma get_idiom (int id){
+        public UEUIdioma get_idiom(int id) {
             using (var db = new Mapeo("idioma"))
             {
                 var idioma = db.idiom.Find(id);
@@ -48,7 +48,7 @@ namespace DatosPersistencia
 
         public void update_idioma(UEUIdioma new_idiom)
         {
-            using (var db= new Mapeo("idioma"))
+            using (var db = new Mapeo("idioma"))
             {
                 db.idiom.Attach(new_idiom);
                 var entry = db.Entry(new_idiom);
@@ -57,13 +57,83 @@ namespace DatosPersistencia
             }
         }
 
+        //metodo para obtener todos los idiomas
         public List<UEUIdioma> get_all_idioms()
         {
-            using (var db= new Mapeo("idioma"))
+            using (var db = new Mapeo("idioma"))
             {
                 var data = from u in db.idiom select u;
                 return data.ToList<UEUIdioma>();
             }
         }
+
+        public UEUIdimControles[] obtener_Idioma(int formulario, int idioma)
+        {
+            using (var db = new Mapeo("idioma"))
+            {
+                var data = (from cont in db.idiom_contro where cont.form_id == formulario && cont.idioma_id == idioma
+                            select cont);
+                return data.ToArray();
+            }
+        }
+
+        public DataTable formularios()
+        {
+            using (var db = new Mapeo("idioma"))
+            {
+                ListToDataTable conv = new ListToDataTable();
+                List<UEUFormula_Idiom> data = db.form_idioma.ToList<UEUFormula_Idiom>();
+                return conv.ToDataTable<UEUFormula_Idiom>(data);
+            }
+        }
+
+        public DataTable obtener_controles(int id_form, int id_idioma)
+        {
+            using (var db= new Mapeo("idioma"))
+            {
+                List<UEUIdimControles> control = db.idiom_contro.
+                    Where(x=>x.form_id==id_form).
+                    Where(x=>x.idioma_id!=id_idioma).
+                    Where(x=>x.idioma_id==1).ToList<UEUIdimControles>();
+                ListToDataTable conv = new ListToDataTable();
+                return conv.ToDataTable<UEUIdimControles>(control);
+            }
+        }
+
+
+        public void insertar_traduccion(UEUTraduccion data)
+        {
+            using (var db= new Mapeo("idioma")) {
+                int cont = (from controles in db.idiom_contro
+                           where controles.nom_control == data.Control &&
+                           controles.idioma_id == data.Idioma &&
+                           controles.form_id == data.Form
+                           select controles).Count();
+                if (cont > 0)
+                {
+                    //UPDATE REGIST
+                    var control = (from controles in db.idiom_contro
+                                   where
+                                        controles.nom_control == data.Control &&
+                                        controles.idioma_id == data.Idioma &&
+                                        controles.form_id == data.Form
+                                   select controles).FirstOrDefault();
+                    control.texto = data.Texto;
+                    db.SaveChanges();
+                } 
+                else
+                {
+                    //CREATE REGIST
+                    UEUIdimControles insertData = new UEUIdimControles();
+                    insertData.nom_control = data.Control;
+                    insertData.texto = data.Texto;
+                    insertData.idioma_id = data.Idioma;
+                    insertData.form_id = data.Form;
+                    db.idiom_contro.Add(insertData);
+                    db.SaveChanges();
+                }
+            }
+        }
+
     }
 }

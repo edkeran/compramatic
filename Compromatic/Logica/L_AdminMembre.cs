@@ -60,9 +60,6 @@ namespace Logica
                 new_membership.Valor_mem = valor;
                 DBTipoMembresia t_mem = new DBTipoMembresia();
                 t_mem.insertar_membresia(new_membership);
-                //OLD METHOD
-                //DDAOadministrador datos = new DDAOadministrador();
-                //datos.registrarMembresia(nombre, tiempo, valor, ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString());
             }
             else
             {
@@ -76,14 +73,9 @@ namespace Logica
             {
                 String categoria;
                 categoria = NombreMembresia.ToString();
-                DDAOadministrador datos = new DDAOadministrador();
-                datos.ModificarMembresia(categoria, Label5, int.Parse(TB_Tiempo.ToString()), Double.Parse(TB_Valor.ToString()), ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString());
-                //Button1.Visible = true;
-                //Button2.Visible = false;
-                //NombreMembresia.Text = null;
-                //TB_Tiempo.Text = null;
-                //TB_Valor.Text = null;
-                //GridView2.DataBind();
+                DB_Membresia daoMembre = new DB_Membresia();
+                //DDAOadministrador datos = new DDAOadministrador();
+                daoMembre.modificarMembresia(categoria, Label5, int.Parse(TB_Tiempo.ToString()), Double.Parse(TB_Valor.ToString()), ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString());
             }
             else
             {

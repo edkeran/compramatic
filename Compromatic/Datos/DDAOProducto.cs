@@ -278,6 +278,7 @@ namespace Datos
             }
         }
 
+        //MIGRADO
         public DataTable MostrarFotoProducto(int idProducto)
         {
             DataTable FotosProducto = new DataTable();

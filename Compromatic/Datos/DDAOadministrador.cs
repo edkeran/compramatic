@@ -636,6 +636,7 @@ namespace Datos
                 }
             }
         }
+        //METODO MIGRADO
         public DataTable verificarCategoria(String nomCategoria)
         {
             DataTable Consulta = new DataTable();
@@ -688,6 +689,8 @@ namespace Datos
             }
             return Consulta;
         }
+
+        //METODO MIGRADO
         public DataTable verificarQueja(String nomQueja)
         {
             DataTable Consulta = new DataTable();
@@ -714,6 +717,7 @@ namespace Datos
             }
             return Consulta;
         }
+
         public DataTable verificarReporte(String nomReporte)
         {
             DataTable Consulta = new DataTable();

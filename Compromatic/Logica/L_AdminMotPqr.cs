@@ -55,8 +55,11 @@ namespace Logica
         {
             String validacion;
             validacion = NombreQueja;
-            DDAOadministrador datos = new DDAOadministrador();
-            DataTable resul = datos.verificarQueja(validacion);
+            DB_ReasosnsPQR daoPqr = new DB_ReasosnsPQR();
+            DataTable resul=daoPqr.verficarQueja(validacion);
+            //DDAOadministrador datos = new DDAOadministrador();
+            //DataTable resul = datos.verificarQueja(validacion);
+
             if (resul.Rows.Count > 0)
                 return false;
             else

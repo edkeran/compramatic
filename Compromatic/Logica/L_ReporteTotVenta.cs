@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using Datos;
 using Utilitarios;
 using DatosPersistencia;
 
@@ -27,7 +26,7 @@ namespace Logica
         public void obtener_ventas(DataTable data)
         {
             DataRow fila;
-            DDAOadministrador bdventa = new DDAOadministrador();
+            //DDAOadministrador bdventa = new DDAOadministrador();
             DB_ReporteAdmin daoTest = new DB_ReporteAdmin();
             vistaReporteAdmin [] historial = daoTest.crear_vista_reporte();
   

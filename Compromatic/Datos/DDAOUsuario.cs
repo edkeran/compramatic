@@ -340,7 +340,7 @@ namespace Datos
             }
             return topten;
         }
-
+        //METODO MIGRADO
         public void Top10(int pdto, int usr, String usuario)
         {
             NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);

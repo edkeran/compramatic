@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using Datos;
+using DatosPersistencia;
 using Utilitarios;
 
 namespace Logica
@@ -22,7 +23,8 @@ namespace Logica
                 else
                 {
                     DataTable Fotos = new DataTable();
-                    DDAOProducto DAO_Producto = new DDAOProducto();
+                    //DDAOProducto DAO_Producto = new DDAOProducto();
+                    DB_Producto daoProducto = new DB_Producto();
                     DataTable producto = (DataTable)VerProducto;
                     respo.Nombre = producto.Rows[0]["nomProducto"].ToString();
                     respo.Descripcion = producto.Rows[0]["desProducto"].ToString();
@@ -30,17 +32,21 @@ namespace Logica
                     respo.NomEmp = producto.Rows[0]["nomEmpresa"].ToString();
                     respo.Cantidad = int.Parse(producto.Rows[0]["canProducto"].ToString());
                     respo.NomCategoria = producto.Rows[0]["nomCategoria"].ToString();
-                    Fotos = DAO_Producto.MostrarFotoProducto(int.Parse(producto.Rows[0]["idProducto"].ToString()));
+                    //DAO_Producto.MostrarFotoProducto(int.Parse(producto.Rows[0]["idProducto"].ToString()));
+                    Fotos = daoProducto.get_picture_product(int.Parse(producto.Rows[0]["idProducto"].ToString()));
                     respo.Fotos = Fotos;
                     //RP_FotosProductos.DataSource = Fotos;
                     //RP_FotosProductos.DataBind();
                     if (Session != null)
                     {
+                        //ACTUALIZAR EL TOP 10
                         DataTable user = (DataTable)Session;
                         if (user.Rows[0]["idTipo"].ToString() == "3")
                         {
-                            DDAOUsuario top = new DDAOUsuario();
-                            top.Top10(int.Parse(producto.Rows[0]["idProducto"].ToString()), int.Parse(user.Rows[0]["idUsuario"].ToString()), user.Rows[0]["nomUsuario"].ToString());
+                            DBUsr daoUser = new DBUsr();
+                            //DDAOUsuario top = new DDAOUsuario();
+                            daoUser.insertar_top_10(int.Parse(producto.Rows[0]["idProducto"].ToString()), int.Parse(user.Rows[0]["idUsuario"].ToString()), user.Rows[0]["nomUsuario"].ToString());
+                            //top.Top10(int.Parse(producto.Rows[0]["idProducto"].ToString()), int.Parse(user.Rows[0]["idUsuario"].ToString()), user.Rows[0]["nomUsuario"].ToString());
                         }
                     }
                     return respo;
