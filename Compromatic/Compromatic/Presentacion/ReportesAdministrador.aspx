@@ -113,8 +113,8 @@
                             <ItemTemplate>
                                 <div class="image gallery-group-1">
                                     <div class="image-inner">
-                                        <a href='<%# Eval("[nomArchivo]") %>' data-lightbox="gallery-group-1">
-                                            <img src='<%# Eval("[nomArchivo]") %>' alt="" />
+                                        <a href='<%# Eval("[RutaArchi]") %>' data-lightbox="gallery-group-1">
+                                            <img src='<%# Eval("[RutaArchi]") %>' alt="" />
                                         </a>
 
                                     </div>

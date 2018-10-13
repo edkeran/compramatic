@@ -121,7 +121,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label id="cat" runat="server">Categoria</label>
-                                            <asp:DropDownList runat="server" CssClass="form-control selectpicker" data-live-search="true" data-style="btn-success" DataSourceID="OBSCategoria" DataTextField="nomCategoria" DataValueField="idCategoria" AppendDataBoundItems="true" ID="DDL_Categoria">
+                                            <asp:DropDownList runat="server" CssClass="form-control selectpicker" data-live-search="true" data-style="btn-success" DataSourceID="OBSCategoria" DataTextField="nomCategoria" DataValueField="Id_cate" AppendDataBoundItems="true" ID="DDL_Categoria">
                                             </asp:DropDownList>
                                             <asp:ObjectDataSource runat="server" ID="OBSCategoria" SelectMethod="MostrarCategoria" TypeName="Logica.L_Componentes"></asp:ObjectDataSource>
                                         </div>
@@ -179,14 +179,14 @@
                                             <ItemTemplate>
                                                 <div class="image gallery-group-1">
                                                     <div class="image-inner">
-                                                        <a href='<%# Eval("[nomArchivo]") %>' data-lightbox="gallery-group-1">
-                                                            <img src='<%# Eval("[nomArchivo]") %>' alt="" />
+                                                        <a href='<%# Eval("[RutaArchi]") %>' data-lightbox="gallery-group-1">
+                                                            <img src='<%# Eval("[RutaArchi]") %>' alt="" />
                                                         </a>
 
                                                     </div>
                                                     <div class="image-info">
                                                         <div class="desc">
-                                                            <asp:Button id="BTN_delete_img" runat="server" CssClass="btn btn-danger" CommandName="Delete" CommandArgument='<%# Eval("[idProducto]") %>' Text="Eliminar"></asp:Button>
+                                                            <asp:Button id="BTN_delete_img" runat="server" CssClass="btn btn-danger" CommandName="Delete" CommandArgument='<%# Eval("[Id_foto]") %>' Text="Eliminar"></asp:Button>
                                                         </div>
                                                     </div>
                                                 </div>

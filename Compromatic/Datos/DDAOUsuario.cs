@@ -71,7 +71,7 @@ namespace Datos
             }
             return Usuario;
         }
-
+        //MIGRADO
         //FUNCION QUE BLOQUEA AL USUARIO
         public void BloqueoUser(UEUsuario user, int est, String usuario)
         {
@@ -95,7 +95,7 @@ namespace Datos
                 conexion.Close();
             }
         }
-
+        //MIGRADO
         //FUNCION QUE COMPRUEBA LOS EMAIL
         public int ComprobarCorreo(String correo)
         {
@@ -186,6 +186,7 @@ namespace Datos
                 conexion.Close();
             }
         }
+        //MIGRADO
         //Metodo Para Cambiar La Contraseña
         public void CambiarPass(UEUsuario user, String usuario)
         {
@@ -510,7 +511,7 @@ namespace Datos
             }
             return Correo;
         }
-
+        //MIGRADO
         public void actualizar_session(UEUsuario data)
         {
             NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);

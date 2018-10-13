@@ -42,7 +42,7 @@ namespace Datos
             }
             return Tipos;
         }
-
+        //MIGRADO
         public DataTable MostrarTipos(int id)
         {
             DataTable Tipos = new DataTable();
@@ -75,6 +75,7 @@ namespace Datos
             return Tipos;
         }
 
+        //MIGRADO
         public DataTable MostrarActual(int idEmpresa)
         {
             DataTable Tipos = new DataTable();

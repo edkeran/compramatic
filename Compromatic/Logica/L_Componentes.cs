@@ -19,10 +19,10 @@ namespace Logica
 
         public DataTable MostrarArchivos(String nit)
         {
-            DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
+            DBEmpresa daoEmpresa = new DBEmpresa();
             UEUEmpresa EU_Empresa = new UEUEmpresa();
             EU_Empresa.Nit = nit;
-            DataTable Archivos = DAO_Empresa.MostrarArchivos(EU_Empresa);
+            DataTable Archivos = daoEmpresa.MostrarArchivos(EU_Empresa);
             return Archivos;
         }
 
@@ -43,14 +43,16 @@ namespace Logica
 
         public DataTable MostrarCategoria()
         {
-            DDAOProducto db = new DDAOProducto();
+            DB_Producto db = new DB_Producto();
+            //DDAOProducto db = new DDAOProducto();
             return db.MostrarCategoria();
         }
 
         public DataTable MostrarFoto(int idProducto)
         {
-            DDAOProducto DAO_Producto = new DDAOProducto();
-            DataTable Fotos = DAO_Producto.MostrarFotoProducto(idProducto);
+            DB_Producto DAO_Producto = new DB_Producto();
+            //DDAOProducto DAO_Producto = new DDAOProducto();
+            DataTable Fotos = DAO_Producto.get_picture_product(idProducto);
             return Fotos;
         }
 

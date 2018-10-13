@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Utilitarios;
 using DatosPersistencia;
-using Datos;
+//using Datos;
 using System.Data;
 
 namespace Logica
@@ -41,7 +41,7 @@ namespace Logica
 
         public void Calificaciones(Object idEmpresa,DataTable data)
         {
-            DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
+            //DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
             //DataTable historial = DAO_Empresa.MostrarCalificaciones(int.Parse(idEmpresa.ToString()));
             DataRow fila;
             DBReporteEmpresa daoRep = new DBReporteEmpresa();

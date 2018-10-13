@@ -83,6 +83,53 @@ namespace DatosPersistencia
             }
         }
 
+        //METODO PARA MOSTRAR LOS ARCHIVOS CARGADOS POR LA EMPRESA
+        public DataTable MostrarArchivos(UEUEmpresa emp)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = (from archivSoli in db.archiv_Emp 
+                            join solci in db.sol_reg on archivSoli.idSolicitud_registro equals solci.Id_solici
+                            join empre in db.empre on solci.Id_empresa equals empre.Id
+                            where empre.Nit==emp.Nit
+                            select archivSoli);
+                ListToDataTable conv = new ListToDataTable();
+                DataTable res = conv.ToDataTable<UEUArchivoSolic>(data.ToList<UEUArchivoSolic>());
+                return res;
+            }
+        }
 
+        //METODO PARA ELIMINAR EL ARCHIVO
+        public void delete_file(int id)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var file = db.archiv_Emp.Find(id);
+                db.Entry(file).State = EntityState.Deleted;
+                db.SaveChanges();
+            }
+        }
+
+        //METODO PARA OBTENER LA CANTIDAD DE SESIONES EXISTENTES
+        public int get_sessions(int id)
+        {
+            using( var db= new Mapeo("public"))
+            {
+                var data = db.empre.Find(id);
+                int sess = data.Sessiones;
+                return sess;
+            }
+        }
+
+        //METODO PARA ACTUALIZAR LA SESSION
+        public void update_session(UEUEmpresa emp)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = db.empre.Find(emp.Id);
+                data.Sessiones = emp.Sessiones;
+                db.SaveChanges();
+            }
+        }
     }
 }

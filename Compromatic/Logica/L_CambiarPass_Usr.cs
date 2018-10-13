@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using Datos;
+using DatosPersistencia;
 using Utilitarios;
 
 namespace Logica
@@ -39,7 +39,6 @@ namespace Logica
             }
             else if(pass2!=pass3)
             {
-                //Modal("La confirmación de contraseña no es correcta, recuerda que la contraseña nueva debe ser escrita dos veces para aprobar el cambio de contraseña.");
                 return "La confirmación de contraseña no es correcta, recuerda que la contraseña nueva debe ser escrita dos veces para aprobar el cambio de contraseña./0";
             }
             else if (pass2.Length < 8)
@@ -54,14 +53,14 @@ namespace Logica
             }
             else
             {
-                DDAOUsuario cambiar = new DDAOUsuario();
+                DBUsr daoUser = new DBUsr();
+                
+                //DDAOUsuario cambiar = new DDAOUsuario();
                 UEUsuario user = new UEUsuario();
                 user.PassUsr = pass2;
                 user.IdUsr = int.Parse(datos.Rows[0]["idUsuario"].ToString());
-                cambiar.CambiarPass(user, datos.Rows[0]["nomUsuario"].ToString());
+                daoUser.CambiarPass(user, datos.Rows[0]["nomUsuario"].ToString());
                 return "Contraseña cambiada con éxito./LoginUsr.aspx";
-                //Modal("Contraseña cambiada con éxito.");
-                //Response.Redirect("LoginUsr.aspx");
             }
         }
     }

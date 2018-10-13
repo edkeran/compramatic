@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Datos;
 using Utilitarios;
 using DatosPersistencia;
 
@@ -65,14 +60,15 @@ namespace Logica
             U_aux_master_home data = new U_aux_master_home();
             if (String.IsNullOrWhiteSpace(busqueda))
             {
-                DDAOProducto DAO_Producto = new DDAOProducto();
-                data.Productos = DAO_Producto.TodoProductos();
+                DB_Producto daoProducto = new DB_Producto();
+                //DDAOProducto DAO_Producto = new DDAOProducto();
+                data.Productos = daoProducto.get_all_products();
                 //Session["Tienda"] = DAO_Producto.TodoProductos();
                 data.Url= "Store.aspx";
                 //Response.Redirect("Store.aspx");
                 return data;
             }
-            DDAOHome datos = new DDAOHome();
+            //DDAOHome datos = new DDAOHome();
             DB_Producto daoProd = new DB_Producto();
             String palabra = busqueda;
             palabra = palabra.Replace(' ', '|');
@@ -104,12 +100,14 @@ namespace Logica
                 if (sesion != null)
                 {
                     DataTable Sess = (DataTable)sesion;
-                    DDAOUsuario DB = new DDAOUsuario();
+                    DBUsr daoUsuario = new DBUsr();
+                    //DDAOUsuario DB = new DDAOUsuario();
                     UEUsuario data = new UEUsuario();
                     data.IdUsr = int.Parse(Sess.Rows[0]["idUsuario"].ToString());
-                    data.Sessiones = DB.GET_NUM_SESSION(data);
+                    data.Sessiones = daoUsuario.obtener_sessiones_abiertas(data.IdUsr);
                     data.Sessiones = data.Sessiones - 1;
-                    DB.actualizar_session(data);
+                    // DB.actualizar_session(data);
+                    daoUsuario.update_session(data);
                 }
                 else
                 {
@@ -122,22 +120,24 @@ namespace Logica
                 if (Sess.Rows[0]["idTipo"].ToString() == "2")
                 {
                     //para la empresa
-                    DDAOEmpresa db = new DDAOEmpresa();
+                    DBEmpresa daoEmpresa= new DBEmpresa();
+                    //DDAOEmpresa db = new DDAOEmpresa();
                     UEUEmpresa data = new UEUEmpresa();
                     data.Id = int.Parse(Sess.Rows[0]["idEmpresa"].ToString());
-                    data.Sessiones = db.GET_NUM_SESSION(data);
+                    data.Sessiones = daoEmpresa.get_sessions(data.Id);
                     data.Sessiones = data.Sessiones - 1;
-                    db.ActualizarSesion(data);
+                    daoEmpresa.update_session(data);
                 }
                 else
                 {
                     //para el usuario
-                    DDAOUsuario DB = new DDAOUsuario();
+                    //DDAOUsuario DB = new DDAOUsuario();
+                    DBUsr daoUsuario = new DBUsr();
                     UEUsuario data = new UEUsuario();
                     data.IdUsr = int.Parse(Sess.Rows[0]["idUsuario"].ToString());
-                    data.Sessiones = DB.GET_NUM_SESSION(data);
+                    data.Sessiones = daoUsuario.obtener_sessiones_abiertas(data.IdUsr);
                     data.Sessiones = data.Sessiones - 1;
-                    DB.actualizar_session(data);
+                    daoUsuario.update_session(data);
                 }
             }
         }

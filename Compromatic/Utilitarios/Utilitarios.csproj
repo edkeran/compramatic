@@ -49,6 +49,7 @@
     <Compile Include="TQuejas.cs" />
     <Compile Include="UAuxPrinciAdmin.cs" />
     <Compile Include="UAuxVenta.cs" />
+    <Compile Include="UEUArchivoSolic.cs" />
     <Compile Include="UEUFormula_Idiom.cs" />
     <Compile Include="UEUFotoProd.cs" />
     <Compile Include="UEUIdimControles.cs" />

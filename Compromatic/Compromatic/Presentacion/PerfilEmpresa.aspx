@@ -220,13 +220,13 @@
                             </div>
                         </div>
                         <div class="row m-b-15">
-                            <asp:GridView OnRowDeleting="GridView1_RowDeleting" ID="GridView1" runat="server" CssClass="table table-condensed" AutoGenerateColumns="False" DataKeyNames="idArchivo" DataSourceID="ODS_Archivos">
+                            <asp:GridView OnRowCommand="GridView1_RowCommand" ID="GridView1" runat="server" CssClass="table table-condensed" AutoGenerateColumns="False" DataKeyNames="idArchivo" DataSourceID="ODS_Archivos">
                                 <Columns>
                                     <asp:BoundField HeaderText="ID" DataField="idArchivo" />
                                     <asp:BoundField HeaderText="Nombre" DataField="nombreArchivo" />
                                     <asp:TemplateField HeaderText="Borrar" ShowHeader="False">
                                         <ItemTemplate>
-                                            <asp:LinkButton runat="server" Text="Delete" CommandName="Delete" CausesValidation="False" ID="LinkButton1"></asp:LinkButton>
+                                            <asp:LinkButton runat="server" Text="Delete"  CommandArgument='<%# Eval("[idArchivo]") %>' CausesValidation="False" ID="LinkButton1" CommandName='<%# Eval("[nombreArchivo]") %>'></asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>

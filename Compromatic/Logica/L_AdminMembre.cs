@@ -37,7 +37,8 @@ namespace Logica
         {
             String validacion;
             validacion = NombreMembresia;
-            DDAOadministrador datos = new DDAOadministrador();
+            DB_Membresia datos = new DB_Membresia();
+            //DDAOadministrador datos = new DDAOadministrador();
             DataTable resul = datos.verificarMembresia(validacion);
             if (resul.Rows.Count > 0)
                 return false;
@@ -93,7 +94,8 @@ namespace Logica
             }
             else
             {
-                DDAOadministrador datos = new DDAOadministrador();
+                DB_Membresia datos = new DB_Membresia();
+                //DDAOadministrador datos = new DDAOadministrador();
                 DataTable resul = datos.verificarMembresia(validacion);
                 if (resul.Rows.Count >= 1)
                     return false;

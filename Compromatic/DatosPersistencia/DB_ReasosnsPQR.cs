@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -83,6 +84,48 @@ namespace DatosPersistencia
         }
 
         //METODO PARA VERFICAR EL REPORTE
+        public DataTable verficarReporte(string nomReporte)
+        {
+            nomReporte = nomReporte.ToUpper();
+           using (var db= new Mapeo("public"))
+            {
+                var datos = (from motiR in db.report where motiR.DesMotiv.ToUpper().Contains(nomReporte) select motiR);
+                ListToDataTable conv = new ListToDataTable();
+                DataTable res = conv.ToDataTable<UEUMotiRepo>(datos.ToList<UEUMotiRepo>());
+                return res;
+            }
+        }
+        //REGIST PQR EMPRESZA
+        public void RegistrarPqr(UEUPqr EU_Pqr, string modif)
+        {
+            using (var db = new Mapeo("public"))
+            {
+                TQuejas quej = new TQuejas();
+                quej.Modified_by = modif;
+                quej.DesQuej = EU_Pqr.Descripcion;
+                quej.FechaQuj = DateTime.Now;
+                quej.IdEmpre = EU_Pqr.IdEmpresa;
+                quej.Id_Moti_Quej = EU_Pqr.Motivo;
+                quej.ReceptorQ = 1;
+                db.inf_quejas.Add(quej);
+                db.SaveChanges();
+            } 
+        }
 
+        public void quejaUsr(UEUPqr pqr, String modif)
+        {
+            using (var db = new Mapeo("public"))
+            {
+                TQuejas quej = new TQuejas();
+                quej.DesQuej = pqr.Descripcion;
+                quej.FechaQuj = DateTime.Now;
+                quej.Id_user = pqr.IdCliente;
+                quej.Id_Moti_Quej = 2;
+                quej.ReceptorQ = 1;
+                quej.Modified_by = modif;
+                db.inf_quejas.Add(quej);
+                db.SaveChanges();
+            }
+        }
     }
 }

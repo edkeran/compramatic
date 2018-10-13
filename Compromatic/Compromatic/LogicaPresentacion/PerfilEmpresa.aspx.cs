@@ -116,21 +116,6 @@ public partial class Presentacion_PerfilEmpresa : System.Web.UI.Page
 
     }
 
-    protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
-    {
-
-        String nombreArchivo = GridView1.Rows[e.RowIndex].Cells[1].Text + ".pdf";
-        String saveLocation = (Server.MapPath("~\\Archivos\\DocumentosEmpresa") + "\\" + nombreArchivo);
-        try
-        {
-            System.IO.File.Delete(saveLocation);
-        }
-        catch (Exception es)
-        {
-            throw es;
-        }
-    }
-
     protected void BTN_CambiarFoto_Click(object sender, EventArgs e)
     {
         DataTable datos = (DataTable)Session["Sesion"];
@@ -153,5 +138,23 @@ public partial class Presentacion_PerfilEmpresa : System.Web.UI.Page
         String texto = "<script   src='https://code.jquery.com/jquery-2.2.4.min.js'> </script>" + "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>" + "<script>$('#modal-dialog').modal('show');</script>";
         Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", texto);
         MensajeModal.Text = mensaje;
+    }
+
+    protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        String nombreArchivo = e.CommandName + ".pdf";
+        String saveLocation = (Server.MapPath("~\\Archivos\\DocumentosEmpresa") + "\\" + nombreArchivo);
+        try
+        {
+            System.IO.File.Delete(saveLocation);
+            int id = int.Parse(e.CommandArgument.ToString());
+            L_PerfilEmpresa logi = new L_PerfilEmpresa();
+            logi.delete_file(id);
+        }
+        catch (Exception es)
+        {
+            throw es;
+        }
+        Response.Redirect("PerfilEmpresa.aspx");
     }
 }

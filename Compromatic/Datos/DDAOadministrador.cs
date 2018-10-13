@@ -663,6 +663,7 @@ namespace Datos
             }
             return Consulta;
         }
+        //MIGRADO
         public DataTable verificarMembresia(String nomMembresia)
         {
             DataTable Consulta = new DataTable();
@@ -717,7 +718,7 @@ namespace Datos
             }
             return Consulta;
         }
-
+        //MIGRADO
         public DataTable verificarReporte(String nomReporte)
         {
             DataTable Consulta = new DataTable();

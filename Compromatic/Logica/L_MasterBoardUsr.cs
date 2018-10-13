@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Data;
 using Utilitarios;
-using Datos;
+//using Datos;
+using DatosPersistencia;
 
 
 namespace Logica
@@ -55,26 +56,30 @@ namespace Logica
 
         public void btnSi_Click(UEUsuario user, int value, String nom_usuario)
         {
-            DDAOUsuario db = new DDAOUsuario();
-            db.BloqueoUser(user, value, nom_usuario);
+            DBUsr daoUsuario = new DBUsr();
+            //DDAOUsuario db = new DDAOUsuario();
+            //db.BloqueoUser(user, value, nom_usuario);
+            daoUsuario.bloquear_cuenta(user, value, nom_usuario);
         }
 
         public void btn_enviar(UEUPqr pqr,String nom_usr)
         {
-            DDAOPqr queja = new DDAOPqr();
-            queja.QuejaUsr(pqr,nom_usr);
+            DB_ReasosnsPQR daoQueja = new DB_ReasosnsPQR();
+            //DDAOPqr queja = new DDAOPqr();
+            daoQueja.quejaUsr(pqr,nom_usr);
         }
 
         public void cerrar_session_usuario(DataTable sesion)
         {
-            DDAOUsuario DB = new DDAOUsuario();
+            DBUsr daoUsuario = new DBUsr();
+            //DDAOUsuario DB = new DDAOUsuario();
             UEUsuario data = new UEUsuario();
             int ID = int.Parse(sesion.Rows[0]["idUsuario"].ToString());
             data.IdUsr = ID;
-            int Session = DB.GET_NUM_SESSION(data);
+            int Session = daoUsuario.obtener_sessiones_abiertas(data.IdUsr);
             Session = Session - 1;
             data.Sessiones = Session;
-            DB.actualizar_session(data);
+            daoUsuario.update_session(data);
         }
     }
 }

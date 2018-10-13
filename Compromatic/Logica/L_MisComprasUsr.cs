@@ -11,7 +11,7 @@ namespace Logica
     {
         public U_aux_MisComprasUsr page_load(Object Session,bool postback)
         {
-            DDAOUsuario user = new DDAOUsuario();
+            //DDAOUsuario user = new DDAOUsuario();
             U_aux_MisComprasUsr response = new U_aux_MisComprasUsr();
             if (!postback)
             {

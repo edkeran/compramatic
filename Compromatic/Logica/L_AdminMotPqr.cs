@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using Utilitarios;
-using Datos;
 using DatosPersistencia;
 
 namespace Logica
@@ -89,8 +88,9 @@ namespace Logica
         {
             String validacion;
             validacion = NombreReporte;
-            DDAOadministrador datos = new DDAOadministrador();
-            DataTable resul = datos.verificarReporte(validacion);
+            DB_ReasosnsPQR datos = new DB_ReasosnsPQR();
+            //DDAOadministrador datos = new DDAOadministrador();
+            DataTable resul = datos.verficarReporte(validacion);
             if (resul.Rows.Count > 0)
                return false;
             else

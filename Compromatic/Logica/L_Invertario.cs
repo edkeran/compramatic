@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
-using Datos;
+//using Datos;
+using DatosPersistencia;
 using Utilitarios;
 
 namespace Logica
@@ -48,12 +49,14 @@ namespace Logica
         private void ModificarInventario(int idProducto, int cantidad, int bajoInventario, String modif)
         {
             UEUProducto EU_Producto = new UEUProducto();
-            DDAOProducto DAO_Producto = new DDAOProducto();
+            //DDAOProducto DAO_Producto = new DDAOProducto();
+            DB_Producto daoProducto = new DB_Producto();
 
             EU_Producto.Id = idProducto;
             EU_Producto.Cantidad = cantidad;
             EU_Producto.BajoInventario = bajoInventario;
-            DAO_Producto.ModificarInventario(EU_Producto, modif);
+            //DAO_Producto.ModificarInventario(EU_Producto, modif);
+            daoProducto.ModificarInventario(EU_Producto, modif);
         }
     }
 }

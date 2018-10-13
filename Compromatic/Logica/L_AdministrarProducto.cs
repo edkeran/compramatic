@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using Utilitarios;
-//using Datos;
 using System.Collections.Generic;
 using System.IO;
 using DatosPersistencia;

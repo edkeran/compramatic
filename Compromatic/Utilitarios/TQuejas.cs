@@ -12,7 +12,7 @@ namespace Utilitarios
         private String desQuej;
         private int? idEmpre;
         private int id_Moti_Quej;
-        private int id_user;
+        private int? id_user;
         private int receptorQ;
         private DateTime fechaQuj;
         private string modified_by = "";
@@ -27,7 +27,7 @@ namespace Utilitarios
         [Column("idMotivo_queja")]
         public int Id_Moti_Quej { get => id_Moti_Quej; set => id_Moti_Quej = value; }
         [Column("idUsuario")]
-        public int Id_user { get => id_user; set => id_user = value; }
+        public int? Id_user { get => id_user; set => id_user = value; }
         [Column("receptorQ")]
         public int ReceptorQ { get => receptorQ; set => receptorQ = value; }
         [Column("fechaQueja")]

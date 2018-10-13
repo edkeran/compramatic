@@ -233,5 +233,11 @@ namespace Logica
             UEUEmpresa res = daoEmpre.traer_empresa_actual(emp);
             return res.Contraseña;
         }
+
+        public void delete_file(int id)
+        {
+            DBEmpresa daoEmpresa = new DBEmpresa();
+            daoEmpresa.delete_file(id);
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace Datos
 {
     public class DDAOProducto
     {
+        //MIGRADO
         public DataTable TodoProductos()
         {
             DataTable Productos = new DataTable();
@@ -130,6 +131,7 @@ namespace Datos
                 }
             }
         }
+        //MIGRADO
         //Metodo para modificar las existencias del producto
         public void ModificarInventario(UEUProducto EU_Producto, String modif)
         {

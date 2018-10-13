@@ -24,10 +24,7 @@ namespace Logica
                 if (int.Parse(datos.Rows[0]["idTipo"].ToString()) != 3)
                 {
                     throw new System.ArgumentException("valido");
-                    //Response.Redirect("LoginUsr.aspx");
                 }
-                //CRS_Compras.ReportDocument.SetDataSource(obtenerCompras());
-                //CRV_Compras.ReportSource = CRS_Compras;
                 return "0";
             }
         }

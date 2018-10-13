@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Data;
 using Utilitarios;
-using Datos;
+//using Datos;
+using DatosPersistencia;
 
 namespace Logica
 {
@@ -20,37 +21,44 @@ namespace Logica
                 int num = int.Parse(((DataTable)(Session)).Rows[0]["idTipo"].ToString());
                 if (int.Parse(((DataTable)(Session)).Rows[0]["idTipo"].ToString()) == 1)
                 {
-                    DDAOadministrador user = new DDAOadministrador();
+                    //DDAOadministrador user = new DDAOadministrador();
 
-                    DataTable not = user.LlenarNotificacion();
-                    DataTable notAcep = user.LlenarNotificacionAceptadas();
-                    DataTable notRecha = user.LlenarNotificacionRechazada();
-                    if (not.Rows.Count == 0)
+                    //DataTable not = user.LlenarNotificacion();
+                    //DataTable notAcep = user.LlenarNotificacionAceptadas();
+                    //DataTable notRecha = user.LlenarNotificacionRechazada();
+
+                    //REEMPLAZO
+                    DB_Admin dao_Admin = new DB_Admin();
+                    int not = dao_Admin.llenar_notificacion();
+                    int notAcep = dao_Admin.llenar_notificacionAccept();
+                    int notRecha = dao_Admin.llenar_notificacionRechaz();
+
+                    if (not == 0)
                     {
                         response.Numero_noti1 = "0";
                         //Numero_noti.Text = "0";
                     }
-                    if (notAcep.Rows.Count == 0)
+                    if (notAcep == 0)
                     {
                         response.CantidadAceptadas = "0";
                         //cantidadAceptadas.Text = "0";
                     }
-                    if (notRecha.Rows.Count == 0)
+                    if (notRecha == 0)
                     {
                         response.CantidadRechazadas = "0";
                         //cantidadRechazadas.Text = "0";
                     }
                     else
                     {
-                        response.Numero_noti1=not.Rows[0]["Activas"].ToString();
-                        response.CantidadAceptadas=notAcep.Rows[0]["Activas"].ToString();
-                        response.CantidadRechazadas=notRecha.Rows[0]["Activas"].ToString();
-                        response.CantidadPendientes=not.Rows[0]["Activas"].ToString();
-                        response.TotalAceptadas1=notAcep.Rows[0]["Activas"].ToString();
-                        response.TotalRechazadas1=notRecha.Rows[0]["Activas"].ToString();
-                        response.TotalPendientes1=not.Rows[0]["Activas"].ToString();
+                        response.Numero_noti1=not.ToString();
+                        response.CantidadAceptadas=notAcep.ToString();
+                        response.CantidadRechazadas=notRecha.ToString();
+                        response.CantidadPendientes=not.ToString();
+                        response.TotalAceptadas1=notAcep.ToString();
+                        response.TotalRechazadas1=notRecha.ToString();
+                        response.TotalPendientes1=not.ToString();
                     }
-                    response.TotalSolicitudes1=((int.Parse(notAcep.Rows[0]["Activas"].ToString())) + (int.Parse(notRecha.Rows[0]["Activas"].ToString())) + (int.Parse(not.Rows[0]["Activas"].ToString()))).ToString();
+                    response.TotalSolicitudes1=(notAcep + notRecha + not).ToString();
                     String img = ((DataTable)(Session)).Rows[0]["rutaArchivo"].ToString() + ((DataTable)(Session)).Rows[0]["nomArchivo"].ToString();
                     response.FotoPerfil1 = img;
                     response.NombrePerfil1= ((DataTable)(Session)).Rows[0]["nomUsuario"].ToString() + " " + ((DataTable)(Session)).Rows[0]["apeUsuario"].ToString();

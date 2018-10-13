@@ -8,6 +8,7 @@ namespace Datos
 {
     public class DDAOEmpresa
     {
+        //MIGRADO
         public void RegistrarMembresia(String fechaInicio, String fechaFinal, int tipo, int idEmpresa, String modif)
         {
             NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
@@ -469,6 +470,7 @@ namespace Datos
             }
         }
 
+        //METODO MIGRADO
         public DataTable MostrarArchivos(UEUEmpresa EU_Empresa)
         {
             DataTable Archivos = new DataTable();
@@ -501,7 +503,7 @@ namespace Datos
 
             return Archivos;
         }
-
+        //MIGTRADO
         public void ActualizarSesion(UEUEmpresa EU_Empresa)
         {
             NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
@@ -528,6 +530,7 @@ namespace Datos
                 }
             }
         }
+        //MIGRADO
         //FUNCION PARA OBTENER EL NUMERO DE SESSION
         public int GET_NUM_SESSION(UEUEmpresa EU_Empresa)
         {

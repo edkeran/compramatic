@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using Utilitarios;
-using Datos;
+//using Datos;
+using DatosPersistencia;
 
 namespace Logica
 {
@@ -24,23 +25,28 @@ namespace Logica
         public void RegistrarPqr(String descripcion, int idEmpresa, int idMotivo, String modif)
         {
             UEUPqr EU_Pqr = new UEUPqr();
-            DDAOPqr DAO_Pqr = new DDAOPqr();
+            //DDAOPqr DAO_Pqr = new DDAOPqr();
+            DB_ReasosnsPQR daoPqr = new DB_ReasosnsPQR();
             EU_Pqr.Descripcion = descripcion;
             EU_Pqr.IdEmpresa = idEmpresa;
             EU_Pqr.Motivo = idMotivo;
-            DAO_Pqr.RegistrarPqr(EU_Pqr, modif);
+            daoPqr.RegistrarPqr(EU_Pqr, modif);
+            //DAO_Pqr.RegistrarPqr(EU_Pqr, modif);
         }
 
         public void cerrar_session_empresa(DataTable sesion)
         {
-            DDAOEmpresa DB = new DDAOEmpresa();
+            //DDAOEmpresa DB = new DDAOEmpresa();
+            DBEmpresa daoEmp = new DBEmpresa();
             UEUEmpresa data = new UEUEmpresa();
             int ID = int.Parse(sesion.Rows[0]["idEmpresa"].ToString());
             data.Id = ID;
-            int Session = DB.GET_NUM_SESSION(data);
+            //int Session = DB.GET_NUM_SESSION(data);
+            int Session = daoEmp.get_sessions(data.Id);
             Session=Session-1;
             data.Sessiones = Session;
-            DB.ActualizarSesion(data);
+            //DB.ActualizarSesion(data);
+            daoEmp.update_session(data);
         }
     }
 }

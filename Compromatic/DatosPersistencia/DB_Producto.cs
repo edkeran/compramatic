@@ -49,7 +49,7 @@ namespace DatosPersistencia
 
         }
 
-        //METODO PARA TRAER TODOS LOS PRODUCTOS
+        //METODO PARA TRAER TODOS LOS PRODUCTOS POR EMPRESA
         public List<UEUProducto> traer_productos(int id_emp)
         {
             using (var db= new Mapeo("public"))
@@ -247,9 +247,29 @@ namespace DatosPersistencia
                 var delete = db.fotosPro.Find(prod.IdFoto);
                 db.Entry(delete).State = EntityState.Deleted;
                 db.SaveChanges();
-                //var idioma = db.idiom.Find(id);
-                //db.Entry(idioma).State = EntityState.Deleted;
-                //db.SaveChanges();
+            }
+        }
+
+        public DataTable MostrarCategoria()
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = db.categ.OrderBy(x=>x.Id_cate);
+                ListToDataTable conv = new ListToDataTable();
+                DataTable res = conv.ToDataTable<UEUCategoria>(data.ToList<UEUCategoria>());
+                return res;
+            }
+        }
+
+        public void ModificarInventario(UEUProducto EU_Producto, string modif)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = db.productos.Find(EU_Producto.Id);
+                data.Cantidad = EU_Producto.Cantidad;
+                data.BajoInventario = EU_Producto.BajoInventario;
+                data.ModifBy = modif;
+                db.SaveChanges();
             }
         }
     }

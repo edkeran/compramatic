@@ -57,9 +57,9 @@ public partial class Presentacion_AumentarMembresia : System.Web.UI.Page
         L_AumenMembre logi = new L_AumenMembre();
         DateTime Fecha = DateTime.Now.Date;
         DataTable Membresia=logi.ddl_membresia_event(DDL_Memebresia.SelectedValue);
-        TB_Precio.Text = "$" + Membresia.Rows[0]["valorMembresia"].ToString() + " COP";
+        TB_Precio.Text = "$" + Membresia.Rows[0]["Valor_mem"].ToString() + " COP";
         TB_FechaInicio.Text = Fecha.ToShortDateString();
-        Fecha = Fecha.AddMonths(int.Parse(Membresia.Rows[0]["tiempoMembresia"].ToString()));
+        Fecha = Fecha.AddMonths(int.Parse(Membresia.Rows[0]["Tmpo_mem"].ToString()));
         TB_FechaFinal.Text = Fecha.ToShortDateString();
     }
     

@@ -114,5 +114,50 @@ namespace DatosPersistencia
                 db.SaveChanges();
             }
         }
+
+        //CHANGE PASSWORD USER
+        public void CambiarPass(UEUsuario user, string usuario)
+        {
+            user.ModifBy = usuario;
+            using (var db = new Mapeo("public")) {
+                var usr = db.user.Find(user.IdUsr);
+                usr.PassUsr = user.PassUsr;
+                usr.ModifBy = user.ModifBy;
+                db.SaveChanges();
+            }
+        }
+
+        //GET SESSIONS USER
+        public int obtener_sessiones_abiertas(int id_user)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = db.user.Find(id_user);
+                return data.Sessiones;
+            }
+        }
+
+        //UPDATE SESSION
+        public void update_session(UEUsuario info)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = db.user.Find(info.IdUsr);
+                data.Sessiones = info.Sessiones;
+                db.SaveChanges();
+            }
+        }
+
+        //METODO PARA EL BLOQUEO DE LA CUENTA
+        public void bloquear_cuenta(UEUsuario user, int est, string usuario)
+        {
+            using (var db = new Mapeo("public"))
+            {
+                var data = db.user.Find(user.IdUsr);
+                data.EstUsr = est;
+                data.ModifBy = usuario;
+                db.SaveChanges();
+            }
+        }
     }
 }

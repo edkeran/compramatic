@@ -38,6 +38,7 @@ namespace DatosPersistencia
         public DbSet<UEUTopTen> top_ten { get; set; }
         public DbSet<UEUIdimControles> idiom_contro { get; set; } 
         public DbSet<UEUFormula_Idiom> form_idioma { get; set; }
+        public DbSet<UEUArchivoSolic> archiv_Emp { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder builder)
         {

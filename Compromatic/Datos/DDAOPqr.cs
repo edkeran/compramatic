@@ -42,6 +42,8 @@ namespace Datos
             }
             return Motivos;
         }
+
+        //MIGRADO
         public void QuejaUsr(UEUPqr pqr, String modif)
         {
             NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
@@ -64,7 +66,7 @@ namespace Datos
                 conection.Close();
             }
         }
-
+        //MIGRADO
         public void RegistrarPqr(UEUPqr EU_Pqr, String modif)
         {
 
