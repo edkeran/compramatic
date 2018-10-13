@@ -272,5 +272,23 @@ namespace DatosPersistencia
                 db.SaveChanges();
             }
         }
+
+        public void CompraProducto(UEUVenta venta, string modif)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                venta.modified_by = modif;
+                db.ventas.Add(venta);
+                db.SaveChanges();
+            }
+        }
+
+        //public void ProductosDetalle(int idPdto)
+        //{
+        //    using (var data= new Mapeo("public"))
+        //    {
+
+        //    }
+        //}
     }
 }

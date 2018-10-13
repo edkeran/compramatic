@@ -367,7 +367,7 @@ namespace Datos
             }
 
         }
-
+        //MIGRADO
         public int ComprobarReporte(int idusr, int idpdto)
         {
             int existencia;
@@ -406,6 +406,7 @@ namespace Datos
             return existencia;
         }
 
+        //MIGRADO
         public void ReportarProducto(int motivo, int usr, int pdto, String usuario)
         {
             NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
@@ -433,6 +434,7 @@ namespace Datos
             }
         }
 
+        //MIGRADO
         public void Bloquear_producto(String usuario, int id)
         {
             NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);

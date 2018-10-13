@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -170,6 +171,56 @@ namespace DatosPersistencia
                 data.NomArch = user.NomArch;
                 data.ModifBy = usuario;
                 db.SaveChanges();
+            }
+        }
+
+        public int ComprobarReporte(int idusr, int idpdto)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = (from report in db.reporte_T
+                            where report.idUsuario == idusr &&
+                            report.idProducto == idpdto
+                            select report).Count();
+                if (data == 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+
+            }
+        }
+
+        public void ReportarProducto(int motivo, int usr, int pdto, string usuario)
+        {
+            UEUReporte rep = new UEUReporte();
+            rep.idMotivoR = motivo;
+            rep.idUsuario = usr;
+            rep.idProducto = pdto;
+            rep.fechaReporte = DateTime.Now;
+            rep.modified_by = usuario;
+            using (var db= new Mapeo("public"))
+            {
+               db.reporte_T.Add(rep);
+                db.SaveChanges();
+            }
+        }
+
+        public void Bloquear_producto(string usuario, int id)
+        {
+
+            using (var db= new Mapeo("public"))
+            {
+                var cont = (from rep in db.reporte_T where rep.idProducto == id select rep).Count();
+                if (cont > 4)
+                {
+                    var prod = db.productos.Find(id);
+                    prod.Estado_producto = 0;
+                    prod.ModifBy = usuario;
+                }
             }
         }
     }

@@ -12,7 +12,7 @@ namespace DatosPersistencia
         {
             using (var db = new Mapeo("public"))
             {
-                //DEBO AVANZAR
+
                 var mem = (from member in db.type_membership where member.Nom_mem == ant select member).FirstOrDefault();
                 mem.ModifBy = usuario;
                 mem.Nom_mem = nom;

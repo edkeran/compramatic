@@ -75,7 +75,14 @@ namespace Utilitarios
             set => fechaEntr = value;
         }
 
-        
+        private String modif_by;
+        [Column("modified_by")]
+        public string modified_by
+        {
+            get => modif_by;
+            set => modif_by = value;
+        }
+
 
     }
 }

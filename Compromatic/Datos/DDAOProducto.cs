@@ -65,6 +65,7 @@ namespace Datos
                 conection.Close();
             }
         }
+        //MIGRADO
         //METODO QUE TRAE INFORMACION ACERCA DEL PRODUCTO SELECCIONADO
         public DataTable ProductosDetalle(int idPdto)
         {
@@ -312,7 +313,7 @@ namespace Datos
             }
             return FotosProducto;
         }
-
+        //MIGRADA
         public void CompraProducto(UEUVenta venta, String modif)
         {
             NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);

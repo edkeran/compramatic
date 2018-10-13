@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using Datos;
 using DatosPersistencia;
 using Utilitarios;
 
@@ -137,8 +136,9 @@ namespace Logica
                 }
                 DataTable user = (DataTable)Session;
                 DataTable producto = (DataTable)VerProducto;
-                DDAOUsuario reporte = new DDAOUsuario();
-                int comprobar = reporte.ComprobarReporte(int.Parse(user.Rows[0]["idUsuario"].ToString()), int.Parse(producto.Rows[0]["idProducto"].ToString()));
+                //DDAOUsuario reporte = new DDAOUsuario();
+                DBUsr daoUsuario = new DBUsr();
+                int comprobar = daoUsuario.ComprobarReporte(int.Parse(user.Rows[0]["idUsuario"].ToString()), int.Parse(producto.Rows[0]["idProducto"].ToString()));
                 if (comprobar == 1)
                 {
                     response.Valido = false;
@@ -147,9 +147,8 @@ namespace Logica
                 }
                 else
                 {
-
-                    reporte.ReportarProducto(int.Parse(DDL_Reportes), int.Parse(user.Rows[0]["idUsuario"].ToString()), int.Parse(producto.Rows[0]["idProducto"].ToString()), user.Rows[0]["nomUsuario"].ToString());
-                    reporte.Bloquear_producto(user.Rows[0]["nomUsuario"].ToString(), int.Parse(producto.Rows[0]["idProducto"].ToString()));
+                    daoUsuario.ReportarProducto(int.Parse(DDL_Reportes), int.Parse(user.Rows[0]["idUsuario"].ToString()), int.Parse(producto.Rows[0]["idProducto"].ToString()), user.Rows[0]["nomUsuario"].ToString());
+                    daoUsuario.Bloquear_producto(user.Rows[0]["nomUsuario"].ToString(), int.Parse(producto.Rows[0]["idProducto"].ToString()));
                     response.Valido = false;
                     response.Msg = "Se ha enviado tu reporte a nuestro sistema.";
                     //Modal("Se ha enviado tu reporte a nuestro sistema.");
@@ -170,8 +169,9 @@ namespace Logica
             venta.Valor = valor;
             venta.IdProducto = int.Parse(producto.Rows[0]["idProducto"].ToString());
             venta.EstadoVenta = 1;
-            DDAOProducto compra = new DDAOProducto();
-            compra.CompraProducto(venta, user.Rows[0]["nomUsuario"].ToString());
+            DB_Producto daoProducto = new DB_Producto();
+            //DDAOProducto compra = new DDAOProducto();
+            daoProducto.CompraProducto(venta, user.Rows[0]["nomUsuario"].ToString());
         }
     }
 }
