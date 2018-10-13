@@ -163,6 +163,7 @@ namespace Datos
                 conexion.Close();
             }
         }
+        //MIGRADO
         //Metodo Para Cambiar La Imagen de Un Usuario
         public void CambiarFoto(UEUsuario user, String usuario)
         {

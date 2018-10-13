@@ -71,14 +71,16 @@ namespace DatosPersistencia
         }
 
         //VERFICAR CORREO
-        public void comprobar_correo(string correo)
+        public int comprobar_correo(string correo)
         {
             using (var db= new Mapeo("public"))
             {
-
+                var data = (from user in db.user where user.CorreoUsr == correo select user).Count();
+                return data;
             }
         }
 
+        //METOSO PARA OBTENER LOS ULTIMOS 10 PRODUCTOS VISITADOS
         public DataTable obtener_top_ten(int id_user)
         {
             using(var db= new Mapeo("public"))
@@ -155,6 +157,17 @@ namespace DatosPersistencia
             {
                 var data = db.user.Find(user.IdUsr);
                 data.EstUsr = est;
+                data.ModifBy = usuario;
+                db.SaveChanges();
+            }
+        }
+
+        public void CambiarFoto(UEUsuario user, string usuario)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = db.user.Find(user.IdUsr);
+                data.NomArch = user.NomArch;
                 data.ModifBy = usuario;
                 db.SaveChanges();
             }

@@ -131,5 +131,22 @@ namespace DatosPersistencia
                 db.SaveChanges();
             }
         }
+
+        //METODO PARA VALIDAR LA EXISTENCIA DEL CORREO
+        public bool ExistenciaCorreo(string correo)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = (from emp in db.empre where emp.Correo == correo select emp).Count();
+                if (data == 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
     }
 }

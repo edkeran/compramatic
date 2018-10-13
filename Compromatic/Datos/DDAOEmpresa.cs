@@ -33,7 +33,7 @@ namespace Datos
                 connection.Close();
             }
         }
-
+        //MIGRADO
         public Boolean ExistenciaCorreo(String correo)
         {
             Boolean existencia;

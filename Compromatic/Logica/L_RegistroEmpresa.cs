@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.IO;
-using Datos;
+//using Datos;
 using DatosPersistencia;
 using Utilitarios;
 
@@ -20,14 +20,15 @@ namespace Logica
 
         public DataTable mostrar_Membresia(int tipo)
         {
-            DDAOMembresia men = new DDAOMembresia();
-            DataTable data = men.MostrarTipos(tipo);
+            DB_Membresia daoMembresia= new DB_Membresia();
+            DataTable data = daoMembresia.mostrarTipos(tipo);
             return data;
         }
 
         public Boolean Validar_Existencia_Correo(String correo)
         {
-            DDAOEmpresa db = new DDAOEmpresa();
+            DBEmpresa db = new DBEmpresa();
+            //DDAOEmpresa db = new DDAOEmpresa();
             return db.ExistenciaCorreo(correo);
         }
 

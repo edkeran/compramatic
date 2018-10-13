@@ -69,7 +69,7 @@ namespace Logica
 
         private void CambiarContraseña(String nit, String contraseña, String modif,String id_emp)
         {
-            DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
+            //DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
             UEUEmpresa EU_Empresa = new UEUEmpresa();
             EU_Empresa.Nit = nit;
             EU_Empresa.Id = int.Parse(id_emp);
@@ -84,10 +84,11 @@ namespace Logica
         public U_aux_PerfilEmp ModificarDatos(DataTable Empresa,String tb_correo,String tb_nombre,String tb_nit,String tb_telefono,String tb_direccion,String urlRedir)
         {
             U_aux_PerfilEmp response = new U_aux_PerfilEmp();
-            DDAOEmpresa envio = new DDAOEmpresa();
+            DBEmpresa daoEmp = new DBEmpresa();
+            //DDAOEmpresa envio = new DDAOEmpresa();
             if (Empresa.Rows[0]["correoEmpresa"].ToString() != tb_correo)
             {
-                if (envio.ExistenciaCorreo(tb_correo))
+                if (daoEmp.ExistenciaCorreo(tb_correo))
                 {
                     //Modal("Correo Existente");
                     response.Mensage = "Correo Existente";

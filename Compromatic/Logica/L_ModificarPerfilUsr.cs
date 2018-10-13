@@ -1,6 +1,6 @@
 ﻿using System;
 using Utilitarios;
-using Datos;
+//using Datos;
 using System.Data;
 using System.IO;
 using DatosPersistencia;
@@ -46,10 +46,11 @@ namespace Logica
 
         public U_Modificar_Pfi_Usr cambiar_informacion(DataTable datos,String correo,UEUsuario newInfo)
         {
-            DDAOUsuario db = new DDAOUsuario();
+            DBUsr daoUsuario = new DBUsr();
+            //DDAOUsuario db = new DDAOUsuario();
             U_Modificar_Pfi_Usr response = new U_Modificar_Pfi_Usr();
             bool valido=true;
-            if (db.ComprobarCorreo(correo) == 1)
+            if (daoUsuario.comprobar_correo(correo) == 1)
             {
                 //Ejecutar Mensaje Del Modal
                 valido = false;
@@ -146,13 +147,13 @@ namespace Logica
                         Stream inputStream = new_file;
                         inputStream.CopyTo(stream);
                     }
-
+                    DBUsr daoUsuario = new DBUsr();
                     //new_file.SaveAs(saveLocation);
-                    DDAOUsuario foto = new DDAOUsuario();
+                    //DDAOUsuario foto = new DDAOUsuario();
                     UEUsuario user = new UEUsuario();
                     user.IdUsr = int.Parse(datos.Rows[0]["idUsuario"].ToString());
                     user.NomArch = nombreArchivo + extension;
-                    foto.CambiarFoto(user, datos.Rows[0]["nomUsuario"].ToString());
+                    daoUsuario.CambiarFoto(user, datos.Rows[0]["nomUsuario"].ToString());
                     datos.Rows[0]["nomArchivo"] = nombreArchivo + extension;
                     response.Datos = datos;
                     response.Pagina_redir = "PerfilUsr.aspx";
@@ -177,8 +178,9 @@ namespace Logica
         }
         public void quitar_foto(UEUsuario user,String usuario)
         {
-            DDAOUsuario foto = new DDAOUsuario();
-            foto.CambiarFoto(user,usuario);
+            DBUsr daoUser = new DBUsr();
+            //DDAOUsuario foto = new DDAOUsuario();
+            daoUser.CambiarFoto(user,usuario);
         }
     }
 }

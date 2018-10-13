@@ -21,7 +21,7 @@ public partial class Presentacion_RegistroEmpresa : System.Web.UI.Page
         TB_FechaFinal.Text = Fecha.ToShortDateString();
         DataTable Membresia = new DataTable();
         Membresia = emp.mostrar_Membresia(1);
-        TB_Precio.Text = "$" + Membresia.Rows[0]["valorMembresia"].ToString() + " COP";
+        TB_Precio.Text = "$" + Membresia.Rows[0]["Valor_mem"].ToString() + " COP";
 
         //Seteando Idiomas
         L_Idioma idiot = new L_Idioma();
@@ -100,9 +100,9 @@ public partial class Presentacion_RegistroEmpresa : System.Web.UI.Page
         DataTable Membresia = new DataTable();
         DateTime Fecha = DateTime.Now.Date;
         Membresia = emp.mostrar_Membresia(int.Parse(DDL_Memebresia.SelectedValue));
-        TB_Precio.Text = "$" + Membresia.Rows[0]["valorMembresia"].ToString() + " COP";   
+        TB_Precio.Text = "$" + Membresia.Rows[0]["Valor_mem"].ToString() + " COP";   
         TB_FechaInicio.Text = Fecha.ToShortDateString();
-        Fecha = Fecha.AddMonths(int.Parse(Membresia.Rows[0]["tiempoMembresia"].ToString()));
+        Fecha = Fecha.AddMonths(int.Parse(Membresia.Rows[0]["Tmpo_mem"].ToString()));
         TB_FechaFinal.Text = Fecha.ToShortDateString();
     }
 
