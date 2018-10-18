@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using Datos;
+using DatosPersistencia;
 
 namespace Logica
 {
@@ -28,8 +28,9 @@ namespace Logica
 
         public DataTable GV_1(int id)
         {
-            DDAOadministrador conexion = new DDAOadministrador();
-            DataTable consulta = conexion.ArchivosEmpresa(id);
+            DB_Admin daoAdmin = new DB_Admin();
+            //DDAOadministrador conexion = new DDAOadministrador();
+            DataTable consulta = daoAdmin.ArchivosEmpresa(id);
             return consulta;
         }
 
@@ -38,7 +39,8 @@ namespace Logica
             if (CommandName == "aceptar")
             {
                 int index = Convert.ToInt32(CommandArgument);
-                DDAOadministrador conexion = new DDAOadministrador();
+                DB_Admin conexion = new DB_Admin();
+                //DDAOadministrador conexion = new DDAOadministrador();
                 conexion.ModificarEstados(id, 1, 0, ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString());
                 //Response.Redirect("SolicitudesPendientes.aspx");
                 //GridView1.DataBind();
@@ -46,7 +48,8 @@ namespace Logica
             if (CommandName == "rechazar")
             {
                 int index = Convert.ToInt32(CommandArgument);
-                DDAOadministrador conexion = new DDAOadministrador();
+                DB_Admin conexion = new DB_Admin();
+                //DDAOadministrador conexion = new DDAOadministrador();
                 conexion.ModificarEstados(id, 0, 3, ((DataTable)(sesion)).Rows[0]["nomUsuario"].ToString());
                 //GridView1.DataBind();
                 //Response.Redirect("SolicitudesPendientes.aspx");

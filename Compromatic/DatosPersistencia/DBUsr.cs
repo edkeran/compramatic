@@ -325,5 +325,30 @@ namespace DatosPersistencia
                 db.SaveChanges();
             }
         }
+
+        //METODO PARA REGISTRAR LA NUEVA PUNTUACION HACIA LA EMPRESA
+        public void RegistrarRango(UEURango rango, String usuario)
+        {
+            using (var db = new Mapeo("public"))
+            {
+                rango.Calificador = 0;
+                rango.FechaRango = DateTime.Now;
+                rango.ModifiBy = usuario;
+                db.rangos.Add(rango);
+                db.SaveChanges();
+            }
+        }
+
+        //METODO PARA CALIFICAR A LA EMPRESA
+        public void CalificarEmp(UEUEmpresa emp, String usuario)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var empre = db.empre.Find(emp.Id);
+                empre.Calificacion = emp.Calificacion;
+                empre.ModifBy = usuario;
+                db.SaveChanges();
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using Datos;
+using DatosPersistencia;
 using Utilitarios;
 
 namespace Logica
@@ -29,8 +29,9 @@ namespace Logica
 
         public DataTable GV_1(int id)
         {
-            DDAOadministrador conexion = new DDAOadministrador();
-            DataTable consulta = conexion.ArchivosEmpresa(id);
+            DB_Admin daoAdmin = new DB_Admin();
+            //DDAOadministrador conexion = new DDAOadministrador();
+            DataTable consulta = daoAdmin.ArchivosEmpresa(id);
             return consulta;
         }
 

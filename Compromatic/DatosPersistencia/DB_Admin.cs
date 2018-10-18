@@ -129,5 +129,45 @@ namespace DatosPersistencia
             }
 
         }
+
+        //METODO PARA TRAER LOS ARCHIVOS DE LAS EMPRESAS
+        public DataTable ArchivosEmpresa(int id)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = (from files in db.archiv_Emp where files.idSolicitud_registro==id
+                            select files);
+                List<UEUArchivoSolic> inf = data.ToList<UEUArchivoSolic>();
+                foreach(UEUArchivoSolic aux in inf)
+                {
+                    aux.rutaArchivo = aux.rutaArchivo + aux.nombreArchivo;
+                }
+                ListToDataTable conv = new ListToDataTable();
+                DataTable response = conv.ToDataTable<UEUArchivoSolic>(inf);
+                return response;
+            }
+        }
+
+        //METODO PARA MODIFICAR EL ESTADO DE LA EMPRESA RECIEN INSCRITA EN LA PLATAFORMA
+        public void ModificarEstados(int id, int estadoEmpresa, int estadoSolicitud, string usuario)
+        {
+            using (var db = new Mapeo("public"))
+            {
+                //PASO 1 OBTENER EL ID DE LA EMPRESA
+                int idEmp = (from empresa in db.empre join solcitud_reg in db.sol_reg on empresa.Id equals solcitud_reg.Id_empresa
+                         where solcitud_reg.Id_solici == id select empresa.Id).FirstOrDefault();
+                
+                //PASO 2 CAMBIAR EL ESTADO DE LA EMPRESA
+                var estEmp = db.empre.Find(idEmp);
+                estEmp.EstadoEmpre = estadoEmpresa;
+                estEmp.ModifBy = usuario;
+                db.SaveChanges();
+                //PASO 3 ACTUALIZAR LA SOLICITUD DEL REGISTRO
+                var solic = (from estSolict in db.sol_reg where estSolict.Id_empresa == idEmp select estSolict).FirstOrDefault();
+                solic.Estado_solici = estadoSolicitud;
+                solic.ModifBy = usuario;
+                db.SaveChanges();
+            }
+        }
     }
 }

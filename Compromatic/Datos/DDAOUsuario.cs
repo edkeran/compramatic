@@ -242,6 +242,7 @@ namespace Datos
             }
             return Usuario;
         }
+        //MIGRADO
         //Metodo Para  Registrar La Nueva Puntuacion Hacia La Empresa
         public void RegistrarRango(UEURango rango, String usuario)
         {
@@ -269,6 +270,7 @@ namespace Datos
             }
 
         }
+        //MIGRADO
         //METODO PARA CALIFICAR A LA EMPRESA
         public void CalificarEmp(UEUEmpresa emp, String usuario)
         {

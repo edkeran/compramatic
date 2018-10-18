@@ -68,11 +68,13 @@ namespace Logica
                 }
                 else
                 {
-                    DDAOUsuario daousr = new DDAOUsuario();
+                    DBUsr daoUsuario = new DBUsr();
+                    //DDAOUsuario daousr = new DDAOUsuario();
                     DataTable user = (DataTable)session;
                     UEUsuario cliente = new UEUsuario();
                     cliente.IdUsr = int.Parse(user.Rows[0]["idUsuario"].ToString());
-                    DataTable empresa = daousr.HistorialCompras(cliente, 2);
+                    //DataTable empresa = daousr.HistorialCompras(cliente, 2);
+                    DataTable empresa = daoUsuario.historial_compras(cliente, 2);
 
                     UEURango rango = new UEURango();
                     rango.IdUsr = cliente.IdUsr;
@@ -80,7 +82,8 @@ namespace Logica
 
                     rango.Rango = double.Parse(tb_1);
                     rango.Comentario = tb_2;
-                    daousr.RegistrarRango(rango, user.Rows[0]["nomUsuario"].ToString());
+                    //daousr.RegistrarRango(rango, user.Rows[0]["nomUsuario"].ToString());
+                    daoUsuario.RegistrarRango(rango, user.Rows[0]["nomUsuario"].ToString());
 
                     DDAOadministrador calEmp = new DDAOadministrador();
                     empresa = calEmp.MostrarEmpresaId(rango.IdEmp);
@@ -88,7 +91,8 @@ namespace Logica
                     UEUEmpresa emp = new UEUEmpresa();
                     emp.Calificacion = (calAnt + rango.Rango) / 2;
                     emp.Id = rango.IdEmp;
-                    daousr.CalificarEmp(emp, user.Rows[0]["nomUsuario"].ToString());
+                    daoUsuario.CalificarEmp(emp, user.Rows[0]["nomUsuario"].ToString());
+                    //daousr.CalificarEmp(emp, user.Rows[0]["nomUsuario"].ToString());
 
                     DDAOProducto confirmar = new DDAOProducto();
                     int venta = int.Parse(comandArg);

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using Datos;
 using DatosPersistencia;
 
 namespace Logica
@@ -57,7 +56,7 @@ namespace Logica
             if (comand.Equals("Ver"))
             {
                 DB_Producto daoProducto = new DB_Producto();
-                DDAOProducto pdto = new DDAOProducto();
+                //DDAOProducto pdto = new DDAOProducto();
                 DataTable product = new DataTable();
                 product= daoProducto.obtener_producto(int.Parse(comandArg));
                 return product;

@@ -429,7 +429,7 @@ namespace Datos
             }
             return Usuario;
         }
-
+        //MIGRADFO
         public void ModificarEstados(int id, int estadoEmpresa, int estadoSolicitud, String usuario)
         {
             NpgsqlConnection conexion = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
