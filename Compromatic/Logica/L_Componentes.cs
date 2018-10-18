@@ -58,11 +58,13 @@ namespace Logica
 
         public DataTable MostrarTags(int idProducto)
         {
+            DB_Tag daoTag = new DB_Tag();
             DataTable Tags = new DataTable();
             UEUTag EU_Tag = new UEUTag();
-            DDAOTag DAO_Tag = new DDAOTag();
+            //DDAOTag DAO_Tag = new DDAOTag();
+            //daoTag.MostrarTags(EU_Tag);
             EU_Tag.IdProducto = idProducto;
-            Tags = DAO_Tag.MostrarTags(EU_Tag);
+            Tags = daoTag.MostrarTags(EU_Tag);
             return Tags;
         }
 

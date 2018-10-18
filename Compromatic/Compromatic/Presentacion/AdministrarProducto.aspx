@@ -226,7 +226,7 @@
                                         <asp:TextBox runat="server" MaxLength="15" ID="TB_Tags" CssClass="form-control"></asp:TextBox>
                                         <div class="form-group">
                                             <asp:RequiredFieldValidator runat="server" ErrorMessage="Texto Necesario" ForeColor="Red" ControlToValidate="TB_Tags" CssClass="warning" ValidationGroup="Tags"></asp:RequiredFieldValidator>
-                                            <asp:DropDownList runat="server" DataTextField="palabra" DataValueField="idPalabra_clave" ID="DDL_Tags" CssClass="form-control" DataSourceID="OBS_Tags"></asp:DropDownList>
+                                            <asp:DropDownList runat="server" DataTextField="Palabra" DataValueField="IdTag" ID="DDL_Tags" CssClass="form-control" DataSourceID="OBS_Tags"></asp:DropDownList>
                                             <asp:ObjectDataSource runat="server" ID="OBS_Tags" SelectMethod="MostrarTags" TypeName="Logica.L_Componentes">
                                                 <SelectParameters>
                                                     <asp:ControlParameter ControlID="idProducto" PropertyName="Text" Name="idProducto" Type="Int32"></asp:ControlParameter>
