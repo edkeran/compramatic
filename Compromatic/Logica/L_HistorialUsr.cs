@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Utilitarios;
-using Datos;
+using DatosPersistencia;
 
 namespace Logica
 {
@@ -43,11 +39,12 @@ namespace Logica
 
         public void obtenerCompras(Object Session,DataTable data)
         {
+            DBUsr daoUsuario = new DBUsr();
             DataTable datos = (DataTable)Session;
             UEUsuario user = new UEUsuario();
-            DDAOUsuario bdcompra = new DDAOUsuario();
+            //DDAOUsuario bdcompra = new DDAOUsuario();
             user.IdUsr = int.Parse(datos.Rows[0]["idUsuario"].ToString());
-            DataTable historial = bdcompra.HistorialCompras(user, 4);
+            DataTable historial = daoUsuario.historial_compras(user, 4);
             DataRow fila;
             for (int i = 0; i < historial.Rows.Count; i++)
             {

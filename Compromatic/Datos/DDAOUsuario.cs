@@ -39,7 +39,7 @@ namespace Datos
                 conexion.Close();
             }
         }
-
+        //MIGRADO
         //FUNCION PARA EL LOGGIN DEL USUARIO
         public DataTable Login(UEUsuario user)
         {
@@ -211,6 +211,7 @@ namespace Datos
                 conexion.Close();
             }
         }
+        //METODO MIGRADO
         //Metodo Para Obtener El Historial De Compras Del Usuario
         public DataTable HistorialCompras(UEUsuario user, int estado)
         {
@@ -459,7 +460,7 @@ namespace Datos
                 conexion.Close();
             }
         }
-
+        //MIGTRADO
         public Boolean ExistenciaCorreo(String correo)
         {
             Boolean existencia;
@@ -488,7 +489,7 @@ namespace Datos
             }
             return existencia;
         }
-
+        //MIGRADO
         public DataTable obtenerContrase(String correo)
         {
             DataTable Correo = new DataTable();
@@ -569,7 +570,7 @@ namespace Datos
 
             return int.Parse(session.Rows[0]["Sesiones_Abiertas"].ToString());
         }
-
+        //MIGRADO
         //FUNCION PARA OBTENER EL USUARIO POR EL CORREO
         public DataTable GET_USER(String correo)
         {
@@ -600,7 +601,7 @@ namespace Datos
 
             return session;
         }
-
+        //MIGRADO
         //FUNCION PARA ACTUALIZAR BLOQUEO   
         public void UPDATE_BLOQUEO(String correo, DateTime h_in, DateTime h_fi, int intentos)
         {

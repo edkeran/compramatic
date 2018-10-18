@@ -1,6 +1,5 @@
 ﻿using System;
 using Utilitarios;
-//using Datos;
 using System.Data;
 using System.IO;
 using DatosPersistencia;

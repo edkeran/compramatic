@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -146,6 +147,83 @@ namespace DatosPersistencia
                 {
                     return true;
                 }
+            }
+        }
+
+        //METODO PARA EL LOGGIN DE LA EMPRESA
+        public DataTable LoginEmpresa(UEUEmpresa EU_Empresa)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data=(from empresa in db.empre where empresa.Correo==EU_Empresa.Correo && empresa.Contraseña==EU_Empresa.Contraseña
+                          select empresa);
+                List<UEUEmpresa> inf = data.ToList<UEUEmpresa>();
+                DataTable res = new DataTable();
+                res.Columns.Add("nomEmpresa",typeof(string));res.Columns.Add("idEmpresa",typeof(int));res.Columns.Add("telEmpresa", typeof(string));
+                res.Columns.Add("correoEmpresa", typeof(string));res.Columns.Add("dirEmpresa", typeof(string));res.Columns.Add("nitEmpresa", typeof(string));
+                res.Columns.Add("nomArchivo", typeof(string));res.Columns.Add("rutaArchivo",typeof(string));res.Columns.Add("estadoEmpresa", typeof(int));
+                res.Columns.Add("calificacionEmpresa", typeof(double));res.Columns.Add("idTipo", typeof(int));res.Columns.Add("passEmpresa", typeof(string));
+                res.Columns.Add("fechaCreacion_empresa", typeof(DateTime));res.Columns.Add("modified_by", typeof(string));res.Columns.Add("Sesiones_Abiertas", typeof(int));
+                res.Columns.Add("intentos", typeof(int));
+                foreach(UEUEmpresa aux in inf)
+                {
+                    DataRow fila = res.NewRow();
+                    fila["nomEmpresa"] = aux.Nombre; fila["telEmpresa"] = aux.Numero; fila["idEmpresa"] = aux.Id; fila["correoEmpresa"] = aux.Correo;
+                    fila["dirEmpresa"] = aux.Direccion; fila["nitEmpresa"] = aux.Nit; fila["nomArchivo"] = aux.NomArchivo; fila["rutaArchivo"] = aux.RutaArchivo;
+                    fila["estadoEmpresa"] = aux.EstadoEmpre; fila["calificacionEmpresa"] = aux.Calificacion; fila["idTipo"] = aux.IdTipo; fila["passEmpresa"] = aux.Contraseña;
+                    fila["fechaCreacion_empresa"] = aux.Fecha_Crea;fila["modified_by"] = aux.ModifBy; fila["Sesiones_Abiertas"] = aux.Sessiones; fila["Sesiones_Abiertas"] = aux.Sessiones;
+                    fila["intentos"] = aux.Intentos;
+                    res.Rows.Add(fila);
+                }
+                return res;
+                
+            }
+        }
+
+        //METODFO PARA OBTENER LA EMPRESA POR CORRE
+        public DataTable GET_EMP(string correo)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = from emp in db.empre
+                           where emp.Correo == correo
+                           select emp;
+                List<UEUEmpresa> inf = data.ToList<UEUEmpresa>();
+                DataTable res = new DataTable();
+                res.Columns.Add("nomEmpresa", typeof(string)); res.Columns.Add("idEmpresa", typeof(int)); res.Columns.Add("telEmpresa", typeof(string));
+                res.Columns.Add("correoEmpresa", typeof(string)); res.Columns.Add("dirEmpresa", typeof(string)); res.Columns.Add("nitEmpresa", typeof(string));
+                res.Columns.Add("nomArchivo", typeof(string)); res.Columns.Add("rutaArchivo", typeof(string)); res.Columns.Add("estadoEmpresa", typeof(int));
+                res.Columns.Add("calificacionEmpresa", typeof(double)); res.Columns.Add("idTipo", typeof(int)); res.Columns.Add("passEmpresa", typeof(string));
+                res.Columns.Add("fechaCreacion_empresa", typeof(DateTime)); res.Columns.Add("modified_by", typeof(string)); res.Columns.Add("Sesiones_Abiertas", typeof(int));
+                res.Columns.Add("intentos", typeof(int));
+                foreach (UEUEmpresa aux in inf)
+                {
+                    DataRow fila = res.NewRow();
+                    fila["nomEmpresa"] = aux.Nombre; fila["telEmpresa"] = aux.Numero; fila["idEmpresa"] = aux.Id; fila["correoEmpresa"] = aux.Correo;
+                    fila["dirEmpresa"] = aux.Direccion; fila["nitEmpresa"] = aux.Nit; fila["nomArchivo"] = aux.NomArchivo; fila["rutaArchivo"] = aux.RutaArchivo;
+                    fila["estadoEmpresa"] = aux.EstadoEmpre; fila["calificacionEmpresa"] = aux.Calificacion; fila["idTipo"] = aux.IdTipo; fila["passEmpresa"] = aux.Contraseña;
+                    fila["fechaCreacion_empresa"] = aux.Fecha_Crea; fila["modified_by"] = aux.ModifBy; fila["Sesiones_Abiertas"] = aux.Sessiones; fila["Sesiones_Abiertas"] = aux.Sessiones;
+                    fila["intentos"] = aux.Intentos;
+                    res.Rows.Add(fila);
+                }
+                return res;
+            }
+        }
+
+        //METODO PARA ACTUALIZAR LOS INTENTOS INVALIDOS DE LOGGUEO
+        public void UPDATE_BLOQUEO(String correo, DateTime h_in, DateTime h_fi, int intentos)
+        {
+           using (var db= new Mapeo("public"))
+            {
+                var update = (from empres in db.empre where empres.Correo == correo select empres).FirstOrDefault();
+                if (update != null)
+                {
+                    update.Fch_in = h_in;
+                    update.Fch_fn = h_fi;
+                    update.Intentos = intentos;
+                    db.SaveChanges();
+                }
+                
             }
         }
     }

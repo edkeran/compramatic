@@ -223,5 +223,107 @@ namespace DatosPersistencia
                 }
             }
         }
+
+        public List<UEUsuario> obtenerContrase(String correo)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = from usuario in db.user where usuario.CorreoUsr == correo select usuario;
+                return data.ToList<UEUsuario>();
+            }
+        }
+
+        public Boolean ExistenciaCorreo(String correo)
+        {
+            using (var db=new Mapeo("public"))
+            {
+                var data = (from usuario in db.user where usuario.CorreoUsr == correo select usuario).Count();
+                if (data == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        //METODO PARA EL LOGGIN DEL USUARIO
+        public DataTable loggin_user(UEUsuario user)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = from usuario in db.user
+                           where usuario.CorreoUsr == user.CorreoUsr
+                           && usuario.PassUsr == user.PassUsr
+                           select usuario;
+                DataTable res = new DataTable();
+                res.Columns.Add("idUsuario",typeof(int));res.Columns.Add("nomUsuario",typeof(string));res.Columns.Add("apeUsuario",typeof(string));
+                res.Columns.Add("telUsuario",typeof(string));res.Columns.Add("correoUsuario",typeof(string));res.Columns.Add("passUsuario",typeof(string));
+                res.Columns.Add("ccUsuario",typeof(string)); res.Columns.Add("dirUsuario",typeof(string)); res.Columns.Add("rutaArchivo",typeof(string));
+                res.Columns.Add("nomArchivo",typeof(string));res.Columns.Add("estadoUsuario",typeof(int));res.Columns.Add("fechaCreacion_usuario",typeof(DateTime));
+                res.Columns.Add("idTipo",typeof(int));res.Columns.Add("calificacionUsuario",typeof(Double));res.Columns.Add("modified_by", typeof(string));
+                res.Columns.Add("Sesiones_Abiertas", typeof(int));res.Columns.Add("intentos",typeof(int));
+                List<UEUsuario> inf = data.ToList<UEUsuario>();
+                foreach (UEUsuario aux in inf)
+                {
+                    DataRow fila = res.NewRow();
+                    fila["idUsuario"] = aux.IdUsr;fila["nomUsuario"] = aux.NomUsr; fila["apeUsuario"] = aux.ApelUsr;
+                    fila["telUsuario"] = aux.TelUsr; fila["correoUsuario"] = aux.CorreoUsr;fila["passUsuario"] = aux.PassUsr;
+                    fila["ccUsuario"] = aux.CcUsr;fila["dirUsuario"] = aux.DirUsr;fila["rutaArchivo"] = aux.RutaArch;
+                    fila["nomArchivo"] = aux.NomArch;fila["estadoUsuario"] = aux.EstUsr;fila["fechaCreacion_usuario"] = aux.Crea_Usr;
+                    fila["nomArchivo"] = aux.NomArch;fila["idTipo"] = aux.IdTipo;fila["calificacionUsuario"] = aux.Calificacion2;
+                    fila["modified_by"] = aux.ModifBy;fila["Sesiones_Abiertas"] = aux.Sessiones;fila["intentos"] = aux.Intentos;
+                    res.Rows.Add(fila);
+                }
+                return res;
+            }
+        }
+
+        //METODO PARA OBTENER AL USUARIO POR EL CORREO
+        public DataTable GET_USER(String correo)
+        {
+          using (var db= new Mapeo("public"))
+            {
+                var data = from usuario in db.user
+                           where usuario.CorreoUsr == correo
+                           select usuario;
+
+                DataTable res = new DataTable();
+                res.Columns.Add("idUsuario", typeof(int)); res.Columns.Add("nomUsuario", typeof(string)); res.Columns.Add("apeUsuario", typeof(string));
+                res.Columns.Add("telUsuario", typeof(string)); res.Columns.Add("correoUsuario", typeof(string)); res.Columns.Add("passUsuario", typeof(string));
+                res.Columns.Add("ccUsuario", typeof(string)); res.Columns.Add("dirUsuario", typeof(string)); res.Columns.Add("rutaArchivo", typeof(string));
+                res.Columns.Add("nomArchivo", typeof(string)); res.Columns.Add("estadoUsuario", typeof(int)); res.Columns.Add("fechaCreacion_usuario", typeof(DateTime));
+                res.Columns.Add("idTipo", typeof(int)); res.Columns.Add("calificacionUsuario", typeof(Double)); res.Columns.Add("modified_by", typeof(string));
+                res.Columns.Add("Sesiones_Abiertas", typeof(int)); res.Columns.Add("intentos", typeof(int));
+                List<UEUsuario> inf = data.ToList<UEUsuario>();
+                foreach (UEUsuario aux in inf)
+                {
+                    DataRow fila = res.NewRow();
+                    fila["idUsuario"] = aux.IdUsr; fila["nomUsuario"] = aux.NomUsr; fila["apeUsuario"] = aux.ApelUsr;
+                    fila["telUsuario"] = aux.TelUsr; fila["correoUsuario"] = aux.CorreoUsr; fila["passUsuario"] = aux.PassUsr;
+                    fila["ccUsuario"] = aux.CcUsr; fila["dirUsuario"] = aux.DirUsr; fila["rutaArchivo"] = aux.RutaArch;
+                    fila["nomArchivo"] = aux.NomArch; fila["estadoUsuario"] = aux.EstUsr; fila["fechaCreacion_usuario"] = aux.Crea_Usr;
+                    fila["nomArchivo"] = aux.NomArch; fila["idTipo"] = aux.IdTipo; fila["calificacionUsuario"] = aux.Calificacion2;
+                    fila["modified_by"] = aux.ModifBy; fila["Sesiones_Abiertas"] = aux.Sessiones; fila["intentos"] = aux.Intentos;
+                    res.Rows.Add(fila);
+                }
+                return res;
+            }
+        }
+
+        // METODO PARA ACTUALIZAR EL BLOQUE DE INTETOS
+        public void UPDATE_BLOQUEO(String correo, DateTime h_in, DateTime h_fi, int intentos)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var update =(from usuario in db.user where usuario.CorreoUsr == correo select usuario).FirstOrDefault();
+                update.Inc_bloq = h_in;
+                update.Fin_bloqu = h_fi;
+                update.Intentos = intentos;
+                db.SaveChanges();
+            }
+        }
     }
 }

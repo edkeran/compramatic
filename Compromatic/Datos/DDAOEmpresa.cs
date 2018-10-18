@@ -63,7 +63,7 @@ namespace Datos
             return existencia;
         }
 
-
+        //MIGRADO
         public DataTable LoginEmpresa(UEUEmpresa EU_Empresa)
         {
             DataTable Empresa = new DataTable();
@@ -598,7 +598,7 @@ namespace Datos
 
             return data;
         }
-
+        //  MIGRADO
         //FUNCION PARA ACTUALIZAR BLOQUEO   
         public void UPDATE_BLOQUEO(String correo,DateTime h_in,DateTime h_fi,int intentos)
         {

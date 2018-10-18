@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Utilitarios;
 using DatosPersistencia;
-//using Datos;
 using System.Data;
 
 namespace Logica

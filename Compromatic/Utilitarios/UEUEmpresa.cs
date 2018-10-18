@@ -133,7 +133,7 @@ namespace Utilitarios
         [NotMapped]
         public string Redireccion
         { get => redireccion;
-          set => redireccion = value;
+            set => redireccion = value;
         }
 
         private int sessiones;
@@ -141,7 +141,7 @@ namespace Utilitarios
         [Column("Sesiones_Abiertas")]
         public int Sessiones
         { get => sessiones;
-          set => sessiones = value;
+            set => sessiones = value;
         }
 
         private String modifBy;
@@ -159,6 +159,27 @@ namespace Utilitarios
             get => fecha_Crea;
             set => fecha_Crea = value;
         }
+        private int intentos = 0;
+        [Column("intentos")]
+        public int Intentos {
+            get => intentos;
+            set => intentos = value;
+        }
 
+
+        private DateTime? fch_in;
+        private DateTime? fch_fn;
+
+        [Column("inicio_bloqueo")]
+        public DateTime? Fch_in {
+            get => fch_in;
+            set => fch_in = value;
+        }
+
+        [Column("fin_bloqueo")]
+        public DateTime? Fch_fn {
+            get => fch_fn;
+            set => fch_fn = value;
+        }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Data;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
-using Datos;
+using DatosPersistencia;
 using Utilitarios;
 
 namespace Logica
@@ -11,16 +11,18 @@ namespace Logica
     {
         public String pass(String Email)
         {
-            DDAOUsuario db = new DDAOUsuario();
-            if (db.ExistenciaCorreo(Email))
+            DBUsr daoUser = new DBUsr();
+            //DDAOUsuario db = new DDAOUsuario();
+            if (daoUser.ExistenciaCorreo(Email))
             {
                 //Existe
-                DataTable data = db.obtenerContrase(Email);
+
+                List<UEUsuario> data = daoUser.obtenerContrase(Email);
                 MailMessage email = new MailMessage();
                 email.To.Add(new MailAddress(Email));
                 email.From = new MailAddress("compramatic@gmail.com");
                 email.Subject = "Asunto ( " + DateTime.Now.ToString("dd / MMM / yyy hh:mm:ss") + " ) ";
-                email.Body = "Su Contraseña Es: "+ data.Rows[0]["passUsuario"];
+                email.Body = "Su Contraseña Es: "+ data[0].PassUsr;
                 email.IsBodyHtml = true;
                 email.Priority = MailPriority.Normal;
 

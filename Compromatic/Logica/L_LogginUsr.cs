@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Data;
-using Datos;
 using Utilitarios;
 using DatosPersistencia;
-using System.Collections.Generic;
 
 namespace Logica
 {
@@ -26,7 +24,8 @@ namespace Logica
                     aux_log.Modal_message = "Acceso Concebido";
                     aux_log.Id_empresa = Empresa.Rows[0]["idEmpresa"].ToString();
                     //actualizar sesion
-                    DDAOEmpresa DB = new DDAOEmpresa();
+                    DBEmpresa daoEmpresa = new DBEmpresa();
+                    //DDAOEmpresa DB = new DDAOEmpresa();
                     int sess = int.Parse(Empresa.Rows[0]["Sesiones_Abiertas"].ToString());
                     if (int.Parse(Empresa.Rows[0]["intentos"].ToString()) >= 3)
                     {
@@ -43,7 +42,7 @@ namespace Logica
                         emp.Id = int.Parse(Empresa.Rows[0]["idEmpresa"].ToString());
                         emp.Sessiones = sess + 1;
                         Empresa.Rows[0]["Sesiones_Abiertas"]=emp.Sessiones;
-                        DB.ActualizarSesion(emp);
+                        daoEmpresa.update_session(emp);
                     }
                     else
                     {
@@ -66,13 +65,13 @@ namespace Logica
             }
             else
             {
-                DDAOUsuario login = new DDAOUsuario();
+                //DDAOUsuario login = new DDAOUsuario();
                 UEUsuario user = new UEUsuario();
                 DBUsr db_usr = new DBUsr();
                 user.PassUsr = pass;
                 user.CorreoUsr = email;
                 //LOGGING ANTIGUO
-                DataTable datos = login.Login(user);
+                DataTable datos = db_usr.loggin_user(user);
                 if (datos.Rows.Count > 0)
                 {
                     if ((seleccion == "2") && (datos.Rows[0]["idTipo"].ToString() == "1"))
@@ -87,10 +86,11 @@ namespace Logica
                         {
                             //llamar db
                             UEUsuario usr = new UEUsuario();
-                            DDAOUsuario db = new DDAOUsuario();
+                            DBUsr daoUser = new DBUsr();
+                            //DDAOUsuario db = new DDAOUsuario();
                             usr.IdUsr = int.Parse(datos.Rows[0]["idUsuario"].ToString());
                             usr.Sessiones = sess + 1;
-                            db.actualizar_session(usr);
+                            daoUser.update_session(usr);
                         }
                         else
                         {
@@ -116,8 +116,8 @@ namespace Logica
                         }
                         user.IdUsr = int.Parse(datos.Rows[0]["idUsuario"].ToString());
                         aux_log.Modal_message = "Qué bueno que regreses!";
-                        login.BloqueoUser(user, 1, "");
-                        datos = login.Login(user);
+                        db_usr.bloquear_cuenta(user, 1, "");
+                        datos = db_usr.loggin_user(user);
                         aux_log.Datos = datos;
                         aux_log.New_page = "Home.aspx";
                         int sess = int.Parse(datos.Rows[0]["Sesiones_Abiertas"].ToString());
@@ -126,10 +126,11 @@ namespace Logica
                         {
                             //llamar db
                             UEUsuario usr = new UEUsuario();
-                            DDAOUsuario db = new DDAOUsuario();
+                            DBUsr db = new DBUsr();
+                            //DDAOUsuario db = new DDAOUsuario();
                             usr.IdUsr = int.Parse(datos.Rows[0]["idUsuario"].ToString());
                             usr.Sessiones = sess + 1;
-                            db.actualizar_session(usr);
+                            db.update_session(usr);
                         }
                         else
                         {
@@ -172,10 +173,11 @@ namespace Logica
                             {
                                 //llamar db
                                 UEUsuario usr = new UEUsuario();
-                                DDAOUsuario db = new DDAOUsuario();
+                                DBUsr db = new DBUsr();
+                                //DDAOUsuario db = new DDAOUsuario();
                                 usr.IdUsr = int.Parse(datos.Rows[0]["idUsuario"].ToString());
                                 usr.Sessiones = sess + 1;
-                                db.actualizar_session(usr);
+                                db.update_session(usr);
                             }
                             else
                             {
@@ -198,7 +200,8 @@ namespace Logica
                 }
                 else
                 {
-                    DDAOUsuario db = new DDAOUsuario();
+                    DBUsr db = new DBUsr();
+                    //DDAOUsuario db = new DDAOUsuario();
                     DataTable data = db.GET_USER(email);
                     if (data.Rows.Count > 0)
                     {
@@ -219,13 +222,14 @@ namespace Logica
         //FUNCION AUXILIAR
         private DataTable Login(String correo, String contraseña)
         {
-            DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
+            DBEmpresa daoEmpresa = new DBEmpresa();
+            //DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
             UEUEmpresa EU_Empresa = new UEUEmpresa();
             EU_Empresa.Correo = correo;
             EU_Empresa.Contraseña = contraseña;
-            DataTable Datos = DAO_Empresa.LoginEmpresa(EU_Empresa);
+            DataTable Datos = daoEmpresa.LoginEmpresa(EU_Empresa);
             //Codigo Nuevo Para El Caso Del Bloqueo
-            DataTable res=DAO_Empresa.GET_EMP(correo);
+            DataTable res= daoEmpresa.GET_EMP(correo);
             if (Datos.Rows.Count <= 0)
             {
                 if (res.Rows.Count > 0)
@@ -235,7 +239,7 @@ namespace Logica
                     intentos = intentos + 1;
                     DateTime hora_inicio = DateTime.Now;
                     DateTime hora_fin = hora_inicio.AddMinutes(30);
-                    DAO_Empresa.UPDATE_BLOQUEO(correo, hora_inicio, hora_fin, intentos);
+                    daoEmpresa.UPDATE_BLOQUEO(correo, hora_inicio, hora_fin, intentos);
                 }
             }
             return Datos;
