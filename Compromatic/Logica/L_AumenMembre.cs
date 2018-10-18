@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using Datos;
 using DatosPersistencia;
 using Utilitarios;
 
@@ -71,7 +70,7 @@ namespace Logica
 
         public String btn_comprar(Object Session,String TB_FechaInicio,String TB_FechaFinal,String DDL_Memebresia,Object idEmpresa)
         {
-            DDAOMembresia DAO_Membresia = new DDAOMembresia();
+            //DDAOMembresia DAO_Membresia = new DDAOMembresia();
             DB_Membresia daoMembresia= new DB_Membresia();
             DataTable Membresia = new DataTable();
             //DAO_Membresia.MostrarActual(int.Parse(idEmpresa.ToString()));
@@ -83,7 +82,7 @@ namespace Logica
             else
             {
                 DataTable Empresa = (DataTable)Session;
-                DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
+                //DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
                 UEUMembresia encData = new UEUMembresia();
                 encData.Fecha_inicio = TB_FechaInicio;
                 encData.Fecha_fin = TB_FechaFinal;

@@ -87,6 +87,8 @@
     <Compile Include="U_Aux_SoliciRechaza.cs" />
     <Compile Include="U_Aux_Vista_Products.cs" />
     <Compile Include="U_Modificar_Pfi_Usr.cs" />
+    <Compile Include="vistaMostrarMembre.cs" />
+    <Compile Include="vistaMostrarPQRCliente.cs" />
     <Compile Include="vistaPQRempresa.cs" />
     <Compile Include="vistaProductoSingle.cs" />
     <Compile Include="vistaReporteAdmin.cs" />

@@ -182,7 +182,7 @@ namespace Datos
             }
             return PQR;
         }
-
+        //MIGRADO
         public DataTable MostrarPQRCliente()
         {
             DataTable PQR = new DataTable();

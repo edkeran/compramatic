@@ -92,5 +92,28 @@ namespace DatosPersistencia
                 }
             }
         }
+
+        public DataTable mostrarMembresia()
+        {
+            using (var db = new Mapeo("public"))
+            {
+                var data = (from tipoMembresia in db.type_membership
+                            let tiempo = (tipoMembresia.Tmpo_mem == 1 ? tipoMembresia.Tmpo_mem + " mes" :
+                            tipoMembresia.Tmpo_mem + " meses")
+                            select new vistaMostrarMembre
+                            {
+                                tiempo = tiempo,
+                                nomMembresia = tipoMembresia.Nom_mem,
+                                Old_value=tipoMembresia.Valor_mem
+                            });
+                List<vistaMostrarMembre> inf = data.ToList<vistaMostrarMembre>();
+                foreach (vistaMostrarMembre aux in inf) {
+                    aux.valor = aux.Old_value.ToString("C");
+                }
+                ListToDataTable conv = new ListToDataTable();
+                DataTable repo = conv.ToDataTable<vistaMostrarMembre>(inf);
+                return repo;
+            }
+        }
     }
 }

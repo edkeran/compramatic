@@ -26,5 +26,6 @@ namespace Utilitarios
         public int form_id { get => Form_id; set => Form_id = value; }
         [Column("texto")]
         public string texto { get => Texto; set => Texto = value; }
+        
     }
 }

@@ -27,8 +27,8 @@
                                 <asp:Panel ID="Panel2" runat="server">
                                     <asp:GridView ID="GridView2" runat="server" BorderStyle="None" class="table table-hover" DataKeyNames="nomMembresia" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" AutoGenerateColumns="False" Width="100%" DataSourceID="ObjectDataSource1" OnRowCreated="GridView2_RowCreated">
                                         <Columns>
-                                            <asp:BoundField DataField="nomMembresia" HeaderText="NOMBRE "></asp:BoundField>
-                                            <asp:BoundField DataField="tiempo" HeaderText="DURACION"></asp:BoundField>
+                                            <asp:BoundField DataField="tiempo" HeaderText="NOMBRE "></asp:BoundField>
+                                            <asp:BoundField DataField="nomMembresia" HeaderText="DURACION"></asp:BoundField>
                                             <asp:BoundField DataField="valor" HeaderText="COSTO"></asp:BoundField>
                                             <asp:TemplateField>
                                                 <ItemTemplate>

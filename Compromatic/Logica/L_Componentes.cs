@@ -110,8 +110,8 @@ namespace Logica
 
         public DataTable Membresia()
         {
-            DDAOadministrador db = new DDAOadministrador();
-            return db.Membresia();
+            DB_Membresia daoMembresia = new DB_Membresia();
+            return daoMembresia.mostrarMembresia();
         }
 
         public List<UEUCategoria> MostrarCategorias()
@@ -160,8 +160,8 @@ namespace Logica
 
         public DataTable MostrarPQRCliente()
         {
-            DDAOPqr db = new DDAOPqr();
-            return db.MostrarPQRCliente();
+            DB_ReasosnsPQR daoPQR = new DB_ReasosnsPQR();
+            return daoPQR.MostrarPQRcliente();
         }
     }
 }

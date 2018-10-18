@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using Utilitarios;
-using Datos;
 using DatosPersistencia;
 
 namespace Logica

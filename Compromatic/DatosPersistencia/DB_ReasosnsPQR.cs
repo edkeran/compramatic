@@ -127,5 +127,29 @@ namespace DatosPersistencia
                 db.SaveChanges();
             }
         }
+
+        public DataTable MostrarPQRcliente()
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = (from motivoQ in db.quejas
+                            join quejas in db.inf_quejas on motivoQ.Id_queja equals quejas.Id_Moti_Quej
+                            join Empresa in db.empre on quejas.IdEmpre equals Empresa.Id
+                            join Usuario in db.user on quejas.Id_user equals Usuario.IdUsr
+                            where quejas.ReceptorQ==3
+                            select new vistaMostrarPQRCliente
+                            {
+                                desQueja=quejas.DesQuej,
+                                fechaQueja=quejas.FechaQuj,
+                                nomQueja=motivoQ.Nom_queja,
+                                foto=Usuario.RutaArch+Usuario.NomArch,
+                                Emisor=Empresa.Nombre
+                            });
+                List<vistaMostrarPQRCliente> pqrClien = data.ToList<vistaMostrarPQRCliente>();
+                ListToDataTable conv = new ListToDataTable();
+                DataTable res = conv.ToDataTable<vistaMostrarPQRCliente>(pqrClien);
+                return res;
+            }
+        }
     }
 }
