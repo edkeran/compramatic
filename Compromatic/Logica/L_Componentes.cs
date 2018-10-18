@@ -80,8 +80,10 @@ namespace Logica
 
         public DataTable Reportes()
         {
-            DDAOadministrador db = new DDAOadministrador();
-            return db.Reportes();
+            DB_Admin adm = new DB_Admin();
+            return adm.Reportes();
+            //DDAOadministrador db = new DDAOadministrador();
+            //return db.Reportes();
         }
 
         public DataTable SolicitudesAceptadas()

@@ -745,6 +745,7 @@ namespace Datos
             }
             return Consulta;
         }
+        //MIGRADO
         public DataTable Reportes()
         {
             DataTable Usuario = new DataTable();

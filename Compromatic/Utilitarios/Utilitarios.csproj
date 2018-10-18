@@ -94,6 +94,7 @@
     <Compile Include="vistaReporteAdmin.cs" />
     <Compile Include="vistaTop10.cs" />
     <Compile Include="vista_Historial_vent.cs" />
+    <Compile Include="vista_reportesAdministrador.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataSet.xsc">
