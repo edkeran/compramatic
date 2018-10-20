@@ -294,7 +294,7 @@ namespace Datos
                 conexion.Close();
             }
         }
-
+        //MIGRADO
         //BLOQUEAR A LA EMPRESA SI RECIBE UNA PESIMA PUNTUACION
         public void CambiarEstadoEmp(int emp, int est, String modif)
         {

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using Datos;
 using Utilitarios;
 using DatosPersistencia;
 
@@ -105,8 +103,9 @@ namespace Logica
 
                     if (emp.Calificacion <= 3)
                     {
-                        DDAOUsuario bl = new DDAOUsuario();
-                        bl.CambiarEstadoEmp(emp.Id, 0, user.Rows[0]["nomUsuario"].ToString());
+                        DBUsr dbUsr = new DBUsr();
+                        //DDAOUsuario bl = new DDAOUsuario();
+                        dbUsr.CambiarEstadoEmp(emp.Id, 0, user.Rows[0]["nomUsuario"].ToString());
                     }
                 }
             }

@@ -351,5 +351,17 @@ namespace DatosPersistencia
                 db.SaveChanges();
             }
         }
+
+        //METODO PARA BLOQUEAR A LA EMPRESA SI RECIBE UNA PESIMA PUNTUACION
+        public void CambiarEstadoEmp(int emp, int est, String modif)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var empresa = db.empre.Find(emp);
+                empresa.EstadoEmpre = est;
+                empresa.ModifBy = modif;
+                db.SaveChanges();
+            }
+        }
     }
 }
