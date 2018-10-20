@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -282,6 +283,19 @@ namespace DatosPersistencia
                 db.SaveChanges();
             }
         }
+
+        public void ConfirmarRecibido(int idVenta, int estado, string modif)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var update = db.ventas.Find(idVenta);
+                update.EstadoVenta = estado;
+                update.FechaEntr = DateTime.Now;
+                update.modified_by = modif;
+                db.SaveChanges();
+            }
+        }
+
 
         //public void ProductosDetalle(int idPdto)
         //{

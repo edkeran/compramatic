@@ -9,7 +9,7 @@ namespace Datos
 {
     public class DDAOadministrador
     {
-
+        //MIGRADO
         public DataTable MostrarEmpresaId(int id)
         {
             DataTable Empresa = new DataTable();

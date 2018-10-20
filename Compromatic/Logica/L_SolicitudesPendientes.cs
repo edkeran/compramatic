@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using DatosPersistencia;
+//using Datos;
 
 namespace Logica
 {

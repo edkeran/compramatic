@@ -2,6 +2,7 @@
 using System.Data;
 using Utilitarios;
 using Datos;
+using DatosPersistencia;
 
 namespace Logica
 {
@@ -9,7 +10,8 @@ namespace Logica
     {
         public U_aux_PeticionesCompra page_load(bool postback,Object Session)
         {
-            DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
+            DBEmpresa daoEmpresa = new DBEmpresa();
+            //DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
             U_aux_PeticionesCompra response = new U_aux_PeticionesCompra();
             if (!postback)
             {
@@ -32,25 +34,17 @@ namespace Logica
                     return response;
                     //Response.Redirect("PerfilEmpresa.aspx");
                 }
-                DataTable Productos = DAO_Empresa.PeticionesCompra(int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()));
+                DataTable Productos = daoEmpresa.PeticionesCompra(int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()));
                 response.Producto = Productos;
-                //RP_Peticiones.DataSource = Productos;
-                //RP_Peticiones.DataBind();
                 DataTable productos2 = new DataTable();
-                productos2 = DAO_Empresa.PeticionesEnProceso(int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()));
+                productos2 = daoEmpresa.PeticionesEnProceso(int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()));
                 response.Producto2 = productos2;
-                //RP_EnProceso.DataSource = Productos;
-                //RP_EnProceso.DataBind();
                 DataTable productos3 = new DataTable();
-                productos3 = DAO_Empresa.PeticionesFinalizadas(int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()));
+                productos3 = daoEmpresa.PeticionesFinalizadas(int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()));
                 response.Producto3 = productos3;
-                //RP_VentasRealizadas.DataSource = Productos;
-                //RP_VentasRealizadas.DataBind();
                 DataTable productos4 = new DataTable();
-                productos4 = DAO_Empresa.PeticionesHechas(int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()));
+                productos4 = daoEmpresa.PeticionesHechas(int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()));
                 response.Producto4 = productos4;
-                //RP_Finalizadas.DataSource = Productos;
-                //RP_Finalizadas.DataBind();
                 response.Redireccion = "0";
                 return response;
             }
@@ -71,11 +65,12 @@ namespace Logica
         public String RP_Peticiones_ItemCommand(Object Session,String CommandArgument,String CommandName)
         {
             int resultado;
+            DBEmpresa daoEmpresa = new DBEmpresa();
             DataTable Empresa = (DataTable)Session;
-            DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
+            //DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
             if (CommandName.Equals("Aceptar"))
             {
-                resultado = DAO_Empresa.AprobarVenta(int.Parse(CommandArgument), Empresa.Rows[0]["nomEmpresa"].ToString());
+                resultado = daoEmpresa.AprobarVenta(int.Parse(CommandArgument), Empresa.Rows[0]["nomEmpresa"].ToString());
                 if (resultado == 1)
                 {
                     return "Inventario Insuficiente,0";
@@ -90,7 +85,7 @@ namespace Logica
             }
             if (CommandName.Equals("Declinar"))
             {
-                DAO_Empresa.RechazarVenta(int.Parse(CommandArgument), Empresa.Rows[0]["nomEmpresa"].ToString());
+                daoEmpresa.RechazarVenta(int.Parse(CommandArgument), Empresa.Rows[0]["nomEmpresa"].ToString());
                 return "4,PeticionesCompra.aspx";
                 //Response.Redirect(Request.Url.AbsoluteUri);
             }
@@ -102,8 +97,9 @@ namespace Logica
             String respo;
             if (CommandName.Equals("Cancelar"))
             {
-                DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
-                DAO_Empresa.RechazarVenta(int.Parse(CommandArgument.ToString()), Empresa.Rows[0]["nomEmpresa"].ToString());
+                DBEmpresa daoEmpresa = new DBEmpresa();
+                //DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
+                daoEmpresa.RechazarVenta(int.Parse(CommandArgument.ToString()), Empresa.Rows[0]["nomEmpresa"].ToString());
                 //Response.Redirect(Request.Url.AbsoluteUri);
                 respo = "PeticionesCompra.aspx";
                 return respo;
@@ -114,8 +110,9 @@ namespace Logica
 
         public DataTable RP_VentasReali(String CommandArgument)
         {
-            DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
-            return DAO_Empresa.PeticionCompra(int.Parse(CommandArgument.ToString()));
+            DBEmpresa daoEmpresa = new DBEmpresa();
+            //DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
+            return daoEmpresa.PeticionCompra(int.Parse(CommandArgument.ToString()));
         }
 
         public void btn_Calificar(DataTable Empresa,String TB_Calificacion,String TB_Comentario,String LB_Usuario,String LB_Venta)

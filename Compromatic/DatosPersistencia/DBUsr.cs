@@ -264,7 +264,7 @@ namespace DatosPersistencia
                 res.Columns.Add("ccUsuario",typeof(string)); res.Columns.Add("dirUsuario",typeof(string)); res.Columns.Add("rutaArchivo",typeof(string));
                 res.Columns.Add("nomArchivo",typeof(string));res.Columns.Add("estadoUsuario",typeof(int));res.Columns.Add("fechaCreacion_usuario",typeof(DateTime));
                 res.Columns.Add("idTipo",typeof(int));res.Columns.Add("calificacionUsuario",typeof(Double));res.Columns.Add("modified_by", typeof(string));
-                res.Columns.Add("Sesiones_Abiertas", typeof(int));res.Columns.Add("intentos",typeof(int));
+                res.Columns.Add("Sesiones_Abiertas", typeof(int));res.Columns.Add("intentos",typeof(int));res.Columns.Add("fin_bloqueo", typeof(DateTime));
                 List<UEUsuario> inf = data.ToList<UEUsuario>();
                 foreach (UEUsuario aux in inf)
                 {
@@ -275,6 +275,7 @@ namespace DatosPersistencia
                     fila["nomArchivo"] = aux.NomArch;fila["estadoUsuario"] = aux.EstUsr;fila["fechaCreacion_usuario"] = aux.Crea_Usr;
                     fila["nomArchivo"] = aux.NomArch;fila["idTipo"] = aux.IdTipo;fila["calificacionUsuario"] = aux.Calificacion2;
                     fila["modified_by"] = aux.ModifBy;fila["Sesiones_Abiertas"] = aux.Sessiones;fila["intentos"] = aux.Intentos;
+                    fila["fin_bloqueo"] = aux.Fin_bloqu;
                     res.Rows.Add(fila);
                 }
                 return res;

@@ -119,7 +119,7 @@ public partial class Presentacion_PeticionesCompra : System.Web.UI.Page
         Page.ClientScript.RegisterStartupScript(this.GetType(), "Sripts", texto);
         L_PeticionesCompra logi = new L_PeticionesCompra();
         DataTable Venta = logi.RP_VentasReali(e.CommandArgument.ToString());
-        LB_Usuario.Text = Venta.Rows[0]["idUsuario"].ToString();
+        LB_Usuario.Text = Venta.Rows[0]["IdUsr"].ToString();
         LB_Venta.Text = e.CommandArgument.ToString();
     }
 

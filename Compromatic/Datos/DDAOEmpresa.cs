@@ -180,6 +180,7 @@ namespace Datos
                 conection.Close();
             }
         }
+        //MIGRADO
         //METODO PARA GUARDAR LOS ARCHIVOS DE LA EMPRESA
         public void SubirArchivo(UEUEmpresa EU_Empresa, String modif)
         {
@@ -193,7 +194,6 @@ namespace Datos
                 command.Parameters.Add("_rutaarchivo", NpgsqlTypes.NpgsqlDbType.Varchar).Value = EU_Empresa.RutaArchivo;
                 command.Parameters.Add("_nombrearchivo", NpgsqlTypes.NpgsqlDbType.Varchar).Value = EU_Empresa.NomArchivo;
                 command.Parameters.Add("_nitempresa", NpgsqlTypes.NpgsqlDbType.Varchar).Value = EU_Empresa.Nit;
-
                 command.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -205,6 +205,7 @@ namespace Datos
                 conection.Close();
             }
         }
+        //MIGRADO
         //Metodo para actualiza la Foto De la BD
         public void CambiarFoto(UEUEmpresa EU_Empresa, String modif)
         {
@@ -228,7 +229,7 @@ namespace Datos
                 conection.Close();
             }
         }
-
+        //MIGRADO
         //METODO PARA OBTENER LAS PETICIONES DE COMPRA
         public DataTable PeticionesCompra(int idEmpresa)
         {
@@ -256,6 +257,7 @@ namespace Datos
 
             return Peticiones;
         }
+        //MIGRADO
         //METODO DE LAS PETICIONES EN PROCESO 
         public DataTable PeticionesEnProceso(int idEmpresa)
         {
@@ -283,7 +285,7 @@ namespace Datos
 
             return Peticiones;
         }
-
+        //MIGRADO
         //Metodo Para Traer Las Peticiones Finalizadas
         public DataTable PeticionesFinalizadas(int idEmpresa)
         {
@@ -311,6 +313,7 @@ namespace Datos
 
             return Peticiones;
         }
+        //MIGRAFO
         //Metodo para mostrar todas las peticiones En Done
         public DataTable PeticionesHechas(int idEmpresa)
         {
@@ -338,6 +341,7 @@ namespace Datos
 
             return Peticiones;
         }
+        //MIGRADO
         //METODO PARA APROBAR LA VENTA
         public int AprobarVenta(int idVenta, String usuario)
         {
@@ -365,6 +369,7 @@ namespace Datos
 
             return int.Parse(aux.Rows[0][0].ToString());
         }
+        //MIGRADO
         //METODO PARA RECHAZAR UNA PETICION DE VENTA
         public void RechazarVenta(int idVenta, String modif)
         {
@@ -416,7 +421,7 @@ namespace Datos
 
             return Calificaciones;
         }
-
+        //MIGRADO
         public DataTable PeticionCompra(int idVenta)
         {
             DataTable Peticiones = new DataTable();
@@ -443,7 +448,7 @@ namespace Datos
 
             return Peticiones;
         }
-
+        //PENDIENTE POR SER MUY COMPLEJA
         public void CalificarCliente(double rango, String comentario, int idEmpresa, int idCliente, int idVenta, String modif)
         {
             NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);

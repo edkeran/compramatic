@@ -1,5 +1,4 @@
 ﻿using System;
-using Datos;
 using Utilitarios;
 using DatosPersistencia;
 
@@ -9,8 +8,9 @@ namespace Logica
     {
         public String validaciones_Register(String Email,String pass1,String pass2, bool check,UEUsuario user)
         {
-            DDAOUsuario db = new DDAOUsuario();
-            if (db.ComprobarCorreo(Email)== 1){
+            DBUsr daoUsuario = new DBUsr();
+            //DDAOUsuario db = new DDAOUsuario();
+            if (daoUsuario.comprobar_correo(Email)== 1){
                 return "El correo ya existe.";
             }else if(!(pass1 == pass2))
             {

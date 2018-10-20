@@ -85,8 +85,9 @@ namespace Logica
                     //daousr.RegistrarRango(rango, user.Rows[0]["nomUsuario"].ToString());
                     daoUsuario.RegistrarRango(rango, user.Rows[0]["nomUsuario"].ToString());
 
-                    DDAOadministrador calEmp = new DDAOadministrador();
-                    empresa = calEmp.MostrarEmpresaId(rango.IdEmp);
+                    DB_Admin daoAdministrador = new DB_Admin();
+                    //DDAOadministrador calEmp = new DDAOadministrador();
+                    empresa = daoAdministrador.MostrarEmpresaId(rango.IdEmp);
                     double calAnt = double.Parse(empresa.Rows[0]["calificacionEmpresa"].ToString());
                     UEUEmpresa emp = new UEUEmpresa();
                     emp.Calificacion = (calAnt + rango.Rango) / 2;
@@ -94,10 +95,11 @@ namespace Logica
                     daoUsuario.CalificarEmp(emp, user.Rows[0]["nomUsuario"].ToString());
                     //daousr.CalificarEmp(emp, user.Rows[0]["nomUsuario"].ToString());
 
-                    DDAOProducto confirmar = new DDAOProducto();
+                    DB_Producto daoProducto = new DB_Producto();
+                    //DDAOProducto confirmar = new DDAOProducto();
                     int venta = int.Parse(comandArg);
                     int estado = 4;
-                    confirmar.ConfirmarRecibido(venta, estado, user.Rows[0]["nomUsuario"].ToString());
+                    daoProducto.ConfirmarRecibido(venta, estado, user.Rows[0]["nomUsuario"].ToString());
                     response.Mensaje = "Tu calificación ha sido enviada.";
                     response.Redireccion = "MisComprasUsr.aspx";
 

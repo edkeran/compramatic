@@ -39,7 +39,7 @@ namespace Datos
             }
             return Productos;
         }
-
+        //MIGRADO
         //METODO PARA CONFIRMAR QUE EL PRODUCTO HA SIDO ENVIADO SATISFACTORIAMENTE
         public void ConfirmarRecibido(int idVenta, int estado, String modif)
         {
@@ -226,6 +226,7 @@ namespace Datos
                 }
             }
         }
+        //MIGRADO
         //metodo para eliminar un producto
         public void EliminarProducto(UEUProducto EU_Producto, String modif)
         {

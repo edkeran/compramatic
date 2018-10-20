@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using Utilitarios;
-using Datos;
+using DatosPersistencia;
 
 namespace Logica
 {
@@ -32,17 +31,21 @@ namespace Logica
 
         public DataTable images(int idProducto)
         {
-            DDAOProducto db = new DDAOProducto();
-            DataTable fotos = db.MostrarFotoProducto(idProducto);
+            DB_Producto daoProducto = new DB_Producto();
+            //DDAOProducto db = new DDAOProducto();
+            DataTable fotos = daoProducto.get_picture_product(idProducto);
             return fotos;
         }
 
         public void Delete_image(int commadArg,String modif)
         {
-            DDAOProducto DAO_Producto = new DDAOProducto();
+            DB_Producto daoProducto = new DB_Producto();
+            //DDAOProducto DAO_Producto = new DDAOProducto();
             UEUProducto EU_Producto = new UEUProducto();
             EU_Producto.Id = commadArg;
-            DAO_Producto.EliminarProducto(EU_Producto, modif);
+            EU_Producto.ModifBy = modif;
+            daoProducto.delete_producto(EU_Producto);
+            //DAO_Producto.EliminarProducto(EU_Producto, modif);
         }
     }
 }

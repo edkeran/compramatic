@@ -226,5 +226,234 @@ namespace DatosPersistencia
                 
             }
         }
+
+        //METODO PARA OBTENER LAS PETIVCIONES DE COMPRA
+        public DataTable PeticionesCompra(int idEmpresa)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = (from prod in db.productos
+                            join vent in db.ventas on prod.Id equals vent.IdProducto
+                            join usuario in db.user on vent.IdUsr equals usuario.IdUsr
+                            join empresa in db.empre on prod.IdEmpresa equals empresa.Id
+                            where vent.EstadoVenta == 1 && empresa.Id == idEmpresa
+                            select new vistaMostrarVenta {
+                                idVenta = vent.IdVenta,
+                                fechaVenta=vent.FechaVent,
+                                estadoVenta=vent.EstadoVenta,
+                                valorVenta=vent.Valor,
+                                nomUsuario=usuario.NomUsr,
+                                apeUsuario=usuario.ApelUsr,
+                                telUsuario=usuario.TelUsr,
+                                correoUsuario=usuario.CorreoUsr,
+                                dirUsuario=usuario.DirUsr,
+                                idEmpresa=empresa.Id,
+                                calificacionUsuario=usuario.Calificacion2,
+                                canProducto=prod.Cantidad,
+                                cantVenta=vent.Cantidad,
+                                nomProducto=prod.Nombre
+                            });
+                ListToDataTable conv = new ListToDataTable();
+                DataTable retorn = conv.ToDataTable<vistaMostrarVenta>(data.ToList<vistaMostrarVenta>());
+                return retorn;
+            }
+        }
+
+        public DataTable PeticionesEnProceso(int idEmpresa)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = (from prod in db.productos
+                           join vent in db.ventas on prod.Id equals vent.IdProducto
+                           join usuario in db.user on vent.IdUsr equals usuario.IdUsr
+                           join empresa in db.empre on prod.IdEmpresa equals empresa.Id
+                           where vent.EstadoVenta == 2 && empresa.Id == idEmpresa
+                           select new vistaMostrarVenta
+                           {
+                               idVenta = vent.IdVenta,
+                               fechaVenta = vent.FechaVent,
+                               estadoVenta = vent.EstadoVenta,
+                               valorVenta = vent.Valor,
+                               nomUsuario = usuario.NomUsr,
+                               apeUsuario = usuario.ApelUsr,
+                               telUsuario = usuario.TelUsr,
+                               correoUsuario = usuario.CorreoUsr,
+                               dirUsuario = usuario.DirUsr,
+                               idEmpresa = empresa.Id,
+                               calificacionUsuario = usuario.Calificacion2,
+                               canProducto = prod.Cantidad,
+                               cantVenta = vent.Cantidad,
+                               nomProducto = prod.Nombre
+                           });
+                ListToDataTable conv = new ListToDataTable();
+                DataTable retorn = conv.ToDataTable<vistaMostrarVenta>(data.ToList<vistaMostrarVenta>());
+                return retorn;
+            }
+        }
+
+        public DataTable PeticionesFinalizadas(int idEmpresa)
+        {
+            using (var db = new Mapeo("public"))
+            {
+                var data = (from prod in db.productos
+                            join vent in db.ventas on prod.Id equals vent.IdProducto
+                            join usuario in db.user on vent.IdUsr equals usuario.IdUsr
+                            join empresa in db.empre on prod.IdEmpresa equals empresa.Id
+                            where vent.EstadoVenta == 4 && empresa.Id == idEmpresa
+                            select new vistaMostrarVenta
+                            {
+                                idVenta = vent.IdVenta,
+                                fechaVenta = vent.FechaVent,
+                                estadoVenta = vent.EstadoVenta,
+                                valorVenta = vent.Valor,
+                                nomUsuario = usuario.NomUsr,
+                                apeUsuario = usuario.ApelUsr,
+                                telUsuario = usuario.TelUsr,
+                                correoUsuario = usuario.CorreoUsr,
+                                dirUsuario = usuario.DirUsr,
+                                idEmpresa = empresa.Id,
+                                calificacionUsuario = usuario.Calificacion2,
+                                canProducto = prod.Cantidad,
+                                cantVenta = vent.Cantidad,
+                                nomProducto = prod.Nombre
+                            });
+                ListToDataTable conv = new ListToDataTable();
+                DataTable retorn = conv.ToDataTable<vistaMostrarVenta>(data.ToList<vistaMostrarVenta>());
+                return retorn;
+            }
+        }
+
+        public DataTable PeticionesHechas(int idEmpresa)
+        {
+            using (var db = new Mapeo("public"))
+            {
+                var data = (from prod in db.productos
+                            join vent in db.ventas on prod.Id equals vent.IdProducto
+                            join usuario in db.user on vent.IdUsr equals usuario.IdUsr
+                            join empresa in db.empre on prod.IdEmpresa equals empresa.Id
+                            where vent.EstadoVenta == 5 && empresa.Id == idEmpresa
+                            select new vistaMostrarVenta
+                            {
+                                idVenta = vent.IdVenta,
+                                fechaVenta = vent.FechaVent,
+                                estadoVenta = vent.EstadoVenta,
+                                valorVenta = vent.Valor,
+                                nomUsuario = usuario.NomUsr,
+                                apeUsuario = usuario.ApelUsr,
+                                telUsuario = usuario.TelUsr,
+                                correoUsuario = usuario.CorreoUsr,
+                                dirUsuario = usuario.DirUsr,
+                                idEmpresa = empresa.Id,
+                                calificacionUsuario = usuario.Calificacion2,
+                                canProducto = prod.Cantidad,
+                                cantVenta = vent.Cantidad,
+                                nomProducto = prod.Nombre
+                            });
+                ListToDataTable conv = new ListToDataTable();
+                DataTable retorn = conv.ToDataTable<vistaMostrarVenta>(data.ToList<vistaMostrarVenta>());
+                return retorn;
+            }
+        }
+
+        public int AprobarVenta(int idVenta, String usuario)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var idPro = (from product in db.productos
+                            join vent in db.ventas on product.Id equals vent.IdProducto
+                            where vent.IdVenta == idVenta
+                            select product.Id).FirstOrDefault();
+
+                var consultB = (from product in db.productos
+                               join vent in db.ventas on product.Id equals vent.IdProducto
+                               where vent.IdVenta == idVenta
+                               select product.Cantidad).FirstOrDefault();
+
+                var consultC = (from vent in db.ventas
+                               where vent.IdVenta == idVenta
+                               select vent.Cantidad).FirstOrDefault();
+
+                if (consultB < consultC)
+                {
+                    return 1;
+                }
+                else
+                {
+                    //HACER UPDATES
+                    var prod = db.productos.Find(idPro);
+                    prod.Cantidad = prod.Cantidad - ((from vent in db.ventas where vent.IdVenta == idVenta select vent.Cantidad).FirstOrDefault());
+                    prod.ModifBy = usuario;
+                    db.SaveChanges();
+                    var venta = db.ventas.Find(idVenta);
+                    venta.EstadoVenta = 2;
+                    venta.modified_by = usuario;
+                    db.SaveChanges();
+                    return 2;
+                }
+            }
+        }
+
+        public void RechazarVenta(int idVenta, String modif) {
+            using (var db= new Mapeo("public"))
+            {
+                var vent = db.ventas.Find(idVenta);
+                vent.EstadoVenta = 3;
+                vent.modified_by = modif;
+                db.SaveChanges();
+            }
+        }
+
+        public DataTable PeticionCompra(int idVenta)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = (from venta in db.ventas
+                            where venta.IdVenta == idVenta
+                            select venta);
+                ListToDataTable conv = new ListToDataTable();
+                DataTable res = conv.ToDataTable<UEUVenta>(data.ToList<UEUVenta>());
+                return res;
+            }
+        }
+        //pendiente 
+        public void CalificarCliente(double rango, String comentario, int idEmpresa, int idCliente, int idVenta, String modif) {
+            using (var db= new Mapeo("public"))
+            {
+
+            }
+
+        }
+
+        public void SubirArchivo(UEUEmpresa EU_Empresa, String modif)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var _idSolicitud_registro = (from empre in db.empre
+                                            join solcitReg in db.sol_reg on empre.Id equals solcitReg.Id_empresa
+                                            where empre.Nit == EU_Empresa.Nit
+                                            select solcitReg.Id_solici).FirstOrDefault();
+
+                UEUArchivoSolic file= new UEUArchivoSolic();
+                file.rutaArchivo = EU_Empresa.RutaArchivo;
+                file.nombreArchivo = EU_Empresa.NomArchivo;
+                file.idSolicitud_registro = _idSolicitud_registro;
+                file.modified_by = modif;
+                db.archiv_Emp.Add(file);
+                db.SaveChanges();
+
+            }
+        }
+        //UPDATE PICTURE EMPRESA
+        public void CambiarFoto(UEUEmpresa EU_Empresa, String modif) {
+            using (var db= new Mapeo("public"))
+            {
+                var data = (from empresa in db.empre
+                           where empresa.Nit == EU_Empresa.Nit
+                           select empresa).FirstOrDefault();
+                data.NomArchivo = EU_Empresa.NomArchivo;
+                data.ModifBy = modif;
+                db.SaveChanges();
+            }
+        }
     }
 }

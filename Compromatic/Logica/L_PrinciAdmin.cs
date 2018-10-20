@@ -25,7 +25,7 @@ namespace Logica
                     DB_Admin daoAdm = new DB_Admin();
                     int totalcliente = daoAdm.tot_clients();
                     int totalEmpresa = daoAdm.total_empr();
-                    int totalVentas= daoAdm.tot_ventas();
+                    double totalVentas= daoAdm.tot_ventas();
                     int not = daoAdm.llenar_notificacion();
                     int notAcep = daoAdm.llenar_notificacionAccept();
                     int notRecha = daoAdm.llenar_notificacionRechaz();

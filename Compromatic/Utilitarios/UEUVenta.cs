@@ -8,10 +8,10 @@ namespace Utilitarios
     [Table("Venta", Schema = "public")]
     public class UEUVenta
     {
-        private int valor;
+        private Double valor;
 
         [Column("valorVenta")]
-        public int Valor
+        public Double Valor
         {
             get { return valor; }
             set { valor = value; }

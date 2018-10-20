@@ -17,12 +17,12 @@ namespace DatosPersistencia
             }
         }
 
-        public int tot_ventas()
+        public double tot_ventas()
         {
             using (var db = new Mapeo("public"))
             {
                 //query
-                int ventas = (from vent in db.ventas
+                double ventas = (from vent in db.ventas
                               where vent.EstadoVenta == 4
                               select vent.Valor).Sum();
                 return ventas;
@@ -167,6 +167,34 @@ namespace DatosPersistencia
                 solic.Estado_solici = estadoSolicitud;
                 solic.ModifBy = usuario;
                 db.SaveChanges();
+            }
+        }
+        //SHOW COMPANY
+        public DataTable MostrarEmpresaId(int id)
+        {
+            using(var db= new Mapeo("public"))
+            {
+                var data = (from v in db.ventas
+                           from e in db.empre
+                           from p in db.productos
+                           where v.IdProducto == p.Id && p.IdEmpresa == e.Id
+                           select new vistaHistorialCompra
+                           {
+                               idVenta=v.IdVenta,
+                               fechaVenta=v.FechaVent,
+                               idUsuario=v.IdUsr,
+                               fechaEntrega=v.FechaEntr,
+                               cantVenta=v.Cantidad,
+                               estadoVenta=v.EstadoVenta,
+                               valorVenta=v.Valor,
+                               nomProducto=p.Nombre,
+                               nomEmpresa=e.Nombre,
+                               idEmpresa=e.Id,
+                               calificacionEmpresa=e.Calificacion
+                           }).Distinct();
+                ListToDataTable conv = new ListToDataTable();
+                DataTable res= conv.ToDataTable<vistaHistorialCompra>(data.ToList<vistaHistorialCompra>());
+                return res;
             }
         }
     }

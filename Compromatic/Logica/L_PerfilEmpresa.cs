@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using Utilitarios;
-using Datos;
 using System.IO;
 using DatosPersistencia;
 
@@ -117,11 +116,12 @@ namespace Logica
 
         private DataTable login(String correo, String contraseña)
         {
-            DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
+            DBEmpresa daoEmpresa = new DBEmpresa();
+            //DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
             UEUEmpresa EU_Empresa = new UEUEmpresa();
             EU_Empresa.Correo = correo;
             EU_Empresa.Contraseña = contraseña;
-            DataTable Datos = DAO_Empresa.LoginEmpresa(EU_Empresa);
+            DataTable Datos = daoEmpresa.LoginEmpresa(EU_Empresa);
             return Datos;
         }
 
@@ -160,12 +160,13 @@ namespace Logica
 
         private void subir_file(String nit, String nombreArchivo, String rutaArchivo, String modif)
         {
-            DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
+            DBEmpresa daoEmpresa = new DBEmpresa();
+            //DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
             UEUEmpresa EU_Empresa = new UEUEmpresa();
             EU_Empresa.Nit = nit;
             EU_Empresa.RutaArchivo = rutaArchivo;
             EU_Empresa.NomArchivo = nombreArchivo;
-            DAO_Empresa.SubirArchivo(EU_Empresa, modif);
+            daoEmpresa.SubirArchivo(EU_Empresa, modif);
         }
 
         public U_aux_PerfilEmp BTN_CambiarFoto_Click(String extension,String extensionAnterior,String saveLocationAnterior,String nit,String nombreArchivo,DataTable datos,String saveLocation, Stream archivo,String redir)
@@ -219,11 +220,12 @@ namespace Logica
         //UPDATE PICTURE
         private void CambiarFoto(String nit, String nomArchivo, String modif)
         {
-            DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
+            DBEmpresa daoEmpresa = new DBEmpresa();
+            //DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
             UEUEmpresa EU_Empresa = new UEUEmpresa();
             EU_Empresa.Nit = nit;
             EU_Empresa.NomArchivo = nomArchivo;
-            DAO_Empresa.CambiarFoto(EU_Empresa, modif);
+            daoEmpresa.CambiarFoto(EU_Empresa, modif);
         }
 
         public String traer_old_pass_empresa(int id)
