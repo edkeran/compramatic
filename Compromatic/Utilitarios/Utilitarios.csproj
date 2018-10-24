@@ -91,6 +91,7 @@
     <Compile Include="vistaMostrarMembre.cs" />
     <Compile Include="vistaMostrarPQRCliente.cs" />
     <Compile Include="vistaMostrarVenta.cs" />
+    <Compile Include="vistaMostTotByCat.cs" />
     <Compile Include="vistaPQRempresa.cs" />
     <Compile Include="vistaProductoSingle.cs" />
     <Compile Include="vistaReporteAdmin.cs" />

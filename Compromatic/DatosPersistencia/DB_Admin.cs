@@ -197,5 +197,44 @@ namespace DatosPersistencia
                 return res;
             }
         }
+        //FUNCION HP
+        public DataTable MostrarVentasPorCategoria()
+        {
+            using(var db= new Mapeo("public"))
+            {
+                var data = (from catego in db.categ
+                            join produ in db.productos on catego.Id_cate equals produ.Categoria
+                            join venta in db.ventas on produ.Id equals venta.IdProducto
+                            join empres in db.empre on produ.IdEmpresa equals empres.Id
+                            where venta.EstadoVenta == 4
+                            select new
+                            {
+                                venta.IdVenta,
+                                catego.nomCategoria,
+                                venta.Valor,
+                                inf = (from prod in db.productos
+                                       where catego.Id_cate == prod.Categoria
+                                       select prod.Categoria).GroupBy(x=>x).FirstOrDefault()
+                           }).GroupBy(x=>x.nomCategoria);
+                List<vistaMostTotByCat> retorno = new List<vistaMostTotByCat>();
+
+                foreach(var group in data)
+                {
+                    vistaMostTotByCat aux = new vistaMostTotByCat();
+                    aux.nomCategoria= group.Key;
+                    aux.ventas= group.Count(z => z.IdVenta != 0);
+                    aux.valor = group.Sum(y => y.Valor).ToString("C");
+                    foreach(var empre in group)
+                    {
+                        aux.empresas= empre.inf.Count();
+                        retorno.Add(aux);
+                        break;
+                    }
+                }
+                ListToDataTable conv = new ListToDataTable();
+                DataTable ret = conv.ToDataTable<vistaMostTotByCat>(retorno);
+                return ret;
+            }
+        }
     }
 }

@@ -28,8 +28,10 @@ namespace Logica
 
         public DataTable MostrarVentasPorCategoria()
         {
-            DDAOadministrador db = new DDAOadministrador();
-            return db.MostrarVentasPorCategoria();
+            DB_Admin daoAdmin = new DB_Admin();
+            return daoAdmin.MostrarVentasPorCategoria();
+            //DDAOadministrador db = new DDAOadministrador();
+            //return db.MostrarVentasPorCategoria();
         }
 
         public List<UEUQueja> MostrarMotivos()
