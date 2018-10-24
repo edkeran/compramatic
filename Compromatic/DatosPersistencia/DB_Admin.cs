@@ -236,5 +236,33 @@ namespace DatosPersistencia
                 return ret;
             }
         }
+
+        public DataTable ProductosBajoI(int id_empresa) {
+            using (var db= new Mapeo("public"))
+            {
+                var inf = from producto in db.productos
+                          join catego in db.categ on producto.Categoria equals catego.Id_cate
+                          join empresa in db.empre on producto.IdEmpresa equals empresa.Id
+                          where empresa.Id==id_empresa && producto.Estado_producto==1 && producto.Cantidad<=producto.BajoInventario
+                          select new vistaProductoSingle
+                          {
+                              nomProducto=producto.Nombre,
+                              idProducto=producto.Id,
+                              canProducto=producto.Cantidad,
+                              precioProducto=producto.Precio,
+                              desProducto=producto.Descripcion,
+                              estadoProducto=producto.Estado_producto,
+                              bajoInventario=producto.BajoInventario,
+                              idEmpresa=producto.IdEmpresa,
+                              nomCategoria=catego.nomCategoria,
+                              nomEmpresa=empresa.Nombre,
+                              idCategoria=producto.Categoria,
+                              nomArchivo=empresa.Nombre
+                          };
+                ListToDataTable conv = new ListToDataTable();
+                DataTable respuesta = conv.ToDataTable<vistaProductoSingle>(inf.ToList<vistaProductoSingle>());
+                return respuesta;
+            }
+        }
     }
 }

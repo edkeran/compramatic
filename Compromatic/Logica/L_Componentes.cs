@@ -11,10 +11,8 @@ namespace Logica
     {
         public List<UEUMotiRepo> MostrarMotivosReporte()
         {
-            //DDAOPqr db = new DDAOPqr();
             DB_ReasosnsPQR daoReport = new DB_ReasosnsPQR();
             return daoReport.traer_reportes();
-            //return db.MostrarMotivosReporte();
         }
 
         public DataTable MostrarArchivos(String nit)
@@ -30,8 +28,6 @@ namespace Logica
         {
             DB_Admin daoAdmin = new DB_Admin();
             return daoAdmin.MostrarVentasPorCategoria();
-            //DDAOadministrador db = new DDAOadministrador();
-            //return db.MostrarVentasPorCategoria();
         }
 
         public List<UEUQueja> MostrarMotivos()
@@ -39,14 +35,11 @@ namespace Logica
             //DATATABLE PARA LOS MOTIVOS
             DB_ReasosnsPQR daoReason = new DB_ReasosnsPQR();
             return daoReason.traer_quejas();
-           // DDAOPqr db = new DDAOPqr();
-            //return db.MostrarMotivos();
         }
 
         public DataTable MostrarCategoria()
         {
             DB_Producto db = new DB_Producto();
-            //DDAOProducto db = new DDAOProducto();
             return db.MostrarCategoria();
         }
 
@@ -72,44 +65,37 @@ namespace Logica
 
         public DataTable ProductosBajoI(int idEmpresa)
         {
-            DDAOProducto db = new DDAOProducto();
-            return db.ProductosBajoI(idEmpresa);
+            DB_Admin daoAdmin = new DB_Admin();
+            //DDAOProducto db = new DDAOProducto();
+            return daoAdmin.ProductosBajoI(idEmpresa);
         }
 
         public DataTable MostrarTipos()
         {
-            DDAOMembresia db = new DDAOMembresia();
-            return db.MostrarTipos();
+            DBTipoMembresia daoTipoMem = new DBTipoMembresia();
+            return daoTipoMem.MostrarTipos();
         }
 
         public DataTable Reportes()
         {
             DB_Admin adm = new DB_Admin();
             return adm.Reportes();
-            //DDAOadministrador db = new DDAOadministrador();
-            //return db.Reportes();
         }
 
         public DataTable SolicitudesAceptadas()
         {
-            //DDAOadministrador db = new DDAOadministrador();
             DB_Solicit daoSolicit = new DB_Solicit();
             return daoSolicit.traer_accept();
-            //return db.SolicitudesAceptadas();
         }
 
         public DataTable SolicitudesPendientes()
         {
             DB_Solicit daoSolicit = new DB_Solicit();
             return daoSolicit.traer_pendiente();
-            //DDAOadministrador db = new DDAOadministrador();
-            //return db.SolicitudesPendientes();
         }
 
         public DataTable SolicitudesRechazadas()
         {
-            //DDAOadministrador db = new DDAOadministrador();
-            //return db.SolicitudesRechazadas();
             DB_Solicit daoSolicit = new DB_Solicit();
             return daoSolicit.traer_rechaza();
         }
@@ -131,15 +117,11 @@ namespace Logica
         public List<UEUsuario> MostrarClientes()
         {
             DBUsr db = new DBUsr();
-
-            //DDAOadministrador db = new DDAOadministrador();
             return db.obtenerUsuario();
         }
 
         public DataTable MostrarEmpresas(int idBusqueda)
         {
-            //CAMBIAR POR METODO GENERICO DE PERSISTENCIA
-
             DDAOadministrador db = new DDAOadministrador();
             return db.MostrarEmpresas(idBusqueda);
         }
@@ -160,8 +142,6 @@ namespace Logica
         {
             DB_Admin daoAdm = new DB_Admin();
             return daoAdm.pqr_empresa();
-            //DDAOPqr db = new DDAOPqr();
-           //return db.MostrarPQRAempresa();
         }
 
         public DataTable MostrarPQRCliente()

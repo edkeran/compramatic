@@ -48,6 +48,7 @@
     <Compile Include="ListToDataTable.cs" />
     <Compile Include="TQuejas.cs" />
     <Compile Include="UAuxPrinciAdmin.cs" />
+    <Compile Include="UAuxTipoMem.cs" />
     <Compile Include="UAuxVenta.cs" />
     <Compile Include="UEUArchivoSolic.cs" />
     <Compile Include="UEUFormula_Idiom.cs" />

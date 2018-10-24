@@ -12,6 +12,7 @@ namespace Datos
 {
     public class DDAOMembresia
     {
+        //MIGRTADO
         public DataTable MostrarTipos()
         {
             DataTable Tipos = new DataTable();
