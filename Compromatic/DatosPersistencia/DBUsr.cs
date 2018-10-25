@@ -275,7 +275,14 @@ namespace DatosPersistencia
                     fila["nomArchivo"] = aux.NomArch;fila["estadoUsuario"] = aux.EstUsr;fila["fechaCreacion_usuario"] = aux.Crea_Usr;
                     fila["nomArchivo"] = aux.NomArch;fila["idTipo"] = aux.IdTipo;fila["calificacionUsuario"] = aux.Calificacion2;
                     fila["modified_by"] = aux.ModifBy;fila["Sesiones_Abiertas"] = aux.Sessiones;fila["intentos"] = aux.Intentos;
-                    fila["fin_bloqueo"] = aux.Fin_bloqu;
+                    if (aux.Fin_bloqu == null)
+                    {
+                        fila["fin_bloqueo"] = "01/01/2000";
+                    }
+                    else
+                    {
+                        fila["fin_bloqueo"] = aux.Fin_bloqu;
+                    }
                     res.Rows.Add(fila);
                 }
                 return res;

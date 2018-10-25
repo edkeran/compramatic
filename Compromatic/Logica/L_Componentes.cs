@@ -122,18 +122,21 @@ namespace Logica
 
         public DataTable MostrarEmpresas(int idBusqueda)
         {
-            DDAOadministrador db = new DDAOadministrador();
-            return db.MostrarEmpresas(idBusqueda);
+            DB_Admin daoAdmin = new DB_Admin();
+            //DDAOadministrador db = new DDAOadministrador();
+            return daoAdmin.MostrarEmpresas(idBusqueda);
         }
 
         public DataTable MostrarVentasPorEmpresa()
         {
-            DDAOadministrador db = new DDAOadministrador();
-            return db.MostrarVentasPorEmpresa();
+            DB_Admin daoAdministrador = new DB_Admin();
+            //DDAOadministrador db = new DDAOadministrador();
+            return daoAdministrador.MostrarVentasPorEmpresa();
         }
 
         public DataTable MostrarPQRAdministrador()
         {
+            DB_ReasosnsPQR daoPQR = new DB_ReasosnsPQR();
             DDAOPqr db = new DDAOPqr();
             return db.MostrarPQRAdministrador();
         }

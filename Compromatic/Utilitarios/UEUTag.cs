@@ -7,7 +7,7 @@ using System.Linq;
 namespace Utilitarios
 {
     [Serializable]
-    [Table("Palabra_clave", Schema = "public")]
+    [Table("Palabra_clave", Schema = "dbo")]
     public class UEUTag
     {
         int idTag;

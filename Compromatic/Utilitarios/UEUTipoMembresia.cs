@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Utilitarios
 {
     [Serializable]
-    [Table("Tipo_membresia", Schema = "public")]
+    [Table("Tipo_membresia", Schema = "dbo")]
     public class UEUTipoMembresia
     {
         //PARAMETROS DE LA TABLA DE LOS TIPOS

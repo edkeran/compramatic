@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Utilitarios
 {
     [Serializable]
-    [Table("MotivoR", Schema = "public")]
+    [Table("MotivoR", Schema = "dbo")]
     public class UEUMotiRepo
     {
         private int idMoti;

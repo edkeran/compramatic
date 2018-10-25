@@ -51,6 +51,7 @@
     <Compile Include="UAuxTipoMem.cs" />
     <Compile Include="UAuxVenta.cs" />
     <Compile Include="UEUArchivoSolic.cs" />
+    <Compile Include="UEUBloqueo.cs" />
     <Compile Include="UEUFormula_Idiom.cs" />
     <Compile Include="UEUFotoProd.cs" />
     <Compile Include="UEUIdimControles.cs" />
@@ -92,6 +93,8 @@
     <Compile Include="vistaMostrarMembre.cs" />
     <Compile Include="vistaMostrarPQRCliente.cs" />
     <Compile Include="vistaMostrarVenta.cs" />
+    <Compile Include="vistaMostraVentByEmp.cs" />
+    <Compile Include="vistaMostrEmpres.cs" />
     <Compile Include="vistaMostTotByCat.cs" />
     <Compile Include="vistaPQRempresa.cs" />
     <Compile Include="vistaProductoSingle.cs" />

@@ -1,6 +1,6 @@
 ﻿using System;
 using Utilitarios;
-using Datos;
+using DatosPersistencia;
 using System.Data;
 
 namespace Logica
@@ -30,8 +30,9 @@ namespace Logica
 
         public DataTable TB_Buscar(String palabra)
         {
-            DDAOHome db = new DDAOHome();
-            return db.Buscador(palabra);
+            DB_Producto daoProd = new DB_Producto();
+            //DDAOHome db = new DDAOHome();
+            return daoProd.find_products(palabra);
         }
     }
 }

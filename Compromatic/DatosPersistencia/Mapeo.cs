@@ -13,10 +13,15 @@ namespace DatosPersistencia
         }
         private readonly string schema;
 
-        public Mapeo(string schema)
-            : base("name=Postgresql")
+        public Mapeo(string schema,string db= "Modelo_SQL_Server")
+            : base("name="+db)
         {
-            this.schema = schema;
+           
+           if (this.schema == "public")
+           {
+              schema = "dbo";
+           }
+            
         }
 
         //TABLAS DE LA BD A MAPEAR
@@ -40,6 +45,7 @@ namespace DatosPersistencia
         public DbSet<UEUFormula_Idiom> form_idioma { get; set; }
         public DbSet<UEUArchivoSolic> archiv_Emp { get; set; }
         public DbSet<UEUReporte> reporte_T { get; set; }
+        public DbSet<UEUBloqueo> bloqueos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder builder)
         {

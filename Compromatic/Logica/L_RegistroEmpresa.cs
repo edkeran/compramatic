@@ -82,8 +82,8 @@ namespace Logica
                 EU_Empresa.Correo = correo;
                 EU_Empresa.Contraseña = contraseña;
                 EU_Empresa.IdTipo = idTipo;
-                EU_Empresa.FechaFin = fechaFin;
-                EU_Empresa.FechaInicio = fechaIncio;
+                EU_Empresa.FechaFin = DateTime.Parse (fechaFin);
+                EU_Empresa.FechaInicio = DateTime.Parse (fechaIncio);
                 EU_Empresa.IdTipoMembresia = idTipoMemebresia;
                 EU_Empresa.ModifBy = modif;
                 DBEmpresa daoEmpresa = new DBEmpresa();

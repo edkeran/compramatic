@@ -34,7 +34,7 @@ namespace DatosPersistencia
 
                 //PASO 4 INSERTAR EN LA TABLA MEMBRESIA 
                 UEUMembresia mem = new UEUMembresia();
-                mem.Fecha_inicio = empresa.FechaInicio;
+                mem.Fecha_inicio =empresa.FechaInicio;
                 mem.Fecha_fin = empresa.FechaFin;
                 mem.ModifieBy = empresa.ModifBy;
                 mem.Id_tipo_mem = empresa.IdTipoMembresia;
@@ -419,6 +419,56 @@ namespace DatosPersistencia
         public void CalificarCliente(double rango, String comentario, int idEmpresa, int idCliente, int idVenta, String modif) {
             using (var db= new Mapeo("public"))
             {
+                //PÁSO 1 INSERTAR EN RANGO
+                UEURango rang = new UEURango();
+                rang.Rango = rango;
+                rang.Comentario = comentario;
+                rang.Calificador = 1;
+                rang.FechaRango = DateTime.Now;
+                rang.IdEmp = idEmpresa;
+                rang.IdUsr = idCliente;
+                rang.ModifiBy = modif;
+                db.rangos.Add(rang);
+                db.SaveChanges();
+                //PASO 2 OBTENER EL ID DEL RANGO
+                var idRango = (from rangods in db.rangos select rangods.IdRango).OrderByDescending(x=>x).Take(1);
+                int idrang = idRango.First();
+                //PASO 3 ACTUALIZAR LAS VENTAS
+                UEUVenta vent= db.ventas.Find(idVenta);
+                vent.CalEmp = idrang;
+                vent.EstadoVenta = 5;
+                vent.modified_by = modif;
+                db.SaveChanges();
+                //PASO 4 OBTENER CALIFICACION CUENTA
+                Double cal = (from ra in db.rangos
+                           where ra.IdUsr == idCliente && ra.Calificador == 1
+                           select ra.Rango).Sum();
+                int cuenta = (from ra in db.rangos
+                              where ra.IdUsr == idCliente && ra.Calificador == 1
+                              select ra.Rango).Count();
+                Double califi = (cal / cuenta);
+                califi = Math.Round(califi);
+                //PASO 5 ACTUALIZAR EL USUARIO
+                UEUsuario user = db.user.Find(idCliente);
+                user.Calificacion2 = califi;
+                user.ModifBy = modif;
+                db.SaveChanges();
+                //PASO 6 PREGNTAR SI SE DEBE BLOQUEAR EL USUARIOI
+                if (califi < 3)
+                {
+                    UEUsuario updateUsr = db.user.Find(idCliente);
+                    updateUsr.EstUsr = 2;
+                    updateUsr.ModifBy = modif;
+                    db.SaveChanges();
+                    UEUBloqueo bloq = new UEUBloqueo();
+                    bloq.fechaInicio = DateTime.Now;
+                    bloq.fechaFinal = DateTime.Now.AddDays(90);
+                    bloq.idUsuario = idCliente;
+                    bloq.modified_by = modif;
+                    db.bloqueos.Add(bloq);
+                    db.SaveChanges();
+                }
+
 
             }
 

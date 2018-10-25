@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Utilitarios
 {
     [Serializable]
-    [Table("Reporte", Schema = "public")]
+    [Table("Reporte", Schema = "dbo")]
     public class UEUReporte
     {
         private int idRep;

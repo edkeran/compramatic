@@ -84,8 +84,8 @@ namespace Logica
                 DataTable Empresa = (DataTable)Session;
                 //DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
                 UEUMembresia encData = new UEUMembresia();
-                encData.Fecha_inicio = TB_FechaInicio;
-                encData.Fecha_fin = TB_FechaFinal;
+                encData.Fecha_inicio = DateTime.Parse (TB_FechaInicio);
+                encData.Fecha_fin = DateTime.Parse(TB_FechaFinal);
                 encData.Id_tipo_mem = int.Parse(DDL_Memebresia);
                 encData.Id_empresa = int.Parse(idEmpresa.ToString());
                 encData.ModifieBy = Empresa.Rows[0]["nomEmpresa"].ToString();

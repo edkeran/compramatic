@@ -117,8 +117,9 @@ namespace Logica
 
         public void btn_Calificar(DataTable Empresa,String TB_Calificacion,String TB_Comentario,String LB_Usuario,String LB_Venta)
         {
-            DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
-            DAO_Empresa.CalificarCliente(Double.Parse(TB_Calificacion), TB_Comentario, int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()), int.Parse(LB_Usuario), int.Parse(LB_Venta), Empresa.Rows[0]["nomEmpresa"].ToString());
+            DBEmpresa daoEmpresa = new DBEmpresa();
+            //DDAOEmpresa DAO_Empresa = new DDAOEmpresa();
+            daoEmpresa.CalificarCliente(Double.Parse(TB_Calificacion), TB_Comentario, int.Parse(Empresa.Rows[0]["idEmpresa"].ToString()), int.Parse(LB_Usuario), int.Parse(LB_Venta), Empresa.Rows[0]["nomEmpresa"].ToString());
         }
     }
 }

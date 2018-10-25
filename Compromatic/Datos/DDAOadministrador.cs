@@ -149,7 +149,7 @@ namespace Datos
             }
             return Usuario;
         }
-
+        //MIGRADO
         public DataTable MostrarEmpresas(int idBusqueda)
         {
             DataTable Usuario = new DataTable();
@@ -456,7 +456,7 @@ namespace Datos
                 }
             }
         }
-
+        //MIGRADO   
         public DataTable MostrarVentasPorEmpresa()
         {
             DataTable Usuario = new DataTable();

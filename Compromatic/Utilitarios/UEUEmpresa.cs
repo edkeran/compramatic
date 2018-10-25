@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Utilitarios
 {
     [Serializable]
-    [Table("Empresa", Schema = "public")]
+    [Table("Empresa", Schema = "dbo")]
+
     public class UEUEmpresa
     {
         private String nit;
@@ -82,19 +83,19 @@ namespace Utilitarios
             set { idTipo = value; }
         }
 
-        private String fechaInicio;
+        private DateTime fechaInicio;
 
         //[Column("idTipo")]
         [NotMapped]
-        public String FechaInicio
+        public DateTime FechaInicio
         {
             get { return fechaInicio; }
             set { fechaInicio = value; }
         }
-        private String fechaFin;
+        private DateTime fechaFin;
 
         [NotMapped]
-        public String FechaFin
+        public DateTime FechaFin
         {
             get { return fechaFin; }
             set { fechaFin = value; }

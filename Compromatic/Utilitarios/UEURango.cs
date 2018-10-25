@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Utilitarios
 {
     [Serializable]
-    [Table("Rango", Schema = "public")]
+    [Table("Rango", Schema = "dbo")]
     public class UEURango
     {
         private int idUsr;

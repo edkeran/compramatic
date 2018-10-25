@@ -130,7 +130,7 @@ namespace Datos
 
             try
             {
-                NpgsqlCommand command = new NpgsqlCommand("sp_mostrarpqradministrador", connection);
+                NpgsqlCommand command = new NpgsqlCommand("dbo.sp_mostrarpqradministrador", connection);
                 command.CommandType = CommandType.StoredProcedure;
 
 

@@ -264,5 +264,65 @@ namespace DatosPersistencia
                 return respuesta;
             }
         }
+
+        public DataTable MostrarEmpresas(int idBusqueda)
+        {
+            using (var db = new Mapeo("public"))
+            {
+                var data = from empres in db.empre
+                           join membre in db.membresia on empres.Id equals membre.Id_empresa
+                           join tipoMem in db.type_membership on membre.Id_tipo_mem equals tipoMem.Id_tipo_mem
+                           where empres.EstadoEmpre!=idBusqueda
+                           select new vistaMostrEmpres
+                           {
+                               nomEmpresa=empres.Nombre,
+                               telEmpresa=empres.Numero,
+                               correoEmpresa=empres.Correo,
+                               dirEmpresa=empres.Direccion,
+                               nitEmpresa=empres.Nit,
+                               calificacionEmpresa=empres.Calificacion,
+                               estadoEmpresa=empres.EstadoEmpre,
+                               nomMembresia=tipoMem.Nom_mem
+                           };
+                ListToDataTable conv = new ListToDataTable();
+                DataTable res= conv.ToDataTable<vistaMostrEmpres>(data.ToList<vistaMostrEmpres>());
+                return res;
+            }
+        }
+
+        public DataTable MostrarVentasPorEmpresa()
+        {
+            using (var db = new Mapeo("public"))
+            {
+                var data = (from empresa in db.empre
+                            join producto in db.productos on empresa.Id equals producto.IdEmpresa
+                            join venta in db.ventas on producto.Id equals venta.IdProducto
+                            where venta.EstadoVenta == 4
+                            select new vistaMostraVentByEmp
+                            {
+                                nitEmpresa = empresa.Nit,
+                                nomEmpresa = empresa.Nombre,
+                                calificacionEmpresa = empresa.Calificacion,
+                                valorAux = (from venta in db.ventas
+                                            where venta.EstadoVenta == 4 && venta.IdProducto==producto.Id
+                                            && producto.IdEmpresa==empresa.Id && venta.EstadoVenta==4 select venta.Valor).Sum(),
+                                ventas = (from venta in db.ventas
+                                          where venta.IdProducto==producto.Id && producto.IdEmpresa==empresa.Id &&
+                                          venta.EstadoVenta==4
+                                          select venta.IdVenta).Count(),
+                                rutaArchivo = empresa.RutaArchivo + empresa.NomArchivo
+                            }).Distinct();
+                List<vistaMostraVentByEmp> infList = data.ToList<vistaMostraVentByEmp>();
+                foreach(vistaMostraVentByEmp aux in infList)
+                {
+                    aux.valor = aux.valorAux.ToString("C");
+                }
+
+                ListToDataTable conv = new ListToDataTable();
+                DataTable res = conv.ToDataTable<vistaMostraVentByEmp>(infList);
+                return res;
+
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace Utilitarios
 {
 
     [Serializable]
-    [Table("Usuario", Schema = "public")]
+    [Table("Usuario", Schema = "dbo")]
     public class UEUsuario
     {
         private int idUsr;

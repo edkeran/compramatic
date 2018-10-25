@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Utilitarios
 {
     [Serializable]
-    [Table("Categoria", Schema = "public")]
+    [Table("Categoria", Schema = "dbo")]
     public class UEUCategoria
     {
         //CREO LOS PARAMETROS DE LA BASE DE DATOS

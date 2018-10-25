@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Utilitarios
 {
     [Serializable]
-    [Table("Foto_producto", Schema = "public")]
+    [Table("Foto_producto", Schema = "dbo")]
     public class UEUFotoProd
     {
         private int id_foto;

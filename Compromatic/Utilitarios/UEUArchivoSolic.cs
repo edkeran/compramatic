@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Utilitarios
 {
     [Serializable]
-    [Table("ArchivoSolicitud", Schema = "public")]
+    [Table("ArchivoSolicitud", Schema = "dbo")]
     public class UEUArchivoSolic
     {
         private int idAr;

@@ -7,7 +7,7 @@ using System.Linq;
 namespace Utilitarios
 {
     [Serializable]
-    [Table("Top_10", Schema = "public")]
+    [Table("Top_10", Schema = "dbo")]
     public class UEUTopTen
     {
         private int id_prod;

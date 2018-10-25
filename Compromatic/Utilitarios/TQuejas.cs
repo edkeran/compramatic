@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Utilitarios
 {
     [Serializable]
-    [Table("Quejas", Schema = "public")]
+    [Table("Quejas", Schema = "dbo")]
     public class TQuejas
     {
         private int idQuje;

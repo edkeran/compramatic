@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Utilitarios
 {
     [Serializable]
-    [Table("Venta", Schema = "public")]
+    [Table("Venta", Schema = "dbo")]
     public class UEUVenta
     {
         private Double valor;
@@ -82,6 +82,14 @@ namespace Utilitarios
             get => modif_by;
             set => modif_by = value;
         }
+        private int? calEmp;
+        [Column("calEmp")]
+        public int? CalEmp {
+            get => calEmp;
+            set => calEmp = value;
+        }
+
+        
 
 
     }

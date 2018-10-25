@@ -94,6 +94,7 @@ namespace Datos
             }
             return Empresa;
         }
+        //migrado
         //METODO PARA CREAR UNA NUEVA EMPRESA
         public void CrearEmpresa(UEUEmpresa EU_Empresa, String modif)
         {
@@ -113,8 +114,8 @@ namespace Datos
                 command.Parameters.Add("_rutaarchivo", NpgsqlTypes.NpgsqlDbType.Varchar).Value = EU_Empresa.RutaArchivo;
                 command.Parameters.Add("_idtipo", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Empresa.IdTipo;
                 command.Parameters.Add("_contraseña", NpgsqlTypes.NpgsqlDbType.Varchar).Value = EU_Empresa.Contraseña;
-                DateTime da = DateTime.Parse(EU_Empresa.FechaInicio);
-                DateTime fq = DateTime.Parse(EU_Empresa.FechaFin);
+                DateTime da = EU_Empresa.FechaInicio;
+                DateTime fq = EU_Empresa.FechaFin;
                 command.Parameters.Add("_fechainicio", NpgsqlTypes.NpgsqlDbType.Timestamp).Value = da;
                 command.Parameters.Add("_fechafin", NpgsqlTypes.NpgsqlDbType.Timestamp).Value = fq;
                 command.Parameters.Add("_idtipo_membresia", NpgsqlTypes.NpgsqlDbType.Integer).Value = EU_Empresa.IdTipoMembresia;
@@ -449,6 +450,7 @@ namespace Datos
             return Peticiones;
         }
         //PENDIENTE POR SER MUY COMPLEJA
+        //MIGRADO
         public void CalificarCliente(double rango, String comentario, int idEmpresa, int idCliente, int idVenta, String modif)
         {
             NpgsqlConnection connection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgresql"].ConnectionString);
