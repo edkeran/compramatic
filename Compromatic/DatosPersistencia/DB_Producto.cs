@@ -197,6 +197,32 @@ namespace DatosPersistencia
                 return retorno;
             }
         }
+
+        public List<UEUVista_Tot_Prod> find_products2(string busqueda)
+        {
+            using (var db = new Mapeo("public"))
+            {
+                var data = (from x in db.empre
+                            join h in db.productos on x.Id equals h.IdEmpresa
+                            join l in db.categ on h.Categoria equals l.Id_cate
+                            where h.Estado_producto == 1 && h.Nombre.Contains(busqueda)
+                            select new UEUVista_Tot_Prod
+                            {
+                                _nomcategoria = l.nomCategoria,
+                                _idproducto = h.Id,
+                                _nomproducto = h.Nombre,
+                                _desproducto = h.Descripcion,
+                                _precioproducto = h.Precio,
+                                _canproducto = h.Cantidad,
+                                _nomempresa = x.Nombre,
+                                _idempresa = x.Id,
+                                _foto = (from k in db.fotosPro where h.Id == k.Id_Product && h.Estado_producto == 1 select k).Take(1).FirstOrDefault().NomArchi.ToString()
+                            });
+                List<UEUVista_Tot_Prod> res = data.ToList<UEUVista_Tot_Prod>();
+                return res;
+            }
+        }
+
         //METODO PARA OBTENER UN PRODUCTO
         public DataTable obtener_producto(int id_produ)
         {

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Net;
 using System.Net.Mail;
 using DatosPersistencia;
 using Utilitarios;
+using Newtonsoft.Json;
 
 namespace Logica
 {
@@ -16,6 +18,12 @@ namespace Logica
             if (daoUser.ExistenciaCorreo(Email))
             {
                 //Existe
+                DataTable usr = daoUser.GET_USER(Email);
+                String tok = JsonConvert.SerializeObject(usr);
+                tok=Encriptar.GetMD5(tok);
+                //DATOS A INSERTAR EN LA TABLA DE RECUPERAR CONTRASEÑA
+
+
 
                 List<UEUsuario> data = daoUser.obtenerContrase(Email);
                 MailMessage email = new MailMessage();
