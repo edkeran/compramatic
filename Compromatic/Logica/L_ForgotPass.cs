@@ -20,6 +20,7 @@ namespace Logica
                 //Existe
                 DataTable usr = daoUser.GET_USER(Email);
                 String tok = JsonConvert.SerializeObject(usr);
+                tok = tok + DateTime.Now;
                 tok=Encriptar.GetMD5(tok);
                 //DATOS A INSERTAR EN LA TABLA DE RECUPERAR CONTRASEÑA
 

@@ -8,6 +8,7 @@ using Npgsql;
 using NpgsqlTypes;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Datos
 {
@@ -123,6 +124,25 @@ namespace Datos
             return Motivos;
         }
 
+        public DataTable MostrarPQRAdministradorSqlServer()
+        {
+            DataTable PQR = new DataTable();
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Modelo_SQL_Server"].ConnectionString);
+            String strSql = "dbo.sp_mostrarpqradministrador";
+            SqlDataAdapter adap = new SqlDataAdapter(strSql,con);
+            try
+            {
+                adap.SelectCommand.CommandType = CommandType.StoredProcedure;
+                adap.Fill(PQR);
+            }
+            catch (Exception er) {
+                throw er;
+            }
+            return PQR;
+
+        }
+
+
         public DataTable MostrarPQRAdministrador()
         {
             DataTable PQR = new DataTable();
@@ -132,7 +152,6 @@ namespace Datos
             {
                 NpgsqlCommand command = new NpgsqlCommand("dbo.sp_mostrarpqradministrador", connection);
                 command.CommandType = CommandType.StoredProcedure;
-
 
                 connection.Open();
                 NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(command);

@@ -136,7 +136,7 @@ namespace Logica
 
         public DataTable MostrarPQRAdministrador()
         {
-            DB_ReasosnsPQR daoPQR = new DB_ReasosnsPQR();
+            //DB_ReasosnsPQR daoPQR = new DB_ReasosnsPQR();
             DDAOPqr db = new DDAOPqr();
             return db.MostrarPQRAdministrador();
         }
