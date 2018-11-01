@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Globalization;
 using System.Threading;
+using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI.WebControls;
@@ -52,6 +53,22 @@ public partial class Presentacion_Index : System.Web.UI.Page
         logica.log_out(Session["sesion"], Session["Sesion"]);
         Session["Sesion"] = null;
         Response.Redirect("Home.aspx");
+    }
+
+    //METODO PARA OBTENER EL ID DE LA SESION ACTUAL Y BUSCARLO EN LA BD
+    [WebMethod()]
+    public static string get_idSession()
+    {
+        if (HttpContext.Current.Session["usuario"]!=null)
+        {
+            return "Sesion Activa";
+        }
+        else
+        {
+                
+        }
+        String data=HttpContext.Current.Session.SessionID;
+        return data;
     }
 
 }

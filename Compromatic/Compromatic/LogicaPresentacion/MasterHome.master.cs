@@ -4,6 +4,7 @@ using System.Web.Services;
 using System.Web.UI;
 using Logica;
 using Utilitarios;
+using System.Web;
 
 public partial class Presentacion_MasterHome : System.Web.UI.MasterPage
 {
@@ -71,5 +72,4 @@ public partial class Presentacion_MasterHome : System.Web.UI.MasterPage
         String texto ="redireccionar_Home('"+url+"');";
         Page.ClientScript.RegisterStartupScript(this.GetType(), "scripts", texto,true);
     }
-
 }
