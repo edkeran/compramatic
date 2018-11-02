@@ -271,6 +271,7 @@
                                 <div class="col-md-4">
                                     <asp:TextBox runat="server" CssClass="form-control" ID="TB_NuevaAlerta" placeholder="Nueva Alerta" min="0" max="2000000" Text="1"></asp:TextBox>
                                     <asp:RequiredFieldValidator runat="server" ErrorMessage="Texto Necesario" ForeColor="Red" ControlToValidate="TB_NuevaAlerta" CssClass="warning" ValidationGroup="Alerta"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Solo Un Valor Numerico" ForeColor="Red" ControlToValidate="TB_NuevaAlerta" ValidationGroup="Alerta" ValidationExpression="^\d+$"></asp:RegularExpressionValidator>
                                 </div>
                                 <div class="col-md-4">
                                     <asp:Button runat="server" ID="BTN_ModificarAlerta" Text="Modificar" CssClass="form-control btn-primary" OnClick="BTN_ModificarAlerta_Click" ValidationGroup="Alerta" />

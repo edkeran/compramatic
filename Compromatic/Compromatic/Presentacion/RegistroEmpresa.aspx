@@ -70,7 +70,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group block1">
                                                             <label id="comp" runat="server">NIT Compañia</label>
-                                                            <asp:TextBox placeholder="NIT" runat="server" MaxLength="15" ID="TB_Nit" CssClass="form-control" data-parsley-group="wizard-step-1" required="required" TextMode="Number" max="9999999999"></asp:TextBox>
+                                                            <asp:TextBox placeholder="NIT" runat="server" MaxLength="15" ID="TB_Nit" CssClass="form-control" data-parsley-group="wizard-step-1" required="required" TextMode="Number" max="9999999999" min="0"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <!-- end col-4 -->

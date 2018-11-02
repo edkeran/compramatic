@@ -2,6 +2,7 @@
 using System.Data;
 using Utilitarios;
 using DatosPersistencia;
+using System.Collections.Generic;
 
 namespace Logica
 {
@@ -91,9 +92,17 @@ namespace Logica
                             usr.IdUsr = int.Parse(datos.Rows[0]["idUsuario"].ToString());
                             usr.Sessiones = sess + 1;
                             daoUser.update_session(usr);
+                            //REVISAR EL ULTIMO REPORTE DE LA SESSION PARA ELIMINAR EL REGISTRO SIEMPRE Y CUANDO HAYA PASADO MUCHO TIEMPO
+                            update_session_usr(datos.Rows[0]["idUsuario"].ToString());
                         }
                         else
                         {
+                            //MODIFICAR ESTO EN CASO DE QUE EL REPORTE SEA DEMASIADO TARDIO
+                            bool ayu= update_session_usr(datos.Rows[0]["idUsuario"].ToString());
+                            if (ayu)
+                            {
+                                return aux_log;
+                            }
                             aux_log.New_page = "LoginUsr.aspx";
                             aux_log.Modal_message = "Has Excedido el numero de sesiones abiertas";
                             aux_log.Datos = null;
@@ -267,6 +276,42 @@ namespace Logica
                 else return "0";
             }
             return "0";
+        }
+
+        public bool update_session_usr(string id_user)
+        {
+            DB_Session daoSession = new DB_Session();
+            List<UEUSession> data = daoSession.obtener_sessiones_reportes_usr(id_user);
+            bool retorno=false;
+            if (data != null)
+            {
+                List<UEUSession> delete = new List<UEUSession>();
+                foreach (UEUSession aux in data)
+                {
+                    TimeSpan dif = DateTime.Now - aux.Fecha_fin_new;
+                    if (dif.TotalSeconds > 90)
+                    {
+                        delete.Add(aux);
+                        retorno = true;
+                    }
+                }
+                //ELIMINAR DATOS
+                foreach (UEUSession aux in delete)
+                {
+                    data.Remove(aux);
+                }
+
+                if (data.Count == 0)
+                {
+                    data = null;
+                }
+                daoSession.update_sessiones_usr(data, id_user);
+                return retorno;
+            }
+            else
+            {
+                return true;
+            }
         }
 
     }

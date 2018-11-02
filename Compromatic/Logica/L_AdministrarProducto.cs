@@ -117,6 +117,11 @@ namespace Logica
                 //Modal("Seleccione un producto");
                 return "Seleccione un producto";
             }
+            //VALIDAR QUE SE HAYA SELECCIONADO UN TAG
+            if (ddl_tags.Equals(""))
+            {
+                return "Debe De Seleccionar Un Tag Para Eliminar";
+            }
             DataTable Empresa = (DataTable)Session;
             this.BorrarPalabra(int.Parse(ddl_tags), Empresa.Rows[0]["nomEmpresa"].ToString());
             //Response.Redirect(Request.Url.AbsoluteUri);

@@ -128,21 +128,21 @@ namespace Utilitarios
         [NotMapped]
         public string Redireccion
         { get => redireccion;
-          set => redireccion = value; }
+            set => redireccion = value; }
 
         private String calificacion;
 
         [NotMapped]
         public string Calificacion
         { get => calificacion;
-          set => calificacion = value; }
+            set => calificacion = value; }
 
         private int sessiones;
 
         [Column("Sesiones_Abiertas")]
         public int Sessiones
         { get => sessiones;
-          set => sessiones = value; }
+            set => sessiones = value; }
 
         private DateTime? inc_bloq;
         [Column("inicio_bloqueo")]
@@ -177,6 +177,13 @@ namespace Utilitarios
         public Double? Calificacion2 {
             get => calificacion2;
             set => calificacion2 = value;
+        }
+       
+        private string current_sessions;
+        [Column("Sessiones_Info")]
+        public string Current_sessions {
+            get => current_sessions;
+            set => current_sessions = value;
         }
 
     }

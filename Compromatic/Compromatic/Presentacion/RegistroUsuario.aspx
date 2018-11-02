@@ -76,11 +76,11 @@
                         <div class="row m-b-15">      
                        
                             <div class="col-md-6 m-b-15">
-                                <asp:TextBox ID="TB_cc" CssClass="form-control" placeholder="Número de identificación" runat="server" TextMode="Number" Required="Required" max="9999999999" MaxLength="10"></asp:TextBox>
+                                <asp:TextBox ID="TB_cc" CssClass="form-control" placeholder="Número de identificación" runat="server" TextMode="Number" Required="Required" max="9999999999" MaxLength="10" min="0"></asp:TextBox>
                             </div>
                             
                             <div class="col-md-6 m-b-15">
-                                <asp:TextBox ID="TB_Telefono" CssClass="form-control" placeholder="Número móvil o linea fija" runat="server" TextMode="Number" Required="Required" max="9999999999" MaxLength="10"></asp:TextBox>
+                                <asp:TextBox ID="TB_Telefono" CssClass="form-control" placeholder="Número móvil o linea fija" runat="server" TextMode="Number" Required="Required" max="9999999999" MaxLength="10" min="0"></asp:TextBox>
                             </div>
                         </div>
 

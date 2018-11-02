@@ -41,5 +41,16 @@ namespace Logica
                 return region;
             }
         }
+
+        public void reportar_sesion_user(string id_session,int id_user)
+        {
+            DB_Session daoSession = new DB_Session();
+            daoSession.reportar_session_usr(id_session,id_user);
+        }
+
+        public void reportar_session_empres(string id_session)
+        {
+            DB_Session daoSes = new DB_Session();
+        }
     }
 }

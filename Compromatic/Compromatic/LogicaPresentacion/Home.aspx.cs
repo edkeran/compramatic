@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Data;
 using System.Globalization;
 using System.Threading;
 using System.Web;
@@ -59,13 +60,21 @@ public partial class Presentacion_Index : System.Web.UI.Page
     [WebMethod()]
     public static string get_idSession()
     {
-        if (HttpContext.Current.Session["usuario"]!=null)
+        if (HttpContext.Current.Session["Sesion"] !=null)
         {
+            //REPORTAMOS LA SESION ACTIVA
+            L_Home logi = new L_Home();
+            DataTable sess =(DataTable) HttpContext.Current.Session["Sesion"];
+            if (((int)sess.Rows[0]["idTipo"]==1)||((int)sess.Rows[0]["idTipo"] == 3))
+            {
+                //LLAMAR AL METODO DEL USUARIO
+                logi.reportar_sesion_user(HttpContext.Current.Session.SessionID,(int)sess.Rows[0]["idUsuario"]);
+            }
             return "Sesion Activa";
         }
         else
         {
-                
+                //NO HAY SESSION NO HACER REPORTE
         }
         String data=HttpContext.Current.Session.SessionID;
         return data;
