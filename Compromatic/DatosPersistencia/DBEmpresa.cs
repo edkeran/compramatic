@@ -43,6 +43,16 @@ namespace DatosPersistencia
 
                 db.membresia.Add(mem);
                 db.SaveChanges();
+
+                //STEP 5 INSTER THE UPADATE IN THE TABLE OF SECURITY
+                EAcceso acc = new EAcceso();
+                acc.Ip = EAcceso.obtenerIP();
+                acc.Mac = EAcceso.obtenerMAC();
+                acc.Id = 0;
+                acc.IdUsuario = 0;
+                acc.FechaInicio = DateTime.Now.ToString();
+                acc.FechaFin = DateTime.Now.ToString();
+                DBAuditoria.insert(empresa,acc,"dbo","Empresa");
             }
         }
 

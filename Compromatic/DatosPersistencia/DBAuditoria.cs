@@ -62,7 +62,10 @@ namespace DatosPersistencia
             {
                 if (propertyInfo.PropertyType == typeof(string) || propertyInfo.PropertyType == typeof(int) || propertyInfo.PropertyType == typeof(Boolean))
                 {
-                    jObject[propertyInfo.Name] = propertyInfo.GetValue(obj).ToString();
+                    if (propertyInfo.GetValue(obj) != null)
+                    {
+                        jObject[propertyInfo.Name] = propertyInfo.GetValue(obj).ToString();
+                    }
                 }
             }
 
@@ -86,25 +89,29 @@ namespace DatosPersistencia
             //CICLO PARA RECORRER LOS DATOS ANTIGUIOS Y NUEVOS QUE SE VAN A CAMBIAR
             foreach (PropertyInfo propertyInfo in newObj.GetType().GetProperties())
             {
-                if (propertyInfo.PropertyType == typeof(string) || propertyInfo.PropertyType == typeof(int) || propertyInfo.PropertyType == typeof(Boolean))
-                {
-                    if (propertyInfo.Name.Equals("Id"))
+                if (propertyInfo.GetValue(newObj) != null) {
+                    if (propertyInfo.PropertyType == typeof(string) || propertyInfo.PropertyType == typeof(int) || propertyInfo.PropertyType == typeof(Boolean))
                     {
-                        jObject[propertyInfo.Name] = propertyInfo.GetValue(newObj).ToString();
+                        if (propertyInfo.Name.Equals("Id"))
+                        {
+                            jObject[propertyInfo.Name] = propertyInfo.GetValue(newObj).ToString();
+                        }
+                        if (!propertyInfo.GetValue(newObj).ToString().Equals(propertyInfo.GetValue(oldObj).ToString()) && !propertyInfo.Name.Equals("IdAcceso"))
+                        {
+                            jObject["new_" + propertyInfo.Name] = propertyInfo.GetValue(newObj).ToString();
+                            jObject["old_" + propertyInfo.Name] = propertyInfo.GetValue(oldObj).ToString();
+                            sinCambios = false;
+                        }
                     }
-                    if (!propertyInfo.GetValue(newObj).ToString().Equals(propertyInfo.GetValue(oldObj).ToString()) && !propertyInfo.Name.Equals("IdAcceso"))
+                    else if (propertyInfo.PropertyType == typeof(List<int>) && !JsonConvert.SerializeObject(propertyInfo.GetValue(newObj)).Equals(JsonConvert.SerializeObject(propertyInfo.GetValue(oldObj))))
                     {
-                        jObject["new_" + propertyInfo.Name] = propertyInfo.GetValue(newObj).ToString();
-                        jObject["old_" + propertyInfo.Name] = propertyInfo.GetValue(oldObj).ToString();
+                        jObject["new_" + propertyInfo.Name] = JsonConvert.SerializeObject(propertyInfo.GetValue(newObj));
+                        jObject["old_" + propertyInfo.Name] = JsonConvert.SerializeObject(propertyInfo.GetValue(oldObj));
                         sinCambios = false;
                     }
+
                 }
-                else if (propertyInfo.PropertyType == typeof(List<int>) && !JsonConvert.SerializeObject(propertyInfo.GetValue(newObj)).Equals(JsonConvert.SerializeObject(propertyInfo.GetValue(oldObj))))
-                {
-                    jObject["new_" + propertyInfo.Name] = JsonConvert.SerializeObject(propertyInfo.GetValue(newObj));
-                    jObject["old_" + propertyInfo.Name] = JsonConvert.SerializeObject(propertyInfo.GetValue(oldObj));
-                    sinCambios = false;
-                }
+               
             }
 
             if (sinCambios)
@@ -130,9 +137,12 @@ namespace DatosPersistencia
 
             foreach (PropertyInfo propertyInfo in obj.GetType().GetProperties())
             {
-                if (propertyInfo.PropertyType == typeof(string) || propertyInfo.PropertyType == typeof(int) || propertyInfo.PropertyType == typeof(Boolean))
+                if (propertyInfo.GetValue(obj) != null)
                 {
-                    jObject[propertyInfo.Name] = propertyInfo.GetValue(obj).ToString();
+                    if (propertyInfo.PropertyType == typeof(string) || propertyInfo.PropertyType == typeof(int) || propertyInfo.PropertyType == typeof(Boolean))
+                    {
+                        jObject[propertyInfo.Name] = propertyInfo.GetValue(obj).ToString();
+                    }
                 }
             }
 

@@ -15,6 +15,15 @@ namespace DatosPersistencia
             {
                 db.user.Add(usr);
                 db.SaveChanges();
+                EAcceso acc = new EAcceso();
+                acc.Ip = EAcceso.obtenerIP();
+                acc.Mac = EAcceso.obtenerMAC();
+                acc.Id = 0; 
+                acc.IdUsuario = 0;
+                acc.FechaInicio = DateTime.Now.ToString();
+                acc.FechaFin = DateTime.Now.ToString();
+                DBAuditoria.insert(usr,acc, "dbo", "Usuario");
+                
             }
         }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -14,6 +15,14 @@ namespace DatosPersistencia
             {
                 db.idiom.Add(idioma);
                 db.SaveChanges();
+                EAcceso acc = new EAcceso();
+                acc.Ip = EAcceso.obtenerIP();
+                acc.Mac = EAcceso.obtenerMAC();
+                acc.Id = 0;
+                acc.IdUsuario = 0;
+                acc.FechaInicio = DateTime.Now.ToString();
+                acc.FechaFin = DateTime.Now.ToString();
+                DBAuditoria.insert(idioma,acc,"idioma","idioma");
             }
         }
 
@@ -32,8 +41,17 @@ namespace DatosPersistencia
             using (var db = new Mapeo("idioma"))
             {
                 var idioma = db.idiom.Find(id);
+                EAcceso acc = new EAcceso();
+                acc.Ip = EAcceso.obtenerIP();
+                acc.Mac = EAcceso.obtenerMAC();
+                acc.Id = 0;
+                acc.IdUsuario = 0;
+                acc.FechaInicio = DateTime.Now.ToString();
+                acc.FechaFin = DateTime.Now.ToString();
+                DBAuditoria.delete(idioma,acc, "idioma", "idioma");
                 db.Entry(idioma).State = EntityState.Deleted;
                 db.SaveChanges();
+                
             }
         }
 
@@ -118,8 +136,24 @@ namespace DatosPersistencia
                                         controles.idioma_id == data.Idioma &&
                                         controles.form_id == data.Form
                                    select controles).FirstOrDefault();
+                    EAcceso acc = new EAcceso();
+                    acc.Ip = EAcceso.obtenerIP();
+                    acc.Mac = EAcceso.obtenerMAC();
+                    acc.Id = 0;
+                    acc.IdUsuario = 0;
+                    acc.FechaInicio = DateTime.Now.ToString();
+                    acc.FechaFin = DateTime.Now.ToString();
+                    UEUIdimControles new_trad = new UEUIdimControles();
+                    new_trad.form_id = control.form_id;
+                    new_trad.texto = data.Texto;
+                    new_trad.nom_control = control.nom_control;
+                    new_trad.id_control = control.id_control;
+                    new_trad.idioma_id = control.idioma_id;
+                    DBAuditoria.update(control, new_trad, acc,"idioma","controles");
                     control.texto = data.Texto;
                     db.SaveChanges();
+
+                    
                 } 
                 else
                 {
@@ -131,6 +165,14 @@ namespace DatosPersistencia
                     insertData.form_id = data.Form;
                     db.idiom_contro.Add(insertData);
                     db.SaveChanges();
+                    EAcceso acc = new EAcceso();
+                    acc.Ip = EAcceso.obtenerIP();
+                    acc.Mac = EAcceso.obtenerMAC();
+                    acc.Id = 0;
+                    acc.IdUsuario = 0;
+                    acc.FechaInicio = DateTime.Now.ToString();
+                    acc.FechaFin = DateTime.Now.ToString();
+                    DBAuditoria.insert(insertData,acc,"idioma","controles");
                 }
             }
         }
