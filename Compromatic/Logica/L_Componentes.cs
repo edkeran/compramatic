@@ -138,7 +138,7 @@ namespace Logica
         {
             //DB_ReasosnsPQR daoPQR = new DB_ReasosnsPQR();
             DDAOPqr db = new DDAOPqr();
-            return db.MostrarPQRAdministrador();
+            return db.MostrarPQRAdministradorSqlServer();
         }
 
         public DataTable MostrarPQRAempresa()

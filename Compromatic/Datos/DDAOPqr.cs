@@ -128,11 +128,12 @@ namespace Datos
         {
             DataTable PQR = new DataTable();
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["Modelo_SQL_Server"].ConnectionString);
-            String strSql = "dbo.sp_mostrarpqradministrador";
-            SqlDataAdapter adap = new SqlDataAdapter(strSql,con);
+            String query = "SELECT * FROM dbo.sp_mostrarpqradministrador()"; 
+            SqlCommand cmd = new SqlCommand(query, con);
+            SqlDataAdapter adap = new SqlDataAdapter(cmd);
             try
             {
-                adap.SelectCommand.CommandType = CommandType.StoredProcedure;
+                adap.SelectCommand.CommandType = CommandType.Text;
                 adap.Fill(PQR);
             }
             catch (Exception er) {

@@ -45,6 +45,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EAcceso.cs" />
+    <Compile Include="EAuditoria.cs" />
     <Compile Include="Encriptar.cs" />
     <Compile Include="ListToDataTable.cs" />
     <Compile Include="TQuejas.cs" />
