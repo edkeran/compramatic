@@ -198,14 +198,14 @@ namespace DatosPersistencia
             }
         }
 
-        public List<UEUVista_Tot_Prod> find_products2(string busqueda)
+        public List<UEUVista_Tot_Prod> find_products2(int categ)
         {
             using (var db = new Mapeo("public"))
             {
                 var data = (from x in db.empre
                             join h in db.productos on x.Id equals h.IdEmpresa
                             join l in db.categ on h.Categoria equals l.Id_cate
-                            where h.Estado_producto == 1 && h.Nombre.Contains(busqueda)
+                            where h.Estado_producto == 1 && h.Categoria==categ
                             select new UEUVista_Tot_Prod
                             {
                                 _nomcategoria = l.nomCategoria,

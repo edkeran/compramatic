@@ -133,6 +133,8 @@ namespace Logica
                         //actualizar sesion
                         if (sess < 3)
                         {
+                            //ACTUALIZAR LAS SESSIONES 
+                            update_session_usr(datos.Rows[0]["idUsuario"].ToString());
                             //llamar db
                             UEUsuario usr = new UEUsuario();
                             DBUsr db = new DBUsr();
@@ -143,6 +145,12 @@ namespace Logica
                         }
                         else
                         {
+                            //VERIFICAR SI LAS SESIONES AUN SON VALIDAS
+                            bool ayu = update_session_usr(datos.Rows[0]["idUsuario"].ToString());
+                            if (ayu)
+                            {
+                                return aux_log;
+                            }
                             aux_log.New_page = "LoginUsr.aspx";
                             aux_log.Modal_message = "Has Excedido el numero de sesiones abiertas";
                             aux_log.Datos = null;
@@ -187,9 +195,15 @@ namespace Logica
                                 usr.IdUsr = int.Parse(datos.Rows[0]["idUsuario"].ToString());
                                 usr.Sessiones = sess + 1;
                                 db.update_session(usr);
+                                update_session_usr(datos.Rows[0]["idUsuario"].ToString());
                             }
                             else
                             {
+                                bool ayu = update_session_usr(datos.Rows[0]["idUsuario"].ToString());
+                                if (ayu)
+                                {
+                                    return aux_log;
+                                }
                                 aux_log.New_page = "LoginUsr.aspx";
                                 aux_log.Modal_message = "Has Excedido el numero de sesiones abiertas";
                                 aux_log.Datos = null;

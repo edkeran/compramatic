@@ -87,10 +87,23 @@ namespace DatosPersistencia
                 var usr = db.user.Find(int.Parse(id_user));
                 if (data == null)
                 {
+                    //ACTUALIZAR EL CONTADOR DE SESIONES ACTIVAS
+
                     usr.Current_sessions = null;
+                    DBUsr daoUser = new DBUsr();
+                    UEUsuario user = new UEUsuario();
+                    user.IdUsr = int.Parse(id_user);
+                    user.Sessiones = 1;
+                    daoUser.update_session(user);
                 }
                 else
                 {
+                    int sessio = data.Count;
+                    DBUsr daoUser = new DBUsr();
+                    UEUsuario user = new UEUsuario();
+                    user.IdUsr = int.Parse(id_user);
+                    user.Sessiones = sessio+1;
+                    daoUser.update_session(user);
                     usr.Current_sessions = JsonConvert.SerializeObject(data);
                 }
                 db.SaveChanges();
