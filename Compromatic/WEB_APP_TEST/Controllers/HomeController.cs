@@ -4,15 +4,23 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WEB_APP_TEST.Services;
 using WEB_APP_TEST.Models;
 
 namespace WEB_APP_TEST.Controllers
 {
     public class HomeController : Controller
     {
+        public IRepositorioPais Repositorio { get; }
+        public HomeController(IRepositorioPais repositorio)
+        {
+            Repositorio = repositorio;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var paises = Repositorio.ObtenerTodos();
+            return View(paises);
         }
 
         public IActionResult About()
