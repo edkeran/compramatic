@@ -73,7 +73,7 @@
 
                         </div>
                         <div class="form-group m-b-15">
-                            <asp:TextBox ID="TB_Pass" runat="server" CssClass="form-control" placeholder="Contraseña" TextMode="Password" Required="required" MaxLength="30"></asp:TextBox>
+                            <asp:TextBox ID="TB_Pass" runat="server" CssClass="form-control" placeholder="Contraseña" TextMode="Password" Required="required" MaxLength="30" onkeypress="return validarn(event)"></asp:TextBox>
                         </div>
                         <div class="form-group">
                             <asp:DropDownList ID="DDL_TipoLog" runat="server" CssClass="form-control" datasize="10" data-live-search="true" data-style="btn-white">

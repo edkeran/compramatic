@@ -74,11 +74,12 @@
                         <h4 class="auto-style2" id="email" runat="server">Ingrese Su Correo Electronico</h4>
                     </td>
                     <td>
-                        <asp:TextBox ID="TB_Correo" runat="server" CssClass="auto-style3"></asp:TextBox>
+                        <asp:TextBox ID="TB_Correo" runat="server" CssClass="auto-style3" onkeypress="return validarn(event)"></asp:TextBox>
                     </td>
                 </tr>
             </table>
             <br />
+            <asp:Label ID="LB_1" runat="server" Text="" ForeColor="Red"></asp:Label>
             <asp:Button ID="Button1" runat="server" Text="Aceptar" class="btn btn-primary btn-block btn-lg" OnClick="Button1_Click"/>
              <br />
             <asp:HyperLink ID="HL_Index" runat="server" NavigateUrl="~/Presentacion/Home.aspx"></asp:HyperLink>

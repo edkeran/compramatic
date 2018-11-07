@@ -74,3 +74,11 @@ function show_img() {
 function limpiar_text() {
     document.getElementsByClassName('TB_Tradclass')[0].value = "";
 }
+
+//FUNCION PARA VALIDAR EL CARACTER EN LA CONTRASEÑA <>
+function validarn(e) { // 1
+    tecla = (document.all) ? e.keyCode : e.which; // 2
+    patron = /[^%<>^$]+/; // 4
+    te = String.fromCharCode(tecla); // 5
+    return patron.test(te); // 6
+} 

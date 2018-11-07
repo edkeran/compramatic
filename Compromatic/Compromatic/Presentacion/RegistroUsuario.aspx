@@ -102,7 +102,7 @@
                         <asp:label runat="server" CssClass="control-label" ID="LB_Pass">Contraseña</asp:label>
                         <div class="row m-b-15">
                            <div class="col-md-6 m-b-15">
-                                <asp:TextBox ID="TB_Pass1" CssClass="form-control" placeholder="Contraseña" runat="server" TextMode="Password" Required="Required" MaxLength="20"></asp:TextBox>
+                                <asp:TextBox ID="TB_Pass1" CssClass="form-control" placeholder="Contraseña" runat="server" TextMode="Password" Required="Required" MaxLength="20" onkeypress="return validarn(event)"></asp:TextBox>
                                <ajaxToolkit:PasswordStrength ID="PS" runat="server"
                                     TargetControlID="TB_Pass1"
                                     DisplayPosition="BelowLeft"
@@ -118,7 +118,7 @@
                                     CalculationWeightings="50;15;15;20" />
                             </div>
                             <div class="col-md-6 m-b-15">
-                                <asp:TextBox ID="TB_Pass2" CssClass="form-control" placeholder="Confima tu contraseña" runat="server" TextMode="Password" Required="Required" MaxLength="20"></asp:TextBox>
+                                <asp:TextBox ID="TB_Pass2" CssClass="form-control" placeholder="Confima tu contraseña" runat="server" TextMode="Password" Required="Required" MaxLength="20" onkeypress="return validarn(event)"></asp:TextBox>
                             </div>
                         </div>
                         
