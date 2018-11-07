@@ -13,19 +13,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Nombres)
+            Nombres
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Apellidos)
+            Apellidos
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Edad)
+            Edad
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Sexo)
+            Sexo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaRegistro)
+            Fecha De Registro
         </th>
         <th></th>
     </tr>
@@ -54,7 +54,7 @@
             }
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FechaRegistro)
+            @item.FechaRegistro.ToShortDateString()
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
