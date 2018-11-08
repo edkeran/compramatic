@@ -515,5 +515,28 @@ namespace DatosPersistencia
                 db.SaveChanges();
             }
         }
+
+        //METODO PARA INSERTAR UN COMENTARIO A LA EMPRESA
+        public void CrearComentario(UEUComentEmpres comment)
+        {
+            using (var db = new Mapeo("public"))
+            {
+                db.comentEmpre.Add(comment);
+                db.SaveChanges();
+            }
+        }
+
+        //METODO PARA CARGAR LAS EMPRESAS ACIVAS
+        public List<UEUEmpresa> get_active_comp()
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = from emp in db.empre
+                           where emp.EstadoEmpre == 1
+                           select emp;
+                return data.ToList<UEUEmpresa>();
+            }
+        }
+
     }
 }

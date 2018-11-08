@@ -12,8 +12,8 @@ namespace DatosPersistencia
             Database.SetInitializer<Mapeo>(null);
         }
         private readonly string schema;
-
-        public Mapeo(string schema,string db= "Modelo_SQL_Server")
+        //Modelo_SQL_Server
+        public Mapeo(string schema,string db= "Postgresql")
             : base("name="+db)
         {
            
@@ -47,6 +47,7 @@ namespace DatosPersistencia
         public DbSet<UEUReporte> reporte_T { get; set; }
         public DbSet<UEUBloqueo> bloqueos { get; set; }
         public DbSet<EAuditoria> auditoria { get; set; }
+        public DbSet<UEUComentEmpres> comentEmpre { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder builder)
         {

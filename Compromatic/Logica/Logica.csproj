@@ -76,6 +76,7 @@
     <Compile Include="L_Registro_Usr.cs" />
     <Compile Include="L_ReporteAdmin.cs" />
     <Compile Include="L_ReporteTotVenta.cs" />
+    <Compile Include="L_ServicioComentario.cs" />
     <Compile Include="L_SolicitudesPendientes.cs" />
     <Compile Include="L_SolicitudesRechazadas.cs" />
     <Compile Include="L_Store.cs" />

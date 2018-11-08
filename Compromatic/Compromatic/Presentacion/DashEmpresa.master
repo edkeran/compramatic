@@ -140,6 +140,12 @@
                                 <span id="cali" runat="server">Calificaciones</span>
                             </a>
                         </li>
+                        <li class="has-sub">
+                            <a href="#">
+                                <i class="fa fa-comment"></i>
+                                <span id="Comment" runat="server">Dudas E Inquietudes</span>
+                            </a>
+                        </li>
                         <!-- begin sidebar minify button -->
                         <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
                         <!-- end sidebar minify button -->
