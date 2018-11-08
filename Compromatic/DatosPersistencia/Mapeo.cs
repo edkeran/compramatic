@@ -13,7 +13,7 @@ namespace DatosPersistencia
         }
         private readonly string schema;
         //Modelo_SQL_Server
-        public Mapeo(string schema,string db= "Postgresql")
+        public Mapeo(string schema,string db= "Modelo_SQL_Server")
             : base("name="+db)
         {
            

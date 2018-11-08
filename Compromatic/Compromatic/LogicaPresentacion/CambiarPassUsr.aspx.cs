@@ -12,7 +12,7 @@ public partial class Presentacion_CambiarPassUsr : System.Web.UI.Page
         //Debo Cambiar Esto Por Mi Script
         L_CambiarPass_Usr logic = new L_CambiarPass_Usr();
         String response= logic.page_load(Session["Sesion"]);
-        String texto = "redireccionar('"+response+"')";
+        String texto = "<script> redireccionar('" + response+ "')</script>";
         //Seteando Idiomas
         L_Idioma idiot = new L_Idioma();
         Object sesidioma = Session["idiomases"];

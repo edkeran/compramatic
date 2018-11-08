@@ -8,6 +8,7 @@ public partial class Presentacion_forgotPass : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         //Seteando Idiomas
+        Response.Cache.SetNoStore();
         L_Idioma idiot = new L_Idioma();
         Object sesidioma = Session["idiomases"];
         Int32 formulario = 20;

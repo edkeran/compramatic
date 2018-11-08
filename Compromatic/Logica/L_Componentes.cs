@@ -152,5 +152,12 @@ namespace Logica
             DB_ReasosnsPQR daoPQR = new DB_ReasosnsPQR();
             return daoPQR.MostrarPQRcliente();
         }
+         
+        public List<UEUComentEmpres> get_coment(int idEmpresa)
+        {
+            DBEmpresa daoEmpresa = new DBEmpresa();
+            return daoEmpresa.get_coments(idEmpresa);
+            
+        }
     }
 }

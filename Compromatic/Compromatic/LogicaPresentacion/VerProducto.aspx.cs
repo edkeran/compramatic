@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Logica;
 using Utilitarios;
 
@@ -67,10 +62,17 @@ public partial class Presentacion_VerProducto : System.Web.UI.Page
     protected void BTN_ComprarProducto_Click(object sender, EventArgs e)
     {
         L_verProducto logic = new L_verProducto();
-        UAuxVenta response=logic.BTN_ComprarProducto_Click(Session["Sesion"], Session["VerProducto"], TB_CantidadVenta.Text, LB_CantidadProducto.Text);
-        Modal(response.Msg);
-        BTN_Modal.Visible = response.Valido;
-        BTN_Yes.Visible = response.BtnYes;
+        UAuxVenta response=logic.BTN_ComprarProducto_Click(Session["Sesion"], Session["VerProducto"], TB_CantidadVenta.Text, LB_CantidadProducto.Text,IsPostBack);
+        try
+        {
+            Modal(response.Msg);
+            BTN_Modal.Visible = response.Valido;
+            BTN_Yes.Visible = response.BtnYes;
+        }
+        catch(Exception er)
+        {
+
+        }
     }
 
     protected void BTN_Reportar_Click(object sender, EventArgs e)

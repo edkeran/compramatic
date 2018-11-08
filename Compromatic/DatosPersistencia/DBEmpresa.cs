@@ -538,5 +538,17 @@ namespace DatosPersistencia
             }
         }
 
+        //METODO PARA CARGAR LOS COMENTARIOS A LA EMPRESA
+        public List<UEUComentEmpres> get_coments(int idEmpre)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var data = from comment in db.comentEmpre
+                           where comment.IdEmpres == idEmpre
+                           select comment;
+                return data.ToList<UEUComentEmpres>();
+            }
+        }
+
     }
 }

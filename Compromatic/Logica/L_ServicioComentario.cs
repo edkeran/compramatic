@@ -8,11 +8,14 @@ namespace Logica
 {
     public class L_ServicioComentario
     {
-        public void insertar_Comentario(string info,int id_empresa)
+        //INSERTAR COMENTARIO
+        public void insertar_Comentario(string info,int id_empresa,string nomUser, string correoUser)
         {
             UEUComentEmpres coment = new UEUComentEmpres();
             coment.IdEmpres = id_empresa;
             coment.Comentario = info;
+            coment.CorreoUser = correoUser;
+            coment.NomUser = nomUser;
             DBEmpresa daoEmpresa = new DBEmpresa();
             daoEmpresa.CrearComentario(coment);
         }

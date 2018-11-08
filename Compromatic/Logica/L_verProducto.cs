@@ -57,58 +57,66 @@ namespace Logica
             }
         }
 
-        public UAuxVenta BTN_ComprarProducto_Click(Object Session,Object VerProducto,String tb_CantidadVenta,String LB_CantidadProducto)
+        public UAuxVenta BTN_ComprarProducto_Click(Object Session,Object VerProducto,String tb_CantidadVenta,String LB_CantidadProducto,bool post)
         {
             UAuxVenta reponde = new UAuxVenta();
-            if (Session == null)
+            if (post)
             {
-                reponde.Valido = true;
-                reponde.Msg = "Tienes que iniciar sesion para comprar.";
-                //BTN_Modal.Visible = true;
-                //Modal("Tienes que iniciar sesion para comprar.");
+                if (Session == null)
+                {
+                    reponde.Valido = true;
+                    reponde.Msg = "Tienes que iniciar sesion para comprar.";
+                    //BTN_Modal.Visible = true;
+                    //Modal("Tienes que iniciar sesion para comprar.");
 
-            }
-            else
-            {
-                DataTable user = (DataTable)Session;
-                DataTable producto = (DataTable)VerProducto;
-                if (tb_CantidadVenta.Length == 0)
-                {
-                    reponde.Valido = false;
-                    reponde.Msg = "Tienes que especificar la cantidad de productos a comprar.";
-                    //Modal("Tienes que especificar la cantidad de productos a comprar.");
-                }
-                else if (user.Rows[0]["idTipo"].ToString() != "3")
-                {
-                    reponde.Valido = false;
-                    reponde.Msg = "Solo los clientes pueden hacer petición de compra.";
-                    //Modal("Solo los clientes pueden hacer petición de compra.");
-                }
-                else if ((int.Parse(tb_CantidadVenta)) > (int.Parse(LB_CantidadProducto)))
-                {
-                    reponde.Valido = false;
-                    reponde.Msg = "Solicitaste una cantidad que excede nuestro límite de inventario, reduce tu cantidad de productos a comprar.";
-                    //Modal("Solicitaste una cantidad que excede nuestro límite de inventario, reduce tu cantidad de productos a comprar.");
-                }
-
-                else if (int.Parse(LB_CantidadProducto) == 0)
-                {
-                    reponde.Valido = false;
-                    reponde.Msg = "El producto está agotado, intentalo después.";
-                    //Modal("El producto está agotado, intentalo después.");
                 }
                 else
                 {
-                    UEUVenta venta = new UEUVenta();
-                    venta.IdUsr = int.Parse(user.Rows[0]["idUsuario"].ToString());
-                    int valor = int.Parse(tb_CantidadVenta) * int.Parse(producto.Rows[0]["precioProducto"].ToString());
-                    reponde.Valido = false;
-                    reponde.BtnYes = true;
-                    reponde.Msg = "Tu solicitud de compra ha sido enviada, por valor de $" + valor.ToString() + ", la empresa revisará los parámetros y decidirá aceptar o rechazar tu compra. Deseas confirmar esta compra?";
-                    //BTN_Yes.Visible = true;
-                    //Modal("Tu solicitud de compra ha sido enviada, por valor de $" + valor.ToString() + ", la empresa revisará los parámetros y decidirá aceptar o rechazar tu compra. Deseas confirmar esta compra?");
+                    DataTable user = (DataTable)Session;
+                    DataTable producto = (DataTable)VerProducto;
+                    if (tb_CantidadVenta.Length == 0)
+                    {
+                        reponde.Valido = false;
+                        reponde.Msg = "Tienes que especificar la cantidad de productos a comprar.";
+                        //Modal("Tienes que especificar la cantidad de productos a comprar.");
+                    }
+                    else if (user.Rows[0]["idTipo"].ToString() != "3")
+                    {
+                        reponde.Valido = false;
+                        reponde.Msg = "Solo los clientes pueden hacer petición de compra.";
+                        //Modal("Solo los clientes pueden hacer petición de compra.");
+                    }
+                    else if ((int.Parse(tb_CantidadVenta)) > (int.Parse(LB_CantidadProducto)))
+                    {
+                        reponde.Valido = false;
+                        reponde.Msg = "Solicitaste una cantidad que excede nuestro límite de inventario, reduce tu cantidad de productos a comprar.";
+                        //Modal("Solicitaste una cantidad que excede nuestro límite de inventario, reduce tu cantidad de productos a comprar.");
+                    }
+
+                    else if (int.Parse(LB_CantidadProducto) == 0)
+                    {
+                        reponde.Valido = false;
+                        reponde.Msg = "El producto está agotado, intentalo después.";
+                        //Modal("El producto está agotado, intentalo después.");
+                    }
+                    else
+                    {
+                        UEUVenta venta = new UEUVenta();
+                        venta.IdUsr = int.Parse(user.Rows[0]["idUsuario"].ToString());
+                        int valor = int.Parse(tb_CantidadVenta) * int.Parse(producto.Rows[0]["precioProducto"].ToString());
+                        reponde.Valido = false;
+                        reponde.BtnYes = true;
+                        reponde.Msg = "Tu solicitud de compra ha sido enviada, por valor de $" + valor.ToString() + ", la empresa revisará los parámetros y decidirá aceptar o rechazar tu compra. Deseas confirmar esta compra?";
+                        //BTN_Yes.Visible = true;
+                        //Modal("Tu solicitud de compra ha sido enviada, por valor de $" + valor.ToString() + ", la empresa revisará los parámetros y decidirá aceptar o rechazar tu compra. Deseas confirmar esta compra?");
+                    }
                 }
             }
+            else
+            {
+                reponde=null;
+            }
+            
             return reponde;
         }
 

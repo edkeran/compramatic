@@ -29,12 +29,12 @@ public class ServicioComentarios : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string InsertarDudasEmpresa(String mensaje,int idEmpre)
+    public string InsertarDudasEmpresa(String mensaje,int idEmpre,string nomUser, string correoUser)
     {
         L_ServicioComentario logi = new L_ServicioComentario();
         try
         {
-            logi.insertar_Comentario(mensaje, idEmpre);
+            logi.insertar_Comentario(mensaje, idEmpre,nomUser,correoUser);
             return "Comentario Enviado Correctamente";
         }catch(Exception ex)
         {
