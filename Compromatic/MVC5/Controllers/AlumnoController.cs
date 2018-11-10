@@ -12,7 +12,7 @@ namespace MVC5.Controllers
         // GET: Alumno
         public ActionResult Index()
         {
-            using (var db= new AlumnosContext())
+            using (var db = new AlumnosContext())
             {
                 //List<Alumno> lista= db.Alumno.Where(a=>a.Edad>18).ToList();
                 return View(db.Alumno.ToList());
@@ -43,9 +43,73 @@ namespace MVC5.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "ERROR AL CREAR ALUMNO "+ex.Message);
+                ModelState.AddModelError("", "ERROR AL CREAR ALUMNO " + ex.Message);
                 return View();
-            }   
+            }
+        }
+
+        public ActionResult Editar(int id)
+        {
+            try
+            {
+                using (var db = new AlumnosContext())
+                {
+                    return View(db.Alumno.Find(id));
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Editar(Alumno a)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return View();
+
+                using (var db= new AlumnosContext())
+                {
+                    Alumno al = db.Alumno.Find(a.id);
+                    al.Nombres = a.Nombres;
+                    al.Sexo = a.Sexo;
+                    al.Apellidos = a.Apellidos;
+                    al.Edad = a.Edad;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                } 
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            
+        }
+
+        public ActionResult Detalles(int id)
+        {
+            using (var db= new AlumnosContext())
+            {
+                Alumno alu = db.Alumno.Find(id);
+                return View(alu);
+            }
+        }
+
+        public ActionResult EliminarAlumno(int id)
+        {
+            using (var db = new AlumnosContext())
+            {
+                Alumno al=db.Alumno.Find(id);
+                db.Alumno.Remove(al);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            } 
         }
     }
 }

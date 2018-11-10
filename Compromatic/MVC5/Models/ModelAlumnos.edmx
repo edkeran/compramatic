@@ -15,9 +15,34 @@
           <Property Name="Edad" Type="int" Nullable="false" />
           <Property Name="Sexo" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="codCurso" Type="int" />
         </EntityType>
+        <EntityType Name="curso2">
+          <Key>
+            <PropertyRef Name="id_curso" />
+          </Key>
+          <Property Name="id_curso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_curso" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_Alumno_curso2">
+          <End Role="curso2" Type="Self.curso2" Multiplicity="0..1" />
+          <End Role="Alumno" Type="Self.Alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso2">
+              <PropertyRef Name="id_curso" />
+            </Principal>
+            <Dependent Role="Alumno">
+              <PropertyRef Name="codCurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="AlumnosDBModelStoreContainer">
           <EntitySet Name="Alumno" EntityType="Self.Alumno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="curso2" EntityType="Self.curso2" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Alumno_curso2" Association="Self.FK_Alumno_curso2">
+            <End Role="curso2" EntitySet="curso2" />
+            <End Role="Alumno" EntitySet="Alumno" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -25,6 +50,11 @@
       <Schema Namespace="AlumnosDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="AlumnosContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Alumno" EntityType="AlumnosDBModel.Alumno" />
+          <EntitySet Name="curso2" EntityType="AlumnosDBModel.curso2" />
+          <AssociationSet Name="FK_Alumno_curso2" Association="AlumnosDBModel.FK_Alumno_curso2">
+            <End Role="curso2" EntitySet="curso2" />
+            <End Role="Alumno" EntitySet="Alumno" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Alumno">
           <Key>
@@ -36,7 +66,29 @@
           <Property Name="Edad" Type="Int32" Nullable="false" />
           <Property Name="Sexo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="codCurso" Type="Int32" />
+          <NavigationProperty Name="curso2" Relationship="AlumnosDBModel.FK_Alumno_curso2" FromRole="Alumno" ToRole="curso2" />
         </EntityType>
+        <EntityType Name="curso2">
+          <Key>
+            <PropertyRef Name="id_curso" />
+          </Key>
+          <Property Name="id_curso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_curso" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Alumno" Relationship="AlumnosDBModel.FK_Alumno_curso2" FromRole="curso2" ToRole="Alumno" />
+        </EntityType>
+        <Association Name="FK_Alumno_curso2">
+          <End Type="AlumnosDBModel.curso2" Role="curso2" Multiplicity="0..1" />
+          <End Type="AlumnosDBModel.Alumno" Role="Alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="curso2">
+              <PropertyRef Name="id_curso" />
+            </Principal>
+            <Dependent Role="Alumno">
+              <PropertyRef Name="codCurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -46,12 +98,21 @@
           <EntitySetMapping Name="Alumno">
             <EntityTypeMapping TypeName="AlumnosDBModel.Alumno">
               <MappingFragment StoreEntitySet="Alumno">
+                <ScalarProperty Name="codCurso" ColumnName="codCurso" />
                 <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
                 <ScalarProperty Name="Sexo" ColumnName="Sexo" />
                 <ScalarProperty Name="Edad" ColumnName="Edad" />
                 <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
                 <ScalarProperty Name="Nombres" ColumnName="Nombres" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="curso2">
+            <EntityTypeMapping TypeName="AlumnosDBModel.curso2">
+              <MappingFragment StoreEntitySet="curso2">
+                <ScalarProperty Name="nom_curso" ColumnName="nom_curso" />
+                <ScalarProperty Name="id_curso" ColumnName="id_curso" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -25,6 +25,6 @@ namespace MVC5.Models
     [MetadataType(typeof(AlumnoCE))]
     public partial class Alumno
     {
-        public string NombreCompleto { get => Nombres + "" + Apellidos;}
+        public string NombreCompleto { get => Nombres + " " + Apellidos;}
     }
 }

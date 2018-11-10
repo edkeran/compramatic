@@ -12,16 +12,18 @@ namespace MVC5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Alumno
+    public partial class curso2
     {
-        public int id { get; set; }
-        public string Nombres { get; set; }
-        public string Apellidos { get; set; }
-        public int Edad { get; set; }
-        public string Sexo { get; set; }
-        public System.DateTime FechaRegistro { get; set; }
-        public Nullable<int> codCurso { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public curso2()
+        {
+            this.Alumno = new HashSet<Alumno>();
+        }
     
-        public virtual curso2 curso2 { get; set; }
+        public int id_curso { get; set; }
+        public string nom_curso { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Alumno> Alumno { get; set; }
     }
 }

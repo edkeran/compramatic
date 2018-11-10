@@ -26,5 +26,6 @@ namespace MVC5.Models
         }
     
         public virtual DbSet<Alumno> Alumno { get; set; }
+        public virtual DbSet<curso2> curso2 { get; set; }
     }
 }
