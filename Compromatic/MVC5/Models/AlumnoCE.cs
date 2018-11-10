@@ -20,6 +20,9 @@ namespace MVC5.Models
         [Required]
         [Display(Name = "Sexo Del Alumno")]
         public string Sexo { get; set; }
+        [Required]
+        [Display (Name ="Curso Del Alumno")]
+        public Nullable<int> codCurso { get; set; }
     }
 
     [MetadataType(typeof(AlumnoCE))]

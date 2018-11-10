@@ -25,6 +25,9 @@
             Sexo
         </th>
         <th>
+            Curso
+        </th>
+        <th>
             Fecha De Registro
         </th>
         <th></th>
@@ -52,6 +55,9 @@
                     <span>Femenino</span>
                 }
             }
+        </td>
+        <td>
+            @MVC5.Controllers.AlumnoController.Nombre_Grado(item.codCurso)
         </td>
         <td>
             @item.FechaRegistro.ToShortDateString()

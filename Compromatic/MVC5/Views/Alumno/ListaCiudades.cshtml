@@ -1,0 +1,10 @@
+﻿@model IEnumerable<MVC5.Models.curso2>
+
+<select class="form-control" id="codCurso" name="codCurso">
+    @foreach (var item in Model)
+    {
+        <option value="@item.id_curso">@item.nom_curso</option>
+    }
+</select>
+
+

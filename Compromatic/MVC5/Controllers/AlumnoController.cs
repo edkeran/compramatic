@@ -80,6 +80,7 @@ namespace MVC5.Controllers
                     al.Sexo = a.Sexo;
                     al.Apellidos = a.Apellidos;
                     al.Edad = a.Edad;
+                    al.codCurso = a.codCurso;
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 } 
@@ -110,6 +111,28 @@ namespace MVC5.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             } 
+        }
+
+        public ActionResult Agregar2()
+        {
+            return View();
+        }
+
+        public ActionResult ListaCiudades()
+        {
+            using (var db = new AlumnosContext())
+            {
+                return PartialView(db.curso2.ToList());
+            }
+        }
+
+        public static string Nombre_Grado(int? codCurso)
+        {
+            using (var db=new AlumnosContext())
+            {
+                var data = db.curso2.Find(codCurso);
+                return data.nom_curso;
+            }
         }
     }
 }
