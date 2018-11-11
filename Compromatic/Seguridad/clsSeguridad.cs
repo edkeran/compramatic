@@ -8,5 +8,6 @@ namespace Seguridad
 {
     public class clsSeguridad : System.Web.Services.Protocols.SoapHeader
     {
+        //configurar la seguridad de momento con la cache
     }
 }
