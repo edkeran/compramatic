@@ -91,7 +91,6 @@ public class CrearEmpresa : System.Web.Services.WebService
         
     }
 
-
     [WebMethod]
     [System.Web.Services.Protocols.SoapHeader("SoapHeader")]
     public string AutenticacionUsuario()
@@ -107,6 +106,7 @@ public class CrearEmpresa : System.Web.Services.WebService
                 return "-1";
             }
             string stToken = Guid.NewGuid().ToString();
+
             //DATOS DE LA AUUTENTICACION GUARDADAS EN CACHE CAMBIAR POR DB
             HttpRuntime.Cache.Add(stToken,
                 SoapHeader.stToken,
