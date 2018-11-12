@@ -37,6 +37,7 @@
                         <td><a href="#"><i class="fa fa-instagram f-s-14"></i></a></td>
                         <td><a href="#"><i class="fa fa-dribbble f-s-14"></i></a></td>
                         <td><a href="#"><i class="fa fa-google-plus f-s-14"></i></a></td>
+                        <td><a href="PublicacionesUser.aspx">Publicaciones Usuarios</a></td>
                </div>
                 <!--Div para el DLL de los Idiomas En La BD-->
                 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
