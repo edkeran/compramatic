@@ -7,7 +7,7 @@ namespace Utilitarios
 {
     [Serializable]
     [Table("Producto", Schema = "dbo")]
-    public class UEUProducto
+    public class UEUProducto : ICloneable
     {
         private int id;
         [Key]
@@ -132,5 +132,9 @@ namespace Utilitarios
         private string modifBy="";
         private int estado_producto;
 
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

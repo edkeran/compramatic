@@ -7,7 +7,7 @@ namespace Utilitarios
     //DSFASD
     [Serializable]
     [Table("Membresia", Schema = "dbo")]
-    public class UEUMembresia
+    public class UEUMembresia : ICloneable
     {
         private int id_memb;
         private DateTime fecha_inicio;
@@ -32,5 +32,10 @@ namespace Utilitarios
         public int Id_empresa { get => id_empresa; set => id_empresa = value; }
         [Column("modified_by")]
         public string ModifieBy { get => modifieBy; set => modifieBy = value; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

@@ -303,7 +303,7 @@ namespace Logica
                 foreach (UEUSession aux in data)
                 {
                     TimeSpan dif = DateTime.Now - aux.Fecha_fin_new;
-                    if (dif.TotalSeconds > 90)
+                    if (dif.TotalSeconds > 60)
                     {
                         delete.Add(aux);
                         retorno = true;

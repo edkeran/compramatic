@@ -6,7 +6,7 @@ namespace Utilitarios
 {
     [Serializable]
     [Table("Foto_producto", Schema = "dbo")]
-    public class UEUFotoProd
+    public class UEUFotoProd : ICloneable
     {
         private int id_foto;
         private String rutaArchi;
@@ -25,5 +25,10 @@ namespace Utilitarios
         public int Id_Product { get => id_Product; set => id_Product = value; }
         [Column("modified_by")]
         public string Modif_By { get => modif_By; set => modif_By = value; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

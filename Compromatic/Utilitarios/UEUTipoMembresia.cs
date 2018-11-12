@@ -6,7 +6,7 @@ namespace Utilitarios
 {
     [Serializable]
     [Table("Tipo_membresia", Schema = "dbo")]
-    public class UEUTipoMembresia
+    public class UEUTipoMembresia : ICloneable
     {
         //PARAMETROS DE LA TABLA DE LOS TIPOS
         private int id_tipo_mem;
@@ -26,5 +26,10 @@ namespace Utilitarios
         public double Valor_mem { get => valor_mem; set => valor_mem = value; }
         [Column("modified_by")]
         public string ModifBy { get => modifBy; set => modifBy = value; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }
