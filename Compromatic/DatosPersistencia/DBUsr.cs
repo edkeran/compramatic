@@ -40,6 +40,7 @@ namespace DatosPersistencia
             using (var db = new Mapeo("public"))
             {
                 var usuario = db.user.Find(user.IdUsr);
+                UEUsuario old_User = (UEUsuario)usuario.Clone();
                 //PARAMETROS UPDATE
                 usuario.IdUsr = user.IdUsr;
                 usuario.NomUsr = user.NomUsr;
@@ -50,6 +51,15 @@ namespace DatosPersistencia
                 usuario.DirUsr = user.DirUsr;
                 usuario.ModifBy = modif;
                 db.SaveChanges();
+                EAcceso acc = new EAcceso();
+                acc.Ip = EAcceso.obtenerIP();
+                acc.Mac = EAcceso.obtenerMAC();
+                acc.Id = 0;
+                acc.IdUsuario = 0;
+                acc.FechaInicio = DateTime.Now.ToString();
+                acc.FechaFin = DateTime.Now.ToString();
+                DBAuditoria.update(usuario,old_User,acc,"dbo","Usuario");
+
             }
         }
 
@@ -124,6 +134,14 @@ namespace DatosPersistencia
                 top.Modified_by1 = usuario;
                 db.top_ten.Add(top);
                 db.SaveChanges();
+                EAcceso acc = new EAcceso();
+                acc.Ip = EAcceso.obtenerIP();
+                acc.Mac = EAcceso.obtenerMAC();
+                acc.Id = 0;
+                acc.IdUsuario = 0;
+                acc.FechaInicio = DateTime.Now.ToString();
+                acc.FechaFin = DateTime.Now.ToString();
+                DBAuditoria.insert(usr, acc, "dbo", "Top_10");
             }
         }
 
@@ -133,9 +151,18 @@ namespace DatosPersistencia
             user.ModifBy = usuario;
             using (var db = new Mapeo("public")) {
                 var usr = db.user.Find(user.IdUsr);
+                UEUsuario old = (UEUsuario)usr.Clone();
                 usr.PassUsr = user.PassUsr;
                 usr.ModifBy = user.ModifBy;
                 db.SaveChanges();
+                EAcceso acc = new EAcceso();
+                acc.Ip = EAcceso.obtenerIP();
+                acc.Mac = EAcceso.obtenerMAC();
+                acc.Id = 0;
+                acc.IdUsuario = 0;
+                acc.FechaInicio = DateTime.Now.ToString();
+                acc.FechaFin = DateTime.Now.ToString();
+                DBAuditoria.update(usr,old,acc,"dbo","Usuario");
             }
         }
 
@@ -155,8 +182,18 @@ namespace DatosPersistencia
             using (var db= new Mapeo("public"))
             {
                 var data = db.user.Find(info.IdUsr);
+                UEUsuario old_usr = (UEUsuario)data.Clone();
                 data.Sessiones = info.Sessiones;
                 db.SaveChanges();
+                EAcceso acc = new EAcceso();
+                acc.Ip = EAcceso.obtenerIP();
+                acc.Mac = EAcceso.obtenerMAC();
+                acc.Id = 0;
+                acc.IdUsuario = 0;
+                acc.FechaInicio = DateTime.Now.ToString();
+                acc.FechaFin = DateTime.Now.ToString();
+                DBAuditoria.update(data, old_usr, acc, "dbo", "Usuario");
+
             }
         }
 
@@ -166,9 +203,18 @@ namespace DatosPersistencia
             using (var db = new Mapeo("public"))
             {
                 var data = db.user.Find(user.IdUsr);
+                UEUsuario old_usr = (UEUsuario)data.Clone();
                 data.EstUsr = est;
                 data.ModifBy = usuario;
                 db.SaveChanges();
+                EAcceso acc = new EAcceso();
+                acc.Ip = EAcceso.obtenerIP();
+                acc.Mac = EAcceso.obtenerMAC();
+                acc.Id = 0;
+                acc.IdUsuario = 0;
+                acc.FechaInicio = DateTime.Now.ToString();
+                acc.FechaFin = DateTime.Now.ToString();
+                DBAuditoria.update(data, old_usr, acc, "dbo", "Usuario");
             }
         }
 
@@ -177,9 +223,18 @@ namespace DatosPersistencia
             using (var db= new Mapeo("public"))
             {
                 var data = db.user.Find(user.IdUsr);
+                UEUsuario old_usr = (UEUsuario)data.Clone();
                 data.NomArch = user.NomArch;
                 data.ModifBy = usuario;
                 db.SaveChanges();
+                EAcceso acc = new EAcceso();
+                acc.Ip = EAcceso.obtenerIP();
+                acc.Mac = EAcceso.obtenerMAC();
+                acc.Id = 0;
+                acc.IdUsuario = 0;
+                acc.FechaInicio = DateTime.Now.ToString();
+                acc.FechaFin = DateTime.Now.ToString();
+                DBAuditoria.update(data, old_usr, acc, "dbo", "Usuario");
             }
         }
 
@@ -213,8 +268,16 @@ namespace DatosPersistencia
             rep.modified_by = usuario;
             using (var db= new Mapeo("public"))
             {
-               db.reporte_T.Add(rep);
+                db.reporte_T.Add(rep);
                 db.SaveChanges();
+                EAcceso acc = new EAcceso();
+                acc.Ip = EAcceso.obtenerIP();
+                acc.Mac = EAcceso.obtenerMAC();
+                acc.Id = 0;
+                acc.IdUsuario = 0;
+                acc.FechaInicio = DateTime.Now.ToString();
+                acc.FechaFin = DateTime.Now.ToString();
+                DBAuditoria.insert(rep, acc, "dbo", "Reporte");
             }
         }
 
@@ -227,8 +290,18 @@ namespace DatosPersistencia
                 if (cont > 4)
                 {
                     var prod = db.productos.Find(id);
+                    UEUProducto old_prod = (UEUProducto)prod.Clone();
                     prod.Estado_producto = 0;
                     prod.ModifBy = usuario;
+                    db.SaveChanges();
+                    EAcceso acc = new EAcceso();
+                    acc.Ip = EAcceso.obtenerIP();
+                    acc.Mac = EAcceso.obtenerMAC();
+                    acc.Id = 0;
+                    acc.IdUsuario = 0;
+                    acc.FechaInicio = DateTime.Now.ToString();
+                    acc.FechaFin = DateTime.Now.ToString();
+                    DBAuditoria.update(prod,old_prod,acc ,"dbo", "Producto");
                 }
             }
         }
@@ -336,10 +409,20 @@ namespace DatosPersistencia
             using (var db= new Mapeo("public"))
             {
                 var update =(from usuario in db.user where usuario.CorreoUsr == correo select usuario).FirstOrDefault();
+                UEUsuario old_user= (UEUsuario)update.Clone();
                 update.Inc_bloq = h_in;
                 update.Fin_bloqu = h_fi;
                 update.Intentos = intentos;
                 db.SaveChanges();
+                EAcceso acc = new EAcceso();
+                acc.Ip = EAcceso.obtenerIP();
+                acc.Mac = EAcceso.obtenerMAC();
+                acc.Id = 0;
+                acc.IdUsuario = 0;
+                acc.FechaInicio = DateTime.Now.ToString();
+                acc.FechaFin = DateTime.Now.ToString();
+                DBAuditoria.update(update, old_user, acc, "dbo", "Usuario");
+
             }
         }
 
@@ -353,6 +436,14 @@ namespace DatosPersistencia
                 rango.ModifiBy = usuario;
                 db.rangos.Add(rango);
                 db.SaveChanges();
+                EAcceso acc = new EAcceso();
+                acc.Ip = EAcceso.obtenerIP();
+                acc.Mac = EAcceso.obtenerMAC();
+                acc.Id = 0;
+                acc.IdUsuario = 0;
+                acc.FechaInicio = DateTime.Now.ToString();
+                acc.FechaFin = DateTime.Now.ToString();
+                DBAuditoria.insert(rango, acc, "dbo", "Rango");
             }
         }
 
@@ -362,9 +453,18 @@ namespace DatosPersistencia
             using (var db= new Mapeo("public"))
             {
                 var empre = db.empre.Find(emp.Id);
+                UEUEmpresa old_Empre = (UEUEmpresa)empre.Clone();
                 empre.Calificacion = emp.Calificacion;
                 empre.ModifBy = usuario;
                 db.SaveChanges();
+                EAcceso acc = new EAcceso();
+                acc.Ip = EAcceso.obtenerIP();
+                acc.Mac = EAcceso.obtenerMAC();
+                acc.Id = 0;
+                acc.IdUsuario = 0;
+                acc.FechaInicio = DateTime.Now.ToString();
+                acc.FechaFin = DateTime.Now.ToString();
+                DBAuditoria.update(empre, old_Empre, acc, "dbo", "Empresa");
             }
         }
 
@@ -374,9 +474,18 @@ namespace DatosPersistencia
             using (var db= new Mapeo("public"))
             {
                 var empresa = db.empre.Find(emp);
+                UEUEmpresa old_Empre=(UEUEmpresa)empresa.Clone();
                 empresa.EstadoEmpre = est;
                 empresa.ModifBy = modif;
                 db.SaveChanges();
+                EAcceso acc = new EAcceso();
+                acc.Ip = EAcceso.obtenerIP();
+                acc.Mac = EAcceso.obtenerMAC();
+                acc.Id = 0;
+                acc.IdUsuario = 0;
+                acc.FechaInicio = DateTime.Now.ToString();
+                acc.FechaFin = DateTime.Now.ToString();
+                DBAuditoria.update(empresa, old_Empre, acc, "dbo", "Empresa");
             }
         }
     }

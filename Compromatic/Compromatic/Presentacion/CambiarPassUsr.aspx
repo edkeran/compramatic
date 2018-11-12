@@ -40,18 +40,18 @@
                                    <tbody>
                                         <tr>
                                             <td class="field" id="ant_pass"  runat="server">Contraseña anterior:</td>
-                                            <td><asp:TextBox ID="TB_Pass1" CssClass="form-control" runat="server" TextMode="Password" MaxLength="45"></asp:TextBox></td>
-                                            <asp:RequiredFieldValidator runat="server" CssClass="alert-warning" ErrorMessage="Archivo Necesario" ForeColor="Red" ControlToValidate="TB_Pass1" ValidationGroup="CambiarPass"></asp:RequiredFieldValidator>
+                                            <td><asp:TextBox ID="TB_Pass1" CssClass="form-control" runat="server" TextMode="Password" MaxLength="45" onkeypress="return validarn(event)"></asp:TextBox></td>
+                                            <asp:RequiredFieldValidator runat="server" CssClass="alert-warning" ErrorMessage="Campo Necesario" ForeColor="Red" ControlToValidate="TB_Pass1" ValidationGroup="CambiarPass"></asp:RequiredFieldValidator>
                                         </tr>
                                         <tr>
                                             <td class="field" id="new_pass" runat="server">Contraseña nueva:</td>
-                                            <td><asp:TextBox ID="TB_Pass2" CssClass="form-control" runat="server" TextMode="Password" MaxLength="45" ></asp:TextBox></td>
-                                            <asp:RequiredFieldValidator runat="server" CssClass="alert-warning" ErrorMessage="Archivo Necesario" ForeColor="Red" ControlToValidate="TB_Pass2" ValidationGroup="CambiarPass"></asp:RequiredFieldValidator>
+                                            <td><asp:TextBox ID="TB_Pass2" CssClass="form-control" runat="server" TextMode="Password" MaxLength="45" onkeypress="return validarn(event)" ></asp:TextBox></td>
+                                            <asp:RequiredFieldValidator runat="server" CssClass="alert-warning" ErrorMessage="Campo Necesario" ForeColor="Red" ControlToValidate="TB_Pass2" ValidationGroup="CambiarPass"></asp:RequiredFieldValidator>
                                         </tr>
                                         <tr>
                                             <td class="field" id="new_pass2" runat="server">Repetir contraseña:</td>
-                                            <td><asp:TextBox ID="TB_Pass3" CssClass="form-control" runat="server" TextMode="Password" MaxLength="45" ></asp:TextBox></td>
-                                            <asp:RequiredFieldValidator runat="server" CssClass="alert-warning" ErrorMessage="Archivo Necesario" ForeColor="Red" ControlToValidate="TB_Pass3" ValidationGroup="CambiarPass"></asp:RequiredFieldValidator>
+                                            <td><asp:TextBox ID="TB_Pass3" CssClass="form-control" runat="server" TextMode="Password" MaxLength="45" onkeypress="return validarn(event)" ></asp:TextBox></td>
+                                            <asp:RequiredFieldValidator runat="server" CssClass="alert-warning" ErrorMessage="Campo Necesario" ForeColor="Red" ControlToValidate="TB_Pass3" ValidationGroup="CambiarPass"></asp:RequiredFieldValidator>
                                         </tr>
                                        <tr class="divider">
                                             <td colspan="2">

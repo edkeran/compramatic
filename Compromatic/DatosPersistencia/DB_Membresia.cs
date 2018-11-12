@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using Utilitarios;
 
@@ -12,13 +12,14 @@ namespace DatosPersistencia
         {
             using (var db = new Mapeo("public"))
             {
-
                 var mem = (from member in db.type_membership where member.Nom_mem == ant select member).FirstOrDefault();
+                UEUTipoMembresia old_Mem =(UEUTipoMembresia) mem.Clone();
                 mem.ModifBy = usuario;
                 mem.Nom_mem = nom;
                 mem.Tmpo_mem=dur;
                 mem.Valor_mem = valor;
                 db.SaveChanges();
+                DBAuditoria.update(mem, old_Mem, crearAcceso(), "dbo", "Tipo_membresia");
             }
         }
 
@@ -78,17 +79,20 @@ namespace DatosPersistencia
                 {
                     //UPDATE
                     var data = (from mem in db.membresia where mem.Id_empresa == insercion.Id_empresa select mem).FirstOrDefault();
+                    UEUMembresia old_Mmeship = (UEUMembresia)data.Clone();
                     data.Estado_mem = insercion.Estado_mem;
                     data.Fecha_inicio = insercion.Fecha_inicio;
                     data.Fecha_fin = insercion.Fecha_fin;
                     data.Id_tipo_mem = insercion.Id_tipo_mem;
                     db.SaveChanges();
+                    DBAuditoria.update(data,old_Mmeship,crearAcceso(),"dbo","Membresia");
                 }
                 else
                 {
-                    //INSERT    
+                    //INSERT PARA LA MEMBRESIA
                     db.membresia.Add(insercion);
                     db.SaveChanges();
+                    DBAuditoria.insert(insercion,crearAcceso(),"dbo", "Membresia");
                 }
             }
         }
@@ -114,6 +118,18 @@ namespace DatosPersistencia
                 DataTable repo = conv.ToDataTable<vistaMostrarMembre>(inf);
                 return repo;
             }
+        }
+
+        public EAcceso crearAcceso()
+        {
+            EAcceso acc = new EAcceso();
+            acc.Ip = EAcceso.obtenerIP();
+            acc.Mac = EAcceso.obtenerMAC();
+            acc.Id = 0;
+            acc.IdUsuario = 0;
+            acc.FechaInicio = DateTime.Now.ToString();
+            acc.FechaFin = DateTime.Now.ToString();
+            return acc;
         }
     }
 }

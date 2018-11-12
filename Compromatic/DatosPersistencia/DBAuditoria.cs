@@ -89,7 +89,7 @@ namespace DatosPersistencia
             //CICLO PARA RECORRER LOS DATOS ANTIGUIOS Y NUEVOS QUE SE VAN A CAMBIAR
             foreach (PropertyInfo propertyInfo in newObj.GetType().GetProperties())
             {
-                if (propertyInfo.GetValue(newObj) != null) {
+                if (propertyInfo.GetValue(newObj) != null && propertyInfo.GetValue(oldObj)!=null) {
                     if (propertyInfo.PropertyType == typeof(string) || propertyInfo.PropertyType == typeof(int) || propertyInfo.PropertyType == typeof(Boolean))
                     {
                         if (propertyInfo.Name.Equals("Id"))

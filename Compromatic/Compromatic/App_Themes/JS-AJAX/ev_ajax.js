@@ -12,7 +12,7 @@ function reportar_session() {
         async: true,
         success: VerifySessionState,
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert(textStatus + ": " + XMLHttpRequest.responseText);
+            console.log(textStatus + ": " + XMLHttpRequest.responseText);
         }
     });
     console.log("REPORTE");

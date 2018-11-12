@@ -7,10 +7,9 @@ namespace Utilitarios
     [Serializable]
     [Table("Empresa", Schema = "dbo")]
 
-    public class UEUEmpresa
+    public class UEUEmpresa : ICloneable
     {
         private String nit;
-        //[Key]
 
         [Column("nitEmpresa")]
         public String Nit
@@ -181,6 +180,11 @@ namespace Utilitarios
         public DateTime? Fch_fn {
             get => fch_fn;
             set => fch_fn = value;
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
     }
 }

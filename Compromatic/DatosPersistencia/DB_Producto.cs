@@ -16,6 +16,7 @@ namespace DatosPersistencia
             {
                 db.productos.Add(produ);
                 db.SaveChanges();
+                DBAuditoria.insert(produ, this.crearAcceso(), "dbo", "Producto");
             }
         }
 
@@ -25,9 +26,11 @@ namespace DatosPersistencia
             using (var db= new Mapeo("public"))
             {
                 var prod_del = db.productos.Find(data.Id);
+                UEUProducto oldProd = (UEUProducto)prod_del.Clone();
                 prod_del.Estado_producto = 0;
                 prod_del.ModifBy = data.ModifBy;
                 db.SaveChanges();
+                DBAuditoria.update(prod_del,oldProd,crearAcceso(),"dbo","Producto");
 
             }
         }
@@ -38,6 +41,7 @@ namespace DatosPersistencia
             using (var db = new Mapeo("public"))
             {
                 var update = db.productos.Find(prod.Id);
+                UEUProducto old_Prod = (UEUProducto)update.Clone();
                 update.Nombre = prod.Nombre;
                 update.Cantidad = prod.Cantidad;
                 update.Precio = prod.Precio;
@@ -46,6 +50,7 @@ namespace DatosPersistencia
                 update.Id = prod.Id;
                 update.ModifBy = prod.ModifBy;
                 db.SaveChanges();
+                DBAuditoria.update(update, old_Prod, crearAcceso(), "dbo", "Producto");
             }
 
         }
@@ -90,6 +95,7 @@ namespace DatosPersistencia
             {
                 db.fotosPro.Add(picture);
                 db.SaveChanges();
+                DBAuditoria.insert(picture,crearAcceso(),"dbo", "Foto_producto");
             }
         }
 
@@ -100,6 +106,7 @@ namespace DatosPersistencia
             {
                 db.tag.Add(data);
                 db.SaveChanges();
+                DBAuditoria.insert(data, crearAcceso(), "dbo", "Palabra_clave");
             }
         }
 
@@ -111,6 +118,7 @@ namespace DatosPersistencia
                 var data = db.tag.Find(tagg.IdTag);
                 db.Entry(data).State = EntityState.Deleted;
                 db.SaveChanges();
+                DBAuditoria.delete(data, crearAcceso(), "dbo", "Palabra_clave");
             }
         }
 
@@ -120,9 +128,11 @@ namespace DatosPersistencia
             using (var db= new Mapeo("public"))
             {
                 var data = db.productos.Find(nData.Id);
+                UEUProducto old_Prod = (UEUProducto)data.Clone();
                 data.BajoInventario = nData.BajoInventario;
                 data.ModifBy = nData.ModifBy;
                 db.SaveChanges();
+                DBAuditoria.update(data, old_Prod, crearAcceso(), "dbo", "Producto");
             }
         }
 
@@ -268,12 +278,15 @@ namespace DatosPersistencia
             using (var db= new Mapeo("public"))
             {
                 var update=db.fotosPro.Find(prod.IdFoto);
+                UEUFotoProd old_Prod = (UEUFotoProd)update.Clone();
                 update.Modif_By = prod.ModifBy;
                 db.SaveChanges();
+                DBAuditoria.update(update, old_Prod, crearAcceso(), "dbo", "Foto_producto");
 
                 var delete = db.fotosPro.Find(prod.IdFoto);
                 db.Entry(delete).State = EntityState.Deleted;
                 db.SaveChanges();
+                DBAuditoria.delete(prod, crearAcceso(), "dbo", "Foto_producto");
             }
         }
 
@@ -293,10 +306,13 @@ namespace DatosPersistencia
             using (var db= new Mapeo("public"))
             {
                 var data = db.productos.Find(EU_Producto.Id);
+                UEUProducto old_Prod = (UEUProducto)data.Clone();
                 data.Cantidad = EU_Producto.Cantidad;
                 data.BajoInventario = EU_Producto.BajoInventario;
                 data.ModifBy = modif;
                 db.SaveChanges();
+                DBAuditoria.update(data,old_Prod,crearAcceso(),"dbo","Producto");
+
             }
         }
 
@@ -307,6 +323,7 @@ namespace DatosPersistencia
                 venta.modified_by = modif;
                 db.ventas.Add(venta);
                 db.SaveChanges();
+                DBAuditoria.insert(venta,crearAcceso(),"dbo","Venta");
             }
         }
 
@@ -315,11 +332,25 @@ namespace DatosPersistencia
             using (var db= new Mapeo("public"))
             {
                 var update = db.ventas.Find(idVenta);
+                UEUVenta old_Vent = (UEUVenta)update.Clone();
                 update.EstadoVenta = estado;
                 update.FechaEntr = DateTime.Now;
                 update.modified_by = modif;
                 db.SaveChanges();
+                DBAuditoria.update(update, old_Vent, crearAcceso(), "dbo", "Venta");
             }
+        }
+
+        public EAcceso crearAcceso()
+        {
+            EAcceso acc = new EAcceso();
+            acc.Ip = EAcceso.obtenerIP();
+            acc.Mac = EAcceso.obtenerMAC();
+            acc.Id = 0;
+            acc.IdUsuario = 0;
+            acc.FechaInicio = DateTime.Now.ToString();
+            acc.FechaFin = DateTime.Now.ToString();
+            return acc;
         }
 
 

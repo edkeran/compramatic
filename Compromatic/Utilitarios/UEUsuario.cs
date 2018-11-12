@@ -7,7 +7,7 @@ namespace Utilitarios
 
     [Serializable]
     [Table("Usuario", Schema = "dbo")]
-    public class UEUsuario
+    public class UEUsuario : ICloneable
     {
         private int idUsr;
 
@@ -186,5 +186,9 @@ namespace Utilitarios
             set => current_sessions = value;
         }
 
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

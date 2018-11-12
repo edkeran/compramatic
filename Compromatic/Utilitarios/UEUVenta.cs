@@ -6,7 +6,7 @@ namespace Utilitarios
 {
     [Serializable]
     [Table("Venta", Schema = "dbo")]
-    public class UEUVenta
+    public class UEUVenta : ICloneable
     {
         private Double valor;
 
@@ -89,8 +89,9 @@ namespace Utilitarios
             set => calEmp = value;
         }
 
-        
-
-
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }
