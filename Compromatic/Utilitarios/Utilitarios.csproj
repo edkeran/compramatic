@@ -63,6 +63,7 @@
     <Compile Include="UEUMembresia.cs" />
     <Compile Include="UEUMotiRepo.cs" />
     <Compile Include="UEUProducto.cs" />
+    <Compile Include="UEUPublic_User.cs" />
     <Compile Include="UEUQueja.cs" />
     <Compile Include="UEURango.cs" />
     <Compile Include="UEUReporte.cs" />

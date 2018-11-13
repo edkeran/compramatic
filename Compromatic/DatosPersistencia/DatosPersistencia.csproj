@@ -76,6 +76,7 @@
     <Compile Include="DB_Admin.cs" />
     <Compile Include="DB_Membresia.cs" />
     <Compile Include="DB_Producto.cs" />
+    <Compile Include="DB_Publicacion_Use.cs" />
     <Compile Include="DB_ReasosnsPQR.cs" />
     <Compile Include="DB_ReporteAdmin.cs" />
     <Compile Include="DB_Seguridad_Servicios.cs" />

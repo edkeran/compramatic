@@ -48,6 +48,7 @@ namespace DatosPersistencia
         public DbSet<UEUBloqueo> bloqueos { get; set; }
         public DbSet<EAuditoria> auditoria { get; set; }
         public DbSet<UEUComentEmpres> comentEmpre { get; set; }
+        public DbSet<UEUPublic_User> publicaciones { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder builder)
         {

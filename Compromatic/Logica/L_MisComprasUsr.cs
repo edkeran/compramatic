@@ -80,7 +80,6 @@ namespace Logica
 
                     rango.Rango = double.Parse(tb_1);
                     rango.Comentario = tb_2;
-                    //daousr.RegistrarRango(rango, user.Rows[0]["nomUsuario"].ToString());
                     daoUsuario.RegistrarRango(rango, user.Rows[0]["nomUsuario"].ToString());
 
                     DB_Admin daoAdministrador = new DB_Admin();

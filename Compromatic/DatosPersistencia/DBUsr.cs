@@ -488,5 +488,17 @@ namespace DatosPersistencia
                 DBAuditoria.update(empresa, old_Empre, acc, "dbo", "Empresa");
             }
         }
+
+        //  METODO PARA OBTENER EL USUARIO POR EL EMAIL
+        public UEUsuario get_usr_email(string email)
+        {
+            using (var db= new Mapeo("public"))
+            {
+                var usr = (from user in db.user
+                          where user.CorreoUsr == email
+                          select user).FirstOrDefault();
+                return usr;
+            }
+        }
     }
 }
