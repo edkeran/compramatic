@@ -3,6 +3,9 @@ using System.Web.Services;
 using Logica;
 using Newtonsoft.Json;
 using Utilitarios;
+using Seguridad;
+using System;
+using System.Web;
 
 /// <summary>
 /// Descripción breve de WebService
@@ -13,7 +16,7 @@ using Utilitarios;
 // [System.Web.Script.Services.ScriptService]
 public class WebService : System.Web.Services.WebService
 {
-
+    public clsSeguridad SoapHeader;
     public WebService()
     {
 
@@ -28,48 +31,108 @@ public class WebService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string traer_por_categoria(string token,int id_categoria)
+    [System.Web.Services.Protocols.SoapHeader("SoapHeader")]
+    public string traer_por_categoria(int id_categoria)
     {
-        if (validar_token_recibido(token))
+        try
         {
-            L_WebService logi = new L_WebService();
-            List<UEUVista_Tot_Prod> inf = logi.busqueda(id_categoria);
-            string res = JsonConvert.SerializeObject(inf);
-            return res;
+            if (SoapHeader == null)
+            {
+                throw new Exception("Requiere Validacion");
+            }
+
+            if (!SoapHeader.blCredencialesValidas(SoapHeader))
+            {
+                throw new Exception("Requiere Validacion");
+            }
+            try
+            {
+                L_WebService logi = new L_WebService();
+                List<UEUVista_Tot_Prod> inf = logi.busqueda(id_categoria);
+                string res = JsonConvert.SerializeObject(inf);
+                return res;
+            }
+            catch (Exception ex)
+            {
+
+                return "Ha Ocurrido Un Error Inesperado " + ex.Message;
+            }
+           
         }
-        else
+        catch (Exception ex)
         {
-            return "ACCESO DENEGADO";
+
+            throw ex;
         }
-        
+          
     }
-
-    private bool validar_token_recibido(string token)
-    {
-        if (token == "TOKEN_TEST")
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    //METODO PARA DAR TIEMPO DE VIDA AL TOKEN Y ACTUALIZARLO EN AMBOS PROYECTOS
-    private void setear_token()
-    {
-
-    }
-
     
     //METODO PARA OBTENER TODAS LAS CATEGORIAS DEL PROYECTO
     [WebMethod]
+    [System.Web.Services.Protocols.SoapHeader("SoapHeader")]
     public string traer_categorias_productos()
     {
-        L_WebService logi = new L_WebService();
-        string res = JsonConvert.SerializeObject(logi.get_all_Cate());
-        return res;
+        try
+        {
+            try
+            {
+                if (SoapHeader == null)
+                {
+                    throw new Exception("Requiere Validacion");
+                }
+
+                if (!SoapHeader.blCredencialesValidas(SoapHeader))
+                {
+                    throw new Exception("Requiere Validacion");
+                }           
+                L_WebService logi = new L_WebService();
+                string res = JsonConvert.SerializeObject(logi.get_all_Cate());
+                return res;
+            }
+            catch (Exception ex)
+            {
+
+                return "Ha Ocurrido Un Error Inesperado " + ex.Message;
+            }
+        }
+        catch (Exception ex)
+        {
+
+            throw ex;
+        }
     }
 
+
+    //Metodo para autenticar a la Empresa Que solicita el Servicio
+    [WebMethod]
+    [System.Web.Services.Protocols.SoapHeader("SoapHeader")]
+    public string AutenticacionUsuario()
+    {
+        try
+        {
+            if (SoapHeader == null)
+            {
+                return "-1";
+            }
+            if (!SoapHeader.blCredencialesValidas(SoapHeader.stToken))
+            {
+                return "-1";
+            }
+            string stToken = Guid.NewGuid().ToString();
+            //DATOS DE LA AUUTENTICACION GUARDADAS EN CACHE CAMBIAR POR DB
+            HttpRuntime.Cache.Add(stToken,
+                SoapHeader.stToken,
+                null,
+                System.Web.Caching.Cache.NoAbsoluteExpiration,
+                TimeSpan.FromMinutes(30),
+                System.Web.Caching.CacheItemPriority.NotRemovable,
+                null);
+
+            return stToken;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 }
