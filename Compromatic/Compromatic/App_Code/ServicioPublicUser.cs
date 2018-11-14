@@ -79,7 +79,7 @@ public class ServicioPublicUser : System.Web.Services.WebService
             {
                 return "-1";
             }
-            if (!SoapHeader.blCredencialesValidas(SoapHeader.stToken))
+            if (!SoapHeader.blCredencialesValidas(SoapHeader.stToken,SoapHeader.nomEmp))
             {
                 return "-1";
             }

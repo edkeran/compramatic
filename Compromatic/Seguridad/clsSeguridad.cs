@@ -1,19 +1,26 @@
 ﻿using System;
 using System.Web;
+using Logica;
 
 namespace Seguridad
 {
     public class clsSeguridad : System.Web.Services.Protocols.SoapHeader
     {
         //configurar la seguridad de momento con la cache
-        public string stToken { get; set; }
-        public string AutenticacionToken { get; set; }
 
-        public bool blCredencialesValidas(string stToken)
+        //TOKEN ENVIADO PARA AUTENTICACION
+        public string stToken { get; set; }
+        //TOKEN GENERADO POR EL SERVER
+        public string AutenticacionToken { get; set; }
+        //Nom Empre
+        public string nomEmp { get; set; }
+
+        public bool blCredencialesValidas(string stToken,string nomEmp)
         {
             try
             {
-                if (DateTime.Now.ToString("yyyyMMdd") == stToken)
+                L_clsSeguridad logi = new L_clsSeguridad();
+                if (logi.validarCredencialesAute(stToken,nomEmp))
                 {
                     return true;
                 }
@@ -28,6 +35,7 @@ namespace Seguridad
             }
         }
 
+        //Cambiar Por DB
         public bool blCredencialesValidas(clsSeguridad SoapHeader)
         {
             try

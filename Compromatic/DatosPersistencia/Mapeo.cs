@@ -49,6 +49,7 @@ namespace DatosPersistencia
         public DbSet<EAuditoria> auditoria { get; set; }
         public DbSet<UEUComentEmpres> comentEmpre { get; set; }
         public DbSet<UEUPublic_User> publicaciones { get; set; }
+        public DbSet <UEUServicClient> serv_Client { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder builder)
         {

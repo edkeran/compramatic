@@ -67,6 +67,7 @@
     <Compile Include="UEUQueja.cs" />
     <Compile Include="UEURango.cs" />
     <Compile Include="UEUReporte.cs" />
+    <Compile Include="UEUServicClient.cs" />
     <Compile Include="UEUSession.cs" />
     <Compile Include="UEUSolici_Regist.cs" />
     <Compile Include="UEUTag.cs" />

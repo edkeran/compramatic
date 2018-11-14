@@ -80,6 +80,7 @@
     <Compile Include="DB_ReasosnsPQR.cs" />
     <Compile Include="DB_ReporteAdmin.cs" />
     <Compile Include="DB_Seguridad_Servicios.cs" />
+    <Compile Include="DB_Servicios.cs" />
     <Compile Include="DB_Session.cs" />
     <Compile Include="DB_Solicit.cs" />
     <Compile Include="DB_Tag.cs" />

@@ -50,6 +50,7 @@
     <Compile Include="L_AgregarProducto.cs" />
     <Compile Include="L_AumenMembre.cs" />
     <Compile Include="L_CambiarPass_Usr.cs" />
+    <Compile Include="L_clsSeguridad.cs" />
     <Compile Include="L_Componentes.cs" />
     <Compile Include="L_DashEmpresa.cs" />
     <Compile Include="L_ForgotPass.cs" />
