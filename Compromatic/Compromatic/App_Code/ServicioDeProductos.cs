@@ -6,6 +6,7 @@ using Utilitarios;
 using Seguridad;
 using System;
 using System.Web;
+using System.Data;
 
 /// <summary>
 /// Descripción breve de WebService
@@ -49,7 +50,14 @@ public class WebService : System.Web.Services.WebService
             {
                 L_WebService logi = new L_WebService();
                 List<UEUVista_Tot_Prod> inf = logi.busqueda(id_categoria);
-                string res = JsonConvert.SerializeObject(inf);
+                foreach(UEUVista_Tot_Prod aux in inf)
+                {
+                    aux._foto = "compramatic.hopto.org:88/Archivos/FotosProductos/" + aux._foto;
+                }
+                ListToDataTable conv = new ListToDataTable();
+                DataTable retorn = conv.ToDataTable(inf);
+                string res = JsonConvert.SerializeObject(retorn);
+                DataTable test = JsonConvert.DeserializeObject<DataTable>(res);
                 return res;
             }
             catch (Exception ex)

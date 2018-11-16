@@ -52,7 +52,9 @@
     <Compile Include="L_CambiarPass_Usr.cs" />
     <Compile Include="L_clsSeguridad.cs" />
     <Compile Include="L_Componentes.cs" />
+    <Compile Include="L_ContacCole.cs" />
     <Compile Include="L_DashEmpresa.cs" />
+    <Compile Include="L_EmpresUniEmp.cs" />
     <Compile Include="L_ForgotPass.cs" />
     <Compile Include="L_HistorialUsr.cs" />
     <Compile Include="L_HistoricoCalificaciones.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="L_SolicitudesPendientes.cs" />
     <Compile Include="L_SolicitudesRechazadas.cs" />
     <Compile Include="L_Store.cs" />
+    <Compile Include="L_SubsedesFerro.cs" />
     <Compile Include="L_TopDiezUsr.cs" />
     <Compile Include="L_verProducto.cs" />
     <Compile Include="L_WebService.cs" />

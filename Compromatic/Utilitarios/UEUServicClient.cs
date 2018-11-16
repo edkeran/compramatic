@@ -5,13 +5,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Utilitarios
 {
     [Serializable]
-    [Table("Bloqueos", Schema = "dbo")]
+    [Table("clientes", Schema = "servicios")]
     public class UEUServicClient
     {
         private int id_serv;
         private string nomClient;
         private string hash;
 
+        [Key]
         [Column("id_Cliente")]
         public int Id_serv { get => id_serv; set => id_serv = value; }
         [Column("nom_cliente")]

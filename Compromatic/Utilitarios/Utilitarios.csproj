@@ -48,11 +48,13 @@
     <Compile Include="EAcceso.cs" />
     <Compile Include="EAuditoria.cs" />
     <Compile Include="Encriptar.cs" />
+    <Compile Include="JoinEmpresasR.cs" />
     <Compile Include="ListToDataTable.cs" />
     <Compile Include="TQuejas.cs" />
     <Compile Include="UAuxPrinciAdmin.cs" />
     <Compile Include="UAuxTipoMem.cs" />
     <Compile Include="UAuxVenta.cs" />
+    <Compile Include="Ubicaciones.cs" />
     <Compile Include="UEUArchivoSolic.cs" />
     <Compile Include="UEUBloqueo.cs" />
     <Compile Include="UEUComentEmpres.cs" />

@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="AutenticacionUsuario">
+        <s:complexType />
+      </s:element>
+      <s:element name="AutenticacionUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AutenticacionUsuarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SeguridadToken" type="tns:SeguridadToken" />
+      <s:complexType name="SeguridadToken">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Token_Autenticacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pass" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="Empresas_Registradas">
+        <s:complexType />
+      </s:element>
+      <s:element name="Empresas_RegistradasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Empresas_RegistradasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Top_5_Empresas">
+        <s:complexType />
+      </s:element>
+      <s:element name="Top_5_EmpresasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Top_5_EmpresasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Empresas_Mas_Ofertas">
+        <s:complexType />
+      </s:element>
+      <s:element name="Empresas_Mas_OfertasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Empresas_Mas_OfertasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Ofertas_Detalladas">
+        <s:complexType />
+      </s:element>
+      <s:element name="Ofertas_DetalladasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ofertas_DetalladasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Top5_Aspirantes">
+        <s:complexType />
+      </s:element>
+      <s:element name="Top5_AspirantesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Top5_AspirantesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Busqueda_Aspirantes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="texto" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Busqueda_AspirantesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Busqueda_AspirantesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Busqueda_Ofertas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="texto" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Busqueda_OfertasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Busqueda_OfertasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AutenticacionUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:AutenticacionUsuario" />
+  </wsdl:message>
+  <wsdl:message name="AutenticacionUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:AutenticacionUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="AutenticacionUsuarioSeguridadToken">
+    <wsdl:part name="SeguridadToken" element="tns:SeguridadToken" />
+  </wsdl:message>
+  <wsdl:message name="Empresas_RegistradasSoapIn">
+    <wsdl:part name="parameters" element="tns:Empresas_Registradas" />
+  </wsdl:message>
+  <wsdl:message name="Empresas_RegistradasSoapOut">
+    <wsdl:part name="parameters" element="tns:Empresas_RegistradasResponse" />
+  </wsdl:message>
+  <wsdl:message name="Empresas_RegistradasSeguridadToken">
+    <wsdl:part name="SeguridadToken" element="tns:SeguridadToken" />
+  </wsdl:message>
+  <wsdl:message name="Top_5_EmpresasSoapIn">
+    <wsdl:part name="parameters" element="tns:Top_5_Empresas" />
+  </wsdl:message>
+  <wsdl:message name="Top_5_EmpresasSoapOut">
+    <wsdl:part name="parameters" element="tns:Top_5_EmpresasResponse" />
+  </wsdl:message>
+  <wsdl:message name="Top_5_EmpresasSeguridadToken">
+    <wsdl:part name="SeguridadToken" element="tns:SeguridadToken" />
+  </wsdl:message>
+  <wsdl:message name="Empresas_Mas_OfertasSoapIn">
+    <wsdl:part name="parameters" element="tns:Empresas_Mas_Ofertas" />
+  </wsdl:message>
+  <wsdl:message name="Empresas_Mas_OfertasSoapOut">
+    <wsdl:part name="parameters" element="tns:Empresas_Mas_OfertasResponse" />
+  </wsdl:message>
+  <wsdl:message name="Empresas_Mas_OfertasSeguridadToken">
+    <wsdl:part name="SeguridadToken" element="tns:SeguridadToken" />
+  </wsdl:message>
+  <wsdl:message name="Ofertas_DetalladasSoapIn">
+    <wsdl:part name="parameters" element="tns:Ofertas_Detalladas" />
+  </wsdl:message>
+  <wsdl:message name="Ofertas_DetalladasSoapOut">
+    <wsdl:part name="parameters" element="tns:Ofertas_DetalladasResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ofertas_DetalladasSeguridadToken">
+    <wsdl:part name="SeguridadToken" element="tns:SeguridadToken" />
+  </wsdl:message>
+  <wsdl:message name="Top5_AspirantesSoapIn">
+    <wsdl:part name="parameters" element="tns:Top5_Aspirantes" />
+  </wsdl:message>
+  <wsdl:message name="Top5_AspirantesSoapOut">
+    <wsdl:part name="parameters" element="tns:Top5_AspirantesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Top5_AspirantesSeguridadToken">
+    <wsdl:part name="SeguridadToken" element="tns:SeguridadToken" />
+  </wsdl:message>
+  <wsdl:message name="Busqueda_AspirantesSoapIn">
+    <wsdl:part name="parameters" element="tns:Busqueda_Aspirantes" />
+  </wsdl:message>
+  <wsdl:message name="Busqueda_AspirantesSoapOut">
+    <wsdl:part name="parameters" element="tns:Busqueda_AspirantesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Busqueda_AspirantesSeguridadToken">
+    <wsdl:part name="SeguridadToken" element="tns:SeguridadToken" />
+  </wsdl:message>
+  <wsdl:message name="Busqueda_OfertasSoapIn">
+    <wsdl:part name="parameters" element="tns:Busqueda_Ofertas" />
+  </wsdl:message>
+  <wsdl:message name="Busqueda_OfertasSoapOut">
+    <wsdl:part name="parameters" element="tns:Busqueda_OfertasResponse" />
+  </wsdl:message>
+  <wsdl:message name="Busqueda_OfertasSeguridadToken">
+    <wsdl:part name="SeguridadToken" element="tns:SeguridadToken" />
+  </wsdl:message>
+  <wsdl:portType name="ServidorUniempleoSoap">
+    <wsdl:operation name="AutenticacionUsuario">
+      <wsdl:input message="tns:AutenticacionUsuarioSoapIn" />
+      <wsdl:output message="tns:AutenticacionUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Empresas_Registradas">
+      <wsdl:input message="tns:Empresas_RegistradasSoapIn" />
+      <wsdl:output message="tns:Empresas_RegistradasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Top_5_Empresas">
+      <wsdl:input message="tns:Top_5_EmpresasSoapIn" />
+      <wsdl:output message="tns:Top_5_EmpresasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Empresas_Mas_Ofertas">
+      <wsdl:input message="tns:Empresas_Mas_OfertasSoapIn" />
+      <wsdl:output message="tns:Empresas_Mas_OfertasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Ofertas_Detalladas">
+      <wsdl:input message="tns:Ofertas_DetalladasSoapIn" />
+      <wsdl:output message="tns:Ofertas_DetalladasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Top5_Aspirantes">
+      <wsdl:input message="tns:Top5_AspirantesSoapIn" />
+      <wsdl:output message="tns:Top5_AspirantesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Busqueda_Aspirantes">
+      <wsdl:input message="tns:Busqueda_AspirantesSoapIn" />
+      <wsdl:output message="tns:Busqueda_AspirantesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Busqueda_Ofertas">
+      <wsdl:input message="tns:Busqueda_OfertasSoapIn" />
+      <wsdl:output message="tns:Busqueda_OfertasSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServidorUniempleoSoap" type="tns:ServidorUniempleoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AutenticacionUsuario">
+      <soap:operation soapAction="http://tempuri.org/AutenticacionUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AutenticacionUsuarioSeguridadToken" part="SeguridadToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Empresas_Registradas">
+      <soap:operation soapAction="http://tempuri.org/Empresas_Registradas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:Empresas_RegistradasSeguridadToken" part="SeguridadToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Top_5_Empresas">
+      <soap:operation soapAction="http://tempuri.org/Top_5_Empresas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:Top_5_EmpresasSeguridadToken" part="SeguridadToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Empresas_Mas_Ofertas">
+      <soap:operation soapAction="http://tempuri.org/Empresas_Mas_Ofertas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:Empresas_Mas_OfertasSeguridadToken" part="SeguridadToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ofertas_Detalladas">
+      <soap:operation soapAction="http://tempuri.org/Ofertas_Detalladas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:Ofertas_DetalladasSeguridadToken" part="SeguridadToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Top5_Aspirantes">
+      <soap:operation soapAction="http://tempuri.org/Top5_Aspirantes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:Top5_AspirantesSeguridadToken" part="SeguridadToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busqueda_Aspirantes">
+      <soap:operation soapAction="http://tempuri.org/Busqueda_Aspirantes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:Busqueda_AspirantesSeguridadToken" part="SeguridadToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busqueda_Ofertas">
+      <soap:operation soapAction="http://tempuri.org/Busqueda_Ofertas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:Busqueda_OfertasSeguridadToken" part="SeguridadToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServidorUniempleoSoap12" type="tns:ServidorUniempleoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AutenticacionUsuario">
+      <soap12:operation soapAction="http://tempuri.org/AutenticacionUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AutenticacionUsuarioSeguridadToken" part="SeguridadToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Empresas_Registradas">
+      <soap12:operation soapAction="http://tempuri.org/Empresas_Registradas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:Empresas_RegistradasSeguridadToken" part="SeguridadToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Top_5_Empresas">
+      <soap12:operation soapAction="http://tempuri.org/Top_5_Empresas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:Top_5_EmpresasSeguridadToken" part="SeguridadToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Empresas_Mas_Ofertas">
+      <soap12:operation soapAction="http://tempuri.org/Empresas_Mas_Ofertas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:Empresas_Mas_OfertasSeguridadToken" part="SeguridadToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ofertas_Detalladas">
+      <soap12:operation soapAction="http://tempuri.org/Ofertas_Detalladas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:Ofertas_DetalladasSeguridadToken" part="SeguridadToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Top5_Aspirantes">
+      <soap12:operation soapAction="http://tempuri.org/Top5_Aspirantes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:Top5_AspirantesSeguridadToken" part="SeguridadToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busqueda_Aspirantes">
+      <soap12:operation soapAction="http://tempuri.org/Busqueda_Aspirantes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:Busqueda_AspirantesSeguridadToken" part="SeguridadToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Busqueda_Ofertas">
+      <soap12:operation soapAction="http://tempuri.org/Busqueda_Ofertas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:Busqueda_OfertasSeguridadToken" part="SeguridadToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServidorUniempleo">
+    <wsdl:port name="ServidorUniempleoSoap" binding="tns:ServidorUniempleoSoap">
+      <soap:address location="http://uniempleo.ddns.net/ServidorServicios/ServidorUniempleo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServidorUniempleoSoap12" binding="tns:ServidorUniempleoSoap12">
+      <soap12:address location="http://uniempleo.ddns.net/ServidorServicios/ServidorUniempleo.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
