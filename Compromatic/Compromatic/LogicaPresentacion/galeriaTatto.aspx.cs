@@ -48,6 +48,6 @@ public partial class Presentacion_galeriaTatto : System.Web.UI.Page
 
     protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
     {
-        Response.Write("<script>window.open('http://tattoostudio.ddns.net/Galeria.aspx','_blank')</script>");
+        Response.Write("<script>window.open('http://tattoostudio.gotdns.ch/Vista/Usuario/Galeria.aspx','_blank')</script>");
     }
 }

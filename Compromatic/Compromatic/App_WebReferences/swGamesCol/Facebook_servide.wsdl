@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="accedefacebook">
+        <s:complexType />
+      </s:element>
+      <s:element name="accedefacebookResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AutenticacionCliente">
+        <s:complexType />
+      </s:element>
+      <s:element name="AutenticacionClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AutenticacionClienteResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ServiceToken" type="tns:ServiceToken" />
+      <s:complexType name="ServiceToken">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="sToken" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AutenticacionToken" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="etiquetas">
+        <s:complexType />
+      </s:element>
+      <s:element name="etiquetasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="etiquetasResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="postpc">
+        <s:complexType />
+      </s:element>
+      <s:element name="postpcResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="postpcResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="postxbox">
+        <s:complexType />
+      </s:element>
+      <s:element name="postxboxResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="postxboxResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="postps">
+        <s:complexType />
+      </s:element>
+      <s:element name="postpsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="postpsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="postandroid">
+        <s:complexType />
+      </s:element>
+      <s:element name="postandroidResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="postandroidResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="loggin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nick" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contraseña" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="logginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="logginResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="buscador">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="titulo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="buscadorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="buscadorResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="contactenos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="correo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sugerencia" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="contactenosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="contactenosResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="noticias">
+        <s:complexType />
+      </s:element>
+      <s:element name="noticiasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="noticiasResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="postMas">
+        <s:complexType />
+      </s:element>
+      <s:element name="postMasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="postMasResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="accedefacebookSoapIn">
+    <wsdl:part name="parameters" element="tns:accedefacebook" />
+  </wsdl:message>
+  <wsdl:message name="accedefacebookSoapOut">
+    <wsdl:part name="parameters" element="tns:accedefacebookResponse" />
+  </wsdl:message>
+  <wsdl:message name="AutenticacionClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:AutenticacionCliente" />
+  </wsdl:message>
+  <wsdl:message name="AutenticacionClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:AutenticacionClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="AutenticacionClienteServiceToken">
+    <wsdl:part name="ServiceToken" element="tns:ServiceToken" />
+  </wsdl:message>
+  <wsdl:message name="etiquetasSoapIn">
+    <wsdl:part name="parameters" element="tns:etiquetas" />
+  </wsdl:message>
+  <wsdl:message name="etiquetasSoapOut">
+    <wsdl:part name="parameters" element="tns:etiquetasResponse" />
+  </wsdl:message>
+  <wsdl:message name="postpcSoapIn">
+    <wsdl:part name="parameters" element="tns:postpc" />
+  </wsdl:message>
+  <wsdl:message name="postpcSoapOut">
+    <wsdl:part name="parameters" element="tns:postpcResponse" />
+  </wsdl:message>
+  <wsdl:message name="postpcServiceToken">
+    <wsdl:part name="ServiceToken" element="tns:ServiceToken" />
+  </wsdl:message>
+  <wsdl:message name="postxboxSoapIn">
+    <wsdl:part name="parameters" element="tns:postxbox" />
+  </wsdl:message>
+  <wsdl:message name="postxboxSoapOut">
+    <wsdl:part name="parameters" element="tns:postxboxResponse" />
+  </wsdl:message>
+  <wsdl:message name="postxboxServiceToken">
+    <wsdl:part name="ServiceToken" element="tns:ServiceToken" />
+  </wsdl:message>
+  <wsdl:message name="postpsSoapIn">
+    <wsdl:part name="parameters" element="tns:postps" />
+  </wsdl:message>
+  <wsdl:message name="postpsSoapOut">
+    <wsdl:part name="parameters" element="tns:postpsResponse" />
+  </wsdl:message>
+  <wsdl:message name="postpsServiceToken">
+    <wsdl:part name="ServiceToken" element="tns:ServiceToken" />
+  </wsdl:message>
+  <wsdl:message name="postandroidSoapIn">
+    <wsdl:part name="parameters" element="tns:postandroid" />
+  </wsdl:message>
+  <wsdl:message name="postandroidSoapOut">
+    <wsdl:part name="parameters" element="tns:postandroidResponse" />
+  </wsdl:message>
+  <wsdl:message name="postandroidServiceToken">
+    <wsdl:part name="ServiceToken" element="tns:ServiceToken" />
+  </wsdl:message>
+  <wsdl:message name="logginSoapIn">
+    <wsdl:part name="parameters" element="tns:loggin" />
+  </wsdl:message>
+  <wsdl:message name="logginSoapOut">
+    <wsdl:part name="parameters" element="tns:logginResponse" />
+  </wsdl:message>
+  <wsdl:message name="logginServiceToken">
+    <wsdl:part name="ServiceToken" element="tns:ServiceToken" />
+  </wsdl:message>
+  <wsdl:message name="buscadorSoapIn">
+    <wsdl:part name="parameters" element="tns:buscador" />
+  </wsdl:message>
+  <wsdl:message name="buscadorSoapOut">
+    <wsdl:part name="parameters" element="tns:buscadorResponse" />
+  </wsdl:message>
+  <wsdl:message name="buscadorServiceToken">
+    <wsdl:part name="ServiceToken" element="tns:ServiceToken" />
+  </wsdl:message>
+  <wsdl:message name="contactenosSoapIn">
+    <wsdl:part name="parameters" element="tns:contactenos" />
+  </wsdl:message>
+  <wsdl:message name="contactenosSoapOut">
+    <wsdl:part name="parameters" element="tns:contactenosResponse" />
+  </wsdl:message>
+  <wsdl:message name="contactenosServiceToken">
+    <wsdl:part name="ServiceToken" element="tns:ServiceToken" />
+  </wsdl:message>
+  <wsdl:message name="noticiasSoapIn">
+    <wsdl:part name="parameters" element="tns:noticias" />
+  </wsdl:message>
+  <wsdl:message name="noticiasSoapOut">
+    <wsdl:part name="parameters" element="tns:noticiasResponse" />
+  </wsdl:message>
+  <wsdl:message name="noticiasServiceToken">
+    <wsdl:part name="ServiceToken" element="tns:ServiceToken" />
+  </wsdl:message>
+  <wsdl:message name="postMasSoapIn">
+    <wsdl:part name="parameters" element="tns:postMas" />
+  </wsdl:message>
+  <wsdl:message name="postMasSoapOut">
+    <wsdl:part name="parameters" element="tns:postMasResponse" />
+  </wsdl:message>
+  <wsdl:message name="postMasServiceToken">
+    <wsdl:part name="ServiceToken" element="tns:ServiceToken" />
+  </wsdl:message>
+  <wsdl:portType name="Facebook_servideSoap">
+    <wsdl:operation name="accedefacebook">
+      <wsdl:input message="tns:accedefacebookSoapIn" />
+      <wsdl:output message="tns:accedefacebookSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AutenticacionCliente">
+      <wsdl:input message="tns:AutenticacionClienteSoapIn" />
+      <wsdl:output message="tns:AutenticacionClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="etiquetas">
+      <wsdl:input message="tns:etiquetasSoapIn" />
+      <wsdl:output message="tns:etiquetasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="postpc">
+      <wsdl:input message="tns:postpcSoapIn" />
+      <wsdl:output message="tns:postpcSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="postxbox">
+      <wsdl:input message="tns:postxboxSoapIn" />
+      <wsdl:output message="tns:postxboxSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="postps">
+      <wsdl:input message="tns:postpsSoapIn" />
+      <wsdl:output message="tns:postpsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="postandroid">
+      <wsdl:input message="tns:postandroidSoapIn" />
+      <wsdl:output message="tns:postandroidSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="loggin">
+      <wsdl:input message="tns:logginSoapIn" />
+      <wsdl:output message="tns:logginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="buscador">
+      <wsdl:input message="tns:buscadorSoapIn" />
+      <wsdl:output message="tns:buscadorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="contactenos">
+      <wsdl:input message="tns:contactenosSoapIn" />
+      <wsdl:output message="tns:contactenosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="noticias">
+      <wsdl:input message="tns:noticiasSoapIn" />
+      <wsdl:output message="tns:noticiasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="postMas">
+      <wsdl:input message="tns:postMasSoapIn" />
+      <wsdl:output message="tns:postMasSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Facebook_servideSoap" type="tns:Facebook_servideSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="accedefacebook">
+      <soap:operation soapAction="http://tempuri.org/accedefacebook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AutenticacionCliente">
+      <soap:operation soapAction="http://tempuri.org/AutenticacionCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AutenticacionClienteServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="etiquetas">
+      <soap:operation soapAction="http://tempuri.org/etiquetas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="postpc">
+      <soap:operation soapAction="http://tempuri.org/postpc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:postpcServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="postxbox">
+      <soap:operation soapAction="http://tempuri.org/postxbox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:postxboxServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="postps">
+      <soap:operation soapAction="http://tempuri.org/postps" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:postpsServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="postandroid">
+      <soap:operation soapAction="http://tempuri.org/postandroid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:postandroidServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="loggin">
+      <soap:operation soapAction="http://tempuri.org/loggin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:logginServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscador">
+      <soap:operation soapAction="http://tempuri.org/buscador" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:buscadorServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="contactenos">
+      <soap:operation soapAction="http://tempuri.org/contactenos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:contactenosServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="noticias">
+      <soap:operation soapAction="http://tempuri.org/noticias" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:noticiasServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="postMas">
+      <soap:operation soapAction="http://tempuri.org/postMas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:postMasServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Facebook_servideSoap12" type="tns:Facebook_servideSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="accedefacebook">
+      <soap12:operation soapAction="http://tempuri.org/accedefacebook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AutenticacionCliente">
+      <soap12:operation soapAction="http://tempuri.org/AutenticacionCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AutenticacionClienteServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="etiquetas">
+      <soap12:operation soapAction="http://tempuri.org/etiquetas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="postpc">
+      <soap12:operation soapAction="http://tempuri.org/postpc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:postpcServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="postxbox">
+      <soap12:operation soapAction="http://tempuri.org/postxbox" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:postxboxServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="postps">
+      <soap12:operation soapAction="http://tempuri.org/postps" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:postpsServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="postandroid">
+      <soap12:operation soapAction="http://tempuri.org/postandroid" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:postandroidServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="loggin">
+      <soap12:operation soapAction="http://tempuri.org/loggin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:logginServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscador">
+      <soap12:operation soapAction="http://tempuri.org/buscador" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:buscadorServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="contactenos">
+      <soap12:operation soapAction="http://tempuri.org/contactenos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:contactenosServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="noticias">
+      <soap12:operation soapAction="http://tempuri.org/noticias" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:noticiasServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="postMas">
+      <soap12:operation soapAction="http://tempuri.org/postMas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:postMasServiceToken" part="ServiceToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Facebook_servide">
+    <wsdl:port name="Facebook_servideSoap" binding="tns:Facebook_servideSoap">
+      <soap:address location="http://gamescol.ddns.net/Servicios/Facebook_servide.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Facebook_servideSoap12" binding="tns:Facebook_servideSoap12">
+      <soap12:address location="http://gamescol.ddns.net/Servicios/Facebook_servide.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
