@@ -27,7 +27,7 @@ namespace Utilitarios
         [Column("nom_user")]
         public string NombreUs { get => nombreUs; set => nombreUs = value; }
 
-        [Column("publiacion")]
+        [Column("publicacion")]
         public string Publicacion { get => publicacion; set => publicacion = value; }
     }
 }

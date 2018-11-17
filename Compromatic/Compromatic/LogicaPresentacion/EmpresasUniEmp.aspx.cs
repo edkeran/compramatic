@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Logica;
 using Utilitarios;
 using Newtonsoft.Json;
+using System.Collections;
 
 public partial class Presentacion_EmpresasUniEmp : System.Web.UI.Page
 {
@@ -34,6 +35,20 @@ public partial class Presentacion_EmpresasUniEmp : System.Web.UI.Page
             List<JoinEmpresasR> list = JsonConvert.DeserializeObject<List<JoinEmpresasR>>(servicio.Empresas_Registradas(objSegu));
             GV_Empre.DataSource = list;
             GV_Empre.DataBind();
+
+            //Seteando Idiomas
+            L_Idioma idiot = new L_Idioma();
+            Object sesidioma = Session["idiomases"];
+            Int32 formulario = 42;
+            Int32 idiom = Convert.ToInt32(sesidioma);
+            Hashtable compIdioma = new Hashtable();
+            idiot.mostraridioma(formulario, idiom, compIdioma);
+            try
+            {
+                this.title.InnerHtml = compIdioma["title"].ToString();
+            }
+            catch (Exception ex)
+            { }
         }
         catch(Exception ex)
         {

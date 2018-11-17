@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -18,6 +19,21 @@ public partial class Presentacion_comentArtistTatto : System.Web.UI.Page
             logi.validar_postback(IsPostBack);
             wsTattoSt.WebServiceSoapClient serv = new wsTattoSt.WebServiceSoapClient();
             DataSet artistas = serv.Artistas();
+            //Seteando Idiomas
+            L_Idioma idiot = new L_Idioma();
+            Object sesidioma = Session["idiomases"];
+            Int32 formulario = 44;
+            Int32 idiom = Convert.ToInt32(sesidioma);
+            Hashtable compIdioma = new Hashtable();
+            idiot.mostraridioma(formulario, idiom, compIdioma);
+            try
+            {
+                this.title.InnerHtml = compIdioma["title"].ToString();
+                this.BTN_Get.Text= compIdioma["BTN_Get"].ToString();
+            }
+            catch (Exception ex)
+            { }
+
             try
             {
                 DDL_artist.DataSource = artistas;

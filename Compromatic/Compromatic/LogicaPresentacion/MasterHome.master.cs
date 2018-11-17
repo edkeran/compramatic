@@ -39,6 +39,13 @@ public partial class Presentacion_MasterHome : System.Web.UI.MasterPage
             this.as_usr.InnerText = compIdioma["as_usr"].ToString();
             this.as_company.InnerText = compIdioma["as_company"].ToString();
             this.start_session.InnerText = compIdioma["start_session"].ToString();
+            this.serv.InnerHtml = compIdioma["serv"].ToString();
+            this.A1.InnerHtml= compIdioma["A1"].ToString();
+            this.A2.InnerHtml= compIdioma["A2"].ToString();
+            this.A3.InnerHtml = compIdioma["A3"].ToString();
+            this.a4.InnerHtml= compIdioma["a4"].ToString();
+            this.a5.InnerHtml = compIdioma["a5"].ToString();
+            this.a6.InnerHtml = compIdioma["a6"].ToString();
 
         }
         catch (Exception ex)

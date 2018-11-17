@@ -12,7 +12,7 @@
      <div style="padding:2%; text-align: center;background-color:darkgray">
         <asp:Image ID="IMG_gamesCol" runat="server" ImageUrl="~/Archivos/Asociados/GamesCol.jpg" Height="150px" CssClass="text-center" />
     </div>
-      <h1 style="text-align: center;">Noticias GamesCol <br /><small>El Mejor Sitio Web Para Mantenerte Informado de Los VideoJuegos</small></h1>
+      <h1 style="text-align: center;" runat="server" id="title">Noticias GamesCol <br /><small>El Mejor Sitio Web Para Mantenerte Informado de Los VideoJuegos</small></h1>
     <div>
         <asp:GridView ID="GV_miPost" runat="server" Width="100%"></asp:GridView>
     </div>

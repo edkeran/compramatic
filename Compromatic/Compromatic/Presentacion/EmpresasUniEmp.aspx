@@ -12,7 +12,7 @@
     <div style="padding:2%; text-align: center;">
         <asp:Image ID="IMG_UniEmp" runat="server" ImageUrl="~/Archivos/Asociados/UniEmpleo.png" Height="150px" CssClass="text-center" />
     </div>
-    <h1 style="text-align: center;">Empresas De Uniempleo <br /><small>Nuestros Aliados Para Encontrar Trabajo</small></h1>
+    <h1 style="text-align: center;" runat="server" id="title">Empresas De Uniempleo <br /><small>Nuestros Aliados Para Encontrar Trabajo</small></h1>
     <!--GRIDVIEW PARA TRAER LOS DATOS -->
      <div class="dataTables_empty">
          <div style="text-align:center">

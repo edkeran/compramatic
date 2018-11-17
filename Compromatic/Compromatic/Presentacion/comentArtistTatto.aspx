@@ -13,7 +13,7 @@
         <asp:Image ID="IMG_Tatto" runat="server" ImageUrl="~/Archivos/Asociados/Tatto.png" Height="187px" CssClass="text-center" Width="691px" />
     </div>
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <h1 style="text-align: center;">Comentarios De Artistas Tatto Studio <br /><small>Los Mejores Tatuajes Del Departamento</small></h1>
+    <h1 style="text-align: center;" runat="server" id="title">Comentarios De Artistas Tatto Studio <br /><small>Los Mejores Tatuajes Del Departamento</small></h1>
     <!--Div para el ComboBox para escoger la categoria-->
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>

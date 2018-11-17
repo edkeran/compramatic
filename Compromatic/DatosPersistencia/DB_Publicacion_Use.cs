@@ -15,5 +15,14 @@ namespace DatosPersistencia
                 db.SaveChanges();
             }
         }
+
+        public List<UEUPublic_User> get_publicaciones()
+        {
+            using (var db= new Mapeo("public"))
+            {
+                return db.publicaciones.ToList();
+            }
+        }
+
     }
 }

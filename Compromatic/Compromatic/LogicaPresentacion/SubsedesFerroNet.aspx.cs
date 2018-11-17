@@ -3,6 +3,7 @@ using Utilitarios;
 using Logica;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Collections;
 
 public partial class Presentacion_SubsedesFerroNet : System.Web.UI.Page
 {
@@ -31,5 +32,19 @@ public partial class Presentacion_SubsedesFerroNet : System.Web.UI.Page
         List<Ubicaciones> data = JsonConvert.DeserializeObject<List<Ubicaciones>>(obwsClientesSoap.ConsultaDeUbicaciones(objclsSeguridad));
         GV_test.DataSource = data;
         GV_test.DataBind();
+
+        //Seteando Idiomas
+        L_Idioma idiot = new L_Idioma();
+        Object sesidioma = Session["idiomases"];
+        Int32 formulario = 43;
+        Int32 idiom = Convert.ToInt32(sesidioma);
+        Hashtable compIdioma = new Hashtable();
+        idiot.mostraridioma(formulario, idiom, compIdioma);
+        try
+        {
+            this.title.InnerHtml = compIdioma["title"].ToString();
+        }
+        catch (Exception ex)
+        { }
     }
 }

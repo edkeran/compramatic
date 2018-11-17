@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logica;
 
 public partial class Presentacion_galeriaTatto : System.Web.UI.Page
 {
@@ -20,7 +22,22 @@ public partial class Presentacion_galeriaTatto : System.Web.UI.Page
             {
                 GV_Tatto.DataSource = artistas;
                 GV_Tatto.DataBind();
-            }catch(Exception ex)
+
+                //Seteando Idiomas
+                L_Idioma idiot = new L_Idioma();
+                Object sesidioma = Session["idiomases"];
+                Int32 formulario = 40;
+                Int32 idiom = Convert.ToInt32(sesidioma);
+                Hashtable compIdioma = new Hashtable();
+                idiot.mostraridioma(formulario, idiom, compIdioma);
+                try
+                {
+                    this.title.InnerHtml = compIdioma["title"].ToString();
+                }
+                catch (Exception ex)
+                { }
+            }
+            catch(Exception ex)
             {
                 throw ex;
             }

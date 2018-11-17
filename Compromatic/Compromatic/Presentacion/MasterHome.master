@@ -151,7 +151,7 @@
             <nav style="background-color:lightgray;" id="navegador">
                  <ul style="list-style-type:none">
                      <li>
-                         <h3 style="margin-right:2%">Servicios</h3>
+                         <h3 style="margin-right:2%" id="serv" runat="server">Servicios</h3>
                      </li>
                        <li>
                             <a href="galeriaTatto.aspx" id="A1" runat="server">Galeria Tatto</a>

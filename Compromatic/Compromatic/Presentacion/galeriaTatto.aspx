@@ -15,7 +15,7 @@
     <div style="padding:2%; text-align: center;background-color:blanchedalmond">
         <asp:Image ID="IMG_Tatto" runat="server" ImageUrl="~/Archivos/Asociados/Tatto.png" Height="187px" CssClass="text-center" Width="691px" />
     </div>
-     <h1 style="text-align: center;">Galeria Tatto Studio<br /><small>Los Mejores Tatuajes Del Departamento</small></h1>
+     <h1 style="text-align: center;" runat="server" id="title">Galeria Tatto Studio<br /><small>Los Mejores Tatuajes Del Departamento</small></h1>
    <div style="padding:0 10%;padding-top:1%">
      <asp:GridView ID="GV_Tatto" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="2" BorderStyle="Groove" class="table table-hover" Width="100%"  OnPageIndexChanging="GV_Tatto_PageIndexChanging">
          <Columns>

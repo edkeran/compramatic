@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Logica;
 
 public partial class Presentacion_notiGamesCol : System.Web.UI.Page
 {
@@ -34,6 +36,19 @@ public partial class Presentacion_notiGamesCol : System.Web.UI.Page
             //Response.Write("<Script Language='JavaScript'>parent.alert('" + m + "');</Script>");
             GV_miPost.DataSource = this.obtenerPost(token);
             GV_miPost.DataBind();
+            //Seteando Idiomas
+            L_Idioma idiot = new L_Idioma();
+            Object sesidioma = Session["idiomases"];
+            Int32 formulario = 41;
+            Int32 idiom = Convert.ToInt32(sesidioma);
+            Hashtable compIdioma = new Hashtable();
+            idiot.mostraridioma(formulario, idiom, compIdioma);
+            try
+            {
+                this.title.InnerHtml = compIdioma["title"].ToString();
+            }
+            catch (Exception ex)
+            { }
         }
         catch (Exception ex)
         {

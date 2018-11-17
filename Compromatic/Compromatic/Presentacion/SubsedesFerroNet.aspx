@@ -7,7 +7,7 @@
     <div style="padding:2%; text-align: center;">
         <asp:Image ID="IMG_Ferro" runat="server" ImageUrl="~/Archivos/Asociados/FerroNet.jpg" Width="50%" Height="200px" CssClass="text-center" />
     </div>
-    <h1 style="text-align: center;">Subsedes De FerroNet <br /><small>Nuestros Aliados Comerciales</small></h1>
+    <h1 style="text-align: center;" runat="server" id="title">Subsedes De FerroNet <br /><small>Nuestros Aliados Comerciales</small></h1>
     <!--DIV PARA LA API DE GOOGLE MAPS BUSCAR EJEMPLO-->
     <div>
         <!--Label De Pruebas Para Pintar Los Datos-->
