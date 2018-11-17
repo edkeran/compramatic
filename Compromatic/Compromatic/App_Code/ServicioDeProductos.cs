@@ -52,7 +52,7 @@ public class WebService : System.Web.Services.WebService
                 List<UEUVista_Tot_Prod> inf = logi.busqueda(id_categoria);
                 foreach(UEUVista_Tot_Prod aux in inf)
                 {
-                    aux._foto = "compramatic.hopto.org:88/Archivos/FotosProductos/" + aux._foto;
+                    aux._foto = "http://compramatic.hopto.org:88/Archivos/FotosProductos/" + aux._foto;
                 }
                 ListToDataTable conv = new ListToDataTable();
                 DataTable retorn = conv.ToDataTable(inf);

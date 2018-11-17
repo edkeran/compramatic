@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using Utilitarios;
 using Seguridad;
+using Logica;
 
 /// <summary>
 /// Descripción breve de ServicioPublicUser
@@ -50,6 +51,9 @@ public class ServicioPublicUser : System.Web.Services.WebService
                 publica.NombreUs = nomUser;
                 publica.Publicacion = publicacion;
                 publica.Email_user = emailUser;
+                //A Terminar este servicio :(
+                L_Serv_Public_User logi = new L_Serv_Public_User();
+                logi.crear_Publicacion(publica);
                 return "Publicacion Correctamente Insertada";
             }
             catch (Exception ex)

@@ -40,6 +40,19 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <style>
+        #navegador ul{
+           list-style-type: none;
+           text-align: center;
+        }
+
+        #navegador li{
+               display: inline;
+               text-align: center;
+               margin: 0 10px 0px 0px;
+            }
+
+    </style>
     <form id="form1" runat="server">
         <div>
             <!-- BEGIN #header -->
@@ -82,10 +95,6 @@
                                     </li>
                                     <li><a href="AboutUs.aspx" id="who_are" runat="server">¿Quienes somos?</a></li>
                                     <li class="dropdown dropdown-hover">
-                                        <a href="#" data-toggle="dropdown">
-                                            <i class="fa fa-search search-btn"></i>
-                                            <span class="arrow top"></span>
-                                        </a>
                                         <div class="dropdown-menu p-15">
                                             <div class="input-group">
                                                 <asp:TextBox CssClass="form-control bg-silver-lighter" runat="server" ID="TB_Search" />
@@ -96,7 +105,6 @@
                                             </div>
                                         </div>
                                     </li>
-
                                 </ul>
                             </div>
                         </div>
@@ -140,6 +148,33 @@
             <!-- END #header -->
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
+            <nav style="background-color:lightgray;" id="navegador">
+                 <ul style="list-style-type:none">
+                     <li>
+                         <h3 style="margin-right:2%">Servicios</h3>
+                     </li>
+                       <li>
+                            <a href="galeriaTatto.aspx" id="A1" runat="server">Galeria Tatto</a>
+                        </li>
+                     <li>
+                         <a href="notiGamesCol.aspx" id="A2" runat="server">Noticias GamesCol</a>
+                     </li>
+                     <li>
+                         <a href="EmpresasUniEmp.aspx" id="A3" runat="server">Empresas Uniempleo</a>
+
+                     </li>
+                        <li>
+                            <a href="SubsedesFerroNet.aspx" id="a4" runat="server">SubSedes FerroNet</a>
+                        </li>
+                        <li>
+                            <a href="comentArtistTatto.aspx" id="a5" runat="server">Comentarios Artista</a>
+
+                        </li>
+                        <li>
+                            <a href="ContactenColegio.aspx" id="a6" runat="server">Contacto Colegio</a>
+                        </li>
+                 </ul>
+            </nav>
         </div>
           <!-- #modal-dialog -->
     <div class="modal fade" id="modal-dialog">
